@@ -1,0 +1,33 @@
+{
+  "$note": "Voice rotation (round robin). /script assigns the next voice when it creates an episode (npm run voice:assign). Both parts of a two-part episode share one voice. Edit 'roster' to add, remove or reorder voices.",
+  "roster": [
+    {
+      "name": "Liam",
+      "voice_id": "TX3LPaxmHKxFdv7VOQHJ",
+      "style": "energetic, social media"
+    },
+    {
+      "name": "Laura",
+      "voice_id": "FGY2WhTYpPnrIDTdsKH5",
+      "style": "quirky enthusiast"
+    },
+    {
+      "name": "Jessica",
+      "voice_id": "cgSgspJ2msm6clMCkdW9",
+      "style": "playful, bright"
+    },
+    {
+      "name": "Chris",
+      "voice_id": "iP95p4xoKVk53GoZ742B",
+      "style": "charming, down-to-earth"
+    }
+  ],
+  "next": 1,
+  "history": [
+    {
+      "episode": "001-what-is-system-design",
+      "voice": "Liam",
+      "date": "2026-09-29"
+    }
+  ]
+}

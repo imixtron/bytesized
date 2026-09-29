@@ -1,0 +1,79 @@
+---
+name: video
+description: Video Creator for Bytesized, the 30–60s system-design shorts of Back in a Gist. Takes an approved episodes/<nnn-slug>/episode.yaml through voiceover (ElevenLabs), storyboard review, draft render and final publishable render with the Remotion engine, and builds any missing template or part first. Use when asked to make, render, voice, storyboard or finish a Bytesized episode.
+---
+
+# /video: episode.yaml → video
+
+You turn an **approved** episode into video with the engine in `engine/` (Remotion). All commands run from `engine/`. Read `engine/README.md` once for the command list.
+
+## Read first
+- `episodes/INDEX.md`: the episode's status. It must be at least `script approved`. If it isn't, stop and suggest `/script`.
+- `episodes/SCRIPT-FORMAT.md` and `brand/design-language/DESIGN-LANGUAGE.md` (v1.3), plus `tokens.json` for every value.
+
+## Steps
+
+### 1. Check the episode can be built
+```bash
+npm run validate -- <nnn>
+```
+Then check what it uses against what exists:
+- **Templates:** each `scene.template` must be in `src/templates/index.tsx` (`TEMPLATE_COMPONENTS`).
+- **Node types and icons:** each type must be in `ICON_FOR` (`src/parts/icons.tsx`).
+- **Verbs:** each verb must be handled by the templates it's used in.
+- **Brand logos:** `assets/logos/<brand>/derived/node.png` must exist. If it doesn't, add a TASKS.md item for Imad and stop.
+
+**If something's missing, build it into the library first** (never as a one-off in the episode):
+- New template → `src/templates/<Name>.tsx`, following the existing ones: `ctx`, `localBeats`, `Headline`, content centred with `centredTop`/`stageBox`, values only from `tokens`. Register it in `index.tsx`.
+- New icon or type → add it to `ICONS` / `ICON_FOR` (24-grid, 2px rounded strokes, `currentColor`).
+- Add it to a gallery composition (`src/compositions/gallery/`), run `npx tsc --noEmit`, render a still of it, **look at it**, and show Imad before using it in the episode. New parts follow the locked design language. If a need doesn't fit it, propose a design-language change instead of improvising.
+
+### 2. Voiceover (uses ElevenLabs credits)
+```bash
+npm run voice -- <nnn>          # per scene, cached; only changed scenes are billed
+npm run validate -- <nnn>       # now uses the measured length
+```
+- Report the characters billed.
+- If the **measured** length is outside 30–60s, don't pad or speed up. Go back to the script with Imad (trim or extend lines), then regenerate only the changed scenes.
+- Listen for mispronounced terms. Log them in `episodes/pronunciations.md` and tell Imad.
+- Set INDEX status to `voiced`.
+
+### 3. Storyboard review ✋
+```bash
+npm run storyboard -- <nnn>     # → episodes/<nnn-slug>/storyboard/storyboard.html
+```
+Before sending it, **check the stills yourself**:
+- nothing overlapping (headline vs diagram, labels vs wires, stage vs captions)
+- beats visible at the right moment
+- one focus at a time, and no lone-word captions
+
+Fix what you can: beat `offset`, layers, or a template fix that goes into the library. Then send the storyboard to Imad and **stop for approval**. Apply feedback, then re-run the storyboard. On approval, set INDEX status to `storyboard approved`.
+
+### 4. Draft render
+```bash
+npm run sync && npx remotion render ep-<nnn> ../episodes/<nnn-slug>/out/<slug>-draft.mp4 --crf=18
+```
+Send it. Suggest Imad checks it on a phone (caption position against platform overlays, pacing). Set INDEX status to `draft rendered`.
+
+### 5. Final render (publishable)
+```bash
+npm run render:final -- <nnn>   # → episodes/<nnn-slug>/out/<slug>.mp4
+```
+- This refuses unless the voiceover, music and every sound are licensed (paid-plan ElevenLabs or original). If it refuses, show Imad the listed fixes. They're in TASKS.md "After subscribing". Don't bypass it.
+- Once it succeeds, write `episodes/<nnn-slug>/out/upload.md`:
+  - a title of 60 characters or fewer
+  - a 1–2 line description ending with "Follow Bytesized for byte-sized tech." (or the Part 2 line)
+  - 3–5 hashtags (#systemdesign #shorts and topic tags)
+  - for a Part 1/2, a link line to the other part
+  - if `brands:` is set, the line: *"Not affiliated with or endorsed by <Brand>. Logos are used for identification only."*
+- Set INDEX status to `final rendered`. After Imad posts it, set it to `published`.
+
+### 6. Wrap up
+- Add one line to the `STATUS.md` changelog: episode, length, credits used, anything new added to the library. Update the ElevenLabs credits line.
+- If you built new templates or parts, update the "Templates still to build" line and the architecture list in `engine/README.md`.
+
+## Engine gotchas
+- Always `npm run sync` after changing anything in `brand/`, `assets/` or `episodes/`. `render`, `still` and `storyboard` do it for you, but `npx remotion …` doesn't.
+- The engine refuses stale audio. If `vo` changes, re-run `npm run voice -- <nnn>`.
+- In zsh loops, list frames explicitly (`for f in 100 200 300`), since a `$VAR` with spaces won't split.
+- Check stills after any visual change: `npx remotion still ep-<nnn> out/check.png --frame=<f>`, then look at them.

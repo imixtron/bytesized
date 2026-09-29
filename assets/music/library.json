@@ -1,0 +1,30 @@
+{
+  "$note": "Music library. `bytesized-theme` is the channel theme used under every short. Generate it once with `npm run audio -- bytesized-theme` on a paid plan and reuse it forever. `licensed` gates final renders.",
+  "tracks": {
+    "bytesized-theme": {
+      "prompt": "Playful, upbeat instrumental tech-explainer theme for short vertical videos. 112 BPM, bright major key, bouncy muted synth plucks and marimba hooks over a light lo-fi drum groove with crisp claps and soft kick, warm round bass, subtle glassy arpeggios, a curious and clever mood, like a friendly animated diagram coming to life. Steady energy the whole way through, no big drops or build-ups, no vocals, leaves space for a voiceover, clean ending.",
+      "seconds": 75,
+      "instrumental": true,
+      "paidOnly": true
+    },
+    "bytesized-theme-preview": {
+      "prompt": "Playful, upbeat instrumental tech-explainer theme for short vertical videos. 112 BPM, bright major key, bouncy muted synth plucks and marimba hooks over a light lo-fi drum groove with crisp claps and soft kick, warm round bass, subtle glassy arpeggios, a curious and clever mood, like a friendly animated diagram coming to life. Steady energy the whole way through, no big drops or build-ups, no vocals, leaves space for a voiceover, clean ending.",
+      "seconds": 20,
+      "instrumental": true,
+      "note": "Short free-tier test of the theme prompt, to judge the mood before paying for the full track. Not for publishing."
+    },
+    "placeholder-playful-loop": {
+      "note": "Procedural stand-in until the theme exists."
+    }
+  },
+  "files": {
+    "placeholder-playful-loop": {
+      "file": "placeholder-playful-loop.wav",
+      "source": "generated",
+      "by": "engine/scripts/make-audio.ts",
+      "plan": "n/a",
+      "licensed": true,
+      "created": "2026-09-29"
+    }
+  }
+}

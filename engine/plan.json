@@ -1,0 +1,4 @@
+{
+  "$note": "Which ElevenLabs plan new audio is generated on. Set to \"paid\" after subscribing: only paid-plan audio is licensed for commercial use, and final renders refuse anything unlicensed.",
+  "elevenlabs_plan": "free"
+}

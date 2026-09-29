@@ -1,0 +1,171 @@
+# Episode 001, pilot. Script approved 2026-09-29 (Gate 3)
+# VO: 90 words. The engine estimate with pauses is ~44s including the 1.5s branding sting after the hook
+id: 1
+slug: what-is-system-design
+title: What is System Design?
+topic: system design basics
+target_sec: 40
+
+brands: [ netflix ] # assets/logos/netflix/ (official kit supplied by Imad)
+
+voice:
+  voice_id: TX3LPaxmHKxFdv7VOQHJ
+  speed: 1.0
+  name: Liam
+
+music:
+  volume: 0.12            # track defaults to the channel theme (placeholder until it's generated)
+
+scenes:
+  # ---------- HOOK ----------
+  - id: hook
+    part: hook
+    template: Hook
+    vo: "How does Netflix survive millions of people hitting play at once?"
+    headline: { text: "Millions. At once.", accent: "At once." }
+    stage:
+      nodes:
+        - { id: nflx, type: brand, logo: netflix, family: hero }
+      crowd: { id: crowd, count: 40, target: nflx }
+      counter: { id: watching, from: 0, to: 2418903, label: watching }
+    beats:
+      - { on: "Netflix", do: appear, target: nflx }
+      - { on: "millions", do: flood, target: crowd }
+      - { on: "play", do: count, target: watching }
+
+  # ---------- BRANDING (automatic, ~1.5s) ----------
+  # The engine inserts the branding sting here: bite wipe → orange lockup → cut. No voiceover.
+
+  # ---------- IDEA ----------
+  - id: idea
+    part: idea
+    template: Analogy
+    vo: "The answer is system design: planning your app like a city."
+    headline: { text: "Apps are cities", accent: "cities" }
+    stage:
+      rows: []
+      morph: { from: server, to: city }   # an app (server) that becomes a city on "city"
+    beats:
+      - { on: "design", do: appear, target: morph }
+      - { on: "city", do: highlight, target: morph }
+
+  # ---------- BREAKDOWN 1: the analogy ----------
+  - id: analogy
+    part: breakdown
+    template: Analogy
+    vo: "Servers are buildings. Databases are storage units. And load balancers?
+      They're the traffic cops."
+    headline: { text: "Apps are cities", accent: "cities" } # carried over from the idea scene, not re-animated
+    stage:
+      rows:
+        - { id: r1, icon: server, key: Servers, value: buildings }
+        - { id: r2, icon: db, key: Databases, value: storage units }
+        - { id: r3, icon: cop, key: Load balancers, value: traffic cops }
+    beats:
+      - { on: "Servers", do: reveal, target: r1 }
+      - { on: "Databases", do: reveal, target: r2 }
+      - { on: "load", do: reveal, target: r3 }
+      - { on: "cops", do: highlight, target: r3 }
+
+  # ---------- BREAKDOWN 2: spreading traffic (no headline, big visual) ----------
+  - id: flow
+    part: breakdown
+    template: FlowDiagram
+    vo: "When users flood in, the traffic cop spreads them out, so no single server
+      melts."
+    stage:
+      layers: [ [ u1, u2, u3 ], [ lb ], [ app1, app2, app3 ], [ db ] ]
+      nodes:
+        - { id: u1, type: phone, family: solid }
+        - { id: u2, type: phone, family: solid }
+        - { id: u3, type: phone, family: solid }
+        - { id: lb, type: lb, family: hero, label: lb-01 }
+        - { id: app1, type: server, label: app-1 }
+        - { id: app2, type: server, label: app-2 }
+        - { id: app3, type: server, label: app-3 }
+        - { id: db, type: db, label: postgres }
+      links:
+        [
+          [ u1, lb ],
+          [ u2, lb ],
+          [ u3, lb ],
+          [ lb, app1 ],
+          [ lb, app2 ],
+          [ lb, app3 ],
+          [ app1, db ],
+          [ app2, db ],
+          [ app3, db ]
+        ]
+    beats:
+      - { on: "users", do: appear, target: [ u1, u2, u3 ] }
+      - {
+          on: "flood",
+          do: send,
+          target: [ u1, u2, u3 ],
+          args: { kind: request, count: 6 }
+        }
+      - { on: "cop", do: highlight, target: lb }
+      - {
+          on: "spreads",
+          do: send,
+          target: [ app1, app2, app3 ],
+          args: { kind: request, count: 6 }
+        }
+      - { on: "melts", do: state, target: app3, args: { to: overloaded } }
+
+  # ---------- BREAKDOWN 3: failure & recovery (new in draft 2) ----------
+  - id: failover
+    part: breakdown
+    template: FlowDiagram
+    transition: push # same diagram, camera pushes in slightly
+    vo: "And if a server crashes? The cop stops sending it traffic. Users never even
+      notice."
+    headline: { text: "Crash? No problem", accent: "No problem" }
+    stage:
+      reuse: flow # same nodes and links as the previous scene
+    beats:
+      - { on: "crashes", do: state, target: app3, args: { to: down } }
+      - { on: "crashes", do: shake, target: app3 }
+      - { on: "stops", do: reroute, target: app3, args: { to: [ app1, app2 ] } }
+      - {
+          on: "never",
+          do: send,
+          target: [ u1, u2, u3 ],
+          args: { kind: response, count: 6 }
+        }
+      - { on: "notice", do: state, target: app3, args: { to: recovered } }
+
+  # ---------- BREAKDOWN 4: the three goals ----------
+  - id: goals
+    part: breakdown
+    template: ThreeCards
+    vo: "So engineers chase three things: scale up, stay up, and waste nothing."
+    headline: { text: "3 things matter", accent: "matter" }
+    stage:
+      cards:
+        - { id: c1, icon: scale, title: Scale up, sub: "more users, no sweat" }
+        - { id: c2, icon: pulse, title: Stay up, sub: "crash, recover, repeat" }
+        - {
+            id: c3,
+            icon: gauge,
+            title: Waste nothing,
+            sub: "every CPU earns its keep"
+          }
+    beats:
+      - { on: "scale", do: reveal, target: c1 }
+      - { on: "stay", do: reveal, target: c2 }
+      - { on: "waste", do: reveal, target: c3 }
+
+  # ---------- GIST (no headline) ----------
+  - id: gist
+    part: gist
+    template: GistCard
+    vo: "That's the gist: design so growth doesn't break you. Follow for more."
+    stage:
+      text: "Design so growth doesn't break you."
+      accent: "growth"
+    beats:
+      - { on: "gist", do: appear, target: card }
+      - { on: "growth", do: highlight, target: card }
+
+# No outro: the video ends on the gist card and loops back into the hook.

@@ -1,0 +1,41 @@
+{
+  "name": "bytesized-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Remotion engine that renders Bytesized episodes from episode.yaml + design tokens",
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-public.mjs",
+    "studio": "npm run sync && remotion studio",
+    "validate": "tsx scripts/validate.ts",
+    "render": "npm run sync && remotion render",
+    "still": "npm run sync && remotion still",
+    "typecheck": "tsc --noEmit",
+    "voices": "tsx scripts/voices.ts",
+    "voice:assign": "tsx scripts/voice-assign.ts",
+    "voice": "tsx scripts/voice.ts",
+    "make-audio": "tsx scripts/make-audio.ts",
+    "storyboard": "npm run sync && tsx scripts/storyboard.ts",
+    "audio": "tsx scripts/audio.ts",
+    "render:final": "tsx scripts/render-final.ts"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.529",
+    "@remotion/cli": "4.0.529",
+    "@remotion/google-fonts": "4.0.529",
+    "@remotion/paths": "4.0.529",
+    "@remotion/renderer": "4.0.529",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "remotion": "4.0.529",
+    "yaml": "2.9.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}

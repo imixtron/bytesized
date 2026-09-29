@@ -1,0 +1,25 @@
+# --- secrets (never commit) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- dependencies & generated build output ---
+node_modules/
+engine/public/
+engine/out/
+
+# --- renders & review output (regenerable, large) ---
+episodes/*/out/
+episodes/*/storyboard/
+
+# --- design-source files from third-party brand kits (engine uses derived/ PNGs) ---
+assets/logos/**/*.eps
+assets/logos/**/*.psd
+assets/logos/**/*.zip
+
+# --- local machine settings ---
+.claude/settings.local.json
+.DS_Store
+*.log
