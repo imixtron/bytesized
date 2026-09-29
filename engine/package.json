@@ -17,7 +17,8 @@
     "make-audio": "tsx scripts/make-audio.ts",
     "storyboard": "npm run sync && tsx scripts/storyboard.ts",
     "audio": "tsx scripts/audio.ts",
-    "render:final": "tsx scripts/render-final.ts"
+    "render:final": "tsx scripts/render-final.ts",
+    "doctor": "tsx scripts/doctor.ts"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.529",

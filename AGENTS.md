@@ -10,7 +10,8 @@ Current state and open items: **[STATUS.md](STATUS.md)**. Human to-dos: **[TASKS
 
 | Imad asks… | Do this |
 |---|---|
-| "Run the queue", or a scheduled run | §1b Notion queue: one unit of work, then stop |
+| "Run the queue", a scheduled run, "review 002", or "approve" / "change …" on a queued episode | **`/queue`** (`.claude/skills/queue/SKILL.md`), following the §1b rules |
+| Setting up a new machine | `SETUP.md`, then `npm run doctor` |
 | "Make an episode about X", "script X", a topic or notes | **`/script`** (`.claude/skills/script/SKILL.md`), then stop for approval, then **`/video`** |
 | "Render / voice / storyboard / finish episode N" | **`/video`** (`.claude/skills/video/SKILL.md`) |
 | Change the look, layout, colours, motion or sounds | Propose a **versioned change** to `brand/design-language/DESIGN-LANGUAGE.md` + `tokens.json` (v1.3 → v1.4). Show a render. Apply only after approval |
@@ -114,7 +115,7 @@ Log approvals ("approved by Imad in session"), changes requested, credits spent,
 
 ## 5. Repo map
 ```
-AGENTS.md  STATUS.md  TASKS.md       ← start here
+AGENTS.md  STATUS.md  TASKS.md  SETUP.md   ← start here
 brand/
   bytesized/          logo SVG/PNG (outlined text) + build_assets.py to rebuild
   back-in-a-gist/     parent logo (on orange only)
@@ -123,7 +124,8 @@ assets/<asset_type>/  logos/<brand>/ · music/ · sfx/   (each audio folder has 
 episodes/             SCRIPT-FORMAT.md · INDEX.md · voices.json · pronunciations.md
   <nnn-slug>/         episode.yaml · audio/ (voice + voice.json) · storyboard/ · out/
 engine/               Remotion + TypeScript (src/theme, chrome, parts, templates, episode, timing, audio, voice)
-.claude/skills/       script/ · video/
+.claude/skills/       script/ · video/ · queue/
+.claude/settings.json pre-approved commands and Notion tools for unattended runs (secrets denied)
 ```
 
 ## 6. Engineering conventions

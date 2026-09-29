@@ -18,6 +18,7 @@ Remotion (React + TypeScript) project. It renders `episodes/<nnn-slug>/episode.y
 | `npm run make-audio` | Regenerates the procedural placeholder music loop |
 | `npm run sync` | Copies `brand/`, `assets/` and `episodes/` into `public/` (generated, never edit it) |
 | `npm run typecheck` | TypeScript check |
+| `npm run doctor [-- --online]` | Checks a machine is ready: Node, deps, key present, plan, audio files, sync, types, episodes, ffmpeg |
 
 **Typical episode:** `voice:assign` → `validate` → `voice` → `validate` → `storyboard` ✋ → `render` (draft) → `render:final`.
 `engine/plan.json` records which ElevenLabs plan new audio is made on (`free` or `paid`). Only `paid` output is licensed.

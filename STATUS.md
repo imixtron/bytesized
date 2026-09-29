@@ -12,8 +12,8 @@ _Last updated 2026-09-29. Replaces the old PLAN.md and PROGRESS.md._
 | Audio | ✅ ElevenLabs voiceover with word timing · round-robin voices · 8 draft SFX (free plan) · theme track waits on the paid plan (Music API is paid-only) |
 | Skills | ✅ `/script` and `/video` |
 | Pilot (ep 001) | Storyboard ✅ approved · full-quality draft rendered · **final waits on paid-plan audio** |
-| Notion queue | ✅ `Pipeline Status` + `AI Notes` columns added to Bytesized → Shorts. Status map in AGENTS.md §1b · ⏳ `/queue` skill + 6h desktop schedule (next) |
-| Next | `/queue` skill + schedule on the Mac mini · post-subscription checklist (TASKS.md) · phone check of the pilot draft |
+| Notion queue | ✅ `/queue` skill, `Pipeline Status` + `AI Notes` columns, status map (AGENTS.md §1b). ⏳ The 6h schedule gets created on the Mac mini (SETUP.md §6) |
+| Next | Mac mini setup (SETUP.md) · mark the first Notion row **Idea** · post-subscription checklist (TASKS.md) |
 
 ## Key decisions (the why, in one line each)
 - **Remotion + TypeScript**, one `episode.yaml` per episode, visuals only from fixed menus, so output is predictable and on-brand.
@@ -29,4 +29,4 @@ _Last updated 2026-09-29. Replaces the old PLAN.md and PROGRESS.md._
 - Key permissions: Text to Speech, Voices: Read, Sound Effects, Music Generation, User: Read, Models: Read, Pronunciation Dictionaries.
 
 ## Changelog (condensed)
-- **2026-09-29:** Project set up. Logo, design language v1.0 → v1.3, script format v1.0 → v1.1 and the Remotion engine built. Pilot voiced (Liam, 41.9s), storyboarded and approved, and the draft rendered. Renamed Bitesized → Bytesized. Audio library + 8 draft SFX. `/script` and `/video` skills. Repo cleaned up, docs consolidated into AGENTS / STATUS / TASKS. Notion queue designed: status map, and Pipeline Status + AI Notes columns created.
+- **2026-09-29:** Project set up. Logo, design language v1.0 → v1.3, script format v1.0 → v1.1 and the Remotion engine built. Pilot voiced (Liam, 41.9s), storyboarded and approved, and the draft rendered. Renamed Bitesized → Bytesized. Audio library + 8 draft SFX. `/script` and `/video` skills. Repo cleaned up, docs consolidated into AGENTS / STATUS / TASKS. Notion queue designed: status map, and Pipeline Status + AI Notes columns created. Pushed to github.com/imixtron/bytesized. Added `/queue`, SETUP.md, `npm run doctor` and `.claude/settings.json`.

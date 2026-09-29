@@ -4,9 +4,12 @@
 
 ## 🔴 Needed now
 
-- [ ] **Pick the topic for episode 2** (the end-to-end test of `/script` → `/video`). Ideally also a list for episodes 3–10
+- [ ] **Set up the Mac mini**: follow `SETUP.md` (clone, `npm ci`, `.env`, `npm run doctor -- --online`, Notion connector, keep-awake, then create the 6-hour **"Bytesized queue"** schedule)
+- [ ] **Queue the first topic**: set one Shorts row's `status` to **Idea** (e.g. #16 "Caching basics" or #6 "Load balancing")
+
 - [ ] **Check the new crunchier chomp** (`assets/sfx/chomp.mp3`, also in the pilot draft)
 - [ ] **Watch the full-quality pilot draft on your phone** (`episodes/001-what-is-system-design/out/what-is-system-design-draft.mp4`): check the caption position against the platform overlays, and the pacing
+- [ ] **Fix the Notion rows whose Outline and Reel Hook don't match their Topic** (from about #21 onwards they look shifted by one row) before marking them Idea
 - [ ] Send the Netflix brand-page URL you downloaded the kit from, for `assets/logos/netflix/SOURCE.md`
 
 ## 💳 After subscribing to ElevenLabs (do these in order, before publishing anything)
