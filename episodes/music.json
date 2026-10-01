@@ -1,0 +1,28 @@
+{
+  "$note": "Music rotation (random, design language v1.4 §8). /script picks a track when it creates an episode (npm run music:assign -- <nnn>): uniformly at random among the roster, never the previous episode's track. The pick is written to the episode's music.track, so renders are reproducible. Both parts of a two-part episode share one track. Edit 'roster' to add or remove tracks (each must exist in assets/music/library.json).",
+  "roster": [
+    {
+      "track": "bytesized-theme",
+      "style": "muted synth plucks + marimba, lo-fi drums, 112 BPM"
+    },
+    {
+      "track": "bytesized-theme-2",
+      "style": "kalimba + nylon guitar, brushed-drum shuffle, 106 BPM"
+    },
+    {
+      "track": "bytesized-theme-3",
+      "style": "chiptune square lead + vibraphone, lo-fi beat, 116 BPM"
+    },
+    {
+      "track": "bytesized-theme-4",
+      "style": "pizzicato strings + glockenspiel, hand percussion, 110 BPM"
+    }
+  ],
+  "history": [
+    {
+      "episode": "001-what-is-system-design",
+      "track": "bytesized-theme",
+      "date": "2026-09-29"
+    }
+  ]
+}

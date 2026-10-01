@@ -2,7 +2,7 @@
 
 > **v1.1, locked (approved by Imad 2026-09-29).** Changes need a versioned update with explicit approval.
 
-Every episode is one `episode.yaml`. The **Script Creator** (`/script`) writes it, and the **Video Creator** (`/video`) turns it into a video. Visuals are chosen from a fixed menu of **templates**, **node types** and **verbs**, so the output is predictable and always on-brand ([design language v1.3](../brand/design-language/DESIGN-LANGUAGE.md)).
+Every episode is one `episode.yaml`. The **Script Creator** (`/script`) writes it, and the **Video Creator** (`/video`) turns it into a video. Visuals are chosen from a fixed menu of **templates**, **node types** and **verbs**, so the output is predictable and always on-brand ([design language v1.4](../brand/design-language/DESIGN-LANGUAGE.md)).
 
 ---
 
@@ -59,6 +59,12 @@ When a topic can't be explained well in 60s, `/script` **splits it into Part 1 a
 - **Part 2 of a series reuses Part 1's voice**, for continuity, and doesn't advance the rotation.
 - To change the lineup, edit `roster`. Only ElevenLabs premade voices work on the free tier.
 
+### Music rotation
+- Each new episode gets **one of the four sibling theme tracks at random** (`episodes/music.json`), never the same as the previous episode. `/script` runs `npm run music:assign -- <nnn>` right after `voice:assign`.
+- The pick is written to `music.track` and recorded in `history`, so renders are reproducible. Running it again keeps the episode's track (`--force` re-picks).
+- **Part 2 of a series reuses Part 1's track.**
+- To change the lineup, edit `roster` (each id must exist in `assets/music/library.json`).
+
 ### Asset folders
 All assets use `assets/<asset_type>/<files or sub-folders>`:
 | Folder | Holds |
@@ -95,8 +101,8 @@ voice:                                 # ElevenLabs. Set by `npm run voice:assig
   voice_id: TX3LPaxmHKxFdv7VOQHJ
   speed: 1.0
 
-music:                                 # optional; omit to use the channel theme
-  track: bytesized-theme               # a track id from assets/music/library.json (default: the theme)
+music:                                 # set by `npm run music:assign -- <nnn>` (omitted → the main theme)
+  track: bytesized-theme-2             # a track id from assets/music/library.json (random from episodes/music.json)
   volume: 0.12                         # ducked under the voice automatically
 
 scenes:

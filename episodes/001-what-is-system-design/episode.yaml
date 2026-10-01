@@ -14,7 +14,8 @@ voice:
   name: Liam
 
 music:
-  volume: 0.12            # track defaults to the channel theme (placeholder until it's generated)
+  track: bytesized-theme  # pinned (locked pilot)
+  volume: 0.12
 
 scenes:
   # ---------- HOOK ----------

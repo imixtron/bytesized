@@ -5,4 +5,4 @@ Status flow: `scripted` → `script approved` → `voiced` → `storyboard appro
 
 | # | Notion ID | Folder | Title | Series | Voice | Length | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
-| 001 | 3 | `001-what-is-system-design` | What is System Design? | — | Liam | 41.9s | draft rendered | Pilot. Final waits on the paid-plan audio (TASKS.md) |
+| 001 | 3 | `001-what-is-system-design` | What is System Design? | — | Liam | 41.75s | rendered | Pilot. Paid-plan audio, music `bytesized-theme` (pinned). Final + `out/upload.md` 2026-10-01. Notion: Rendered |

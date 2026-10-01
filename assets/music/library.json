@@ -1,8 +1,26 @@
 {
-  "$note": "Music library. `bytesized-theme` is the channel theme used under every short. Generate it once with `npm run audio -- bytesized-theme` on a paid plan and reuse it forever. `licensed` gates final renders.",
+  "$note": "Music library. Four sibling channel themes (`bytesized-theme`, `-2`, `-3`, `-4`): each episode gets one at random via `npm run music:assign -- <nnn>` (tracked in episodes/music.json, never the previous episode's track), stored as `music.track` in episode.yaml. Generate each once with `npm run audio -- <id>` on a paid plan and reuse it forever. `licensed` gates final renders.",
   "tracks": {
     "bytesized-theme": {
       "prompt": "Playful, upbeat instrumental tech-explainer theme for short vertical videos. 112 BPM, bright major key, bouncy muted synth plucks and marimba hooks over a light lo-fi drum groove with crisp claps and soft kick, warm round bass, subtle glassy arpeggios, a curious and clever mood, like a friendly animated diagram coming to life. Steady energy the whole way through, no big drops or build-ups, no vocals, leaves space for a voiceover, clean ending.",
+      "seconds": 75,
+      "instrumental": true,
+      "paidOnly": true
+    },
+    "bytesized-theme-2": {
+      "prompt": "Playful, upbeat instrumental tech-explainer theme for short vertical videos. 106 BPM, sunny D major, plinky kalimba and soft nylon-guitar hooks over a gentle brushed-drum shuffle with finger snaps and a soft kick, warm round upright-style bass, light shaker, subtle airy pad, a curious and clever mood, like a friendly animated diagram coming to life. Steady energy the whole way through, no big drops or build-ups, no vocals, leaves space for a voiceover, clean ending.",
+      "seconds": 75,
+      "instrumental": true,
+      "paidOnly": true
+    },
+    "bytesized-theme-3": {
+      "prompt": "Playful, upbeat instrumental tech-explainer theme for short vertical videos. 116 BPM, bright F major, chiptune-ish square-wave lead and bubbly 8-bit arpeggios blended with mellow vibraphone chords, over a tight lo-fi beat with crisp rimshots and soft kick, warm round synth bass, a curious and clever mood, like a friendly animated diagram coming to life. Steady energy the whole way through, no big drops or build-ups, no vocals, leaves space for a voiceover, clean ending.",
+      "seconds": 75,
+      "instrumental": true,
+      "paidOnly": true
+    },
+    "bytesized-theme-4": {
+      "prompt": "Playful, upbeat instrumental tech-explainer theme for short vertical videos. 110 BPM, cheerful G major, bouncy pizzicato strings and twinkly glockenspiel hooks over a light hand-percussion groove with soft claps, woodblock and a gentle kick, warm round bass, subtle celesta sparkles, a curious and clever mood, like a friendly animated diagram coming to life. Steady energy the whole way through, no big drops or build-ups, no vocals, leaves space for a voiceover, clean ending.",
       "seconds": 75,
       "instrumental": true,
       "paidOnly": true
@@ -25,6 +43,51 @@
       "plan": "n/a",
       "licensed": true,
       "created": "2026-09-29"
+    },
+    "bytesized-theme": {
+      "file": "bytesized-theme.mp3",
+      "source": "elevenlabs",
+      "plan": "paid",
+      "licensed": true,
+      "created": "2026-10-01",
+      "prompt": "Playful, upbeat instrumental tech-explainer theme for short vertical videos. 112 BPM, bright major key, bouncy muted synth plucks and marimba hooks over a light lo-fi drum groove with crisp claps and soft kick, warm round bass, subtle glassy arpeggios, a curious and clever mood, like a friendly animated diagram coming to life. Steady energy the whole way through, no big drops or build-ups, no vocals, leaves space for a voiceover, clean ending.",
+      "credits": 1125
+    },
+    "bytesized-theme-preview": {
+      "file": "bytesized-theme-preview.mp3",
+      "source": "elevenlabs",
+      "plan": "paid",
+      "licensed": true,
+      "created": "2026-10-01",
+      "prompt": "Playful, upbeat instrumental tech-explainer theme for short vertical videos. 112 BPM, bright major key, bouncy muted synth plucks and marimba hooks over a light lo-fi drum groove with crisp claps and soft kick, warm round bass, subtle glassy arpeggios, a curious and clever mood, like a friendly animated diagram coming to life. Steady energy the whole way through, no big drops or build-ups, no vocals, leaves space for a voiceover, clean ending.",
+      "credits": 300
+    },
+    "bytesized-theme-2": {
+      "file": "bytesized-theme-2.mp3",
+      "source": "elevenlabs",
+      "plan": "paid",
+      "licensed": true,
+      "created": "2026-10-01",
+      "prompt": "Playful, upbeat instrumental tech-explainer theme for short vertical videos. 106 BPM, sunny D major, plinky kalimba and soft nylon-guitar hooks over a gentle brushed-drum shuffle with finger snaps and a soft kick, warm round upright-style bass, light shaker, subtle airy pad, a curious and clever mood, like a friendly animated diagram coming to life. Steady energy the whole way through, no big drops or build-ups, no vocals, leaves space for a voiceover, clean ending.",
+      "credits": 1125
+    },
+    "bytesized-theme-3": {
+      "file": "bytesized-theme-3.mp3",
+      "source": "elevenlabs",
+      "plan": "paid",
+      "licensed": true,
+      "created": "2026-10-01",
+      "prompt": "Playful, upbeat instrumental tech-explainer theme for short vertical videos. 116 BPM, bright F major, chiptune-ish square-wave lead and bubbly 8-bit arpeggios blended with mellow vibraphone chords, over a tight lo-fi beat with crisp rimshots and soft kick, warm round synth bass, a curious and clever mood, like a friendly animated diagram coming to life. Steady energy the whole way through, no big drops or build-ups, no vocals, leaves space for a voiceover, clean ending.",
+      "credits": 1125
+    },
+    "bytesized-theme-4": {
+      "file": "bytesized-theme-4.mp3",
+      "source": "elevenlabs",
+      "plan": "paid",
+      "licensed": true,
+      "created": "2026-10-01",
+      "prompt": "Playful, upbeat instrumental tech-explainer theme for short vertical videos. 110 BPM, cheerful G major, bouncy pizzicato strings and twinkly glockenspiel hooks over a light hand-percussion groove with soft claps, woodblock and a gentle kick, warm round bass, subtle celesta sparkles, a curious and clever mood, like a friendly animated diagram coming to life. Steady energy the whole way through, no big drops or build-ups, no vocals, leaves space for a voiceover, clean ending.",
+      "credits": 1125
     }
   }
 }

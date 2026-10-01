@@ -71,7 +71,7 @@ export const EpisodeSchema = z.strictObject({
     .optional(),
   brands: z.array(z.string()).default([]),
   voice: z.object({ name: z.string().optional(), voice_id: z.string(), speed: z.number().default(1) }),
-  /** optional: defaults to the channel theme (tokens.audio.music.theme) */
+  /** set by `npm run music:assign` (random sibling theme, episodes/music.json); if omitted, the main theme (tokens.audio.music.theme) */
   music: z.object({ track: z.string().optional(), volume: z.number().min(0).max(1).optional() }).default({}),
   scenes: z.array(SceneSchema).min(1),
 });

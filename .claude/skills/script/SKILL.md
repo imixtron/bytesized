@@ -41,7 +41,7 @@ You write **one Bytesized episode** as `episodes/<nnn-slug>/episode.yaml`. Every
 - **FlowDiagram:** give `layers` top → bottom, `nodes`, `links`. Reuse the same diagram across scenes with `stage.reuse: <scene id>` so nodes don't jump.
 - **Beats:** a visual change every 1.5–2s, each `on` a word that is literally in that scene's `vo` (use `"word#2"` for a repeat). Pilot density is the reference.
 - **Sounds:** don't list them, because the sound map picks them. Use a beat `sfx:` only for a deliberate exception (`none` to mute).
-- **Music:** leave it out (the channel theme is used). Only set `music.track` if Imad asked for something different.
+- **Music:** don't write it by hand. `music:assign` (step 6) picks one of the four sibling theme tracks at random and writes `music.track`. Only set it yourself if Imad asked for a specific track.
 - **Brand logos:** only as a `brand` node inside a diagram, and list it in `brands:`. It needs `assets/logos/<brand>/derived/node.png` and `SOURCE.md`. If they're missing, **don't block**: add a task to `TASKS.md` for Imad to download the official kit, and mention it in the summary.
 
 ### 5. Write the file(s)
@@ -49,9 +49,10 @@ You write **one Bytesized episode** as `episodes/<nnn-slug>/episode.yaml`. Every
 - Start with a comment line: `# Episode <nnn>. Draft (awaiting approval ✋)`.
 - Leave `voice:` as `{ voice_id: TBD, speed: 1.0 }`. The next step fills it.
 
-### 6. Assign the voice and validate (run from `engine/`)
+### 6. Assign the voice and music, then validate (run from `engine/`)
 ```bash
 npm run voice:assign -- <nnn>        # round robin; Part 2 reuses Part 1's voice (assign Part 1 first)
+npm run music:assign -- <nnn>        # random theme track, never the previous episode's; Part 2 reuses Part 1's
 npm run validate -- <nnn>
 ```
 Fix every `✖` error and re-run until it says `✔ PASS`. Warnings are fine if you can justify them.
@@ -71,4 +72,4 @@ Ask for approval or changes. On approval, change the file's first comment to `# 
 ## Don'ts
 - Don't invent templates, node types or verbs outside the menus. Don't hand-write captions (they come from `vo`).
 - Don't show third-party logos outside diagram nodes, or imply sponsorship.
-- Don't call ElevenLabs here. `voice:assign` is local only, so no credits are used.
+- Don't call ElevenLabs here. `voice:assign` and `music:assign` are local only, so no credits are used.

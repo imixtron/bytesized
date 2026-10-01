@@ -1,4 +1,4 @@
-// Music + sound effects (design language v1.3 §8). The voice itself is placed per scene in Episode.tsx.
+// Music + sound effects (design language v1.4 §8). The voice itself is placed per scene in Episode.tsx.
 // Music: the channel theme from the audio library, looping if needed, ducked while the voice speaks.
 // SFX: chosen by the sound map from beats and transitions (a beat's `sfx:` overrides; "none" mutes).
 // Sounds that haven't been generated yet are skipped silently.

@@ -4,8 +4,12 @@
 
 ## 🔴 Needed now
 
-- [ ] **Set up the Mac mini**: follow `SETUP.md` (clone, `npm ci`, `.env`, `npm run doctor -- --online`, Notion connector, keep-awake, then create the 6-hour **"Bytesized queue"** schedule)
-- [ ] **Queue the first topic**: set one Shorts row's `status` to **Idea** (e.g. #16 "Caching basics" or #6 "Load balancing")
+- [ ] **Publish the pilot**: `episodes/001-what-is-system-design/out/what-is-system-design.mp4` + copy from `out/upload.md`, then set Notion #3 → **Published**
+- [ ] **Listen to the 3 new theme siblings** (`assets/music/bytesized-theme-2.mp3`, `-3`, `-4`). Any you don't like: say which, and I'll re-prompt it (~1,125 credits each) or drop it from `episodes/music.json`
+- [ ] **Mark the next Shorts row `Idea`** to start episode 002 (the queue picks it up within 6h)
+
+- [x] **Set up the Mac mini** (2026-09-30): Node, `npm ci`, `engine/.env`, `npm run doctor -- --online` ✔ ready, Notion connector, keep-awake, and the 6-hour **"Bytesized queue"** schedule (`0 */6 * * *`)
+- [x] **Queue the first topic**: #3 "What is System Design?" (the pilot, the channel's first topic) is **Idea**. The queue takes it to completion before anything else
 
 - [ ] **Check the new crunchier chomp** (`assets/sfx/chomp.mp3`, also in the pilot draft)
 - [ ] **Watch the full-quality pilot draft on your phone** (`episodes/001-what-is-system-design/out/what-is-system-design-draft.mp4`): check the caption position against the platform overlays, and the pacing
@@ -16,30 +20,30 @@
 
 Free-plan audio has **no commercial licence**, so everything audible gets regenerated on the paid plan. `npm run render:final` refuses to make a publishable video until all of this is done.
 
-- [ ] 1. **Subscribe** (Starter or above). Check your balance in the dashboard afterwards: unused free credits should carry over
-- [ ] 2. **Edit `engine/plan.json`** and set `"elevenlabs_plan": "paid"` (or tell me and I'll do it)
-- [ ] 3. **Confirm the key permissions** are still set (listed in STATUS.md)
-- [ ] 4. **Generate the channel theme**, once, and it's reused forever. Optionally try the 20s preview first (`npm run audio -- bytesized-theme-preview`, ~300 credits) to check the mood:
+- [x] 1. **Subscribe** (2026-10-01: Creator plan, 128,974 credits) (Starter or above). Check your balance in the dashboard afterwards: unused free credits should carry over
+- [x] 2. **Edit `engine/plan.json`** and set `"elevenlabs_plan": "paid"` (or tell me and I'll do it)
+- [x] 3. **Confirm the key permissions** (doctor --online ✔) are still set (listed in STATUS.md)
+- [x] 4. **Generate the channel theme** (done, ~1,125 credits. ⏳ Imad: listen to `assets/music/bytesized-theme.mp3`), once, and it's reused forever. Optionally try the 20s preview first (`npm run audio -- bytesized-theme-preview`, ~300 credits) to check the mood:
   ```bash
   cd engine && npm run audio -- bytesized-theme
   ```
   ~75s, about 1,100 credits. Listen before continuing. If the mood is off, tweak the prompt in `assets/music/library.json` and re-run with `--force`
-- [ ] 5. **Regenerate the sound effects** on the paid plan, once for all episodes:
+- [x] 5. **Regenerate the sound effects** on the paid plan, once for all episodes:
   ```bash
   cd engine && npm run audio -- --upgrade
   ```
   About 240 credits. This replaces the free-plan drafts
-- [ ] 6. **Regenerate the pilot voiceover** on the paid plan:
+- [x] 6. **Regenerate the pilot voiceover** on the paid plan:
   ```bash
   cd engine && npm run voice -- 001 --upgrade
   ```
   About 520 credits
-- [ ] 7. **Check the library is fully licensed:**
+- [x] 7. **Check the library is fully licensed:** (all ✔)
   ```bash
   cd engine && npm run audio -- --list
   ```
   Every line should say `✔ licensed`
-- [ ] 8. **Publishable render:**
+- [x] 8. **Publishable render** (2026-10-01, draft approved):
   ```bash
   cd engine && npm run render:final -- 001
   ```
@@ -59,4 +63,4 @@ Free-plan audio has **no commercial licence**, so everything audible gets regene
 - [x] Gate 1: Bytesized logo (approved 2026-09-29)
 - [x] Gate 2: Design language (v1.0 → v1.3, all approved 2026-09-29)
 - [x] Gate 3: Script format (v1.0 → v1.1) and pilot script (approved 2026-09-29)
-- [ ] Gate 4: Pilot storyboard ✅ approved · final render ⏳ (draft now, publishable after subscribing)
+- [x] Gate 4: Pilot storyboard ✅ approved · final render ✅ locked 2026-10-01

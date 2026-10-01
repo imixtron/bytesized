@@ -1,6 +1,6 @@
-# Bytesized Design Language — v1.3
+# Bytesized Design Language — v1.4
 
-> **v1.3, locked (approved by Imad 2026-09-29).** Changes need a versioned update (v1.4…) with explicit approval.
+> **v1.4, locked (v1.3 approved by Imad 2026-09-29; v1.4 music change requested by Imad 2026-10-01).** Changes need a versioned update (v1.5…) with explicit approval. See the [changelog](#changelog).
 > - Machine-readable values: [`tokens.json`](tokens.json). The engine reads this file and never hard-codes values.
 > - Visual reference: [`v1.2-reference.png`](v1.2-reference.png) (rendered by the engine) for layout. [`design-language-v1.1.html`](design-language-v1.1.html) is frozen for colour, type and components (it predates the rename, so it still says "bitesized").
 
@@ -96,7 +96,7 @@ The video **ends on the gist card**, and its last frame is designed to loop back
 | Layer | Rule |
 |---|---|
 | Voice | ElevenLabs, round-robin voice per episode, volume 1.0 |
-| Music | **The same channel theme under every short** (`bytesized-theme`, 75s instrumental, playful 112 BPM tech). Volume 0.14, **ducked to 45% while the voice speaks** (8-frame ramps), 0.4s fade in, 0.8s fade out. The placeholder loop stands in until the theme exists |
+| Music | **One of the four sibling theme tracks, picked at random per episode** (`episodes/music.json`; never the previous episode's track, and Part 2 shares Part 1's). All are 75s instrumentals in the same playful, curious, voiceover-friendly brief at 106–116 BPM: `bytesized-theme` (synth plucks + marimba), `-2` (kalimba + brushed drums), `-3` (chiptune lead + vibraphone), `-4` (pizzicato + glockenspiel). `npm run music:assign` stores the pick as the episode's `music.track`, so renders are reproducible. Volume 0.14, **ducked to 45% while the voice speaks** (8-frame ramps), 0.4s fade in, 0.8s fade out. With no pick, `bytesized-theme` plays; the placeholder loop stands in if no theme file exists |
 | SFX | Picked automatically by the **sound map**. Scripts don't list sounds |
 
 **Sound map:**
@@ -115,3 +115,9 @@ Repeats of the same sound are at least 6 frames apart. A beat can override the m
 
 ## 9. Copy tone
 Playful and slightly cheeky ("every CPU earns its keep"), tuned per episode.
+
+## Changelog
+| Version | Date | Change |
+|---|---|---|
+| v1.4 | 2026-10-01 | §8 Music: "one channel theme under every short" → one of the four sibling theme tracks (`bytesized-theme`, `-2`, `-3`, `-4`), picked at random per episode (`episodes/music.json`, `npm run music:assign`). Requested by Imad 2026-10-01 |
+| v1.3 | 2026-09-29 | Audio library, sound map and licensing gate (approved by Imad) |

@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit",
     "voices": "tsx scripts/voices.ts",
     "voice:assign": "tsx scripts/voice-assign.ts",
+    "music:assign": "tsx scripts/music-assign.ts",
     "voice": "tsx scripts/voice.ts",
     "make-audio": "tsx scripts/make-audio.ts",
     "storyboard": "npm run sync && tsx scripts/storyboard.ts",
@@ -30,7 +31,7 @@
     "react-dom": "19.3.0",
     "remotion": "4.0.529",
     "yaml": "2.9.1",
-    "zod": "4.6.5"
+    "zod": "4.5.4"
   },
   "devDependencies": {
     "@types/node": "^20",

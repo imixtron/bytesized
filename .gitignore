@@ -10,9 +10,10 @@ node_modules/
 engine/public/
 engine/out/
 
-# --- renders & review output (regenerable, large) ---
-episodes/*/out/
-episodes/*/storyboard/
+# --- renders (regenerable from committed inputs via `npm run render:final`) ---
+# storyboard/ and out/upload.md are committed: they're part of the episode recipe
+episodes/*/out/*
+!episodes/*/out/upload.md
 
 # --- design-source files from third-party brand kits (engine uses derived/ PNGs) ---
 assets/logos/**/*.eps

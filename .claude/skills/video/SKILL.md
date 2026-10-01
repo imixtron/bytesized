@@ -9,7 +9,7 @@ You turn an **approved** episode into video with the engine in `engine/` (Remoti
 
 ## Read first
 - `episodes/INDEX.md`: the episode's status. It must be at least `script approved`. If it isn't, stop and suggest `/script`.
-- `episodes/SCRIPT-FORMAT.md` and `brand/design-language/DESIGN-LANGUAGE.md` (v1.3), plus `tokens.json` for every value.
+- `episodes/SCRIPT-FORMAT.md` and `brand/design-language/DESIGN-LANGUAGE.md` (v1.4), plus `tokens.json` for every value.
 
 ## Steps
 
@@ -71,6 +71,21 @@ npm run render:final -- <nnn>   # → episodes/<nnn-slug>/out/<slug>.mp4
 ### 6. Wrap up
 - Add one line to the `STATUS.md` changelog: episode, length, credits used, anything new added to the library. Update the ElevenLabs credits line.
 - If you built new templates or parts, update the "Templates still to build" line and the architecture list in `engine/README.md`.
+
+### 7. Commit and push the recipe
+Commit everything needed to recreate the video (AGENTS §6 "Commit the recipe, not the render"), once `render:final` has succeeded and step 6 is done. From the repo root:
+```bash
+git status --short
+git add episodes/<nnn-slug>/episode.yaml episodes/<nnn-slug>/audio episodes/<nnn-slug>/storyboard episodes/<nnn-slug>/out/upload.md
+git add <each changed shared input from git status>   # see list below
+git commit -m "Episode <nnn>: <title> (rendered)" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+git rev-parse --short HEAD                            # report the sha
+git pull --rebase origin main && git push origin main
+```
+- **Shared inputs**, only if `git status` shows them changed: `assets/music/` and `assets/sfx/` (audio + `library.json`), `episodes/voices.json`, `episodes/music.json`, `episodes/pronunciations.md`, `episodes/INDEX.md`, `engine/plan.json`, new or changed `engine/src/` templates/parts/icons, `engine/README.md`, `brand/`, `STATUS.md`, `TASKS.md`.
+- **Explicit paths only.** Never `git add -A` / `git add .`. Never stage `out/*.mp4`, `engine/public/`, `engine/out/` or any `.env`. If `git diff --cached --name-only` lists one, unstage it.
+- Changes you didn't make in this run (another episode, someone's in-progress edit): leave them unstaged and mention them.
+- Commit and push to **`main`**, only here at the end of episode creation (never mid-pipeline). If the checkout isn't on `main`, or the push or rebase fails, stop and report it; never force-push.
 
 ## Engine gotchas
 - Always `npm run sync` after changing anything in `brand/`, `assets/` or `episodes/`. `render`, `still` and `storyboard` do it for you, but `npx remotion …` doesn't.

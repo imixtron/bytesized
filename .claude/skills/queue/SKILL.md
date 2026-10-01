@@ -62,7 +62,7 @@ Before each stage, set the stage's Pipeline Status and status (AGENTS §1b table
 | **Voicing** | `npm run voice -- <nnn>`, then `npm run validate -- <nnn>` (measured). Log characters billed and measured length | continue |
 | **Storyboarding** | `npm run storyboard -- <nnn>`. Self-check the stills (`/video` step 3) and fix before showing | Gate: **Storyboard Review** |
 | **Rendering Draft** | `/video` step 4 (full-quality draft) | Gate: **Draft Review** (status **Draft Ready**) |
-| **Final Rendering** (status stays **Draft Ready**) | `npm run render:final -- <nnn>` and `upload.md` (`/video` step 5) | **Rendered** → done (§7) |
+| **Final Rendering** (status stays **Draft Ready**) | `npm run render:final -- <nnn>` and `upload.md` (`/video` step 5), then commit (`/video` step 7) | **Rendered** → done (§7) |
 
 **Blocked** (Pipeline Status Blocked, status Awaiting Approval): a missing brand logo, `render:final` refusing because audio isn't licensed or the plan is free, or the ElevenLabs quota running out. Log the exact reason and the fix (the TASKS.md step), notify, and **wait**.
 **Failed**: an error you can't fix after one honest retry. Log the error and the step, notify, and **wait**.
@@ -91,7 +91,7 @@ Before each stage, set the stage's Pipeline Status and status (AGENTS §1b table
 ## 7. Done
 - status **Rendered**, Pipeline Status **Rendered**, and a last line with the output path, length and total credits.
 - `episodes/INDEX.md` → `final rendered`, plus one `STATUS.md` changelog line.
-- Commit the episode (script, voice cache, INDEX, STATUS; renders are git-ignored) with a message like `episode <nnn>: <topic>`, and push.
+- Commit the recipe with **`/video` step 7** (`Episode <nnn>: <title> (rendered)`, pushed to `main`), then append a line with the commit sha: `… · Rendered · committed <sha> · <n> files`.
 - Notify: `"<nnn> · <Topic> · rendered, ready to publish"`. Imad sets **Published** himself.
 
 ## Never

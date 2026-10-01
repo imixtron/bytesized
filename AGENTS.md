@@ -14,7 +14,7 @@ Current state and open items: **[STATUS.md](STATUS.md)**. Human to-dos: **[TASKS
 | Setting up a new machine | `SETUP.md`, then `npm run doctor` |
 | "Make an episode about X", "script X", a topic or notes | **`/script`** (`.claude/skills/script/SKILL.md`), then stop for approval, then **`/video`** |
 | "Render / voice / storyboard / finish episode N" | **`/video`** (`.claude/skills/video/SKILL.md`) |
-| Change the look, layout, colours, motion or sounds | Propose a **versioned change** to `brand/design-language/DESIGN-LANGUAGE.md` + `tokens.json` (v1.3 → v1.4). Show a render. Apply only after approval |
+| Change the look, layout, colours, motion or sounds | Propose a **versioned change** to `brand/design-language/DESIGN-LANGUAGE.md` + `tokens.json` (v1.4 → v1.5). Show a render. Apply only after approval |
 | Change script rules or structure | Propose a versioned change to `episodes/SCRIPT-FORMAT.md` (v1.1 → v1.2). Apply only after approval |
 | New logo, music or sound | Put it in `assets/<asset_type>/…` and register it (logos: `SOURCE.md` + `derived/node.png`; audio: `library.json`) |
 | "I subscribed to ElevenLabs" | Walk through TASKS.md → "After subscribing", in order |
@@ -95,21 +95,21 @@ Log approvals ("approved by Imad in session"), changes requested, credits spent,
 - **Structure:** Hook → (sting) → Idea → Breakdown ×2–6 → Gist. **30–60s** measured. Big topics → Part 1 / Part 2 (max 2).
 - **Third-party logos** (e.g. Netflix) only as a `brand` node inside diagrams, unaltered, from the official kit, and never implying sponsorship. The upload description carries the "not affiliated" line.
 - **Voices:** round robin of Liam → Laura → Jessica → Chris (`episodes/voices.json`, `npm run voice:assign`). Part 2 reuses Part 1's voice.
-- **Music:** one channel theme (`bytesized-theme`) under every short. **SFX** come from the sound map, never listed per script, with a beat `sfx:` override only for exceptions.
+- **Music:** one of four sibling theme tracks (`bytesized-theme`, `-2`, `-3`, `-4`) per short, picked at random by `npm run music:assign` (`episodes/music.json`; never the previous episode's, Part 2 reuses Part 1's). **SFX** come from the sound map, never listed per script, with a beat `sfx:` override only for exceptions.
 - **Licensing:** only paid-plan ElevenLabs output or original work is `licensed`. `render:final` enforces it. Never bypass it.
 - **Fonts:** Holiday and Trend Sans Four (Canva) are used only inside logo files. Video text uses Unbounded, Inter, JetBrains Mono and Yellowtail.
 
 ## 4. Where the truth lives (read these, don't restate them)
 | Topic | File |
 |---|---|
-| Look, layout, motion, audio rules (v1.3) | `brand/design-language/DESIGN-LANGUAGE.md` |
+| Look, layout, motion, audio rules (v1.4) | `brand/design-language/DESIGN-LANGUAGE.md` |
 | Every value the engine uses | `brand/design-language/tokens.json` |
 | Episode rules, `episode.yaml` format, menus, validation (v1.1) | `episodes/SCRIPT-FORMAT.md` |
 | Reference episode (approved pilot) | `episodes/001-what-is-system-design/episode.yaml` |
 | Engine commands and architecture | `engine/README.md` |
 | Episode statuses | `episodes/INDEX.md` |
 | Tricky pronunciations | `episodes/pronunciations.md` |
-| Voice rotation | `episodes/voices.json` |
+| Voice and music rotation | `episodes/voices.json`, `episodes/music.json` |
 | Audio library (prompts, provenance, licence) | `assets/sfx/library.json`, `assets/music/library.json` |
 | ElevenLabs plan for new audio | `engine/plan.json` |
 
@@ -135,6 +135,7 @@ engine/               Remotion + TypeScript (src/theme, chrome, parts, templates
 - **`npm run sync`** after changing `brand/`, `assets/` or `episodes/`. `engine/public/` and `engine/out/` are generated and disposable.
 - **Secrets:** never read, print or commit `engine/.env` (the ElevenLabs key). Only check that the key name exists.
 - **Pin dependency versions** (Remotion 4.0.529 packages all at the same version).
+- **Commit the recipe, not the render.** Each episode commits everything needed to rebuild its video: `episode.yaml`, `audio/` (voice mp3s + `voice.json` timings), `storyboard/`, `out/upload.md`, plus any shared inputs it changed (`assets/` audio + `library.json`, `episodes/voices.json`, `episodes/music.json`, `pronunciations.md`, `INDEX.md`, `engine/plan.json`, new templates/parts in `engine/src/`, `brand/`). Never commit `out/*.mp4`, `engine/public/`, `engine/out/`, `node_modules/` or `.env`: the MP4 is rebuilt with `npm run render:final`. Commit **and push to `main`** only once, as the last step of episode creation (`/video` step 7): explicit paths, no force-push.
 - **zsh:** list loop items explicitly (a `$VAR` with spaces doesn't split).
 - Commands run from `engine/`. The full list is in `engine/README.md`.
 
@@ -143,4 +144,5 @@ engine/               Remotion + TypeScript (src/theme, chrome, parts, templates
 - Don't show our logos outside the sting, or third-party logos outside diagram nodes.
 - Don't publish, or suggest publishing, unlicensed audio.
 - Don't regenerate ElevenLabs audio that's already cached (unless it's `--upgrade` or intended).
+- Don't `git add -A`, commit renders or secrets, push mid-pipeline, or force-push.
 - Don't spread status notes across new files. Update STATUS.md, TASKS.md and INDEX.md.

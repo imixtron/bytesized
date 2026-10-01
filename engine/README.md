@@ -6,6 +6,7 @@ Remotion (React + TypeScript) project. It renders `episodes/<nnn-slug>/episode.y
 | Command | What it does |
 |---|---|
 | `npm run voice:assign -- <nnn>` | Gives the episode the next round-robin voice (`episodes/voices.json`) |
+| `npm run music:assign -- <nnn> [--force\|--dry-run]` | Picks the episode's theme track at random, never the previous episode's (`episodes/music.json`), and writes `music.track`. Keeps an existing pick unless `--force`. Part 2 reuses Part 1's track |
 | `npm run validate [-- <nnn>]` | Checks episodes against SCRIPT-FORMAT v1.1. Uses the measured length once voiced |
 | `npm run voice -- <nnn> [--force\|--upgrade]` | ElevenLabs voiceover per scene with word timestamps, cached → `episodes/<nnn-slug>/audio/` |
 | `npm run storyboard -- <nnn>` | One still per beat → `episodes/<nnn-slug>/storyboard/storyboard.html` |
@@ -20,7 +21,7 @@ Remotion (React + TypeScript) project. It renders `episodes/<nnn-slug>/episode.y
 | `npm run typecheck` | TypeScript check |
 | `npm run doctor [-- --online]` | Checks a machine is ready: Node, deps, key present, plan, audio files, sync, types, episodes, ffmpeg |
 
-**Typical episode:** `voice:assign` → `validate` → `voice` → `validate` → `storyboard` ✋ → `render` (draft) → `render:final`.
+**Typical episode:** `voice:assign` → `music:assign` → `validate` → `voice` → `validate` → `storyboard` ✋ → `render` (draft) → `render:final`.
 `engine/plan.json` records which ElevenLabs plan new audio is made on (`free` or `paid`). Only `paid` output is licensed.
 
 ## Architecture

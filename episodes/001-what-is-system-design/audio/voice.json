@@ -2,13 +2,14 @@
   "voice": "Liam",
   "voice_id": "TX3LPaxmHKxFdv7VOQHJ",
   "model": "eleven_multilingual_v2",
-  "generated": "2026-09-29T13:19:14.824Z",
+  "plan": "paid",
+  "generated": "2026-10-01T10:12:12.171Z",
   "scenes": {
     "hook": {
       "file": "hook.mp3",
       "hash": "23a29a335b",
       "text": "How does Netflix survive millions of people hitting play at once?",
-      "duration": 3.669,
+      "duration": 3.715,
       "words": [
         {
           "text": "How",
@@ -17,181 +18,181 @@
         },
         {
           "text": "does",
-          "start": 0.221,
-          "end": 0.337
+          "start": 0.232,
+          "end": 0.372
         },
         {
           "text": "Netflix",
-          "start": 0.395,
-          "end": 0.801
+          "start": 0.43,
+          "end": 0.848
         },
         {
           "text": "survive",
-          "start": 0.836,
-          "end": 1.219
+          "start": 0.894,
+          "end": 1.358
         },
         {
           "text": "millions",
-          "start": 1.3,
-          "end": 1.683
+          "start": 1.44,
+          "end": 1.823
         },
         {
           "text": "of",
-          "start": 1.718,
-          "end": 1.776
+          "start": 1.869,
+          "end": 1.927
         },
         {
           "text": "people",
-          "start": 1.834,
-          "end": 2.09
+          "start": 1.985,
+          "end": 2.241
         },
         {
           "text": "hitting",
-          "start": 2.136,
-          "end": 2.345
+          "start": 2.287,
+          "end": 2.496
         },
         {
           "text": "play",
-          "start": 2.392,
-          "end": 2.577
+          "start": 2.543,
+          "end": 2.717
         },
         {
           "text": "at",
-          "start": 2.612,
-          "end": 2.682
+          "start": 2.752,
+          "end": 2.821
         },
         {
           "text": "once?",
-          "start": 2.752,
-          "end": 3.669
+          "start": 2.891,
+          "end": 3.715
         }
       ],
-      "plan": "free"
+      "plan": "paid"
     },
     "idea": {
       "file": "idea.mp3",
       "hash": "a2dd30b4a1",
       "text": "The answer is system design: planning your app like a city.",
-      "duration": 4.18,
+      "duration": 4.226,
       "words": [
         {
           "text": "The",
           "start": 0,
-          "end": 0.163
+          "end": 0.174
         },
         {
           "text": "answer",
-          "start": 0.232,
-          "end": 0.511
+          "start": 0.244,
+          "end": 0.534
         },
         {
           "text": "is",
-          "start": 0.58,
-          "end": 0.65
+          "start": 0.615,
+          "end": 0.731
         },
         {
           "text": "system",
-          "start": 0.708,
-          "end": 1.057
+          "start": 0.882,
+          "end": 1.242
         },
         {
           "text": "design:",
-          "start": 1.115,
-          "end": 1.695
+          "start": 1.3,
+          "end": 1.811
         },
         {
           "text": "planning",
           "start": 2.136,
-          "end": 2.485
+          "end": 2.45
         },
         {
           "text": "your",
-          "start": 2.531,
-          "end": 2.647
+          "start": 2.485,
+          "end": 2.601
         },
         {
           "text": "app",
-          "start": 2.705,
-          "end": 2.914
+          "start": 2.659,
+          "end": 2.833
         },
         {
           "text": "like",
-          "start": 2.972,
-          "end": 3.1
+          "start": 2.891,
+          "end": 3.042
         },
         {
           "text": "a",
-          "start": 3.135,
-          "end": 3.17
+          "start": 3.077,
+          "end": 3.1
         },
         {
           "text": "city.",
-          "start": 3.239,
-          "end": 4.18
+          "start": 3.17,
+          "end": 4.226
         }
       ],
-      "plan": "free"
+      "plan": "paid"
     },
     "analogy": {
       "file": "analogy.mp3",
       "hash": "cf02c8f33a",
       "text": "Servers are buildings. Databases are storage units. And load balancers? They're the traffic cops.",
-      "duration": 7.755,
+      "duration": 7.477,
       "words": [
         {
           "text": "Servers",
           "start": 0,
-          "end": 0.464
+          "end": 0.488
         },
         {
           "text": "are",
-          "start": 0.488,
-          "end": 0.604
+          "start": 0.546,
+          "end": 0.697
         },
         {
           "text": "buildings.",
-          "start": 0.639,
-          "end": 1.312
+          "start": 0.731,
+          "end": 1.393
         },
         {
           "text": "Databases",
-          "start": 1.556,
-          "end": 2.206
+          "start": 1.672,
+          "end": 2.322
         },
         {
           "text": "are",
-          "start": 2.264,
-          "end": 2.403
+          "start": 2.38,
+          "end": 2.531
         },
         {
           "text": "storage",
-          "start": 2.461,
-          "end": 2.914
+          "start": 2.601,
+          "end": 3.1
         },
         {
           "text": "units.",
-          "start": 2.972,
-          "end": 3.437
+          "start": 3.158,
+          "end": 3.657
         },
         {
           "text": "And",
-          "start": 3.646,
-          "end": 3.831
+          "start": 3.982,
+          "end": 4.214
         },
         {
           "text": "load",
-          "start": 3.947,
-          "end": 4.203
+          "start": 4.296,
+          "end": 4.493
         },
         {
           "text": "balancers?",
-          "start": 4.249,
-          "end": 5.016
+          "start": 4.54,
+          "end": 5.259
         },
         {
           "text": "They're",
-          "start": 5.712,
-          "end": 5.956
+          "start": 5.7,
+          "end": 5.944
         },
         {
           "text": "the",
@@ -200,106 +201,106 @@
         },
         {
           "text": "traffic",
-          "start": 6.095,
-          "end": 6.455
+          "start": 6.072,
+          "end": 6.397
         },
         {
           "text": "cops.",
-          "start": 6.502,
-          "end": 7.755
+          "start": 6.444,
+          "end": 7.477
         }
       ],
-      "plan": "free"
+      "plan": "paid"
     },
     "flow": {
       "file": "flow.mp3",
       "hash": "db3d307037",
       "text": "When users flood in, the traffic cop spreads them out, so no single server melts.",
-      "duration": 4.644,
+      "duration": 4.969,
       "words": [
         {
           "text": "When",
           "start": 0,
-          "end": 0.186
+          "end": 0.209
         },
         {
           "text": "users",
-          "start": 0.255,
-          "end": 0.557
+          "start": 0.29,
+          "end": 0.604
         },
         {
           "text": "flood",
-          "start": 0.615,
-          "end": 0.871
+          "start": 0.662,
+          "end": 0.882
         },
         {
           "text": "in,",
-          "start": 0.917,
-          "end": 1.033
+          "start": 0.94,
+          "end": 1.173
         },
         {
           "text": "the",
-          "start": 1.057,
-          "end": 1.126
+          "start": 1.265,
+          "end": 1.358
         },
         {
           "text": "traffic",
-          "start": 1.161,
-          "end": 1.498
+          "start": 1.405,
+          "end": 1.741
         },
         {
           "text": "cop",
-          "start": 1.544,
-          "end": 1.718
+          "start": 1.776,
+          "end": 1.95
         },
         {
           "text": "spreads",
-          "start": 1.776,
-          "end": 2.09
+          "start": 2.02,
+          "end": 2.322
         },
         {
           "text": "them",
-          "start": 2.125,
-          "end": 2.241
+          "start": 2.357,
+          "end": 2.473
         },
         {
           "text": "out,",
-          "start": 2.299,
-          "end": 2.461
+          "start": 2.519,
+          "end": 2.694
         },
         {
           "text": "so",
-          "start": 2.485,
-          "end": 2.612
+          "start": 2.717,
+          "end": 2.868
         },
         {
           "text": "no",
-          "start": 2.705,
-          "end": 2.844
+          "start": 2.984,
+          "end": 3.181
         },
         {
           "text": "single",
-          "start": 2.937,
-          "end": 3.239
+          "start": 3.262,
+          "end": 3.576
         },
         {
           "text": "server",
-          "start": 3.274,
-          "end": 3.564
+          "start": 3.622,
+          "end": 3.901
         },
         {
           "text": "melts.",
-          "start": 3.622,
-          "end": 4.644
+          "start": 3.959,
+          "end": 4.969
         }
       ],
-      "plan": "free"
+      "plan": "paid"
     },
     "failover": {
       "file": "failover.mp3",
       "hash": "8e7e6e5046",
       "text": "And if a server crashes? The cop stops sending it traffic. Users never even notice.",
-      "duration": 7.198,
+      "duration": 6.966,
       "words": [
         {
           "text": "And",
@@ -308,215 +309,214 @@
         },
         {
           "text": "if",
-          "start": 0.244,
-          "end": 0.313
+          "start": 0.255,
+          "end": 0.325
         },
         {
           "text": "a",
-          "start": 0.36,
-          "end": 0.383
+          "start": 0.383,
+          "end": 0.418
         },
         {
           "text": "server",
-          "start": 0.43,
-          "end": 0.685
+          "start": 0.476,
+          "end": 0.766
         },
         {
           "text": "crashes?",
-          "start": 0.743,
-          "end": 1.451
+          "start": 0.836,
+          "end": 1.614
         },
         {
           "text": "The",
-          "start": 2.055,
-          "end": 2.171
+          "start": 2.31,
+          "end": 2.438
         },
         {
           "text": "cop",
-          "start": 2.229,
-          "end": 2.45
+          "start": 2.508,
+          "end": 2.775
         },
         {
           "text": "stops",
-          "start": 2.508,
-          "end": 2.798
+          "start": 2.844,
+          "end": 3.204
         },
         {
           "text": "sending",
-          "start": 2.833,
-          "end": 3.1
+          "start": 3.239,
+          "end": 3.529
         },
         {
           "text": "it",
-          "start": 3.146,
-          "end": 3.193
+          "start": 3.576,
+          "end": 3.634
         },
         {
           "text": "traffic.",
-          "start": 3.216,
-          "end": 3.82
+          "start": 3.669,
+          "end": 4.272
         },
         {
           "text": "Users",
-          "start": 4.934,
-          "end": 5.317
+          "start": 4.656,
+          "end": 5.039
         },
         {
           "text": "never",
-          "start": 5.387,
-          "end": 5.608
+          "start": 5.132,
+          "end": 5.375
         },
         {
           "text": "even",
-          "start": 5.677,
-          "end": 5.875
+          "start": 5.457,
+          "end": 5.666
         },
         {
           "text": "notice.",
-          "start": 5.933,
-          "end": 7.198
+          "start": 5.747,
+          "end": 6.966
         }
       ],
-      "plan": "free"
+      "plan": "paid"
     },
     "goals": {
       "file": "goals.mp3",
       "hash": "7a52d8ae67",
       "text": "So engineers chase three things: scale up, stay up, and waste nothing.",
-      "duration": 5.294,
+      "duration": 4.923,
       "words": [
         {
           "text": "So",
           "start": 0,
-          "end": 0.209
+          "end": 0.197
         },
         {
           "text": "engineers",
-          "start": 0.29,
-          "end": 0.72
+          "start": 0.279,
+          "end": 0.743
         },
         {
           "text": "chase",
-          "start": 0.766,
-          "end": 1.01
+          "start": 0.801,
+          "end": 1.068
         },
         {
           "text": "three",
-          "start": 1.057,
+          "start": 1.103,
           "end": 1.3
         },
         {
           "text": "things:",
-          "start": 1.347,
-          "end": 1.846
+          "start": 1.335,
+          "end": 1.8
         },
         {
           "text": "scale",
-          "start": 2.09,
-          "end": 2.38
+          "start": 2.125,
+          "end": 2.438
         },
         {
           "text": "up,",
-          "start": 2.415,
-          "end": 2.659
+          "start": 2.473,
+          "end": 2.682
         },
         {
           "text": "stay",
-          "start": 2.833,
-          "end": 3.1
+          "start": 2.798,
+          "end": 3.03
         },
         {
           "text": "up,",
-          "start": 3.158,
-          "end": 3.413
+          "start": 3.077,
+          "end": 3.309
         },
         {
           "text": "and",
-          "start": 3.564,
-          "end": 3.704
+          "start": 3.332,
+          "end": 3.483
         },
         {
           "text": "waste",
-          "start": 3.796,
-          "end": 4.063
+          "start": 3.553,
+          "end": 3.808
         },
         {
           "text": "nothing.",
-          "start": 4.11,
-          "end": 5.294
+          "start": 3.855,
+          "end": 4.923
         }
       ],
-      "plan": "free"
+      "plan": "paid"
     },
     "gist": {
       "file": "gist.mp3",
       "hash": "e313daa7eb",
       "text": "That's the gist: design so growth doesn't break you. Follow for more.",
-      "duration": 5.201,
+      "duration": 5.48,
       "words": [
         {
           "text": "That's",
           "start": 0,
-          "end": 0.29
+          "end": 0.302
         },
         {
           "text": "the",
-          "start": 0.325,
-          "end": 0.395
+          "start": 0.337,
+          "end": 0.406
         },
         {
           "text": "gist:",
-          "start": 0.441,
-          "end": 0.917
+          "start": 0.453,
+          "end": 0.929
         },
         {
           "text": "design",
-          "start": 1.3,
-          "end": 1.741
+          "start": 1.533,
+          "end": 2.032
         },
         {
           "text": "so",
-          "start": 1.823,
-          "end": 2.043
+          "start": 2.113,
+          "end": 2.345
         },
         {
           "text": "growth",
-          "start": 2.136,
-          "end": 2.473
+          "start": 2.438,
+          "end": 2.752
         },
         {
           "text": "doesn't",
-          "start": 2.519,
-          "end": 2.798
+          "start": 2.81,
+          "end": 3.077
         },
         {
           "text": "break",
-          "start": 2.844,
-          "end": 3.088
+          "start": 3.111,
+          "end": 3.355
         },
         {
           "text": "you.",
-          "start": 3.146,
-          "end": 3.471
+          "start": 3.413,
+          "end": 3.715
         },
         {
           "text": "Follow",
-          "start": 4.075,
-          "end": 4.412
+          "start": 4.319,
+          "end": 4.644
         },
         {
           "text": "for",
-          "start": 4.47,
-          "end": 4.586
+          "start": 4.702,
+          "end": 4.818
         },
         {
           "text": "more.",
-          "start": 4.632,
-          "end": 5.201
+          "start": 4.876,
+          "end": 5.48
         }
       ],
-      "plan": "free"
+      "plan": "paid"
     }
-  },
-  "plan": "free"
+  }
 }
