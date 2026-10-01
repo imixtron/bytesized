@@ -1,11 +1,22 @@
 {
   "permissions": {
+    "defaultMode": "acceptEdits",
     "allow": [
       "Bash(npm run:*)",
       "Bash(npm ci)",
+      "Bash(npm --prefix engine run:*)",
       "Bash(npx remotion:*)",
       "Bash(npx tsc:*)",
       "Bash(npx tsx:*)",
+      "Bash(cd:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(wc:*)",
+      "Bash(mkdir:*)",
       "Bash(git status:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
@@ -16,13 +27,9 @@
       "Bash(git pull:*)",
       "Bash(git log:*)",
       "Bash(git diff:*)",
-      "Edit(episodes/**)",
+      "Edit(**)",
       "Write(episodes/**)",
-      "Edit(STATUS.md)",
-      "Edit(TASKS.md)",
-      "Edit(engine/src/**)",
       "Write(engine/src/**)",
-      "Edit(assets/**)",
       "mcp__plugin_engineering_notion",
       "mcp__claude_ai_Notion"
     ],
@@ -30,6 +37,7 @@
       "Read(engine/.env)",
       "Read(**/.env)",
       "Bash(cat engine/.env:*)",
+      "Bash(cat:*.env*)",
       "Bash(git push --force:*)",
       "Bash(rm -rf:*)"
     ]

@@ -13,6 +13,14 @@ The rules live in **AGENTS.md §1b** (status map, Pipeline Status map, approvals
 - `status` options: `Not started` · `Idea` · `In progress` · `Awaiting Approval` · `Draft Ready` · `Rendered` · `Published`
 - Episode ↔ row link: the `Notion ID` column in `episodes/INDEX.md`, plus the folder named in AI Notes.
 
+## Running unattended (no permission prompts)
+Runs must only ever stop at the review gates (§4), never on a permission prompt. `.claude/settings.json` pre-approves file edits (`acceptEdits`) and the commands below, so stay inside them:
+- **Change files with the Edit/Write tools only.** Never `sed -i`, `python3 -c`, `python3 -` heredocs, `awk` or `perl` rewrites, and never `echo >`/`cat >` redirects.
+- **Read with the Read/Grep/Glob tools** (or plain `cat`, `grep`, `ls`, `head`, `tail`, `find`, `wc`).
+- **Engine commands:** `npm --prefix engine run <script> -- <args>` from the repo root, or `npm run …`/`npx remotion …`/`npx tsc …` from `engine/`. Don't chain with `&&`/`;`/pipes into unlisted commands, and don't add `export PATH=…` (npm is already on PATH).
+- **Git:** only the forms in AGENTS.md §6 (`git add <explicit paths>`, `git commit`, `git push origin main`).
+- If a step truly needs a command that isn't covered, use the closest covered form. If there is none, note it in AI Notes and tell Imad which rule to add to `settings.json`. Don't work around the deny list.
+
 ## 0. Entry: what was asked?
 | Invocation | Go to |
 |---|---|
