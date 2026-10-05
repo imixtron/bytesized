@@ -22,12 +22,17 @@
       "style": "charming, down-to-earth"
     }
   ],
-  "next": 1,
+  "next": 2,
   "history": [
     {
       "episode": "001-what-is-system-design",
       "voice": "Liam",
       "date": "2026-09-29"
+    },
+    {
+      "episode": "002-monolith-vs-microservices",
+      "voice": "Laura",
+      "date": "2026-10-01"
     }
   ]
 }

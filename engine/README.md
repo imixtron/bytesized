@@ -9,7 +9,7 @@ Remotion (React + TypeScript) project. It renders `episodes/<nnn-slug>/episode.y
 | `npm run music:assign -- <nnn> [--force\|--dry-run]` | Picks the episode's theme track at random, never the previous episode's (`episodes/music.json`), and writes `music.track`. Keeps an existing pick unless `--force`. Part 2 reuses Part 1's track |
 | `npm run validate [-- <nnn>]` | Checks episodes against SCRIPT-FORMAT v1.1. Uses the measured length once voiced |
 | `npm run voice -- <nnn> [--force\|--upgrade]` | ElevenLabs voiceover per scene with word timestamps, cached → `episodes/<nnn-slug>/audio/` |
-| `npm run storyboard -- <nnn>` | One still per beat → `episodes/<nnn-slug>/storyboard/storyboard.html` |
+| `npm run storyboard -- <nnn>` | One still per beat → `episodes/<nnn-slug>/storyboard/storyboard.html`, plus one phone-readable image per section → `storyboard/sections/*.jpg` (`storyboard-sheet` composition) |
 | `npm run render -- ep-<nnn> <out.mp4>` | Draft render (add `--crf=18` for full quality) |
 | `npm run render:final -- <nnn>` | Publishable render → `episodes/<nnn-slug>/out/<slug>.mp4`. Refuses if any audio isn't licensed |
 | `npm run still -- ep-<nnn> <out.png> --frame=<f>` | One frame, for checking |
@@ -19,6 +19,7 @@ Remotion (React + TypeScript) project. It renders `episodes/<nnn-slug>/episode.y
 | `npm run make-audio` | Regenerates the procedural placeholder music loop |
 | `npm run sync` | Copies `brand/`, `assets/` and `episodes/` into `public/` (generated, never edit it) |
 | `npm run typecheck` | TypeScript check |
+| `npm run discord -- <gate\|note\|blocked\|failed\|rendered\|status\|close\|state> …` | Posts the pipeline to Discord through the gateway bot (usage at the top of `scripts/discord.ts`, setup in `bridge/README.md`) |
 | `npm run doctor [-- --online]` | Checks a machine is ready: Node, deps, key present, plan, audio files, sync, types, episodes, ffmpeg |
 
 **Typical episode:** `voice:assign` → `music:assign` → `validate` → `voice` → `validate` → `storyboard` ✋ → `render` (draft) → `render:final`.

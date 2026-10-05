@@ -6,7 +6,10 @@
 
 - [ ] **Publish the pilot**: `episodes/001-what-is-system-design/out/what-is-system-design.mp4` + copy from `out/upload.md`, then set Notion #3 → **Published**
 - [ ] **Listen to the 3 new theme siblings** (`assets/music/bytesized-theme-2.mp3`, `-3`, `-4`). Any you don't like: say which, and I'll re-prompt it (~1,125 credits each) or drop it from `episodes/music.json`
-- [ ] **Mark the next Shorts row `Idea`** to start episode 002 (the queue picks it up within 6h)
+- [ ] **Publish episode 002**: `episodes/002-monolith-vs-microservices/out/monolith-vs-microservices.mp4` + copy from `out/upload.md`, then set Notion #1 → **Published**
+- [x] **Review the episode 002 draft in Discord**: approved 2026-10-05, final rendered
+- [ ] **Allow-rule fix** (Claude can't edit its own settings): in `.claude/settings.json` change `"Write(episodes/**)"` → `"Edit(episodes/**)"` and `"Write(engine/src/**)"` → `"Edit(engine/src/**)"` (Claude Code warns the Write() forms are ignored)
+- [x] **Mark the next Shorts row `Idea`**: #1 picked up 2026-10-02
 
 - [x] **Set up the Mac mini** (2026-09-30): Node, `npm ci`, `engine/.env`, `npm run doctor -- --online` ✔ ready, Notion connector, keep-awake, and the 6-hour **"Bytesized queue"** schedule (`0 */6 * * *`)
 - [x] **Queue the first topic**: #3 "What is System Design?" (the pilot, the channel's first topic) is **Idea**. The queue takes it to completion before anything else

@@ -1,0 +1,160 @@
+# Episode 002. Script approved 2026-10-02
+# Notion row #1 · Architecture · Junior / Entry · target ~40s
+id: 2
+slug: monolith-vs-microservices
+title: Monolith vs Microservices
+topic: monoliths vs microservices, and when to split
+target_sec: 40
+
+brands: [] # Amazon and Shopify are named in the VO only (no logos)
+
+voice: { voice_id: FGY2WhTYpPnrIDTdsKH5, speed: 1.0, name: Laura }
+
+music:
+  track: bytesized-theme-4
+
+scenes:
+  # ---------- HOOK ----------
+  - id: hook
+    part: hook
+    template: FlowDiagram # not the Hook template: no crowd/counter, so it doesn't repeat the pilot's opener
+    vo: "Monoliths aren't bad. They just don't scale forever."
+    headline: { text: "One box. Forever?", accent: "Forever?" }
+    stage:
+      layers: [ [ mono ], [ h1, h2, h3 ] ]
+      nodes:
+        - { id: mono, type: server, family: hero, label: monolith }
+        - { id: h1, type: service, label: users }
+        - { id: h2, type: service, label: payments }
+        - { id: h3, type: service, label: search }
+      links: [ [ mono, h1 ], [ mono, h2 ], [ mono, h3 ] ]
+    beats:
+      - { on: "Monoliths", do: appear, target: mono }
+      - { on: "just", do: appear, target: [ h1, h2, h3 ] }
+      - { on: "forever", do: shake, target: mono }
+      - {
+          on: "scale",
+          do: send,
+          target: [ h1, h2, h3 ],
+          args: { kind: request, count: 3 }
+        }
+
+  # ---------- BRANDING (automatic, ~1.5s) ----------
+
+  # ---------- IDEA ----------
+  - id: idea
+    part: idea
+    template: Analogy
+    vo: "A monolith is one big kitchen. Microservices? A food court, one dish per
+      stall."
+    headline: { text: "Kitchen or food court?", accent: "food court?" }
+    stage:
+      rows:
+        - { id: r1, icon: server, key: Monolith, value: one big kitchen }
+        - { id: r2, icon: service, key: Microservices, value: a food court }
+    beats:
+      - { on: "monolith", do: reveal, target: r1 }
+      - { on: "monolith", do: highlight, target: r1 }
+      - { on: "Microservices", do: reveal, target: r2 }
+      - { on: "Microservices", do: highlight, target: r2 }
+
+  # ---------- BREAKDOWN 1: the monolith (no headline, big visual) ----------
+  - id: mono
+    part: breakdown
+    template: FlowDiagram
+    vo: "One codebase runs users, payments and search. One bug takes it all down."
+    stage:
+      layers: [ [ u1, u2, u3 ], [ app ], [ db ] ]
+      nodes:
+        - { id: u1, type: phone, family: solid }
+        - { id: u2, type: phone, family: solid }
+        - { id: u3, type: phone, family: solid }
+        - { id: app, type: server, label: monolith }
+        - { id: db, type: db, label: postgres }
+      links: [ [ u1, app ], [ u2, app ], [ u3, app ], [ app, db ] ]
+    beats:
+      - { on: "codebase", do: highlight, target: app }
+      - {
+          on: "users",
+          do: send,
+          target: [ u1, u2, u3 ],
+          args: { kind: request, count: 6 }
+        }
+      - { on: "bug", do: state, target: app, args: { to: down } }
+      - { on: "bug", do: shake, target: app }
+
+  # ---------- BREAKDOWN 2: microservices + failure isolation ----------
+  - id: micro
+    part: breakdown
+    template: FlowDiagram
+    vo: "Microservices split them up, each with its own data. Payments crashes?
+      Search keeps serving."
+    headline: { text: "One job each", accent: "each" }
+    stage:
+      layers: [ [ gw ], [ s1, s2, s3 ], [ d1, d2, d3 ] ]
+      nodes:
+        - { id: gw, type: gateway, label: gateway }
+        - { id: s1, type: service, label: users }
+        - { id: s2, type: service, label: payments }
+        - { id: s3, type: service, label: search }
+        - { id: d1, type: db, label: users-db }
+        - { id: d2, type: db, label: pay-db }
+        - { id: d3, type: db, label: search-db }
+      links: [ [ gw, s1 ], [ gw, s2 ], [ gw, s3 ], [ s1, d1 ], [ s2, d2 ], [ s3, d3 ] ]
+    beats:
+      - { on: "split", do: appear, target: [ s1, s2, s3 ] }
+      - { on: "data", do: appear, target: [ d1, d2, d3 ] }
+      - { on: "Payments", do: state, target: s2, args: { to: down } }
+      - { on: "crashes", do: shake, target: s2 }
+      - {
+          on: "keeps",
+          do: send,
+          target: [ s1, s3 ],
+          args: { kind: request, count: 4 }
+        }
+      - { on: "serving", do: state, target: s3, args: { to: active } }
+
+  # ---------- BREAKDOWN 3: the trade-off ----------
+  - id: catch
+    part: breakdown
+    template: ThreeCards
+    vo: "The catch: services talk over the network. More hops, more lag, more to
+      watch."
+    headline: { text: "Freedom has a cost", accent: "cost" }
+    stage:
+      cards:
+        - { id: c1, icon: internet, title: More hops, sub: "APIs and queues" }
+        - { id: c2, icon: gauge, title: More lag, sub: "every call costs" }
+        - { id: c3, icon: pulse, title: More to watch, sub: "dozens of dashboards" }
+    beats:
+      - { on: "hops", do: reveal, target: c1 }
+      - { on: "lag", do: reveal, target: c2 }
+      - { on: "watch", do: reveal, target: c3 }
+
+  # ---------- BREAKDOWN 4: real-world + when to start ----------
+  - id: start
+    part: breakdown
+    template: Analogy
+    vo: "Even Amazon began as a monolith. Shopify still runs one, just kept tidy."
+    headline: { text: "Start with one", accent: "one" }
+    stage:
+      rows:
+        - { id: a1, icon: server, key: Amazon, value: "monolith, then split" }
+        - { id: a2, icon: storage, key: Shopify, value: one tidy monolith }
+    beats:
+      - { on: "Amazon", do: reveal, target: a1 }
+      - { on: "Amazon", do: highlight, target: a1 }
+      - { on: "Shopify", do: reveal, target: a2 }
+      - { on: "Shopify", do: highlight, target: a2 }
+
+  # ---------- GIST (no headline) ----------
+  - id: gist
+    part: gist
+    template: GistCard
+    vo: "That's the gist: start whole, split when it hurts. Follow for more."
+    stage:
+      text: "Start whole. Split when it hurts."
+      accent: "Split"
+    beats:
+      - { on: "gist", do: appear, target: card }
+      - { on: "split", do: highlight, target: card }

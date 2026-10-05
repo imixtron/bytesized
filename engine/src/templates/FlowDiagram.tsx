@@ -1,7 +1,7 @@
 // FlowDiagram template: nodes laid out automatically in top → bottom layers, wires from `links`,
 // and packets driven by beats. Verbs: appear, highlight, state, shake, send, reroute, dim/undim.
 // A scene with `stage.reuse: <scene id>` shows the same diagram, picking up where it ended.
-import type { ReactElement } from "react";
+import { Fragment, type ReactElement } from "react";
 import { AbsoluteFill, random, useCurrentFrame } from "remotion";
 import type { NodeSpec } from "../episode/schema";
 import { pop } from "../motion/motion";
@@ -59,7 +59,7 @@ export function layoutFlow(stage: FlowStage, hasHeadline: boolean): Map<string, 
 }
 
 type Link = { from: string; to: string; d: string };
-type Shot = { d: string; start: number; kind: "request" | "response" };
+type Shot = { d: string; start: number; kind: "request" | "response"; to?: string };
 
 export const FlowDiagram = ({ ctx }: { ctx: Ctx }) => {
   const f = useCurrentFrame();
@@ -104,12 +104,14 @@ export const FlowDiagram = ({ ctx }: { ctx: Ctx }) => {
       const count = Number(b.args?.count ?? ls.length);
       for (let k = 0; k < count && ls.length; k++) {
         const l = ls[k % ls.length];
-        shots.push({ d: kind === "response" ? back(l.d) : l.d, start: b.at + k * PACKET_GAP, kind });
+        // a queued packet never leaves for a node that has gone down by then
+        if (isBlocked(l.to, b.at + k * PACKET_GAP)) continue;
+        shots.push({ d: kind === "response" ? back(l.d) : l.d, start: b.at + k * PACKET_GAP, kind, to: kind === "response" ? undefined : l.to });
       }
     }
     if (b.do === "reroute") {
       const to = (b.args?.to as string[]) ?? [];
-      to.flatMap((id) => incoming(id)).forEach((l, k) => shots.push({ d: l.d, start: b.at + k * PACKET_GAP, kind: "request" }));
+      to.flatMap((id) => incoming(id)).forEach((l, k) => shots.push({ d: l.d, start: b.at + k * PACKET_GAP, kind: "request", to: l.to }));
     }
   }
 
@@ -121,15 +123,16 @@ export const FlowDiagram = ({ ctx }: { ctx: Ctx }) => {
     for (let t = firstSend + 20, k = 0; t < ctx.ts.duration; t += AMBIENT_EVERY, k++) {
       const src = sources[Math.floor(random(`${scene.id}-src-${k}`) * sources.length)];
       const first = outgoing(src)[0];
-      if (!first) continue;
+      if (!first || isBlocked(first.to, t)) continue;
       const next = outgoing(first.to).filter((l) => !isBlocked(l.to, t));
       const hop = next[Math.floor(random(`${scene.id}-hop-${k}`) * next.length)];
-      ambient.push({ d: first.d, start: t, kind: "request" });
-      if (hop) ambient.push({ d: hop.d, start: t + travelFrames(first.d), kind: "request" });
+      ambient.push({ d: first.d, start: t, kind: "request", to: first.to });
+      if (hop) ambient.push({ d: hop.d, start: t + travelFrames(first.d), kind: "request", to: hop.to });
     }
   }
 
-  const packets: ReactElement[] = [...shots, ...ambient].map((s, i) => (
+  // packets still in flight vanish the moment their destination goes down
+  const packets: ReactElement[] = [...shots, ...ambient].map((s, i) => s.to && isBlocked(s.to, f) ? <Fragment key={i} /> : (
     <Packet key={i} d={s.d} kind={s.kind} progress={(f - s.start) / travelFrames(s.d)} />
   ));
 
@@ -141,7 +144,7 @@ export const FlowDiagram = ({ ctx }: { ctx: Ctx }) => {
       <Wires
         paths={links.map((l) => {
           const dead = isBlocked(l.to, f);
-          return { d: l.d, live: !dead && (reused ? true : f >= liveFrom(l)), alpha: dead ? 0.35 : clamp01(appearOf(l.from) + 0.2) * clamp01(appearOf(l.to) + 0.2) };
+          return { d: l.d, live: !dead && (reused ? true : f >= liveFrom(l)), alpha: dead ? 0.35 : clamp01(appearOf(l.from)) * clamp01(appearOf(l.to)) }; // no wire until both ends are on screen
         })}
       />
       {packets}

@@ -2,6 +2,7 @@ import { Composition, Folder } from "remotion";
 import { Episode } from "./compositions/Episode";
 import { StingPreview, STING_PREVIEW_FRAMES } from "./compositions/StingPreview";
 import { TokensCheck } from "./compositions/TokensCheck";
+import { sheetHeight, StoryboardSheet, type StoryboardSheetProps } from "./compositions/StoryboardSheet";
 import { GALLERY_BITS_FRAMES, GALLERY_FLOW_FRAMES, GALLERY_NODES_FRAMES, GalleryBits, GalleryFlow, GalleryNodes } from "./compositions/gallery/Galleries";
 import { loadEpisode } from "./episode/load";
 import { EPISODE_SLUGS } from "./generated/episodes";
@@ -30,6 +31,16 @@ export const Root = () => (
     <Folder name="Checks">
       <Composition id="tokens-check" component={TokensCheck} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={1} />
       <Composition id="sting-preview" component={StingPreview} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={STING_PREVIEW_FRAMES} />
+      <Composition
+        id="storyboard-sheet"
+        component={StoryboardSheet}
+        width={WIDTH}
+        height={HEIGHT}
+        fps={FPS}
+        durationInFrames={1}
+        defaultProps={{ index: 1, part: "hook", sceneId: "hook", range: "0.0s–3.1s", vo: "…", shots: [] } as StoryboardSheetProps}
+        calculateMetadata={({ props }) => ({ height: sheetHeight(props) })}
+      />
     </Folder>
     <Folder name="Gallery">
       <Composition id="gallery-nodes" component={GalleryNodes} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={GALLERY_NODES_FRAMES} />

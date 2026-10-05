@@ -2,6 +2,7 @@
 // laid out per scene with the voiceover line and the beat that fires.
 //   npm run storyboard -- 001
 // Output: episodes/<nnn-slug>/storyboard/storyboard.html (self-contained) + frames/*.jpg
+//         + sections/<nn>-<scene>.jpg (one image per section, readable on a phone; sent to Discord)
 import { bundle } from "@remotion/bundler";
 import { renderStill, selectComposition } from "@remotion/renderer";
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
@@ -11,6 +12,7 @@ import { parseEpisode } from "../src/episode/parse";
 import { buildTimeline, type TimedBeat } from "../src/timing/timeline";
 import { measuredFrom, type VoiceManifest } from "../src/voice/manifest";
 import { tokens } from "../src/theme/tokens";
+import type { StoryboardSheetProps } from "../src/compositions/StoryboardSheet";
 
 const ENGINE = join(dirname(fileURLToPath(import.meta.url)), "..");
 const ROOT = join(ENGINE, "..");
@@ -106,3 +108,27 @@ ${sections}
 </main></body></html>`;
 writeFileSync(join(outDir, "storyboard.html"), html);
 console.log(`✔ episodes/${folder}/storyboard/storyboard.html (${shots.length} stills)`);
+
+// ---------------------------------------------------------------- one phone-readable image per section (Discord review)
+mkdirSync(join(outDir, "sections"), { recursive: true });
+for (const [n, sid] of groups.entries()) {
+  const ts = tl.scenes.find((t) => t.scene.id === sid);
+  const props: StoryboardSheetProps = {
+    index: n + 1,
+    part: ts ? ts.scene.part : "branding",
+    sceneId: sid,
+    template: ts?.scene.template,
+    range: ts ? `${secs(ts.start)}–${secs(ts.start + ts.duration)}` : `${secs(tl.sting.start)}–${secs(tl.sting.start + tl.sting.duration)}`,
+    headline: ts?.scene.headline?.text,
+    vo: ts ? ts.scene.vo : "Bite wipe → logos → cut. No voiceover, just the chomp.",
+    shots: shots
+      .map((s, i) => ({ s, i }))
+      .filter(({ s }) => s.scene === sid)
+      .sort((a, b) => a.s.frame - b.s.frame)
+      .map(({ s, i }) => ({ src: img(i, s), time: secs(s.frame), on: s.beat?.on, label: s.label })),
+  };
+  const sheet = await selectComposition({ serveUrl, id: "storyboard-sheet", inputProps: props });
+  const file = join(outDir, "sections", `${String(n + 1).padStart(2, "0")}-${sid}.jpg`);
+  await renderStill({ composition: sheet, serveUrl, output: file, inputProps: props, imageFormat: "jpeg", jpegQuality: 85 });
+}
+console.log(`✔ episodes/${folder}/storyboard/sections/ (${groups.length} section images)`);

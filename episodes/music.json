@@ -23,6 +23,11 @@
       "episode": "001-what-is-system-design",
       "track": "bytesized-theme",
       "date": "2026-09-29"
+    },
+    {
+      "episode": "002-monolith-vs-microservices",
+      "track": "bytesized-theme-4",
+      "date": "2026-10-01"
     }
   ]
 }
