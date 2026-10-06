@@ -36,17 +36,14 @@ System Settings → **Energy** (or Battery → Options):
 
 Keep the Claude desktop app open. Add it to Login Items (System Settings → General → Login Items) so it comes back after a reboot.
 
-## 6. Create the 6-hour schedule
-In a Code session **opened in the `bytesized` folder**, paste:
-
-> Create a scheduled task named **"Bytesized queue"** that runs **every 6 hours** in this project folder, with the prompt **`/queue`**. It should open a new session each run and notify me when it stops at a review gate.
-
-(or add it by hand in the desktop app's Scheduled tasks: every 6 hours, folder `bytesized`, prompt `/queue`).
+## 6. Discord bridge (the schedule and the approvals)
+The 6-hour schedule and every approval run through the Discord bridge: follow **`bridge/README.md` → Setup** (register the manifest, start the `bytesized-bridge` container, install the launchd runner). There is no desktop scheduled task or cloud routine any more.
 
 **How it behaves** (full rules in AGENTS.md §1b):
-- If a row is already active (In progress, Awaiting Approval or Draft Ready), the run exits immediately.
-- Otherwise it takes the lowest-ID **Idea** and runs it to **Script Review**, then waits in its session and notifies you.
-- You **approve or request changes in that session**, and it continues right away: voice → storyboard (review) → draft (review) → final render → **Rendered**.
+- At 00/06/12/18 the bridge drops a tick. If an episode is waiting on a Discord review, the runner posts "Queue busy" itself without starting Claude.
+- Otherwise Claude takes the lowest-ID **Idea** and runs it to **Script Review**, posts it to the episode's Discord thread and ends.
+- You **approve or request changes with the Discord buttons**. Each click resumes that episode's Claude session: voice → storyboard (review) → draft (review) → final render → **Rendered**.
+- If a run fails (including a usage limit), Discord posts it with a **Retry run** button.
 - You only ever set **Idea** (to queue a topic) and **Published** (after posting).
 
 ## 7. Before publishing anything

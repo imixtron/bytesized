@@ -3,6 +3,7 @@ import { Episode } from "./compositions/Episode";
 import { StingPreview, STING_PREVIEW_FRAMES } from "./compositions/StingPreview";
 import { TokensCheck } from "./compositions/TokensCheck";
 import { sheetHeight, StoryboardSheet, type StoryboardSheetProps } from "./compositions/StoryboardSheet";
+import { CONTACT_HEIGHT, CONTACT_WIDTH, ContactSheet, type ContactSheetProps } from "./compositions/ContactSheet";
 import { GALLERY_BITS_FRAMES, GALLERY_FLOW_FRAMES, GALLERY_NODES_FRAMES, GalleryBits, GalleryFlow, GalleryNodes } from "./compositions/gallery/Galleries";
 import { BigPicturePreview, DEMOS, DiagramDemo, DiagramSheet, bigPicturePreviewFrames } from "./compositions/gallery/Diagrams";
 import { Cover } from "./compositions/Cover";
@@ -61,6 +62,15 @@ export const Root = () => (
         durationInFrames={1}
         defaultProps={{ index: 1, part: "hook", sceneId: "hook", range: "0.0s–3.1s", vo: "…", shots: [] } as StoryboardSheetProps}
         calculateMetadata={({ props }) => ({ height: sheetHeight(props) })}
+      />
+      <Composition
+        id="contact-sheet"
+        component={ContactSheet}
+        width={CONTACT_WIDTH}
+        height={CONTACT_HEIGHT}
+        fps={FPS}
+        durationInFrames={1}
+        defaultProps={{ stills: [] } as ContactSheetProps}
       />
     </Folder>
     <Folder name="Gallery">

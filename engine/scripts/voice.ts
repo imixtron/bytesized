@@ -11,6 +11,7 @@ import { parseEpisode } from "../src/episode/parse";
 import { tokenize } from "../src/episode/words";
 import { MODEL, apiKey, speakWithTimestamps, type Alignment, type VoiceSettings } from "../src/voice/elevenlabs";
 import type { VoiceManifest } from "../src/voice/manifest";
+import { appendCost } from "./cost";
 
 const ENGINE = join(dirname(fileURLToPath(import.meta.url)), "..");
 const ROOT = join(ENGINE, "..");
@@ -82,3 +83,5 @@ manifest.plan = Object.values(manifest.scenes).every((s) => s.plan === "paid") ?
 writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
 const total = Object.values(manifest.scenes).reduce((n, s) => n + s.duration, 0);
 console.log(`${folder} · voice ${manifest.voice} · ${total.toFixed(1)}s of speech · ${chars} characters billed this run`);
+// Build-cost ledger (npm run cost): multilingual v2 bills one credit per character.
+if (chars) appendCost(folder, { at: new Date().toISOString(), kind: "elevenlabs", stage: "voicing", characters: chars, credits: chars, voice: manifest.voice, model: MODEL });

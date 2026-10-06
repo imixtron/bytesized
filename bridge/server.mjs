@@ -14,11 +14,12 @@ const TICK_HOURS = (process.env.TICK_HOURS ?? "0,6,12,18").split(",").map(Number
 const PORT = Number(process.env.PORT ?? 9100);
 const DATA = process.env.DATA_DIR ?? "/data";
 const INBOX = join(DATA, "inbox");
+const FAILED = join(DATA, "failed");
 const FILES = join(DATA, "files");
 const STATE = join(DATA, "state");
 const STATE_FILE = join(STATE, "bridge.json");
 if (!SECRET || !TOKEN) throw new Error("BYTESIZED_WEBHOOK_SECRET and BYTESIZED_API_TOKEN must be set (bridge/.env)");
-for (const d of [INBOX, FILES, STATE]) mkdirSync(d, { recursive: true });
+for (const d of [INBOX, FAILED, FILES, STATE]) mkdirSync(d, { recursive: true });
 
 // ---------------------------------------------------------------- state (dedupe, cursor, last tick)
 const state = existsSync(STATE_FILE) ? JSON.parse(readFileSync(STATE_FILE, "utf8")) : {};
@@ -76,11 +77,24 @@ async function downloadFiles(data) {
 
 const LABEL = { approve: "✅ Approve", changes: "✏️ Request changes", retry: "🔁 Retry", resolved: "✅ Fixed, continue", reply: "📝 Reply", start: "▶️ Start next idea" };
 
+/** "Retry run" on a failed Claude run: put the same item back in the inbox (no new Claude run needed to decide). */
+async function handleRunFailed(data) {
+  const item = String(data.metadata?.item ?? data.correlation_id?.replace(/^run:/, "") ?? "");
+  const src = join(FAILED, item);
+  if (data.action === "drop") return reply(data.message_id, "🗑️ OK, left it. It stays in `bridge/failed/`.");
+  if (!/^[\w.-]+\.json$/.test(item) || !existsSync(src)) return reply(data.message_id, `Nothing to retry: \`${item}\` is no longer in bridge/failed/.`);
+  renameSync(src, join(INBOX, item));
+  log(`inbox ← ${item} (retry)`);
+  await reply(data.message_id, "🔁 Re-queued. Claude picks it up now.");
+}
+
 /** One response from Imad → an inbox item (or, for "wait", nothing to do until the next tick). */
 async function handleResponse(data) {
   if (state.responses.includes(data.response_id)) return;
   if (USER && data.user?.id !== USER) {
     log(`ignored response ${data.response_id} from ${data.user?.id}`);
+  } else if (data.template === "run-failed" || data.correlation_id?.startsWith("run:")) {
+    await handleRunFailed(data);
   } else if (data.action === "wait") {
     await reply(data.message_id, "⏸️ OK. The next scheduled run will pick it up.");
   } else {
@@ -152,7 +166,7 @@ async function reconcile() {
 setTimeout(reconcile, 5000);
 setInterval(reconcile, 60 * 60 * 1000);
 
-// ---------------------------------------------------------------- the 6-hour tick (replaces the desktop scheduled task)
+// ---------------------------------------------------------------- the 6-hour tick
 setInterval(() => {
   const now = new Date();
   const key = `${now.toDateString()} ${now.getHours()}`;

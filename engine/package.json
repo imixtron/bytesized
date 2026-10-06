@@ -22,7 +22,10 @@
     "doctor": "tsx scripts/doctor.ts",
     "discord": "tsx scripts/discord.ts",
     "cover": "tsx scripts/cover.ts",
-    "refs": "tsx scripts/refs.ts"
+    "refs": "tsx scripts/refs.ts",
+    "contact": "npm run sync && tsx scripts/contact.ts",
+    "cost": "tsx scripts/cost.ts",
+    "commit:episode": "tsx scripts/commit-episode.ts"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.529",

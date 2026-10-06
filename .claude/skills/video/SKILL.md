@@ -7,9 +7,11 @@ description: Video Creator for Bytesized, the 80–90s system-design shorts of B
 
 You turn an **approved** episode into video with the engine in `engine/` (Remotion). All commands run from `engine/`. Read `engine/README.md` once for the command list.
 
-## Read first
+## Read first (only what this stage needs)
 - `episodes/INDEX.md`: the episode's status. It must be at least `script approved`. If it isn't, stop and suggest `/script`.
-- `episodes/SCRIPT-FORMAT.md` and `brand/design-language/DESIGN-LANGUAGE.md` (v1.4), plus `tokens.json` for every value.
+- `episodes/SCRIPT-FORMAT.md`: only when you change `episode.yaml` (fixes from the self-check or Imad's feedback).
+- `brand/design-language/DESIGN-LANGUAGE.md` (v1.4) and `tokens.json`: only when you build or fix a template or part, or fix a visual problem.
+- Skip anything already read earlier in this session (runs often resume the episode's session). Voicing, draft and final renders need none of the last two.
 
 ## Steps
 
@@ -26,7 +28,7 @@ Then check what it uses against what exists:
 **If something's missing, build it into the library first** (never as a one-off in the episode):
 - New template → `src/templates/<Name>.tsx`, following the existing ones: `ctx`, `localBeats`, `Headline`, content centred with `centredTop`/`stageBox`, values only from `tokens`. Register it in `index.tsx`.
 - New icon or type → add it to `ICONS` / `ICON_FOR` (24-grid, 2px rounded strokes, `currentColor`).
-- Add it to a gallery composition (`src/compositions/gallery/`), run `npx tsc --noEmit`, render a still of it, **look at it**, and show Imad before using it in the episode. New parts follow the locked design language. If a need doesn't fit it, propose a design-language change instead of improvising.
+- Add it to a gallery composition (`src/compositions/gallery/`), run `npx tsc --noEmit`, render a still of it (`--scale=0.4 --image-format=jpeg` for your own check), **look at it**, and show Imad before using it in the episode. New parts follow the locked design language. If a need doesn't fit it, propose a design-language change instead of improvising.
 
 ### 2. Voiceover (uses ElevenLabs credits)
 ```bash
@@ -42,7 +44,7 @@ npm run validate -- <nnn>       # now uses the measured length
 ```bash
 npm run storyboard -- <nnn>     # → storyboard/storyboard.html + sections/<nn>-<scene>.jpg (one image per section)
 ```
-The section images are what Imad reviews on his phone in Discord (`npm run discord -- gate <nnn> storyboard`, posted by `/queue` §4). Before sending, **check the section images yourself**:
+The section images are what Imad reviews on his phone in Discord (`npm run discord -- gate <nnn> storyboard`, posted by `/queue` §4). Before sending, **check the storyboard yourself on the contact sheets** (`storyboard/contact-*.jpg`, 12 stills each, tagged `<n> <scene> <time>`). They cost far fewer tokens than the section images, so don't open the section images too. Only render a single bigger still (below) when a contact sheet shows a problem you need to see up close:
 - nothing overlapping (headline vs diagram, labels vs wires, stage vs captions)
 - beats visible at the right moment
 - one focus at a time, and no lone-word captions
@@ -74,22 +76,14 @@ npm run render:final -- <nnn>   # → episodes/<nnn-slug>/out/<slug>.mp4
 - If you built new templates or parts, update the "Templates still to build" line and the architecture list in `engine/README.md`.
 
 ### 7. Commit and push the recipe
-Commit everything needed to recreate the video (AGENTS §6 "Commit the recipe, not the render"), once `render:final` has succeeded and step 6 is done. From the repo root:
-```bash
-git status --short
-git add episodes/<nnn-slug>/episode.yaml episodes/<nnn-slug>/audio episodes/<nnn-slug>/storyboard episodes/<nnn-slug>/out/upload.md
-git add <each changed shared input from git status>   # see list below
-git commit -m "Episode <nnn>: <title> (rendered)" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
-git rev-parse --short HEAD                            # report the sha
-git pull --rebase origin main && git push origin main
-```
-- **Shared inputs**, only if `git status` shows them changed: `assets/music/` and `assets/sfx/` (audio + `library.json`), `episodes/voices.json`, `episodes/music.json`, `episodes/pronunciations.md`, `episodes/INDEX.md`, `engine/plan.json`, new or changed `engine/src/` templates/parts/icons, `engine/README.md`, `brand/`, `STATUS.md`, `TASKS.md`.
-- **Explicit paths only.** Never `git add -A` / `git add .`. Never stage `out/*.mp4`, `engine/public/`, `engine/out/` or any `.env`. If `git diff --cached --name-only` lists one, unstage it.
-- Changes you didn't make in this run (another episode, someone's in-progress edit): leave them unstaged and mention them.
-- Commit and push to **`main`**, only here at the end of episode creation (never mid-pipeline). If the checkout isn't on `main`, or the push or rebase fails, stop and report it; never force-push.
+Commit everything needed to recreate the video (AGENTS §6 "Commit the recipe, not the render") **with the script, never by hand**, once `render:final` has succeeded and step 6 is done:
+- **In a bridge run (`/queue`): don't commit.** The runner runs the script right after the run ends, so the build-cost line for this last run is in the commit too, then posts the sha and the build cost to the episode's thread.
+- **In an interactive session:** from `engine/`, `npm run commit:episode -- <nnn> --push`, then report the sha it prints.
+
+What the script stages: the episode folder (`episode.yaml`, `audio/`, `storyboard/`, `out/upload.md`, `cost.jsonl`) plus the shared inputs it was built with (`assets/` music, SFX and logos, `brand/`, `engine/` source, `episodes/*.md|json`, `bridge/` code, skills and docs). It never stages `out/*.mp4`, `engine/public/`, `engine/out/` or `.env` (it refuses and commits nothing if one shows up), leaves other episodes' folders alone and lists them, commits only on `main`, and pushes with `pull --rebase` and no force. The message is `Episode <nnn>: <title> (rendered)` with length, voice, music and build cost.
 
 ## Engine gotchas
 - Always `npm run sync` after changing anything in `brand/`, `assets/` or `episodes/`. `render`, `still` and `storyboard` do it for you, but `npx remotion …` doesn't.
 - The engine refuses stale audio. If `vo` changes, re-run `npm run voice -- <nnn>`.
 - In zsh loops, list frames explicitly (`for f in 100 200 300`), since a `$VAR` with spaces won't split.
-- Check stills after any visual change: `npx remotion still ep-<nnn> out/check.png --frame=<f>`, then look at them.
+- Check stills after any visual change: `npx remotion still ep-<nnn> out/check.jpg --frame=<f> --scale=0.4 --image-format=jpeg`, then look at them. An image costs tokens by its pixels, so the 0.4 scale (432×768) is about a third of a full-size still, and it's enough to see overlaps. Don't extract frames from a rendered MP4 to re-check what the storyboard already showed.

@@ -3,6 +3,7 @@
 //   npm run storyboard -- 001
 // Output: episodes/<nnn-slug>/storyboard/storyboard.html (self-contained) + frames/*.jpg
 //         + sections/<nn>-<scene>.jpg (one image per section, readable on a phone; sent to Discord)
+//         + contact-<nn>.jpg (12 small stills per image, for Claude's self-check; scripts/contact.ts)
 import { bundle } from "@remotion/bundler";
 import { renderStill, selectComposition } from "@remotion/renderer";
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
@@ -13,6 +14,7 @@ import { buildTimeline, type TimedBeat } from "../src/timing/timeline";
 import { measuredFrom, type VoiceManifest } from "../src/voice/manifest";
 import { tokens } from "../src/theme/tokens";
 import type { StoryboardSheetProps } from "../src/compositions/StoryboardSheet";
+import { contactSheets } from "./contact";
 
 const ENGINE = join(dirname(fileURLToPath(import.meta.url)), "..");
 const ROOT = join(ENGINE, "..");
@@ -132,3 +134,5 @@ for (const [n, sid] of groups.entries()) {
   await renderStill({ composition: sheet, serveUrl, output: file, inputProps: props, imageFormat: "jpeg", jpegQuality: 85 });
 }
 console.log(`✔ episodes/${folder}/storyboard/sections/ (${groups.length} section images)`);
+const sheets = await contactSheets(epDir, serveUrl);
+console.log(`✔ episodes/${folder}/storyboard/contact-*.jpg (${sheets} contact sheets for the self-check)`);

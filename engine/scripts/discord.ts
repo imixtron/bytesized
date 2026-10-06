@@ -8,6 +8,8 @@
 //   npm run discord -- blocked <nnn> "<reason>"      Retry / Fixed / Reply, pings Imad
 //   npm run discord -- failed <nnn> "<error>"        same, for errors
 //   npm run discord -- rendered <nnn>                final MP4 + upload.md, then "Start next idea now?"
+//   npm run discord -- runfailed <item.json> "<text>" [--episode <nnn>]
+//                                                    a Claude run failed: Retry run / Leave it, pings Imad (the runner calls this)
 //   npm run discord -- next                          (re)ask "Start next idea now?" in the channel
 //   npm run discord -- close <nnn|next>              close the open form (decided elsewhere, or superseded)
 //   npm run discord -- state [nnn]                   print what's open (the gate a click must match)
@@ -44,7 +46,8 @@ const USER = env.DISCORD_USER_ID;
 const TICK_HOURS = (env.TICK_HOURS ?? "0,6,12,18").split(",").map(Number);
 
 type OpenForm = { kind: Gate | "next"; round: number; message_id: string; correlation_id: string; posted_at: string };
-type EpisodeState = { title: string; root?: string; rounds: Partial<Record<Gate, number>>; open?: OpenForm | null };
+// session: the Claude Code session that last worked on the episode (the runner resumes it on the next click).
+type EpisodeState = { title: string; root?: string; rounds: Partial<Record<Gate, number>>; open?: OpenForm | null; session?: string | null };
 type State = { episodes: Record<string, EpisodeState>; next?: OpenForm | null };
 const loadState = (): State => (existsSync(STATE_FILE) ? JSON.parse(readFileSync(STATE_FILE, "utf8")) : { episodes: {} });
 const saveState = (s: State) => {
@@ -119,6 +122,11 @@ type Ep = ReturnType<typeof episode>;
 
 async function root(state: State, e: Ep): Promise<string> {
   const es = (state.episodes[e.key] ??= { title: e.ep.title, rounds: {} });
+  // The runner passes its session id; the episode's next Discord click resumes this session instead of starting cold.
+  if (process.env.BYTESIZED_SESSION_ID && es.session !== process.env.BYTESIZED_SESSION_ID) {
+    es.session = process.env.BYTESIZED_SESSION_ID;
+    saveState(state);
+  }
   if (es.root) return es.root;
   const msg = await send({
     content: `🎬 **${e.label}**\nEverything for this episode (reviews, progress, final render) happens in this thread.`,
@@ -340,8 +348,23 @@ try {
       });
       if (existsSync(up)) await send({ content: readFileSync(up, "utf8").slice(0, 3900), thread_of: rootId, correlation_id: `${e.key}:upload` });
       state.episodes[e.key].open = null;
+      state.episodes[e.key].session = null; // done: nothing will resume it
       saveState(state);
       await askNext(state, e.label);
+      break;
+    }
+    case "runfailed": {
+      const nnn = flag("episode");
+      const es = nnn ? state.episodes[nnn] : undefined;
+      await send({
+        content: args[1],
+        ...(es?.root ? { thread_of: es.root } : {}),
+        ping: true,
+        form: { template: "run-failed" },
+        correlation_id: `run:${args[0]}`,
+        metadata: { kind: "run-failed", item: args[0], ...(nnn ? { episode: nnn } : {}) },
+      });
+      console.log(`✔ run failure posted · run:${args[0]}`);
       break;
     }
     case "next":
@@ -364,7 +387,7 @@ try {
       console.log(JSON.stringify(args[0] ? state.episodes[episode(args[0]).key] ?? null : state, null, 2));
       break;
     default:
-      console.log(readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(0, 14).join("\n"));
+      console.log(readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(0, 16).join("\n"));
       process.exit(cmd ? 1 : 0);
   }
 } catch (err) {

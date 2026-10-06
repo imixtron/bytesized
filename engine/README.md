@@ -9,7 +9,10 @@ Remotion (React + TypeScript) project. It renders `episodes/<nnn-slug>/episode.y
 | `npm run music:assign -- <nnn> [--force\|--dry-run]` | Picks the episode's theme track at random, never the previous episode's (`episodes/music.json`), and writes `music.track`. Keeps an existing pick unless `--force`. Part 2 reuses Part 1's track |
 | `npm run validate [-- <nnn>]` | Checks episodes against SCRIPT-FORMAT v1.2 (80–90s). Uses the measured length once voiced |
 | `npm run voice -- <nnn> [--force\|--upgrade]` | ElevenLabs voiceover per scene with word timestamps, cached → `episodes/<nnn-slug>/audio/` |
-| `npm run storyboard -- <nnn>` | One still per beat → `episodes/<nnn-slug>/storyboard/storyboard.html`, plus one phone-readable image per section → `storyboard/sections/*.jpg` (`storyboard-sheet` composition) |
+| `npm run storyboard -- <nnn>` | One still per beat → `episodes/<nnn-slug>/storyboard/storyboard.html`, plus one phone-readable image per section → `storyboard/sections/*.jpg` (`storyboard-sheet` composition), plus contact sheets → `storyboard/contact-*.jpg` |
+| `npm run contact -- <nnn>` | Re-makes only the contact sheets from existing storyboard frames: 12 small stills per image, tagged `<n> <scene> <time>` (`contact-sheet` composition). Claude's self-check uses these, not the section images, because an image costs tokens by its pixels |
+| `npm run cost [-- <nnn>] [--json\|--line]` | Build cost from `episodes/<nnn-slug>/cost.jsonl`: Claude runs (tokens, API-equivalent $) by stage, and ElevenLabs credits. No number gives every episode plus the total |
+| `npm run commit:episode -- <nnn> [--push]` | Commits the episode's recipe plus the shared inputs, never renders or secrets (AGENTS §6). The bridge runner runs it after the final render. `--message "<subject>" --allow-incomplete` takes a mid-pipeline snapshot |
 | `npm run render -- ep-<nnn> <out.mp4>` | Draft render (add `--crf=18` for full quality) |
 | `npm run render:final -- <nnn>` | Publishable render → `episodes/<nnn-slug>/out/<slug>.mp4`. Refuses if any audio isn't licensed |
 | `npm run still -- ep-<nnn> <out.png> --frame=<f>` | One frame, for checking |

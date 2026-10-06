@@ -2,7 +2,7 @@
   "contract_version": "1.0.0",
   "id": "bytesized",
   "name": "Bytesized",
-  "description": "Bytesized shorts pipeline: review gates (script, parts, storyboard, draft), blockers and the next-idea prompt",
+  "description": "Bytesized shorts pipeline: review gates (script, parts, storyboard, draft), blockers, failed-run retries and the next-idea prompt",
   "channel_id": "1556623888769613854",
   "webhook": { "url": "http://bytesized-bridge:9100/events" },
   "health": { "url": "http://bytesized-bridge:9100/health" },
@@ -42,6 +42,13 @@
           "modal_title": "Tell Claude",
           "fields": [{ "id": "note", "type": "paragraph", "label": "Note", "required": true, "max_length": 4000 }]
         }
+      ]
+    },
+    "run-failed": {
+      "description": "A Claude run crashed or hit a usage limit: run the same item again, or leave it",
+      "actions": [
+        { "id": "rerun", "label": "Retry run", "style": "primary", "emoji": "🔁" },
+        { "id": "drop", "label": "Leave it", "style": "secondary", "emoji": "🗑️" }
       ]
     },
     "next-idea": {

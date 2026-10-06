@@ -1,10 +1,11 @@
-# Episode 002. Script approved 2026-10-02
-# Notion row #1 · Architecture · Junior / Entry · target ~40s
+# Episode 002. Draft (awaiting approval ✋) · rebuild to 80–90s (script format v1.4), 2026-10-06
+# Notion row #1 · Architecture · Junior / Entry · target ~85s (was the ~38s v1.1 cut, approved 2026-10-02; hook + gist kept)
 id: 2
 slug: monolith-vs-microservices
 title: Monolith vs Microservices
-topic: monoliths vs microservices, and when to split
-target_sec: 40
+topic: monoliths vs microservices, how they fail and talk, and when to split
+target_sec: 85
+format: "1.4"
 
 brands: [] # Amazon and Shopify are named in the VO only (no logos)
 
@@ -14,11 +15,12 @@ music:
   track: bytesized-theme-4
 
 scenes:
-  # ---------- HOOK ----------
+  # ---------- HOOK (kept from the approved cut, plus a question) ----------
   - id: hook
     part: hook
     template: FlowDiagram # not the Hook template: no crowd/counter, so it doesn't repeat the pilot's opener
-    vo: "Monoliths aren't bad. They just don't scale forever."
+    vo: "Monoliths aren't bad. They just don't scale forever. So why does everyone
+      split them up?"
     headline: { text: "One box. Forever?", accent: "Forever?" }
     stage:
       layers: [ [ mono ], [ h1, h2, h3 ] ]
@@ -30,10 +32,10 @@ scenes:
       links: [ [ mono, h1 ], [ mono, h2 ], [ mono, h3 ] ]
     beats:
       - { on: "Monoliths", do: appear, target: mono }
-      - { on: "just", do: appear, target: [ h1, h2, h3 ] }
       - { on: "forever", do: shake, target: mono }
+      - { on: "everyone", do: appear, target: [ h1, h2, h3 ] }
       - {
-          on: "scale",
+          on: "split",
           do: send,
           target: [ h1, h2, h3 ],
           args: { kind: request, count: 3 }
@@ -45,8 +47,8 @@ scenes:
   - id: idea
     part: idea
     template: Analogy
-    vo: "A monolith is one big kitchen. Microservices? A food court, one dish per
-      stall."
+    vo: "A monolith is one big kitchen cooking everything. Microservices? A food
+      court: one dish per stall."
     headline: { text: "Kitchen or food court?", accent: "food court?" }
     stage:
       rows:
@@ -54,15 +56,16 @@ scenes:
         - { id: r2, icon: service, key: Microservices, value: a food court }
     beats:
       - { on: "monolith", do: reveal, target: r1 }
-      - { on: "monolith", do: highlight, target: r1 }
+      - { on: "kitchen", do: highlight, target: r1 }
       - { on: "Microservices", do: reveal, target: r2 }
-      - { on: "Microservices", do: highlight, target: r2 }
+      - { on: "stall", do: highlight, target: r2 }
 
-  # ---------- BREAKDOWN 1: the monolith (no headline, big visual) ----------
+  # ---------- BREAKDOWN 1–2: the monolith, then its bug (FlowDiagram over 2 scenes) ----------
   - id: mono
     part: breakdown
     template: FlowDiagram
-    vo: "One codebase runs users, payments and search. One bug takes it all down."
+    vo: "One monolith: users, payments and search share one codebase, one database.
+      Easy to build, easy to ship."
     stage:
       layers: [ [ u1, u2, u3 ], [ app ], [ db ] ]
       nodes:
@@ -73,81 +76,174 @@ scenes:
         - { id: db, type: db, label: postgres }
       links: [ [ u1, app ], [ u2, app ], [ u3, app ], [ app, db ] ]
     beats:
+      - { on: "monolith", do: appear, target: app }
+      - { on: "users", do: appear, target: [ u1, u2, u3 ] }
       - { on: "codebase", do: highlight, target: app }
-      - {
-          on: "users",
-          do: send,
-          target: [ u1, u2, u3 ],
-          args: { kind: request, count: 6 }
-        }
-      - { on: "bug", do: state, target: app, args: { to: down } }
-      - { on: "bug", do: shake, target: app }
+      - { on: "database", do: appear, target: db }
+      - { on: "build", do: send, target: app, args: { kind: request, count: 6 } }
+      - { on: "ship", do: state, target: app, args: { to: active } }
 
-  # ---------- BREAKDOWN 2: microservices + failure isolation ----------
-  - id: micro
+  - id: monobug
     part: breakdown
     template: FlowDiagram
-    vo: "Microservices split them up, each with its own data. Payments crashes?
-      Search keeps serving."
-    headline: { text: "One job each", accent: "each" }
+    vo: "Until one bug in search takes the whole app down. And every tiny change
+      means redeploying everything."
+    headline: { text: "One bug, all down", accent: "down" }
     stage:
-      layers: [ [ gw ], [ s1, s2, s3 ], [ d1, d2, d3 ] ]
-      nodes:
-        - { id: gw, type: gateway, label: gateway }
-        - { id: s1, type: service, label: users }
-        - { id: s2, type: service, label: payments }
-        - { id: s3, type: service, label: search }
-        - { id: d1, type: db, label: users-db }
-        - { id: d2, type: db, label: pay-db }
-        - { id: d3, type: db, label: search-db }
-      links: [ [ gw, s1 ], [ gw, s2 ], [ gw, s3 ], [ s1, d1 ], [ s2, d2 ], [ s3, d3 ] ]
+      reuse: mono
     beats:
-      - { on: "split", do: appear, target: [ s1, s2, s3 ] }
-      - { on: "data", do: appear, target: [ d1, d2, d3 ] }
-      - { on: "Payments", do: state, target: s2, args: { to: down } }
-      - { on: "crashes", do: shake, target: s2 }
-      - {
-          on: "keeps",
-          do: send,
-          target: [ s1, s3 ],
-          args: { kind: request, count: 4 }
-        }
-      - { on: "serving", do: state, target: s3, args: { to: active } }
+      - { on: "bug", do: state, target: app, args: { to: down } }
+      - { on: "whole", do: shake, target: app }
+      - { on: "change", do: state, target: app, args: { to: recovered } }
+      - { on: "redeploying", do: shake, target: app }
+      - { on: "everything", do: highlight, target: app }
 
-  # ---------- BREAKDOWN 3: the trade-off ----------
-  - id: catch
+  # ---------- BREAKDOWN 3: what a microservice is (three properties) ----------
+  - id: split
     part: breakdown
     template: ThreeCards
-    vo: "The catch: services talk over the network. More hops, more lag, more to
-      watch."
-    headline: { text: "Freedom has a cost", accent: "cost" }
+    vo: "Microservices cut it up. Each service does one job, owns its data, and
+      ships alone."
+    headline: { text: "One job each", accent: "each" }
     stage:
       cards:
-        - { id: c1, icon: internet, title: More hops, sub: "APIs and queues" }
-        - { id: c2, icon: gauge, title: More lag, sub: "every call costs" }
-        - { id: c3, icon: pulse, title: More to watch, sub: "dozens of dashboards" }
+        - { id: c1, icon: service, title: One job, sub: "users, payments, search" }
+        - { id: c2, icon: db, title: Own data, sub: "its own database" }
+        - { id: c3, icon: retry, title: Ships alone, sub: "deploy one, not all" }
     beats:
-      - { on: "hops", do: reveal, target: c1 }
-      - { on: "lag", do: reveal, target: c2 }
-      - { on: "watch", do: reveal, target: c3 }
+      - { on: "job", do: reveal, target: c1 }
+      - { on: "data", do: reveal, target: c2 }
+      - { on: "ships", do: reveal, target: c3 }
 
-  # ---------- BREAKDOWN 4: real-world + when to start ----------
-  - id: start
+  # ---------- BREAKDOWN 4: failure isolation, side by side ----------
+  - id: isolate
+    part: breakdown
+    template: Split
+    vo: "Payments crashes? The monolith goes down with it. Microservices? Users and
+      search keep serving."
+    headline: { text: "Fail alone", accent: "alone" }
+    stage:
+      variant: compare
+      before:
+        id: one
+        title: monolith
+        note: "one crash, all down"
+        nodes:
+          - { id: o-app, type: server, label: monolith }
+          - { id: o-db, type: db, label: postgres }
+      after:
+        id: many
+        title: microservices
+        note: "the rest keep serving"
+        nodes:
+          - { id: m-users, type: service, label: users }
+          - { id: m-pay, type: service, label: payments }
+          - { id: m-search, type: service, label: search }
+    beats:
+      - { on: "Payments", do: appear, target: one }
+      - { on: "Payments", do: appear, target: many, offset: 0.2 }
+      - { on: "crashes", do: state, target: m-pay, args: { to: down } }
+      - { on: "monolith", do: state, target: o-app, args: { to: down } }
+      - { on: "down", do: shake, target: o-app }
+      - { on: "Microservices", do: highlight, target: many }
+      - { on: "serving", do: state, target: [ m-users, m-search ], args: { to: active } }
+
+  # ---------- BREAKDOWN 5: how services talk (no headline, full stage) ----------
+  - id: comms
+    part: breakdown
+    template: Sequence
+    vo: "The catch: services talk over the network. Checkout calls payments,
+      payments calls the bank, and any hop can time out."
+    stage:
+      actors:
+        - { id: co, type: service, label: checkout }
+        - { id: pay, type: service, label: payments }
+        - { id: bank, type: thirdparty, family: solid, label: bank }
+      steps:
+        - { id: charge, from: co, to: pay, label: "charge" }
+        - { id: ask, from: pay, to: bank, label: "pay $20", lost: true }
+        - { id: wait, at: pay, note: "timed out!" }
+    beats:
+      - { on: "services", do: appear, target: [ co, pay, bank ] }
+      - { on: "network", do: highlight, target: pay }
+      - { on: "calls", do: step, target: charge }
+      - { on: "calls#2", do: step, target: ask }
+      - { on: "time", do: step, target: wait }
+
+  # ---------- BREAKDOWN 6: the trade-off dial ----------
+  - id: dial
+    part: breakdown
+    template: Tiers
+    vo: "It's a dial. Monolith: simple, but it all moves as one. Microservices scale
+      apart, but there's more to run."
+    headline: { text: "Pick your trade-off", accent: "trade-off" }
+    stage:
+      variant: spectrum
+      ends: [ "simple", "independent" ]
+      tiers:
+        - { id: tm, icon: server, title: monolith, sub: "moves as one" }
+        - { id: ts, icon: service, title: microservices, sub: "more to run" }
+    beats:
+      - { on: "Monolith", do: reveal, target: tm }
+      - { on: "simple", do: highlight, target: tm }
+      - { on: "Microservices", do: reveal, target: ts }
+      - { on: "apart", do: highlight, target: ts }
+      - { on: "run", do: highlight, target: ts }
+
+  # ---------- BREAKDOWN 7: real-world ----------
+  - id: examples
     part: breakdown
     template: Analogy
-    vo: "Even Amazon began as a monolith. Shopify still runs one, just kept tidy."
-    headline: { text: "Start with one", accent: "one" }
+    vo: "Amazon began as a monolith, then split into thousands of services. Shopify
+      still runs one, kept tidy."
+    headline: { text: "Big names, both ways", accent: "both" }
     stage:
       rows:
         - { id: a1, icon: server, key: Amazon, value: "monolith, then split" }
         - { id: a2, icon: storage, key: Shopify, value: one tidy monolith }
     beats:
       - { on: "Amazon", do: reveal, target: a1 }
-      - { on: "Amazon", do: highlight, target: a1 }
+      - { on: "thousands", do: highlight, target: a1 }
       - { on: "Shopify", do: reveal, target: a2 }
-      - { on: "Shopify", do: highlight, target: a2 }
+      - { on: "tidy", do: highlight, target: a2 }
 
-  # ---------- GIST (no headline) ----------
+  # ---------- BREAKDOWN 8: when to split ----------
+  - id: when
+    part: breakdown
+    template: Decision
+    vo: "When to split? Is it really hurting? Is there a clean piece to cut? Split
+      it out. If not, stay whole."
+    headline: { text: "Time to split?", accent: "split?" }
+    stage:
+      start: { id: app, type: server, label: monolith }
+      checks:
+        - { id: hurt, q: "Really hurting?", no: { id: stay, label: "stay whole", tone: ok } }
+        - { id: seam, q: "Clean piece?", no: stay }
+      yes: { id: out, type: service, label: "split it out" }
+    beats:
+      - { on: "hurting", do: branch, target: hurt, args: { to: yes } }
+      - { on: "cut", do: branch, target: seam, args: { to: yes } }
+      - { on: "out", do: highlight, target: out }
+      - { on: "not", do: branch, target: hurt, args: { to: no } }
+      - { on: "whole", do: highlight, target: stay }
+
+  # ---------- BREAKDOWN 9: the big picture (no headline) ----------
+  - id: bigpicture
+    part: breakdown
+    template: BigPicture
+    vo: "Put it together: one box fails together, services fail alone, but every
+      call pays a hop."
+    stage:
+      panels:
+        - { id: p1, scene: monobug, label: "fails together" }
+        - { id: p2, scene: isolate, label: "fails alone" }
+        - { id: p3, scene: comms, label: "every hop costs" }
+    beats:
+      - { on: "box", do: highlight, target: p1 }
+      - { on: "alone", do: highlight, target: p2 }
+      - { on: "hop", do: highlight, target: p3 }
+
+  # ---------- GIST (no headline, kept) ----------
   - id: gist
     part: gist
     template: GistCard
@@ -158,3 +254,4 @@ scenes:
     beats:
       - { on: "gist", do: appear, target: card }
       - { on: "split", do: highlight, target: card }
+      - { on: "hurts", do: highlight, target: card }

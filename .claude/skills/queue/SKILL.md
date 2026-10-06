@@ -9,9 +9,11 @@ The rules live in **AGENTS.md §1b** (status map, Pipeline Status map, approvals
 
 ## Constants
 - Data source: `collection://2a331e0f-b686-80a9-9213-000bae1d96ff`
+- **Reading the queue: use view mode.** The connector's SQL and rows modes share a workspace quota on this Notion plan, and it runs out (it did on 2026-10-06). View mode has no quota: `query-data-sources` with `{"mode": "view", "view_url": "view://2a331e0f-b686-806e-9f82-000c42bf4b0c", "page_size": 100}`, then follow `next_cursor` until `has_more` is false, and filter the rows yourself (`status`, `userDefined:ID`). SQL (below) is only a shortcut when it works; on a `usage_limit_reached` error switch to view mode, never retry SQL in a loop.
 - Properties (exact names): `Topic` (title), `ID`, `Category`, `Engineering Level`, `Reel Hook`, `Outline`, `Visual Reference` (optional files), `status`, `Pipeline Status`, `AI Notes`
 - `status` options: `Not started` · `Idea` · `In progress` · `Awaiting Approval` · `Draft Ready` · `Rendered` · `Published`
 - Episode ↔ row link: the `Notion ID` column in `episodes/INDEX.md`, plus the folder named in AI Notes.
+- **When the episode is already known** (a Discord event, a resumed session that has the row's url), `fetch` that one row page instead of reading the whole view. The full view (~11k characters) is only for the tick (§1, §2) or when you don't have the row's url.
 - Discord: `npm --prefix engine run discord -- <command>` (usage at the top of `engine/scripts/discord.ts`; how it fits together: `bridge/README.md`). Open forms per episode: `npm --prefix engine run discord -- state <nnn>`.
 
 ## Running unattended (no permission prompts)
@@ -33,7 +35,7 @@ Every run is unattended: the bridge starts it with `claude -p`, and nobody is wa
 ## 1. Look for an active row (WIP limit 1)
 First, if a "Start the next Idea now?" question is still open, close it: `discord -- close next` (the tick takes over from it).
 
-Query with the Notion connector's data-source query tool (SQL mode):
+Read all rows in view mode (Constants) and keep those whose `status` is In progress, Awaiting Approval or Draft Ready. (SQL equivalent, when the quota allows:)
 ```sql
 SELECT url, "userDefined:ID" AS id, "Topic", "status", "Pipeline Status", "AI Notes"
 FROM "collection://2a331e0f-b686-80a9-9213-000bae1d96ff"
@@ -44,10 +46,10 @@ WHERE "status" IN ('In progress', 'Awaiting Approval', 'Draft Ready')
   - Otherwise post one line, `discord -- status "Queue busy: #<ID> <Topic> at <Pipeline Status>"`, and **stop**. Don't touch the row.
 - **None** → §1b.
 
-## 1b. Rebuilds to script format v1.2 (before any new Idea)
-Episodes made under v1.1 (30–60s) are rebuilt to 80–90s, one at a time, **newest first: 002, then 001**. They're marked `rebuild v1.2` in `episodes/INDEX.md`.
-- Take the first INDEX row marked `rebuild v1.2` (lowest in that order) and its Notion row (by Notion ID). Set `status` = **In progress**, `Pipeline Status` = **Queued**, append `… → Queued · rebuild to script format v1.2 (80–90s)`, and post `discord -- status "Rebuilding <nnn> <title> to 80–90s"`. Work happens in the episode's **existing** Discord thread.
-- **Scripting** is a rework of the existing `episode.yaml` in the same folder: same id, slug, Notion ID, **voice and music track** (don't run `voice:assign` or `music:assign` again), keep the approved hook and gist where they still work, and grow the Breakdown to 80–90s. Then continue exactly like a new episode through every gate (§3), including a fresh voiceover (changed scenes only are billed) and a new final render.
+## 1b. Rebuilds (before any new Idea)
+Episodes made under v1.1 (30–60s) are rebuilt to 80–90s **with the current script format and engine** (SCRIPT-FORMAT v1.4, design language v1.6.1: diagrams picked from the idea, the variety rules, an optional BigPicture, the cover), one at a time, **newest first: 002, then 001**. They're marked `rebuild v1.2` in `episodes/INDEX.md` (the marker's name is historical).
+- Take the first INDEX row marked `rebuild v1.2` (lowest in that order) and its Notion row (by Notion ID). Set `status` = **In progress**, `Pipeline Status` = **Queued**, append `… → Queued · rebuild to the current script format (v1.4, 80–90s)`, and post `discord -- status "Rebuilding <nnn> <title> to 80–90s"`. Work happens in the episode's **existing** Discord thread.
+- **Scripting** is a rework of the existing `episode.yaml` in the same folder: same id, slug, Notion ID, **voice and music track** (don't run `voice:assign` or `music:assign` again), keep the approved hook and gist where they still work, and grow the Breakdown to 80–90s. The visuals are re-picked from the idea (SCRIPT-FORMAT §3b) with `format: "1.4"`, so the old FlowDiagram-heavy layout doesn't carry over. Then continue exactly like a new episode through every gate (§3), including a fresh voiceover (changed scenes only are billed) and a new final render.
 - In INDEX, replace `rebuild v1.2` with the normal status as it moves (`scripted` …).
 - No `rebuild v1.2` rows left → §2.
 
@@ -57,6 +59,7 @@ SELECT url, "userDefined:ID" AS id, "Topic", "Category", "Engineering Level", "R
 FROM "collection://2a331e0f-b686-80a9-9213-000bae1d96ff"
 WHERE "status" = 'Idea' ORDER BY "userDefined:ID" ASC LIMIT 1
 ```
+(In view mode: the `Idea` row with the lowest `userDefined:ID`.)
 - None → `discord -- status "No new idea in the queue. Mark a Shorts row Idea in Notion and the next run picks it up."` and **stop**. (Never look at `Not started` rows.)
 - Found → **check `episodes/INDEX.md` for its Notion ID first.**
   - **Already linked to an episode** (e.g. #3 = the pilot `001`): don't script it again. Resume from that episode's INDEX status:
@@ -79,7 +82,7 @@ Before each stage, set the stage's Pipeline Status and status (AGENTS §1b table
 | **Scripting** | First **fetch the Visual Reference** (§3a). Then run **`/script`** with the saved reference images (if any), Topic as the subject, Reel Hook as the hook seed, Outline as the breakdown points, Engineering Level for depth (Junior: fewer ideas, more analogy · Software: the standard depth · Senior/Staff: trade-offs and failure modes, or Part 1/2). Category as context. Length is always **80–90s** (target 85s) whatever the level. Add the row to `episodes/INDEX.md` with its **Notion ID** | Gate: **Script Review** |
 | **Building Parts** (only if `/video` step 1 finds something missing) | Build it into the library (`/video` step 1), and render a still of it | Gate: **Parts Review** |
 | **Voicing** | `npm run voice -- <nnn>`, then `npm run validate -- <nnn>` (measured). Log characters billed and measured length | continue |
-| **Storyboarding** | `npm run storyboard -- <nnn>` (writes `storyboard/sections/*.jpg`, one image per section). Self-check the section images (`/video` step 3) and fix before posting | Gate: **Storyboard Review** |
+| **Storyboarding** | `npm run storyboard -- <nnn>` (writes `storyboard/sections/*.jpg` for Discord, plus `storyboard/contact-*.jpg`). Self-check on the contact sheets (`/video` step 3) and fix before posting | Gate: **Storyboard Review** |
 | **Rendering Draft** | `/video` step 4 (full-quality draft) | Gate: **Draft Review** (status **Draft Ready**) |
 | **Final Rendering** (status stays **Draft Ready**) | `npm run render:final -- <nnn>` and `upload.md` (`/video` step 5), then commit (`/video` step 7) | **Rendered** → done (§7) |
 
@@ -113,6 +116,8 @@ A download that keeps failing doesn't block the episode: log it, script without 
 Read the event file (`bridge/processing/<file>.json`): `data.action`, `data.values`, `data.correlation_id` (`<nnn>:<gate>:r<round>`, or `next:…`), and `files` (his reference images, saved locally: **look at them**).
 
 **Is it current?** For an episode gate, check that the correlation id equals the episode's open form (`discord -- state <nnn>` → `open.correlation_id`), and that Notion's Pipeline Status is that gate (or Blocked/Failed for a `blocked` form). If not, post `discord -- note <nnn> "That button was for an older round, so nothing changed. The current review is the latest message."` and **end the run**.
+- **Exception, a retried run:** when the event JSON has `"attempts"` (the runner's Retry run button re-queued it after a crash or usage limit), the earlier attempt may already have moved Notion past the gate or closed the form. Then the click is still current: read AI Notes to see where it stopped and continue from there.
+- Runs on the same episode usually **resume one Claude session** (bridge/README.md → Sessions), so earlier stages may already be in context. Still re-check Notion and `discord -- state` before acting.
 
 | Form · action | Do |
 |---|---|
@@ -133,7 +138,7 @@ Anything unclear → post the question with `discord -- blocked <nnn> "<one ques
 ## 7. Done
 - status **Rendered**, Pipeline Status **Rendered**, and a last line with the output path, length and total credits.
 - `episodes/INDEX.md` → `final rendered`, plus one `STATUS.md` changelog line.
-- Commit the recipe with **`/video` step 7** (`Episode <nnn>: <title> (rendered)`, pushed to `main`), then append a line with the commit sha: `… · Rendered · committed <sha> · <n> files`.
+- **Don't commit.** The runner commits the recipe right after this run (`npm run commit:episode -- <nnn> --push`, `/video` step 7), so this run's build cost is included, and posts the sha and cost to the thread. Append `… · Rendered · the runner commits after this run`. (Interactive session: run the script yourself and log the sha.)
 - `discord -- rendered <nnn>`: posts the final MP4 and the `upload.md` text, then asks **"Start the next Idea now?"**. Yes comes back as a `next-idea · start` event. No, or no answer, leaves it to the next 6-hour tick. Imad sets **Published** himself.
 
 ## Never

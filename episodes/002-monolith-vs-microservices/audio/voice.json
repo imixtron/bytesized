@@ -3,438 +3,1038 @@
   "voice_id": "FGY2WhTYpPnrIDTdsKH5",
   "model": "eleven_multilingual_v2",
   "plan": "paid",
-  "generated": "2026-10-01T20:50:03.197Z",
+  "generated": "2026-10-06T15:14:20.056Z",
   "scenes": {
     "hook": {
       "file": "hook.mp3",
-      "hash": "70800c58de",
-      "text": "Monoliths aren't bad. They just don't scale forever.",
-      "duration": 3.111,
+      "hash": "49796b2669",
+      "text": "Monoliths aren't bad. They just don't scale forever. So why does everyone split them up?",
+      "duration": 5.759,
       "words": [
         {
           "text": "Monoliths",
           "start": 0,
-          "end": 0.546
+          "end": 0.569
         },
         {
           "text": "aren't",
-          "start": 0.58,
-          "end": 0.755
+          "start": 0.604,
+          "end": 0.778
         },
         {
           "text": "bad.",
-          "start": 0.789,
-          "end": 1.184
+          "start": 0.813,
+          "end": 1.207
         },
         {
           "text": "They",
           "start": 1.277,
-          "end": 1.44
+          "end": 1.463
         },
         {
           "text": "just",
-          "start": 1.498,
-          "end": 1.66
+          "start": 1.521,
+          "end": 1.683
         },
         {
           "text": "don't",
-          "start": 1.695,
-          "end": 1.892
+          "start": 1.718,
+          "end": 1.904
         },
         {
           "text": "scale",
-          "start": 1.939,
-          "end": 2.229
+          "start": 1.962,
+          "end": 2.287
         },
         {
           "text": "forever.",
-          "start": 2.264,
-          "end": 3.111
-        }
-      ],
-      "plan": "paid"
-    },
-    "idea": {
-      "file": "idea.mp3",
-      "hash": "139dc17731",
-      "text": "A monolith is one big kitchen. Microservices? A food court, one dish per stall.",
-      "duration": 5.573,
-      "words": [
-        {
-          "text": "A",
-          "start": 0,
-          "end": 0.093
+          "start": 2.334,
+          "end": 2.914
         },
         {
-          "text": "monolith",
-          "start": 0.163,
-          "end": 0.662
+          "text": "So",
+          "start": 3.355,
+          "end": 3.611
         },
         {
-          "text": "is",
-          "start": 0.72,
-          "end": 0.859
+          "text": "why",
+          "start": 3.855,
+          "end": 4.052
         },
         {
-          "text": "one",
-          "start": 0.94,
-          "end": 1.149
+          "text": "does",
+          "start": 4.11,
+          "end": 4.249
         },
         {
-          "text": "big",
-          "start": 1.196,
-          "end": 1.347
-        },
-        {
-          "text": "kitchen.",
-          "start": 1.393,
-          "end": 1.916
-        },
-        {
-          "text": "Microservices?",
-          "start": 2.09,
-          "end": 3.181
-        },
-        {
-          "text": "A",
-          "start": 3.251,
-          "end": 3.32
-        },
-        {
-          "text": "food",
-          "start": 3.402,
-          "end": 3.587
-        },
-        {
-          "text": "court,",
-          "start": 3.634,
-          "end": 4.029
-        },
-        {
-          "text": "one",
-          "start": 4.203,
-          "end": 4.423
-        },
-        {
-          "text": "dish",
-          "start": 4.47,
+          "text": "everyone",
+          "start": 4.296,
           "end": 4.667
         },
         {
-          "text": "per",
-          "start": 4.714,
-          "end": 4.83
-        },
-        {
-          "text": "stall.",
-          "start": 4.876,
-          "end": 5.573
-        }
-      ],
-      "plan": "paid"
-    },
-    "mono": {
-      "file": "mono.mp3",
-      "hash": "57f84f103c",
-      "text": "One codebase runs users, payments and search. One bug takes it all down.",
-      "duration": 4.644,
-      "words": [
-        {
-          "text": "One",
-          "start": 0,
-          "end": 0.255
-        },
-        {
-          "text": "codebase",
-          "start": 0.302,
-          "end": 0.859
-        },
-        {
-          "text": "runs",
-          "start": 0.917,
-          "end": 1.149
-        },
-        {
-          "text": "users,",
-          "start": 1.231,
-          "end": 1.683
-        },
-        {
-          "text": "payments",
-          "start": 1.753,
-          "end": 2.194
-        },
-        {
-          "text": "and",
-          "start": 2.229,
-          "end": 2.31
-        },
-        {
-          "text": "search.",
-          "start": 2.38,
-          "end": 2.833
-        },
-        {
-          "text": "One",
-          "start": 2.984,
-          "end": 3.216
-        },
-        {
-          "text": "bug",
-          "start": 3.262,
-          "end": 3.495
-        },
-        {
-          "text": "takes",
-          "start": 3.541,
-          "end": 3.796
-        },
-        {
-          "text": "it",
-          "start": 3.831,
-          "end": 3.889
-        },
-        {
-          "text": "all",
-          "start": 3.913,
-          "end": 4.017
-        },
-        {
-          "text": "down.",
-          "start": 4.075,
-          "end": 4.644
-        }
-      ],
-      "plan": "paid"
-    },
-    "micro": {
-      "file": "micro.mp3",
-      "hash": "b6970a79b2",
-      "text": "Microservices split them up, each with its own data. Payments crashes? Search keeps serving.",
-      "duration": 5.759,
-      "words": [
-        {
-          "text": "Microservices",
-          "start": 0,
-          "end": 0.906
-        },
-        {
           "text": "split",
-          "start": 0.94,
-          "end": 1.207
+          "start": 4.702,
+          "end": 4.946
         },
         {
           "text": "them",
-          "start": 1.242,
-          "end": 1.358
+          "start": 4.981,
+          "end": 5.097
         },
         {
-          "text": "up,",
-          "start": 1.428,
-          "end": 1.683
-        },
-        {
-          "text": "each",
-          "start": 1.753,
-          "end": 1.95
-        },
-        {
-          "text": "with",
-          "start": 1.985,
-          "end": 2.113
-        },
-        {
-          "text": "its",
-          "start": 2.159,
-          "end": 2.276
-        },
-        {
-          "text": "own",
-          "start": 2.322,
-          "end": 2.426
-        },
-        {
-          "text": "data.",
-          "start": 2.473,
-          "end": 2.937
-        },
-        {
-          "text": "Payments",
-          "start": 3.262,
-          "end": 3.657
-        },
-        {
-          "text": "crashes?",
-          "start": 3.692,
-          "end": 4.377
-        },
-        {
-          "text": "Search",
-          "start": 4.551,
-          "end": 4.841
-        },
-        {
-          "text": "keeps",
-          "start": 4.899,
-          "end": 5.132
-        },
-        {
-          "text": "serving.",
+          "text": "up?",
           "start": 5.155,
           "end": 5.759
         }
       ],
       "plan": "paid"
     },
-    "catch": {
-      "file": "catch.mp3",
-      "hash": "80e3540451",
-      "text": "The catch: services talk over the network. More hops, more lag, more to watch.",
-      "duration": 6.177,
+    "idea": {
+      "file": "idea.mp3",
+      "hash": "c3fafb70cd",
+      "text": "A monolith is one big kitchen cooking everything. Microservices? A food court: one dish per stall.",
+      "duration": 6.594,
       "words": [
         {
-          "text": "The",
+          "text": "A",
           "start": 0,
-          "end": 0.139
+          "end": 0.128
         },
         {
-          "text": "catch:",
-          "start": 0.197,
-          "end": 0.801
+          "text": "monolith",
+          "start": 0.221,
+          "end": 0.731
         },
         {
-          "text": "services",
-          "start": 1.045,
-          "end": 1.533
+          "text": "is",
+          "start": 0.778,
+          "end": 0.871
         },
         {
-          "text": "talk",
-          "start": 1.591,
-          "end": 1.892
+          "text": "one",
+          "start": 0.94,
+          "end": 1.103
         },
         {
-          "text": "over",
-          "start": 1.962,
-          "end": 2.171
+          "text": "big",
+          "start": 1.138,
+          "end": 1.289
         },
         {
-          "text": "the",
-          "start": 2.229,
-          "end": 2.299
+          "text": "kitchen",
+          "start": 1.335,
+          "end": 1.66
         },
         {
-          "text": "network.",
-          "start": 2.345,
-          "end": 2.961
+          "text": "cooking",
+          "start": 1.718,
+          "end": 2.009
         },
         {
-          "text": "More",
-          "start": 3.402,
-          "end": 3.611
+          "text": "everything.",
+          "start": 2.067,
+          "end": 2.612
         },
         {
-          "text": "hops,",
-          "start": 3.646,
-          "end": 4.156
+          "text": "Microservices?",
+          "start": 2.856,
+          "end": 3.971
         },
         {
-          "text": "more",
-          "start": 4.226,
-          "end": 4.423
+          "text": "A",
+          "start": 4.145,
+          "end": 4.226
         },
         {
-          "text": "lag,",
-          "start": 4.458,
-          "end": 4.876
+          "text": "food",
+          "start": 4.307,
+          "end": 4.516
         },
         {
-          "text": "more",
-          "start": 4.946,
-          "end": 5.155
+          "text": "court:",
+          "start": 4.563,
+          "end": 5.016
         },
         {
-          "text": "to",
-          "start": 5.178,
-          "end": 5.224
+          "text": "one",
+          "start": 5.224,
+          "end": 5.445
         },
         {
-          "text": "watch.",
-          "start": 5.283,
-          "end": 6.177
+          "text": "dish",
+          "start": 5.48,
+          "end": 5.677
+        },
+        {
+          "text": "per",
+          "start": 5.724,
+          "end": 5.84
+        },
+        {
+          "text": "stall.",
+          "start": 5.898,
+          "end": 6.594
         }
       ],
       "plan": "paid"
     },
-    "start": {
-      "file": "start.mp3",
-      "hash": "1576619964",
-      "text": "Even Amazon began as a monolith. Shopify still runs one, just kept tidy.",
-      "duration": 4.644,
+    "mono": {
+      "file": "mono.mp3",
+      "hash": "a60d3ea74d",
+      "text": "One monolith: users, payments and search share one codebase, one database. Easy to build, easy to ship.",
+      "duration": 6.873,
       "words": [
         {
-          "text": "Even",
+          "text": "One",
           "start": 0,
-          "end": 0.267
+          "end": 0.232
         },
         {
-          "text": "Amazon",
-          "start": 0.325,
-          "end": 0.743
+          "text": "monolith:",
+          "start": 0.267,
+          "end": 0.848
         },
         {
-          "text": "began",
-          "start": 0.801,
-          "end": 1.045
+          "text": "users,",
+          "start": 1.022,
+          "end": 1.579
         },
         {
-          "text": "as",
-          "start": 1.091,
-          "end": 1.161
+          "text": "payments",
+          "start": 1.625,
+          "end": 2.067
         },
         {
-          "text": "a",
-          "start": 1.219,
-          "end": 1.242
+          "text": "and",
+          "start": 2.101,
+          "end": 2.171
         },
         {
-          "text": "monolith.",
-          "start": 1.289,
+          "text": "search",
+          "start": 2.229,
+          "end": 2.485
+        },
+        {
+          "text": "share",
+          "start": 2.508,
+          "end": 2.763
+        },
+        {
+          "text": "one",
+          "start": 2.844,
+          "end": 3.042
+        },
+        {
+          "text": "codebase,",
+          "start": 3.088,
+          "end": 3.692
+        },
+        {
+          "text": "one",
+          "start": 3.75,
+          "end": 3.959
+        },
+        {
+          "text": "database.",
+          "start": 3.994,
+          "end": 4.656
+        },
+        {
+          "text": "Easy",
+          "start": 5.039,
+          "end": 5.306
+        },
+        {
+          "text": "to",
+          "start": 5.352,
+          "end": 5.399
+        },
+        {
+          "text": "build,",
+          "start": 5.445,
+          "end": 5.805
+        },
+        {
+          "text": "easy",
+          "start": 5.898,
+          "end": 6.153
+        },
+        {
+          "text": "to",
+          "start": 6.211,
+          "end": 6.269
+        },
+        {
+          "text": "ship.",
+          "start": 6.327,
+          "end": 6.873
+        }
+      ],
+      "plan": "paid"
+    },
+    "monobug": {
+      "file": "monobug.mp3",
+      "hash": "fac5401a4b",
+      "text": "Until one bug in search takes the whole app down. And every tiny change means redeploying everything.",
+      "duration": 5.944,
+      "words": [
+        {
+          "text": "Until",
+          "start": 0,
+          "end": 0.395
+        },
+        {
+          "text": "one",
+          "start": 0.464,
+          "end": 0.65
+        },
+        {
+          "text": "bug",
+          "start": 0.685,
+          "end": 0.871
+        },
+        {
+          "text": "in",
+          "start": 0.929,
+          "end": 0.987
+        },
+        {
+          "text": "search",
+          "start": 1.068,
+          "end": 1.347
+        },
+        {
+          "text": "takes",
+          "start": 1.405,
+          "end": 1.637
+        },
+        {
+          "text": "the",
+          "start": 1.683,
+          "end": 1.753
+        },
+        {
+          "text": "whole",
+          "start": 1.811,
+          "end": 2.043
+        },
+        {
+          "text": "app",
+          "start": 2.09,
+          "end": 2.276
+        },
+        {
+          "text": "down.",
+          "start": 2.334,
+          "end": 2.717
+        },
+        {
+          "text": "And",
+          "start": 2.798,
+          "end": 2.949
+        },
+        {
+          "text": "every",
+          "start": 3.007,
+          "end": 3.193
+        },
+        {
+          "text": "tiny",
+          "start": 3.262,
+          "end": 3.587
+        },
+        {
+          "text": "change",
+          "start": 3.646,
+          "end": 3.971
+        },
+        {
+          "text": "means",
+          "start": 4.017,
+          "end": 4.238
+        },
+        {
+          "text": "redeploying",
+          "start": 4.354,
+          "end": 4.934
+        },
+        {
+          "text": "everything.",
+          "start": 4.981,
+          "end": 5.944
+        }
+      ],
+      "plan": "paid"
+    },
+    "split": {
+      "file": "split.mp3",
+      "hash": "1c00f2e585",
+      "text": "Microservices cut it up. Each service does one job, owns its data, and ships alone.",
+      "duration": 5.573,
+      "words": [
+        {
+          "text": "Microservices",
+          "start": 0,
+          "end": 0.871
+        },
+        {
+          "text": "cut",
+          "start": 0.929,
+          "end": 1.091
+        },
+        {
+          "text": "it",
+          "start": 1.126,
+          "end": 1.196
+        },
+        {
+          "text": "up.",
+          "start": 1.254,
+          "end": 1.474
+        },
+        {
+          "text": "Each",
+          "start": 1.649,
           "end": 1.858
         },
         {
+          "text": "service",
+          "start": 1.904,
+          "end": 2.276
+        },
+        {
+          "text": "does",
+          "start": 2.31,
+          "end": 2.508
+        },
+        {
+          "text": "one",
+          "start": 2.577,
+          "end": 2.763
+        },
+        {
+          "text": "job,",
+          "start": 2.81,
+          "end": 3.251
+        },
+        {
+          "text": "owns",
+          "start": 3.344,
+          "end": 3.611
+        },
+        {
+          "text": "its",
+          "start": 3.669,
+          "end": 3.785
+        },
+        {
+          "text": "data,",
+          "start": 3.831,
+          "end": 4.261
+        },
+        {
+          "text": "and",
+          "start": 4.319,
+          "end": 4.563
+        },
+        {
+          "text": "ships",
+          "start": 4.621,
+          "end": 4.865
+        },
+        {
+          "text": "alone.",
+          "start": 4.899,
+          "end": 5.573
+        }
+      ],
+      "plan": "paid"
+    },
+    "isolate": {
+      "file": "isolate.mp3",
+      "hash": "7eb48431b3",
+      "text": "Payments crashes? The monolith goes down with it. Microservices? Users and search keep serving.",
+      "duration": 7.059,
+      "words": [
+        {
+          "text": "Payments",
+          "start": 0,
+          "end": 0.441
+        },
+        {
+          "text": "crashes?",
+          "start": 0.476,
+          "end": 1.196
+        },
+        {
+          "text": "The",
+          "start": 1.637,
+          "end": 1.741
+        },
+        {
+          "text": "monolith",
+          "start": 1.8,
+          "end": 2.276
+        },
+        {
+          "text": "goes",
+          "start": 2.334,
+          "end": 2.531
+        },
+        {
+          "text": "down",
+          "start": 2.589,
+          "end": 2.775
+        },
+        {
+          "text": "with",
+          "start": 2.821,
+          "end": 2.972
+        },
+        {
+          "text": "it.",
+          "start": 3.042,
+          "end": 3.32
+        },
+        {
+          "text": "Microservices?",
+          "start": 3.564,
+          "end": 4.725
+        },
+        {
+          "text": "Users",
+          "start": 4.795,
+          "end": 5.224
+        },
+        {
+          "text": "and",
+          "start": 5.259,
+          "end": 5.341
+        },
+        {
+          "text": "search",
+          "start": 5.41,
+          "end": 5.689
+        },
+        {
+          "text": "keep",
+          "start": 5.735,
+          "end": 5.921
+        },
+        {
+          "text": "serving.",
+          "start": 5.979,
+          "end": 7.059
+        }
+      ],
+      "plan": "paid"
+    },
+    "comms": {
+      "file": "comms.mp3",
+      "hash": "b8ce8fbe5a",
+      "text": "The catch: services talk over the network. Checkout calls payments, payments calls the bank, and any hop can time out.",
+      "duration": 7.43,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.128
+        },
+        {
+          "text": "catch:",
+          "start": 0.174,
+          "end": 0.685
+        },
+        {
+          "text": "services",
+          "start": 0.859,
+          "end": 1.358
+        },
+        {
+          "text": "talk",
+          "start": 1.416,
+          "end": 1.66
+        },
+        {
+          "text": "over",
+          "start": 1.718,
+          "end": 1.858
+        },
+        {
+          "text": "the",
+          "start": 1.904,
+          "end": 1.974
+        },
+        {
+          "text": "network.",
+          "start": 2.02,
+          "end": 2.508
+        },
+        {
+          "text": "Checkout",
+          "start": 2.601,
+          "end": 2.995
+        },
+        {
+          "text": "calls",
+          "start": 3.042,
+          "end": 3.274
+        },
+        {
+          "text": "payments,",
+          "start": 3.32,
+          "end": 3.924
+        },
+        {
+          "text": "payments",
+          "start": 3.959,
+          "end": 4.342
+        },
+        {
+          "text": "calls",
+          "start": 4.4,
+          "end": 4.667
+        },
+        {
+          "text": "the",
+          "start": 4.714,
+          "end": 4.783
+        },
+        {
+          "text": "bank,",
+          "start": 4.818,
+          "end": 5.19
+        },
+        {
+          "text": "and",
+          "start": 5.236,
+          "end": 5.492
+        },
+        {
+          "text": "any",
+          "start": 5.573,
+          "end": 5.793
+        },
+        {
+          "text": "hop",
+          "start": 5.863,
+          "end": 6.142
+        },
+        {
+          "text": "can",
+          "start": 6.223,
+          "end": 6.362
+        },
+        {
+          "text": "time",
+          "start": 6.409,
+          "end": 6.676
+        },
+        {
+          "text": "out.",
+          "start": 6.711,
+          "end": 7.43
+        }
+      ],
+      "plan": "paid"
+    },
+    "dial": {
+      "file": "dial.mp3",
+      "hash": "40d3f50418",
+      "text": "It's a dial. Monolith: simple, but it all moves as one. Microservices scale apart, but there's more to run.",
+      "duration": 7.709,
+      "words": [
+        {
+          "text": "It's",
+          "start": 0,
+          "end": 0.244
+        },
+        {
+          "text": "a",
+          "start": 0.279,
+          "end": 0.302
+        },
+        {
+          "text": "dial.",
+          "start": 0.36,
+          "end": 0.894
+        },
+        {
+          "text": "Monolith:",
+          "start": 1.277,
+          "end": 1.916
+        },
+        {
+          "text": "simple,",
+          "start": 2.125,
+          "end": 2.659
+        },
+        {
+          "text": "but",
+          "start": 2.81,
+          "end": 2.984
+        },
+        {
+          "text": "it",
+          "start": 3.03,
+          "end": 3.1
+        },
+        {
+          "text": "all",
+          "start": 3.146,
+          "end": 3.32
+        },
+        {
+          "text": "moves",
+          "start": 3.379,
+          "end": 3.657
+        },
+        {
+          "text": "as",
+          "start": 3.704,
+          "end": 3.808
+        },
+        {
+          "text": "one.",
+          "start": 3.901,
+          "end": 4.307
+        },
+        {
+          "text": "Microservices",
+          "start": 4.516,
+          "end": 5.329
+        },
+        {
+          "text": "scale",
+          "start": 5.364,
+          "end": 5.642
+        },
+        {
+          "text": "apart,",
+          "start": 5.666,
+          "end": 6.06
+        },
+        {
+          "text": "but",
+          "start": 6.107,
+          "end": 6.258
+        },
+        {
+          "text": "there's",
+          "start": 6.281,
+          "end": 6.536
+        },
+        {
+          "text": "more",
+          "start": 6.583,
+          "end": 6.745
+        },
+        {
+          "text": "to",
+          "start": 6.769,
+          "end": 6.815
+        },
+        {
+          "text": "run.",
+          "start": 6.873,
+          "end": 7.709
+        }
+      ],
+      "plan": "paid"
+    },
+    "examples": {
+      "file": "examples.mp3",
+      "hash": "af97fa93e7",
+      "text": "Amazon began as a monolith, then split into thousands of services. Shopify still runs one, kept tidy.",
+      "duration": 7.012,
+      "words": [
+        {
+          "text": "Amazon",
+          "start": 0,
+          "end": 0.499
+        },
+        {
+          "text": "began",
+          "start": 0.546,
+          "end": 0.824
+        },
+        {
+          "text": "as",
+          "start": 0.871,
+          "end": 0.94
+        },
+        {
+          "text": "a",
+          "start": 0.987,
+          "end": 1.01
+        },
+        {
+          "text": "monolith,",
+          "start": 1.057,
+          "end": 1.672
+        },
+        {
+          "text": "then",
+          "start": 1.765,
+          "end": 1.939
+        },
+        {
+          "text": "split",
+          "start": 1.997,
+          "end": 2.276
+        },
+        {
+          "text": "into",
+          "start": 2.31,
+          "end": 2.461
+        },
+        {
+          "text": "thousands",
+          "start": 2.531,
+          "end": 2.961
+        },
+        {
+          "text": "of",
+          "start": 2.995,
+          "end": 3.053
+        },
+        {
+          "text": "services.",
+          "start": 3.1,
+          "end": 3.843
+        },
+        {
           "text": "Shopify",
-          "start": 2.009,
-          "end": 2.577
+          "start": 4.168,
+          "end": 4.69
         },
         {
           "text": "still",
-          "start": 2.647,
-          "end": 2.856
+          "start": 4.76,
+          "end": 4.969
         },
         {
           "text": "runs",
-          "start": 2.914,
-          "end": 3.123
+          "start": 5.027,
+          "end": 5.224
         },
         {
           "text": "one,",
-          "start": 3.193,
-          "end": 3.413
-        },
-        {
-          "text": "just",
-          "start": 3.495,
-          "end": 3.773
+          "start": 5.294,
+          "end": 5.654
         },
         {
           "text": "kept",
-          "start": 3.831,
-          "end": 4.04
+          "start": 5.805,
+          "end": 6.037
         },
         {
           "text": "tidy.",
-          "start": 4.075,
-          "end": 4.644
+          "start": 6.06,
+          "end": 7.012
+        }
+      ],
+      "plan": "paid"
+    },
+    "when": {
+      "file": "when.mp3",
+      "hash": "07b5764f7f",
+      "text": "When to split? Is it really hurting? Is there a clean piece to cut? Split it out. If not, stay whole.",
+      "duration": 6.734,
+      "words": [
+        {
+          "text": "When",
+          "start": 0,
+          "end": 0.244
+        },
+        {
+          "text": "to",
+          "start": 0.279,
+          "end": 0.325
+        },
+        {
+          "text": "split?",
+          "start": 0.372,
+          "end": 0.871
+        },
+        {
+          "text": "Is",
+          "start": 0.94,
+          "end": 1.08
+        },
+        {
+          "text": "it",
+          "start": 1.126,
+          "end": 1.184
+        },
+        {
+          "text": "really",
+          "start": 1.219,
+          "end": 1.428
+        },
+        {
+          "text": "hurting?",
+          "start": 1.474,
+          "end": 1.95
+        },
+        {
+          "text": "Is",
+          "start": 2.125,
+          "end": 2.264
+        },
+        {
+          "text": "there",
+          "start": 2.31,
+          "end": 2.485
+        },
+        {
+          "text": "a",
+          "start": 2.519,
+          "end": 2.543
+        },
+        {
+          "text": "clean",
+          "start": 2.589,
+          "end": 2.833
+        },
+        {
+          "text": "piece",
+          "start": 2.891,
+          "end": 3.158
+        },
+        {
+          "text": "to",
+          "start": 3.181,
+          "end": 3.239
+        },
+        {
+          "text": "cut?",
+          "start": 3.297,
+          "end": 3.704
+        },
+        {
+          "text": "Split",
+          "start": 3.913,
+          "end": 4.238
+        },
+        {
+          "text": "it",
+          "start": 4.272,
+          "end": 4.342
+        },
+        {
+          "text": "out.",
+          "start": 4.389,
+          "end": 4.748
+        },
+        {
+          "text": "If",
+          "start": 5.074,
+          "end": 5.236
+        },
+        {
+          "text": "not,",
+          "start": 5.306,
+          "end": 5.619
+        },
+        {
+          "text": "stay",
+          "start": 5.735,
+          "end": 6.002
+        },
+        {
+          "text": "whole.",
+          "start": 6.037,
+          "end": 6.734
+        }
+      ],
+      "plan": "paid"
+    },
+    "bigpicture": {
+      "file": "bigpicture.mp3",
+      "hash": "d22ed1824a",
+      "text": "Put it together: one box fails together, services fail alone, but every call pays a hop.",
+      "duration": 5.573,
+      "words": [
+        {
+          "text": "Put",
+          "start": 0,
+          "end": 0.174
+        },
+        {
+          "text": "it",
+          "start": 0.209,
+          "end": 0.279
+        },
+        {
+          "text": "together:",
+          "start": 0.302,
+          "end": 0.789
+        },
+        {
+          "text": "one",
+          "start": 0.94,
+          "end": 1.184
+        },
+        {
+          "text": "box",
+          "start": 1.231,
+          "end": 1.533
+        },
+        {
+          "text": "fails",
+          "start": 1.614,
+          "end": 1.892
+        },
+        {
+          "text": "together,",
+          "start": 1.939,
+          "end": 2.426
+        },
+        {
+          "text": "services",
+          "start": 2.601,
+          "end": 3.077
+        },
+        {
+          "text": "fail",
+          "start": 3.135,
+          "end": 3.332
+        },
+        {
+          "text": "alone,",
+          "start": 3.39,
+          "end": 3.843
+        },
+        {
+          "text": "but",
+          "start": 3.889,
+          "end": 4.04
+        },
+        {
+          "text": "every",
+          "start": 4.087,
+          "end": 4.284
+        },
+        {
+          "text": "call",
+          "start": 4.342,
+          "end": 4.609
+        },
+        {
+          "text": "pays",
+          "start": 4.69,
+          "end": 4.946
+        },
+        {
+          "text": "a",
+          "start": 5.004,
+          "end": 5.039
+        },
+        {
+          "text": "hop.",
+          "start": 5.097,
+          "end": 5.573
         }
       ],
       "plan": "paid"

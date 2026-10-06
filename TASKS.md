@@ -4,6 +4,8 @@
 
 ## 🔴 Needed now
 
+- [ ] **Retry the 002 storyboard approval:** your approval at 20:19 hit the Claude session limit. Press **🔁 Retry run** in the 002 thread and it continues to voicing → draft
+- [x] **Start the 002 → 001 rebuilds**: 002 started 2026-10-06
 - [ ] **Live test for Visual Reference (2 min):** in Notion → Shorts, attach any image to the `Visual Reference` cell of row **#2** (Client–Server Model; it won't change that episode), then tell me "test refs". I'll run the fetch → download → look path and remove nothing from Notion
 - [x] **Review SCRIPT-FORMAT v1.3**: approved 2026-10-06
 - [x] **Review step 3: BigPicture + cover**: approved 2026-10-06 (design language v1.6, script format v1.4)
