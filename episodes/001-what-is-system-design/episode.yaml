@@ -1,12 +1,14 @@
-# Episode 001, pilot. Script approved 2026-09-29 (Gate 3)
-# VO: 90 words. The engine estimate with pauses is ~44s including the 1.5s branding sting after the hook
+# Episode 001. Script approved 2026-10-07 (Discord 001:script:r1) · rebuild to 80–90s (script format v1.5)
+# Notion row #3 · Fundamentals · Junior / Entry · target ~85s (was the ~42s v1.1 pilot, approved 2026-09-29; hook, idea + gist kept)
 id: 1
 slug: what-is-system-design
 title: What is System Design?
-topic: system design basics
-target_sec: 40
+topic: what system design is, how it differs from coding, and how you'd design Instagram
+target_sec: 85
+format: "1.5"
+visual_plan: "Spine: one FlowDiagram of a photo app (Instagram) over 3 scenes: boxes, cache, a crash. Split for coding vs design, ThreeCards for the questions first, Tiers for the cost trade-off, Sequence for the interview."
 
-brands: [ netflix ] # assets/logos/netflix/ (official kit supplied by Imad)
+brands: [ netflix ] # assets/logos/netflix/ (official kit supplied by Imad). Instagram is named in the VO only (no logo)
 
 voice:
   voice_id: TX3LPaxmHKxFdv7VOQHJ
@@ -14,11 +16,11 @@ voice:
   name: Liam
 
 music:
-  track: bytesized-theme  # pinned (locked pilot)
+  track: bytesized-theme  # pinned (pilot, kept for the rebuild)
   volume: 0.12
 
 scenes:
-  # ---------- HOOK ----------
+  # ---------- HOOK (kept from the approved pilot) ----------
   - id: hook
     part: hook
     template: Hook
@@ -35,47 +37,78 @@ scenes:
       - { on: "play", do: count, target: watching }
 
   # ---------- BRANDING (automatic, ~1.5s) ----------
-  # The engine inserts the branding sting here: bite wipe → orange lockup → cut. No voiceover.
 
-  # ---------- IDEA ----------
+  # ---------- IDEA (kept, one clause longer) ----------
   - id: idea
     part: idea
     template: Analogy
-    vo: "The answer is system design: planning your app like a city."
+    vo: "The answer is system design: planning your app like a city, before a
+      single person moves in."
     headline: { text: "Apps are cities", accent: "cities" }
     stage:
       rows: []
-      morph: { from: server, to: city }   # an app (server) that becomes a city on "city"
+      morph: { from: server, to: city }
     beats:
       - { on: "design", do: appear, target: morph }
       - { on: "city", do: highlight, target: morph }
 
-  # ---------- BREAKDOWN 1: the analogy ----------
-  - id: analogy
+  # ---------- BREAKDOWN 1: coding vs system design ----------
+  - id: versus
     part: breakdown
-    template: Analogy
-    vo: "Servers are buildings. Databases are storage units. And load balancers?
-      They're the traffic cops."
-    headline: { text: "Apps are cities", accent: "cities" } # carried over from the idea scene, not re-animated
+    template: Split
+    vo: "Coding builds one building. System design plans the whole city: the
+      roads, the power, and what happens when it floods."
+    headline: { text: "Code vs. city plan", accent: "city plan" }
     stage:
-      rows:
-        - { id: r1, icon: server, key: Servers, value: buildings }
-        - { id: r2, icon: db, key: Databases, value: storage units }
-        - { id: r3, icon: cop, key: Load balancers, value: traffic cops }
+      variant: compare
+      before:
+        id: code
+        title: coding
+        note: "one building"
+        nodes:
+          - { id: c-app, type: server, label: your app }
+      after:
+        id: plan
+        title: system design
+        note: "the whole city"
+        nodes:
+          - { id: p-lb, type: lb, label: traffic }
+          - { id: p-app, type: server, label: servers }
+          - { id: p-cache, type: cache, label: cache }
+          - { id: p-db, type: db, label: data }
     beats:
-      - { on: "Servers", do: reveal, target: r1 }
-      - { on: "Databases", do: reveal, target: r2 }
-      - { on: "load", do: reveal, target: r3 }
-      - { on: "cops", do: highlight, target: r3 }
+      - { on: "Coding", do: appear, target: code }
+      - { on: "building", do: highlight, target: c-app }
+      - { on: "System", do: appear, target: plan }
+      - { on: "city", do: highlight, target: plan }
+      - { on: "power", do: state, target: [ p-lb, p-app ], args: { to: active } }
+      - { on: "floods", do: state, target: p-app, args: { to: overloaded } }
 
-  # ---------- BREAKDOWN 2: spreading traffic (no headline, big visual) ----------
-  - id: flow
+  # ---------- BREAKDOWN 2: inputs = the questions (no headline) ----------
+  - id: questions
+    part: breakdown
+    template: ThreeCards
+    vo: "Say we're designing Instagram. First, questions: how many users? How
+      fast must photos load? Can it go down?"
+    stage:
+      cards:
+        - { id: q1, icon: crowd, title: How many?, sub: "a billion users" }
+        - { id: q2, icon: clock, title: How fast?, sub: "photos in a blink" }
+        - { id: q3, icon: pulse, title: Can it fail?, sub: "ideally, never" }
+    beats:
+      - { on: "users", do: reveal, target: q1 }
+      - { on: "fast", do: reveal, target: q2 }
+      - { on: "down", do: reveal, target: q3 }
+
+  # ---------- BREAKDOWN 3–5: outputs = the architecture (FlowDiagram over 3 scenes) ----------
+  - id: boxes
     part: breakdown
     template: FlowDiagram
-    vo: "When users flood in, the traffic cop spreads them out, so no single server
-      melts."
+    vo: "Then the boxes. Phones hit a load balancer, which spreads them across
+      servers. Photos land in storage, with a cache up front."
+    headline: { text: "Boxes and arrows", accent: "arrows" }
     stage:
-      layers: [ [ u1, u2, u3 ], [ lb ], [ app1, app2, app3 ], [ db ] ]
+      layers: [ [ u1, u2, u3 ], [ lb ], [ app1, app2, app3 ], [ cache, store ] ]
       nodes:
         - { id: u1, type: phone, family: solid }
         - { id: u2, type: phone, family: solid }
@@ -84,7 +117,8 @@ scenes:
         - { id: app1, type: server, label: app-1 }
         - { id: app2, type: server, label: app-2 }
         - { id: app3, type: server, label: app-3 }
-        - { id: db, type: db, label: postgres }
+        - { id: cache, type: cache, label: cache }
+        - { id: store, type: storage, label: photos }
       links:
         [
           [ u1, lb ],
@@ -93,37 +127,54 @@ scenes:
           [ lb, app1 ],
           [ lb, app2 ],
           [ lb, app3 ],
-          [ app1, db ],
-          [ app2, db ],
-          [ app3, db ]
+          [ app1, cache ],
+          [ app2, cache ],
+          [ app3, cache ],
+          [ app1, store ],
+          [ app2, store ],
+          [ app3, store ]
         ]
     beats:
-      - { on: "users", do: appear, target: [ u1, u2, u3 ] }
+      - { on: "Phones", do: appear, target: [ u1, u2, u3 ] }
+      - { on: "load", do: appear, target: lb }
+      - { on: "spreads", do: appear, target: [ app1, app2, app3 ] }
       - {
-          on: "flood",
-          do: send,
-          target: [ u1, u2, u3 ],
-          args: { kind: request, count: 6 }
-        }
-      - { on: "cop", do: highlight, target: lb }
-      - {
-          on: "spreads",
+          on: "servers",
           do: send,
           target: [ app1, app2, app3 ],
           args: { kind: request, count: 6 }
         }
-      - { on: "melts", do: state, target: app3, args: { to: overloaded } }
+      - { on: "storage", do: appear, target: store }
+      - { on: "cache", do: appear, target: cache }
 
-  # ---------- BREAKDOWN 3: failure & recovery (new in draft 2) ----------
-  - id: failover
+  - id: hot
     part: breakdown
     template: FlowDiagram
-    transition: push # same diagram, camera pushes in slightly
-    vo: "And if a server crashes? The cop stops sending it traffic. Users never even
-      notice."
+    vo: "The cache keeps hot photos close, so one viral post doesn't hammer
+      storage a million times over."
+    stage:
+      reuse: boxes
+    beats:
+      - { on: "cache", do: highlight, target: cache }
+      - { on: "hot", do: state, target: cache, args: { to: active } }
+      - {
+          on: "viral",
+          do: send,
+          target: [ u1, u2, u3 ],
+          args: { kind: request, count: 6 }
+        }
+      - { on: "hammer", do: send, target: cache, args: { kind: request, count: 6 } }
+      - { on: "storage", do: dim, target: store }
+
+  - id: crash
+    part: breakdown
+    template: FlowDiagram
+    transition: push
+    vo: "And if a server crashes? The load balancer stops sending it traffic,
+      and users never even notice."
     headline: { text: "Crash? No problem", accent: "No problem" }
     stage:
-      reuse: flow # same nodes and links as the previous scene
+      reuse: boxes
     beats:
       - { on: "crashes", do: state, target: app3, args: { to: down } }
       - { on: "crashes", do: shake, target: app3 }
@@ -136,28 +187,65 @@ scenes:
         }
       - { on: "notice", do: state, target: app3, args: { to: recovered } }
 
-  # ---------- BREAKDOWN 4: the three goals ----------
-  - id: goals
+  # ---------- BREAKDOWN 6: the cost trade-off ----------
+  - id: tradeoff
     part: breakdown
-    template: ThreeCards
-    vo: "So engineers chase three things: scale up, stay up, and waste nothing."
-    headline: { text: "3 things matter", accent: "matter" }
+    template: Tiers
+    vo: "Every choice costs something. One server: cheap, but fragile. Copies in
+      every region: fast and safe, but pricey."
+    headline: { text: "Cheap, fast or safe?", accent: "safe?" }
     stage:
-      cards:
-        - { id: c1, icon: scale, title: Scale up, sub: "more users, no sweat" }
-        - { id: c2, icon: pulse, title: Stay up, sub: "crash, recover, repeat" }
-        - {
-            id: c3,
-            icon: gauge,
-            title: Waste nothing,
-            sub: "every CPU earns its keep"
-          }
+      variant: spectrum
+      ends: [ "cheap", "bulletproof" ]
+      tiers:
+        - { id: t1, icon: server, title: one server, sub: "cheap, fragile" }
+        - { id: t2, icon: internet, title: every region, sub: "fast, safe, pricey" }
     beats:
-      - { on: "scale", do: reveal, target: c1 }
-      - { on: "stay", do: reveal, target: c2 }
-      - { on: "waste", do: reveal, target: c3 }
+      - { on: "One", do: reveal, target: t1 }
+      - { on: "fragile", do: highlight, target: t1 }
+      - { on: "region", do: reveal, target: t2 }
+      - { on: "pricey", do: highlight, target: t2 }
 
-  # ---------- GIST (no headline) ----------
+  # ---------- BREAKDOWN 7: how interviews test it ----------
+  - id: interview
+    part: breakdown
+    template: Sequence
+    vo: "That's why interviews say: design Instagram. Great answers ask first: how
+      many users? A billion? Then boxes and trade-offs."
+    headline: { text: "The real test", accent: "test" }
+    stage:
+      actors:
+        - { id: boss, type: user, family: solid, label: interviewer }
+        - { id: you, type: user, label: you }
+      steps:
+        - { id: ask, from: boss, to: you, label: "design Instagram" }
+        - { id: how, from: you, to: boss, label: "how many users?" }
+        - { id: bil, from: boss, to: you, label: "a billion" }
+        - { id: draw, at: you, note: "sketch!" }
+    beats:
+      - { on: "interviews", do: appear, target: [ boss, you ] }
+      - { on: "Instagram", do: step, target: ask }
+      - { on: "users", do: step, target: how }
+      - { on: "billion", do: step, target: bil }
+      - { on: "boxes", do: step, target: draw }
+
+  # ---------- BREAKDOWN 8: the big picture (no headline) ----------
+  - id: bigpicture
+    part: breakdown
+    template: BigPicture
+    vo: "So put it together: ask first, sketch the boxes, plan for crashes, then
+      pick your trade-off."
+    stage:
+      panels:
+        - { id: p1, scene: interview, label: "ask first" }
+        - { id: p2, scene: crash, label: "boxes, crashes" }
+        - { id: p3, scene: tradeoff, label: "pick a trade-off" }
+    beats:
+      - { on: "ask", do: highlight, target: p1 }
+      - { on: "crashes", do: highlight, target: p2 }
+      - { on: "pick", do: highlight, target: p3 }
+
+  # ---------- GIST (no headline, kept) ----------
   - id: gist
     part: gist
     template: GistCard

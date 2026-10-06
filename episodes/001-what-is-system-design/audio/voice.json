@@ -3,7 +3,7 @@
   "voice_id": "TX3LPaxmHKxFdv7VOQHJ",
   "model": "eleven_multilingual_v2",
   "plan": "paid",
-  "generated": "2026-10-01T10:12:12.171Z",
+  "generated": "2026-10-06T21:23:28.767Z",
   "scenes": {
     "hook": {
       "file": "hook.mp3",
@@ -71,320 +71,821 @@
     },
     "idea": {
       "file": "idea.mp3",
-      "hash": "a2dd30b4a1",
-      "text": "The answer is system design: planning your app like a city.",
-      "duration": 4.226,
+      "hash": "05bf2bb5b5",
+      "text": "The answer is system design: planning your app like a city, before a single person moves in.",
+      "duration": 6.455,
       "words": [
         {
           "text": "The",
           "start": 0,
-          "end": 0.174
+          "end": 0.139
         },
         {
           "text": "answer",
-          "start": 0.244,
-          "end": 0.534
+          "start": 0.197,
+          "end": 0.476
         },
         {
           "text": "is",
-          "start": 0.615,
-          "end": 0.731
+          "start": 0.557,
+          "end": 0.708
         },
         {
           "text": "system",
-          "start": 0.882,
-          "end": 1.242
+          "start": 0.917,
+          "end": 1.265
         },
         {
           "text": "design:",
-          "start": 1.3,
-          "end": 1.811
+          "start": 1.324,
+          "end": 1.846
         },
         {
           "text": "planning",
-          "start": 2.136,
-          "end": 2.45
+          "start": 2.287,
+          "end": 2.624
         },
         {
           "text": "your",
-          "start": 2.485,
-          "end": 2.601
+          "start": 2.67,
+          "end": 2.786
         },
         {
           "text": "app",
-          "start": 2.659,
-          "end": 2.833
-        },
-        {
-          "text": "like",
-          "start": 2.891,
+          "start": 2.856,
           "end": 3.042
         },
         {
+          "text": "like",
+          "start": 3.1,
+          "end": 3.239
+        },
+        {
           "text": "a",
-          "start": 3.077,
-          "end": 3.1
+          "start": 3.262,
+          "end": 3.297
         },
         {
-          "text": "city.",
-          "start": 3.17,
-          "end": 4.226
-        }
-      ],
-      "plan": "paid"
-    },
-    "analogy": {
-      "file": "analogy.mp3",
-      "hash": "cf02c8f33a",
-      "text": "Servers are buildings. Databases are storage units. And load balancers? They're the traffic cops.",
-      "duration": 7.477,
-      "words": [
-        {
-          "text": "Servers",
-          "start": 0,
-          "end": 0.488
+          "text": "city,",
+          "start": 3.355,
+          "end": 3.808
         },
         {
-          "text": "are",
-          "start": 0.546,
-          "end": 0.697
-        },
-        {
-          "text": "buildings.",
-          "start": 0.731,
-          "end": 1.393
-        },
-        {
-          "text": "Databases",
-          "start": 1.672,
-          "end": 2.322
-        },
-        {
-          "text": "are",
-          "start": 2.38,
-          "end": 2.531
-        },
-        {
-          "text": "storage",
-          "start": 2.601,
-          "end": 3.1
-        },
-        {
-          "text": "units.",
-          "start": 3.158,
-          "end": 3.657
-        },
-        {
-          "text": "And",
+          "text": "before",
           "start": 3.982,
-          "end": 4.214
+          "end": 4.284
         },
         {
-          "text": "load",
-          "start": 4.296,
-          "end": 4.493
-        },
-        {
-          "text": "balancers?",
-          "start": 4.54,
-          "end": 5.259
-        },
-        {
-          "text": "They're",
-          "start": 5.7,
-          "end": 5.944
-        },
-        {
-          "text": "the",
-          "start": 5.979,
-          "end": 6.049
-        },
-        {
-          "text": "traffic",
-          "start": 6.072,
-          "end": 6.397
-        },
-        {
-          "text": "cops.",
-          "start": 6.444,
-          "end": 7.477
-        }
-      ],
-      "plan": "paid"
-    },
-    "flow": {
-      "file": "flow.mp3",
-      "hash": "db3d307037",
-      "text": "When users flood in, the traffic cop spreads them out, so no single server melts.",
-      "duration": 4.969,
-      "words": [
-        {
-          "text": "When",
-          "start": 0,
-          "end": 0.209
-        },
-        {
-          "text": "users",
-          "start": 0.29,
-          "end": 0.604
-        },
-        {
-          "text": "flood",
-          "start": 0.662,
-          "end": 0.882
-        },
-        {
-          "text": "in,",
-          "start": 0.94,
-          "end": 1.173
-        },
-        {
-          "text": "the",
-          "start": 1.265,
-          "end": 1.358
-        },
-        {
-          "text": "traffic",
-          "start": 1.405,
-          "end": 1.741
-        },
-        {
-          "text": "cop",
-          "start": 1.776,
-          "end": 1.95
-        },
-        {
-          "text": "spreads",
-          "start": 2.02,
-          "end": 2.322
-        },
-        {
-          "text": "them",
-          "start": 2.357,
-          "end": 2.473
-        },
-        {
-          "text": "out,",
-          "start": 2.519,
-          "end": 2.694
-        },
-        {
-          "text": "so",
-          "start": 2.717,
-          "end": 2.868
-        },
-        {
-          "text": "no",
-          "start": 2.984,
-          "end": 3.181
+          "text": "a",
+          "start": 4.319,
+          "end": 4.354
         },
         {
           "text": "single",
-          "start": 3.262,
-          "end": 3.576
+          "start": 4.447,
+          "end": 4.783
         },
         {
-          "text": "server",
-          "start": 3.622,
-          "end": 3.901
+          "text": "person",
+          "start": 4.818,
+          "end": 5.132
         },
         {
-          "text": "melts.",
-          "start": 3.959,
-          "end": 4.969
+          "text": "moves",
+          "start": 5.178,
+          "end": 5.387
+        },
+        {
+          "text": "in.",
+          "start": 5.445,
+          "end": 6.455
         }
       ],
       "plan": "paid"
     },
-    "failover": {
-      "file": "failover.mp3",
-      "hash": "8e7e6e5046",
-      "text": "And if a server crashes? The cop stops sending it traffic. Users never even notice.",
-      "duration": 6.966,
+    "versus": {
+      "file": "versus.mp3",
+      "hash": "daae55ce64",
+      "text": "Coding builds one building. System design plans the whole city: the roads, the power, and what happens when it floods.",
+      "duration": 9.242,
+      "words": [
+        {
+          "text": "Coding",
+          "start": 0,
+          "end": 0.43
+        },
+        {
+          "text": "builds",
+          "start": 0.488,
+          "end": 0.778
+        },
+        {
+          "text": "one",
+          "start": 0.848,
+          "end": 1.08
+        },
+        {
+          "text": "building.",
+          "start": 1.115,
+          "end": 1.614
+        },
+        {
+          "text": "System",
+          "start": 2.31,
+          "end": 2.682
+        },
+        {
+          "text": "design",
+          "start": 2.74,
+          "end": 3.065
+        },
+        {
+          "text": "plans",
+          "start": 3.123,
+          "end": 3.402
+        },
+        {
+          "text": "the",
+          "start": 3.437,
+          "end": 3.506
+        },
+        {
+          "text": "whole",
+          "start": 3.553,
+          "end": 3.762
+        },
+        {
+          "text": "city:",
+          "start": 3.808,
+          "end": 4.261
+        },
+        {
+          "text": "the",
+          "start": 4.772,
+          "end": 4.876
+        },
+        {
+          "text": "roads,",
+          "start": 4.946,
+          "end": 5.526
+        },
+        {
+          "text": "the",
+          "start": 5.805,
+          "end": 5.921
+        },
+        {
+          "text": "power,",
+          "start": 5.968,
+          "end": 6.56
+        },
+        {
+          "text": "and",
+          "start": 6.885,
+          "end": 7.024
+        },
+        {
+          "text": "what",
+          "start": 7.082,
+          "end": 7.233
+        },
+        {
+          "text": "happens",
+          "start": 7.291,
+          "end": 7.639
+        },
+        {
+          "text": "when",
+          "start": 7.674,
+          "end": 7.79
+        },
+        {
+          "text": "it",
+          "start": 7.825,
+          "end": 7.883
+        },
+        {
+          "text": "floods.",
+          "start": 7.93,
+          "end": 9.242
+        }
+      ],
+      "plan": "paid"
+    },
+    "questions": {
+      "file": "questions.mp3",
+      "hash": "3a48cc1592",
+      "text": "Say we're designing Instagram. First, questions: how many users? How fast must photos load? Can it go down?",
+      "duration": 7.616,
+      "words": [
+        {
+          "text": "Say",
+          "start": 0,
+          "end": 0.221
+        },
+        {
+          "text": "we're",
+          "start": 0.267,
+          "end": 0.406
+        },
+        {
+          "text": "designing",
+          "start": 0.43,
+          "end": 0.755
+        },
+        {
+          "text": "Instagram.",
+          "start": 0.824,
+          "end": 1.509
+        },
+        {
+          "text": "First,",
+          "start": 1.66,
+          "end": 2.101
+        },
+        {
+          "text": "questions:",
+          "start": 2.252,
+          "end": 2.984
+        },
+        {
+          "text": "how",
+          "start": 3.309,
+          "end": 3.46
+        },
+        {
+          "text": "many",
+          "start": 3.518,
+          "end": 3.68
+        },
+        {
+          "text": "users?",
+          "start": 3.75,
+          "end": 4.249
+        },
+        {
+          "text": "How",
+          "start": 4.458,
+          "end": 4.609
+        },
+        {
+          "text": "fast",
+          "start": 4.702,
+          "end": 4.946
+        },
+        {
+          "text": "must",
+          "start": 4.992,
+          "end": 5.155
+        },
+        {
+          "text": "photos",
+          "start": 5.201,
+          "end": 5.503
+        },
+        {
+          "text": "load?",
+          "start": 5.55,
+          "end": 5.909
+        },
+        {
+          "text": "Can",
+          "start": 6.235,
+          "end": 6.385
+        },
+        {
+          "text": "it",
+          "start": 6.432,
+          "end": 6.502
+        },
+        {
+          "text": "go",
+          "start": 6.548,
+          "end": 6.653
+        },
+        {
+          "text": "down?",
+          "start": 6.711,
+          "end": 7.616
+        }
+      ],
+      "plan": "paid"
+    },
+    "boxes": {
+      "file": "boxes.mp3",
+      "hash": "a23d7f0d74",
+      "text": "Then the boxes. Phones hit a load balancer, which spreads them across servers. Photos land in storage, with a cache up front.",
+      "duration": 9.242,
+      "words": [
+        {
+          "text": "Then",
+          "start": 0,
+          "end": 0.244
+        },
+        {
+          "text": "the",
+          "start": 0.29,
+          "end": 0.36
+        },
+        {
+          "text": "boxes.",
+          "start": 0.406,
+          "end": 1.091
+        },
+        {
+          "text": "Phones",
+          "start": 1.904,
+          "end": 2.264
+        },
+        {
+          "text": "hit",
+          "start": 2.322,
+          "end": 2.45
+        },
+        {
+          "text": "a",
+          "start": 2.496,
+          "end": 2.519
+        },
+        {
+          "text": "load",
+          "start": 2.601,
+          "end": 2.821
+        },
+        {
+          "text": "balancer,",
+          "start": 2.868,
+          "end": 3.379
+        },
+        {
+          "text": "which",
+          "start": 3.402,
+          "end": 3.576
+        },
+        {
+          "text": "spreads",
+          "start": 3.82,
+          "end": 4.168
+        },
+        {
+          "text": "them",
+          "start": 4.203,
+          "end": 4.319
+        },
+        {
+          "text": "across",
+          "start": 4.365,
+          "end": 4.69
+        },
+        {
+          "text": "servers.",
+          "start": 4.725,
+          "end": 5.317
+        },
+        {
+          "text": "Photos",
+          "start": 5.921,
+          "end": 6.304
+        },
+        {
+          "text": "land",
+          "start": 6.374,
+          "end": 6.56
+        },
+        {
+          "text": "in",
+          "start": 6.618,
+          "end": 6.676
+        },
+        {
+          "text": "storage,",
+          "start": 6.757,
+          "end": 7.314
+        },
+        {
+          "text": "with",
+          "start": 7.338,
+          "end": 7.465
+        },
+        {
+          "text": "a",
+          "start": 7.5,
+          "end": 7.523
+        },
+        {
+          "text": "cache",
+          "start": 7.581,
+          "end": 7.941
+        },
+        {
+          "text": "up",
+          "start": 7.976,
+          "end": 8.081
+        },
+        {
+          "text": "front.",
+          "start": 8.15,
+          "end": 9.242
+        }
+      ],
+      "plan": "paid"
+    },
+    "hot": {
+      "file": "hot.mp3",
+      "hash": "a69b5a9b1e",
+      "text": "The cache keeps hot photos close, so one viral post doesn't hammer storage a million times over.",
+      "duration": 6.037,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.163
+        },
+        {
+          "text": "cache",
+          "start": 0.209,
+          "end": 0.499
+        },
+        {
+          "text": "keeps",
+          "start": 0.534,
+          "end": 0.755
+        },
+        {
+          "text": "hot",
+          "start": 0.813,
+          "end": 1.045
+        },
+        {
+          "text": "photos",
+          "start": 1.091,
+          "end": 1.416
+        },
+        {
+          "text": "close,",
+          "start": 1.474,
+          "end": 1.858
+        },
+        {
+          "text": "so",
+          "start": 1.881,
+          "end": 2.09
+        },
+        {
+          "text": "one",
+          "start": 2.368,
+          "end": 2.635
+        },
+        {
+          "text": "viral",
+          "start": 2.682,
+          "end": 3.007
+        },
+        {
+          "text": "post",
+          "start": 3.077,
+          "end": 3.344
+        },
+        {
+          "text": "doesn't",
+          "start": 3.413,
+          "end": 3.646
+        },
+        {
+          "text": "hammer",
+          "start": 3.692,
+          "end": 3.947
+        },
+        {
+          "text": "storage",
+          "start": 4.005,
+          "end": 4.319
+        },
+        {
+          "text": "a",
+          "start": 4.342,
+          "end": 4.365
+        },
+        {
+          "text": "million",
+          "start": 4.412,
+          "end": 4.679
+        },
+        {
+          "text": "times",
+          "start": 4.714,
+          "end": 4.957
+        },
+        {
+          "text": "over.",
+          "start": 5.027,
+          "end": 6.037
+        }
+      ],
+      "plan": "paid"
+    },
+    "crash": {
+      "file": "crash.mp3",
+      "hash": "cabdd0888f",
+      "text": "And if a server crashes? The load balancer stops sending it traffic, and users never even notice.",
+      "duration": 6.641,
       "words": [
         {
           "text": "And",
           "start": 0,
-          "end": 0.197
+          "end": 0.163
         },
         {
           "text": "if",
-          "start": 0.255,
-          "end": 0.325
+          "start": 0.221,
+          "end": 0.279
         },
         {
           "text": "a",
-          "start": 0.383,
-          "end": 0.418
+          "start": 0.325,
+          "end": 0.348
         },
         {
           "text": "server",
-          "start": 0.476,
-          "end": 0.766
+          "start": 0.406,
+          "end": 0.673
         },
         {
           "text": "crashes?",
-          "start": 0.836,
-          "end": 1.614
+          "start": 0.731,
+          "end": 1.451
         },
         {
           "text": "The",
-          "start": 2.31,
-          "end": 2.438
+          "start": 1.776,
+          "end": 1.892
         },
         {
-          "text": "cop",
-          "start": 2.508,
-          "end": 2.775
+          "text": "load",
+          "start": 1.95,
+          "end": 2.148
+        },
+        {
+          "text": "balancer",
+          "start": 2.183,
+          "end": 2.577
         },
         {
           "text": "stops",
-          "start": 2.844,
-          "end": 3.204
+          "start": 2.635,
+          "end": 2.914
         },
         {
           "text": "sending",
-          "start": 3.239,
-          "end": 3.529
+          "start": 2.949,
+          "end": 3.216
         },
         {
           "text": "it",
-          "start": 3.576,
-          "end": 3.634
+          "start": 3.262,
+          "end": 3.332
         },
         {
-          "text": "traffic.",
-          "start": 3.669,
-          "end": 4.272
+          "text": "traffic,",
+          "start": 3.355,
+          "end": 3.901
         },
         {
-          "text": "Users",
-          "start": 4.656,
-          "end": 5.039
+          "text": "and",
+          "start": 4.226,
+          "end": 4.365
+        },
+        {
+          "text": "users",
+          "start": 4.447,
+          "end": 4.76
         },
         {
           "text": "never",
-          "start": 5.132,
-          "end": 5.375
+          "start": 4.841,
+          "end": 5.074
         },
         {
           "text": "even",
-          "start": 5.457,
-          "end": 5.666
+          "start": 5.143,
+          "end": 5.352
         },
         {
           "text": "notice.",
-          "start": 5.747,
-          "end": 6.966
+          "start": 5.422,
+          "end": 6.641
         }
       ],
       "plan": "paid"
     },
-    "goals": {
-      "file": "goals.mp3",
-      "hash": "7a52d8ae67",
-      "text": "So engineers chase three things: scale up, stay up, and waste nothing.",
-      "duration": 4.923,
+    "tradeoff": {
+      "file": "tradeoff.mp3",
+      "hash": "72e1ec9b15",
+      "text": "Every choice costs something. One server: cheap, but fragile. Copies in every region: fast and safe, but pricey.",
+      "duration": 8.916,
+      "words": [
+        {
+          "text": "Every",
+          "start": 0,
+          "end": 0.313
+        },
+        {
+          "text": "choice",
+          "start": 0.372,
+          "end": 0.662
+        },
+        {
+          "text": "costs",
+          "start": 0.708,
+          "end": 0.987
+        },
+        {
+          "text": "something.",
+          "start": 1.022,
+          "end": 1.533
+        },
+        {
+          "text": "One",
+          "start": 1.776,
+          "end": 2.009
+        },
+        {
+          "text": "server:",
+          "start": 2.067,
+          "end": 2.635
+        },
+        {
+          "text": "cheap,",
+          "start": 3.019,
+          "end": 3.448
+        },
+        {
+          "text": "but",
+          "start": 3.529,
+          "end": 3.692
+        },
+        {
+          "text": "fragile.",
+          "start": 3.738,
+          "end": 4.272
+        },
+        {
+          "text": "Copies",
+          "start": 4.969,
+          "end": 5.352
+        },
+        {
+          "text": "in",
+          "start": 5.387,
+          "end": 5.457
+        },
+        {
+          "text": "every",
+          "start": 5.573,
+          "end": 5.84
+        },
+        {
+          "text": "region:",
+          "start": 5.909,
+          "end": 6.362
+        },
+        {
+          "text": "fast",
+          "start": 6.478,
+          "end": 6.769
+        },
+        {
+          "text": "and",
+          "start": 6.815,
+          "end": 6.896
+        },
+        {
+          "text": "safe,",
+          "start": 6.943,
+          "end": 7.361
+        },
+        {
+          "text": "but",
+          "start": 7.605,
+          "end": 7.779
+        },
+        {
+          "text": "pricey.",
+          "start": 7.825,
+          "end": 8.916
+        }
+      ],
+      "plan": "paid"
+    },
+    "interview": {
+      "file": "interview.mp3",
+      "hash": "d4e0c6cd3c",
+      "text": "That's why interviews say: design Instagram. Great answers ask first: how many users? A billion? Then boxes and trade-offs.",
+      "duration": 10.728,
+      "words": [
+        {
+          "text": "That's",
+          "start": 0,
+          "end": 0.255
+        },
+        {
+          "text": "why",
+          "start": 0.279,
+          "end": 0.395
+        },
+        {
+          "text": "interviews",
+          "start": 0.453,
+          "end": 0.789
+        },
+        {
+          "text": "say:",
+          "start": 0.824,
+          "end": 1.265
+        },
+        {
+          "text": "design",
+          "start": 1.509,
+          "end": 1.892
+        },
+        {
+          "text": "Instagram.",
+          "start": 1.95,
+          "end": 2.601
+        },
+        {
+          "text": "Great",
+          "start": 3.553,
+          "end": 3.808
+        },
+        {
+          "text": "answers",
+          "start": 3.866,
+          "end": 4.226
+        },
+        {
+          "text": "ask",
+          "start": 4.284,
+          "end": 4.481
+        },
+        {
+          "text": "first:",
+          "start": 4.551,
+          "end": 5.085
+        },
+        {
+          "text": "how",
+          "start": 5.689,
+          "end": 5.828
+        },
+        {
+          "text": "many",
+          "start": 5.886,
+          "end": 6.06
+        },
+        {
+          "text": "users?",
+          "start": 6.13,
+          "end": 6.734
+        },
+        {
+          "text": "A",
+          "start": 7.117,
+          "end": 7.187
+        },
+        {
+          "text": "billion?",
+          "start": 7.256,
+          "end": 7.825
+        },
+        {
+          "text": "Then",
+          "start": 8.522,
+          "end": 8.719
+        },
+        {
+          "text": "boxes",
+          "start": 8.789,
+          "end": 9.183
+        },
+        {
+          "text": "and",
+          "start": 9.218,
+          "end": 9.3
+        },
+        {
+          "text": "trade-offs.",
+          "start": 9.323,
+          "end": 10.728
+        }
+      ],
+      "plan": "paid"
+    },
+    "bigpicture": {
+      "file": "bigpicture.mp3",
+      "hash": "6cdb4ba275",
+      "text": "So put it together: ask first, sketch the boxes, plan for crashes, then pick your trade-off.",
+      "duration": 5.759,
       "words": [
         {
           "text": "So",
@@ -392,59 +893,79 @@
           "end": 0.197
         },
         {
-          "text": "engineers",
-          "start": 0.279,
-          "end": 0.743
+          "text": "put",
+          "start": 0.255,
+          "end": 0.395
         },
         {
-          "text": "chase",
-          "start": 0.801,
-          "end": 1.068
+          "text": "it",
+          "start": 0.43,
+          "end": 0.488
         },
         {
-          "text": "three",
-          "start": 1.103,
-          "end": 1.3
+          "text": "together:",
+          "start": 0.511,
+          "end": 0.998
         },
         {
-          "text": "things:",
-          "start": 1.335,
-          "end": 1.8
+          "text": "ask",
+          "start": 1.207,
+          "end": 1.486
         },
         {
-          "text": "scale",
-          "start": 2.125,
-          "end": 2.438
+          "text": "first,",
+          "start": 1.556,
+          "end": 1.927
         },
         {
-          "text": "up,",
-          "start": 2.473,
-          "end": 2.682
+          "text": "sketch",
+          "start": 1.997,
+          "end": 2.276
         },
         {
-          "text": "stay",
-          "start": 2.798,
-          "end": 3.03
+          "text": "the",
+          "start": 2.31,
+          "end": 2.38
         },
         {
-          "text": "up,",
-          "start": 3.077,
-          "end": 3.309
+          "text": "boxes,",
+          "start": 2.415,
+          "end": 2.984
         },
         {
-          "text": "and",
-          "start": 3.332,
-          "end": 3.483
+          "text": "plan",
+          "start": 3.1,
+          "end": 3.32
         },
         {
-          "text": "waste",
-          "start": 3.553,
-          "end": 3.808
+          "text": "for",
+          "start": 3.379,
+          "end": 3.46
         },
         {
-          "text": "nothing.",
-          "start": 3.855,
-          "end": 4.923
+          "text": "crashes,",
+          "start": 3.518,
+          "end": 4.087
+        },
+        {
+          "text": "then",
+          "start": 4.18,
+          "end": 4.342
+        },
+        {
+          "text": "pick",
+          "start": 4.412,
+          "end": 4.574
+        },
+        {
+          "text": "your",
+          "start": 4.621,
+          "end": 4.725
+        },
+        {
+          "text": "trade-off.",
+          "start": 4.76,
+          "end": 5.759
         }
       ],
       "plan": "paid"
