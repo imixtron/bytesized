@@ -1,6 +1,6 @@
 ---
 name: script
-description: Script Creator for Bytesized, the 30–60s system-design shorts of Back in a Gist. Turns a topic, notes or a rough draft into a validated episodes/<nnn-slug>/episode.yaml (or a Part 1 + Part 2 pair), assigns the round-robin voice, and stops for Imad's approval. Use when asked to write, draft, plan or rework a Bytesized episode or script.
+description: Script Creator for Bytesized, the 80–90s system-design shorts of Back in a Gist. Turns a topic, notes or a rough draft into a validated episodes/<nnn-slug>/episode.yaml (or a Part 1 + Part 2 pair), assigns the round-robin voice, and stops for Imad's approval. Use when asked to write, draft, plan or rework a Bytesized episode or script.
 ---
 
 # /script: topic → episode.yaml
@@ -11,7 +11,7 @@ You write **one Bytesized episode** as `episodes/<nnn-slug>/episode.yaml`. Every
 1. `episodes/SCRIPT-FORMAT.md`: rules, file format, menus, validation. **This wins over anything below.**
 2. `brand/design-language/DESIGN-LANGUAGE.md`: node families, tone, what a headline looks like.
 3. `episodes/001-what-is-system-design/episode.yaml`: the approved pilot, the reference for style and beat density.
-4. `episodes/INDEX.md`: existing episodes (numbering, topics already covered, series).
+4. `episodes/INDEX.md`: existing episodes (numbering, topics already covered, series). Also open the **previous episode's** `episode.yaml` and note its breakdown template order: yours must not match it.
 5. `engine/src/templates/index.tsx`: the templates that are **built**. Others in the menu exist in the format but `/video` has to build them first.
 6. `episodes/pronunciations.md`: known tricky terms.
 
@@ -22,23 +22,31 @@ You write **one Bytesized episode** as `episodes/<nnn-slug>/episode.yaml`. Every
 - If the angle is unclear, ask **one** question at most. Otherwise pick the angle a curious beginner would care about most.
 
 ### 2. Size it
-- Pick `target_sec` in **30–60** (35–45 suits most). Word budget ≈ `2.5 × (target_sec − 1.5)`: about 80 words for 35s, 105 for 45s, 145 for 60s. This is guidance, not a hard limit.
-- **Split into Part 1 / Part 2** when explaining it well needs more than ~145 words or more than 5 breakdown ideas. Max 2 parts. If it would need more, narrow the scope and propose the rest as future episodes.
+- Pick `target_sec` in **80–90** (85 suits most; never over 90). Word budget ≈ `2.5 × (target_sec − 1.5)`: about 195 words for 80s, 210 for 85s, 220 for 90s. This is guidance, not a hard limit.
+- **Split into Part 1 / Part 2** when explaining it well needs more than ~220 words or more than 12 breakdown ideas. Max 2 parts. If it would need more, narrow the scope and propose the rest as future episodes.
   - Part 1: gist VO ends with *"Part 2 is next, follow so you don't miss it."* It needs `series.teaser`.
   - Part 2: the hook contains a one-sentence recap and it needs `series.recap`. Both parts share `series.key`.
 
-### 3. Write the story (Hook → Idea → Breakdown ×2–6 → Gist)
+### 3. Write the story (Hook → Idea → Breakdown ×6–12 → Gist)
 - **Hook (0–3s):** a question or surprising claim in the first sentence. No greetings. Make it concrete (a real product, a number, a failure).
 - **Idea:** name the concept in plain words, ideally with an everyday analogy.
-- **Breakdown:** show *how it works*, preferring a diagram (`FlowDiagram`) and a failure/recovery moment. One idea per scene, 3–8s each.
+- **Breakdown:** show *how it works*, one idea per scene, 3–8s each, ideally with a failure/recovery moment. Mix kinds of idea (a flow, a sequence, a comparison, a rule, a trade-off) so the diagrams vary (§3b).
+- **BigPicture (optional):** if the breakdown described parts of one system that connect, end the breakdown with a 3–5s `BigPicture` scene: one short line tying it together, 2–4 panels from your own diagram scenes, a `highlight` on each panel as the VO names it (SCRIPT-FORMAT §3b). Skip it for single-mechanism topics. Budget its words inside the 80–90s.
 - **Gist:** the VO starts with *"That's the gist:"*, gives a one-line takeaway (≤ 8 words on the card), then *"Follow for more."* (or the Part 2 line).
 - **Voice:** playful, a bit cheeky, short sentences. Write numbers as spoken ("two million"). No emojis. Spell brand names the way they're said.
 - **Headlines:** ≤ 5 words, exactly one `accent` word that's in the text. Most scenes, but at least one without, never more than 3 in a row, and never on the GistCard. The headline names the idea and must not repeat the VO.
 
 ### 4. Pick the visuals (menus only)
-- Templates, node types, families and verbs come **only** from SCRIPT-FORMAT §3. Prefer built templates. If a scene truly needs an unbuilt one (BeforeAfter, MetricChart, Zoom), use it and list it under "Needs for /video" in your summary.
+- Templates, node types, families and verbs come **only** from SCRIPT-FORMAT §3. Prefer built templates. If a scene truly needs an unbuilt one (MetricChart, Zoom), use it and list it under "Needs for /video" in your summary.
+- **Pick each breakdown diagram from the idea** with the table in SCRIPT-FORMAT §3b: name the kind of idea first, then the template. If a planned template would fit better (STATUS.md → Diagram roadmap), use the closest built one and name the better one in the hand-over.
+- **Variety:** at least 4 different templates in the breakdown (aim for 5+), no template in more than 3 scenes (continuations count), no two breakdown scenes in a row with the same template unless one continues the other (`reuse`), at least half the breakdown as diagrams, and a template order that isn't the previous episode's. `npm run validate` enforces it.
+- **Visual Reference:** if the Notion row has `Visual Reference` images (the queue saves them to `bridge/files/notion-<ID>/` first; `npm --prefix engine run refs -- <ID> --list` shows them), open each with the Read tool and look at it. Map each to a template from §3b. If none fits, use the closest and list "missing template: <what the reference shows>" under "Needs for /video", which raises it at Parts Review. It's optional: never wait for one.
 - **Families:** `outlined` = inside our system (with states), `solid` = outside it (users, third parties), `hero` = the episode's topic, at most one on screen.
 - **FlowDiagram:** give `layers` top → bottom, `nodes`, `links`. Reuse the same diagram across scenes with `stage.reuse: <scene id>` so nodes don't jump.
+- **Sequence:** 2–3 `actors`, up to 7 `steps` in total (continue across scenes with `reuse`). One `step` beat per message, on the word that names it. Keep labels short (≤12 characters with 3 actors).
+- **Split:** `before` / `after`, each with a `title` chip and 1–4 nodes. `send` a half (`args: {to, kind: roundtrip}` as needed), `highlight` the winner. `variant: race` + `slow:` for speed comparisons.
+- **Decision:** questions ≤18 characters, 1–3 checks. One `branch` beat per decision, `args.to: yes|no`.
+- **Tiers:** 2–5 tiers with short titles. `reveal` each, then `highlight` the one the voiceover lands on.
 - **Beats:** a visual change every 1.5–2s, each `on` a word that is literally in that scene's `vo` (use `"word#2"` for a repeat). Pilot density is the reference.
 - **Sounds:** don't list them, because the sound map picks them. Use a beat `sfx:` only for a deliberate exception (`none` to mute).
 - **Music:** don't write it by hand. `music:assign` (step 6) picks one of the four sibling theme tracks at random and writes `music.track`. Only set it yourself if Imad asked for a specific track.
@@ -47,6 +55,7 @@ You write **one Bytesized episode** as `episodes/<nnn-slug>/episode.yaml`. Every
 ### 5. Write the file(s)
 - Folder: `episodes/<nnn>-<slug>/episode.yaml`, where `<nnn>` = highest existing number + 1 (zero-padded) and `slug` is lowercase-kebab. For a series, use consecutive numbers (`007-caching-part-1`, `008-caching-part-2`).
 - Start with a comment line: `# Episode <nnn>. Draft (awaiting approval ✋)`.
+- Set `format: "1.4"`.
 - Leave `voice:` as `{ voice_id: TBD, speed: 1.0 }`. The next step fills it.
 
 ### 6. Assign the voice and music, then validate (run from `engine/`)
@@ -64,7 +73,9 @@ Fix every `✖` error and re-run until it says `✔ PASS`. Warnings are fine if 
 ### 8. Hand over for approval ✋ (stop here)
 Show Imad a readable version, not the raw YAML:
 - Title, target and estimated length, voice, single or Part 1/2.
-- A table: part | headline | voiceover line | what's on screen.
+- A table: part | headline | voiceover line | kind of idea → template | what's on screen.
+- The breakdown's template order next to the previous episode's.
+- If there were Visual Reference images: one line per image, saying which scene and template it became (or "missing template: …").
 - "Needs for /video": unbuilt templates, new node types or icons, missing logos.
 
 Ask for approval or changes. On approval, change the file's first comment to `# Episode <nnn>. Script approved <date>`, set INDEX status to `script approved`, and suggest running `/video <nnn>`.

@@ -1,6 +1,6 @@
 ---
 name: video
-description: Video Creator for Bytesized, the 30–60s system-design shorts of Back in a Gist. Takes an approved episodes/<nnn-slug>/episode.yaml through voiceover (ElevenLabs), storyboard review, draft render and final publishable render with the Remotion engine, and builds any missing template or part first. Use when asked to make, render, voice, storyboard or finish a Bytesized episode.
+description: Video Creator for Bytesized, the 80–90s system-design shorts of Back in a Gist. Takes an approved episodes/<nnn-slug>/episode.yaml through voiceover (ElevenLabs), storyboard review, draft render and final publishable render with the Remotion engine, and builds any missing template or part first. Use when asked to make, render, voice, storyboard or finish a Bytesized episode.
 ---
 
 # /video: episode.yaml → video
@@ -34,15 +34,15 @@ npm run voice -- <nnn>          # per scene, cached; only changed scenes are bil
 npm run validate -- <nnn>       # now uses the measured length
 ```
 - Report the characters billed.
-- If the **measured** length is outside 30–60s, don't pad or speed up. Go back to the script with Imad (trim or extend lines), then regenerate only the changed scenes.
+- If the **measured** length is outside 80–90s, don't pad or speed up. Go back to the script with Imad (trim or extend lines), then regenerate only the changed scenes.
 - Listen for mispronounced terms. Log them in `episodes/pronunciations.md` and tell Imad.
 - Set INDEX status to `voiced`.
 
 ### 3. Storyboard review ✋
 ```bash
-npm run storyboard -- <nnn>     # → episodes/<nnn-slug>/storyboard/storyboard.html
+npm run storyboard -- <nnn>     # → storyboard/storyboard.html + sections/<nn>-<scene>.jpg (one image per section)
 ```
-Before sending it, **check the stills yourself**:
+The section images are what Imad reviews on his phone in Discord (`npm run discord -- gate <nnn> storyboard`, posted by `/queue` §4). Before sending, **check the section images yourself**:
 - nothing overlapping (headline vs diagram, labels vs wires, stage vs captions)
 - beats visible at the right moment
 - one focus at a time, and no lone-word captions
@@ -53,7 +53,7 @@ Fix what you can: beat `offset`, layers, or a template fix that goes into the li
 ```bash
 npm run sync && npx remotion render ep-<nnn> ../episodes/<nnn-slug>/out/<slug>-draft.mp4 --crf=18
 ```
-Send it. Suggest Imad checks it on a phone (caption position against platform overlays, pacing). Set INDEX status to `draft rendered`.
+Send it (in a queue run: `npm run discord -- gate <nnn> draft`, which plays inline on his phone). Set INDEX status to `draft rendered`.
 
 ### 5. Final render (publishable)
 ```bash
@@ -66,6 +66,7 @@ npm run render:final -- <nnn>   # → episodes/<nnn-slug>/out/<slug>.mp4
   - 3–5 hashtags (#systemdesign #shorts and topic tags)
   - for a Part 1/2, a link line to the other part
   - if `brands:` is set, the line: *"Not affiliated with or endorsed by <Brand>. Logos are used for identification only."*
+- Render the cover: `npm run cover -- <nnn>` → `episodes/<nnn-slug>/out/cover.png` (the title + the episode's diagrams; its BigPicture panels if it has one). Look at it, and add a line to `upload.md`: `Cover: out/cover.png`. It's generated, so it isn't committed.
 - Set INDEX status to `final rendered`. After Imad posts it, set it to `published`.
 
 ### 6. Wrap up

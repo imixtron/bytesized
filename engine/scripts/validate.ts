@@ -1,4 +1,4 @@
-// Validates episode.yaml files against SCRIPT-FORMAT.md v1.0.
+// Validates episode.yaml files against SCRIPT-FORMAT.md (variety rules: v1.3).
 // Usage: npm run validate            → all episodes
 //        npm run validate -- 001     → episodes whose folder starts with 001
 import { existsSync, readdirSync, readFileSync } from "node:fs";
@@ -15,6 +15,14 @@ const filter = process.argv[2] ?? "";
 const folders = readdirSync(join(ROOT, "episodes")).filter(
   (d) => d.startsWith(filter) && existsSync(join(ROOT, "episodes", d, "episode.yaml")),
 );
+
+/** The episode just before this one (by folder number), for the variety rules. */
+const all = readdirSync(join(ROOT, "episodes")).filter((d) => /^\d+-/.test(d) && existsSync(join(ROOT, "episodes", d, "episode.yaml"))).sort();
+function previousOf(folder: string) {
+  const prev = all.filter((d) => d < folder).at(-1);
+  if (!prev) return undefined;
+  try { return parseEpisode(readFileSync(join(ROOT, "episodes", prev, "episode.yaml"), "utf8")); } catch { return undefined; }
+}
 
 let failed = 0;
 for (const folder of folders) {
@@ -34,7 +42,7 @@ for (const folder of folders) {
     const musicLib = JSON.parse(readFileSync(join(ROOT, "assets/music/library.json"), "utf8"));
     const issues = validate(ep, {
       fileExists: (p) => existsSync(join(ROOT, p)), roster, measured,
-      sfxIds: Object.keys(sfxLib.sounds), musicIds: [...Object.keys(musicLib.tracks)],
+      sfxIds: Object.keys(sfxLib.sounds), musicIds: [...Object.keys(musicLib.tracks)], previous: previousOf(folder),
     });
     const tl = buildTimeline(ep, measured);
     const vo = ep.scenes.reduce((n, s) => n + s.vo.split(/\s+/).length, 0);

@@ -4,6 +4,11 @@
 
 ## 🔴 Needed now
 
+- [ ] **Live test for Visual Reference (2 min):** in Notion → Shorts, attach any image to the `Visual Reference` cell of row **#2** (Client–Server Model; it won't change that episode), then tell me "test refs". I'll run the fetch → download → look path and remove nothing from Notion
+- [x] **Review SCRIPT-FORMAT v1.3**: approved 2026-10-06
+- [x] **Review step 3: BigPicture + cover**: approved 2026-10-06 (design language v1.6, script format v1.4)
+- [ ] **Review the 003 storyboard (round 2)** in Discord: the visuals now use the new diagrams. Approve, or Request changes
+- [x] **Review the v1.5 diagram templates (wave 1)**: approved 2026-10-06
 - [ ] **Publish the pilot**: `episodes/001-what-is-system-design/out/what-is-system-design.mp4` + copy from `out/upload.md`, then set Notion #3 → **Published**
 - [ ] **Listen to the 3 new theme siblings** (`assets/music/bytesized-theme-2.mp3`, `-3`, `-4`). Any you don't like: say which, and I'll re-prompt it (~1,125 credits each) or drop it from `episodes/music.json`
 - [ ] **Publish episode 002**: `episodes/002-monolith-vs-microservices/out/monolith-vs-microservices.mp4` + copy from `out/upload.md`, then set Notion #1 → **Published**

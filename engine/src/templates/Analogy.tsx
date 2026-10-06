@@ -6,7 +6,7 @@ import { Node } from "../parts/Node";
 import type { IconName } from "../parts/icons";
 import { fonts } from "../theme/fonts";
 import { tokens } from "../theme/tokens";
-import { Headline, centredTop, firstAt, localBeats, prevScene, stageBox, type Ctx } from "./common";
+import { GhostSlot, Headline, centredTop, firstAt, focusLevels, highlightEvents, localBeats, mixColor, prevScene, stageBox, type Ctx } from "./common";
 
 type Row = { id: string; icon: IconName; key: string; value: string };
 type AnalogyStage = { rows?: Row[]; morph?: { from: IconName; to: IconName } };
@@ -24,9 +24,9 @@ export const Analogy = ({ ctx }: { ctx: Ctx }) => {
   const rows = stage.rows ?? [];
   const top = centredTop(scene, rows.length * ROW_H + Math.max(0, rows.length - 1) * ROW_GAP);
 
-  // the most recent highlight wins focus; everything else dims (design language §1.4)
-  const lastHi = [...beats].reverse().find((b) => b.do === "highlight" && f >= b.at);
-  const focus = lastHi?.targets[0];
+  // the most recent highlight wins focus; everything else dims (design language §1.4), fading over
+  // the standard motion so a change of focus never snaps (v1.6.1)
+  const events = highlightEvents(beats, rows.map((r) => r.id));
 
   const morph = stage.morph && (() => {
     const cx = (safe.left + safe.right) / 2;
@@ -51,19 +51,22 @@ export const Analogy = ({ ctx }: { ctx: Ctx }) => {
         // rows already shown in the previous scene stay put
         const carried = (prevScene(ctx)?.stage as AnalogyStage | undefined)?.rows?.some((p) => p.id === r.id);
         const k = revealAt === undefined ? (carried ? 1 : pop(f, i * 3)) : pop(f, revealAt);
-        if (k <= 0) return null;
         const y = top + i * (ROW_H + ROW_GAP);
-        const active = focus === r.id;
-        const dimmed = focus !== undefined && !active;
+        // the row's slot is there from the scene start; the row pops in over it
+        if (k <= 0) return <GhostSlot key={r.id} x={safe.left} y={y} w={ROW_H} h={ROW_H} k={pop(f, i * tokens.motion.stagger.frames)} />;
+        const lv = focusLevels(events, r.id, f);
+        const ev = events.filter((e) => f >= e.at);
+        const toState = (e?: (typeof events)[number]) => (!e ? "idle" : e.id === r.id ? "active" : "dimmed");
+        const cur = ev.at(-1);
         return (
           <div key={r.id} style={{ position: "absolute", left: safe.left, top: y, width: safe.right - safe.left, height: ROW_H, display: "flex", alignItems: "center", gap: 44, opacity: Math.min(1, k * 1.5), transform: `translateX(${(1 - k) * -40}px)` }}>
             <div style={{ position: "relative", width: ROW_H, height: ROW_H, flex: "none" }}>
-              <Node type="server" icon={r.icon} x={ROW_H / 2} y={ROW_H / 2} w={ROW_H} state={active ? "active" : dimmed ? "dimmed" : "idle"} />
+              <Node type="server" icon={r.icon} x={ROW_H / 2} y={ROW_H / 2} w={ROW_H} state={toState(cur)} from={toState(ev.at(-2))} t={cur ? Math.min(1, (f - cur.at) / tokens.motion.standard.frames) : 1} />
             </div>
             <div>
-              <div style={{ font: `800 ${r.key.length > 12 ? 54 : 62}px/1 ${fonts.display}`, color: dimmed ? c.cream3 : c.cream }}>{r.key}</div>
-              <div style={{ font: `700 46px ${fonts.text}`, marginTop: 12, color: dimmed ? c.cream3 : c.cream2 }}>
-                = <span style={{ color: active ? c.ember : "inherit" }}>{r.value}</span>
+              <div style={{ font: `800 ${r.key.length > 12 ? 54 : 62}px/1 ${fonts.display}`, color: mixColor(c.cream, c.cream3, lv.dim) }}>{r.key}</div>
+              <div style={{ font: `700 46px ${fonts.text}`, marginTop: 12, color: mixColor(c.cream2, c.cream3, lv.dim) }}>
+                = <span style={{ color: mixColor(mixColor(c.cream2, c.cream3, lv.dim), c.ember, lv.on) }}>{r.value}</span>
               </div>
             </div>
           </div>

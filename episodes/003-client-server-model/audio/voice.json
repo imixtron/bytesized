@@ -1,0 +1,1112 @@
+{
+  "voice": "Jessica",
+  "voice_id": "cgSgspJ2msm6clMCkdW9",
+  "model": "eleven_multilingual_v2",
+  "plan": "paid",
+  "generated": "2026-10-06T11:32:33.823Z",
+  "scenes": {
+    "hook": {
+      "file": "hook.mp3",
+      "hash": "4e9170b06a",
+      "text": "Every web app you've ever used is built on one idea: the client-server model.",
+      "duration": 5.062,
+      "words": [
+        {
+          "text": "Every",
+          "start": 0,
+          "end": 0.29
+        },
+        {
+          "text": "web",
+          "start": 0.337,
+          "end": 0.534
+        },
+        {
+          "text": "app",
+          "start": 0.592,
+          "end": 0.731
+        },
+        {
+          "text": "you've",
+          "start": 0.778,
+          "end": 0.94
+        },
+        {
+          "text": "ever",
+          "start": 0.975,
+          "end": 1.149
+        },
+        {
+          "text": "used",
+          "start": 1.231,
+          "end": 1.567
+        },
+        {
+          "text": "is",
+          "start": 1.614,
+          "end": 1.707
+        },
+        {
+          "text": "built",
+          "start": 1.753,
+          "end": 1.939
+        },
+        {
+          "text": "on",
+          "start": 1.997,
+          "end": 2.078
+        },
+        {
+          "text": "one",
+          "start": 2.159,
+          "end": 2.345
+        },
+        {
+          "text": "idea:",
+          "start": 2.392,
+          "end": 2.972
+        },
+        {
+          "text": "the",
+          "start": 3.251,
+          "end": 3.355
+        },
+        {
+          "text": "client-server",
+          "start": 3.39,
+          "end": 4.098
+        },
+        {
+          "text": "model.",
+          "start": 4.145,
+          "end": 5.062
+        }
+      ],
+      "plan": "paid"
+    },
+    "idea": {
+      "file": "idea.mp3",
+      "hash": "1dd142e2e0",
+      "text": "Think restaurant. You're the client: you order. The waiter carries it to the kitchen, that's the server. It cooks, and your food comes back.",
+      "duration": 10.263,
+      "words": [
+        {
+          "text": "Think",
+          "start": 0,
+          "end": 0.325
+        },
+        {
+          "text": "restaurant.",
+          "start": 0.418,
+          "end": 1.08
+        },
+        {
+          "text": "You're",
+          "start": 1.521,
+          "end": 1.753
+        },
+        {
+          "text": "the",
+          "start": 1.788,
+          "end": 1.858
+        },
+        {
+          "text": "client:",
+          "start": 1.881,
+          "end": 2.415
+        },
+        {
+          "text": "you",
+          "start": 2.566,
+          "end": 2.682
+        },
+        {
+          "text": "order.",
+          "start": 2.763,
+          "end": 3.332
+        },
+        {
+          "text": "The",
+          "start": 3.843,
+          "end": 3.982
+        },
+        {
+          "text": "waiter",
+          "start": 4.029,
+          "end": 4.296
+        },
+        {
+          "text": "carries",
+          "start": 4.354,
+          "end": 4.679
+        },
+        {
+          "text": "it",
+          "start": 4.725,
+          "end": 4.795
+        },
+        {
+          "text": "to",
+          "start": 4.83,
+          "end": 4.876
+        },
+        {
+          "text": "the",
+          "start": 4.934,
+          "end": 5.004
+        },
+        {
+          "text": "kitchen,",
+          "start": 5.05,
+          "end": 5.573
+        },
+        {
+          "text": "that's",
+          "start": 5.642,
+          "end": 5.909
+        },
+        {
+          "text": "the",
+          "start": 5.968,
+          "end": 6.037
+        },
+        {
+          "text": "server.",
+          "start": 6.084,
+          "end": 6.745
+        },
+        {
+          "text": "It",
+          "start": 7.256,
+          "end": 7.396
+        },
+        {
+          "text": "cooks,",
+          "start": 7.442,
+          "end": 8.069
+        },
+        {
+          "text": "and",
+          "start": 8.104,
+          "end": 8.243
+        },
+        {
+          "text": "your",
+          "start": 8.29,
+          "end": 8.394
+        },
+        {
+          "text": "food",
+          "start": 8.429,
+          "end": 8.591
+        },
+        {
+          "text": "comes",
+          "start": 8.638,
+          "end": 8.835
+        },
+        {
+          "text": "back.",
+          "start": 8.893,
+          "end": 10.263
+        }
+      ],
+      "plan": "paid"
+    },
+    "history": {
+      "file": "history.mp3",
+      "hash": "55893bd1bc",
+      "text": "First, one giant mainframe did everything. Then your PC did it all alone. Then the web split the job.",
+      "duration": 7.523,
+      "words": [
+        {
+          "text": "First,",
+          "start": 0,
+          "end": 0.488
+        },
+        {
+          "text": "one",
+          "start": 0.58,
+          "end": 0.824
+        },
+        {
+          "text": "giant",
+          "start": 0.871,
+          "end": 1.173
+        },
+        {
+          "text": "mainframe",
+          "start": 1.219,
+          "end": 1.707
+        },
+        {
+          "text": "did",
+          "start": 1.753,
+          "end": 1.869
+        },
+        {
+          "text": "everything.",
+          "start": 1.927,
+          "end": 2.612
+        },
+        {
+          "text": "Then",
+          "start": 3.053,
+          "end": 3.228
+        },
+        {
+          "text": "your",
+          "start": 3.262,
+          "end": 3.367
+        },
+        {
+          "text": "PC",
+          "start": 3.413,
+          "end": 3.646
+        },
+        {
+          "text": "did",
+          "start": 3.82,
+          "end": 3.947
+        },
+        {
+          "text": "it",
+          "start": 3.994,
+          "end": 4.04
+        },
+        {
+          "text": "all",
+          "start": 4.075,
+          "end": 4.18
+        },
+        {
+          "text": "alone.",
+          "start": 4.238,
+          "end": 4.853
+        },
+        {
+          "text": "Then",
+          "start": 5.55,
+          "end": 5.77
+        },
+        {
+          "text": "the",
+          "start": 5.817,
+          "end": 5.886
+        },
+        {
+          "text": "web",
+          "start": 5.933,
+          "end": 6.084
+        },
+        {
+          "text": "split",
+          "start": 6.142,
+          "end": 6.362
+        },
+        {
+          "text": "the",
+          "start": 6.397,
+          "end": 6.467
+        },
+        {
+          "text": "job.",
+          "start": 6.502,
+          "end": 7.523
+        }
+      ],
+      "plan": "paid"
+    },
+    "request": {
+      "file": "request.mp3",
+      "hash": "b747bc18d0",
+      "text": "Tap a button, and your browser sends a request: a tiny message saying what you want.",
+      "duration": 5.944,
+      "words": [
+        {
+          "text": "Tap",
+          "start": 0,
+          "end": 0.255
+        },
+        {
+          "text": "a",
+          "start": 0.313,
+          "end": 0.337
+        },
+        {
+          "text": "button,",
+          "start": 0.372,
+          "end": 0.789
+        },
+        {
+          "text": "and",
+          "start": 0.824,
+          "end": 0.964
+        },
+        {
+          "text": "your",
+          "start": 1.01,
+          "end": 1.103
+        },
+        {
+          "text": "browser",
+          "start": 1.138,
+          "end": 1.474
+        },
+        {
+          "text": "sends",
+          "start": 1.533,
+          "end": 1.741
+        },
+        {
+          "text": "a",
+          "start": 1.776,
+          "end": 1.8
+        },
+        {
+          "text": "request:",
+          "start": 1.858,
+          "end": 2.531
+        },
+        {
+          "text": "a",
+          "start": 3.135,
+          "end": 3.193
+        },
+        {
+          "text": "tiny",
+          "start": 3.274,
+          "end": 3.576
+        },
+        {
+          "text": "message",
+          "start": 3.634,
+          "end": 4.075
+        },
+        {
+          "text": "saying",
+          "start": 4.11,
+          "end": 4.342
+        },
+        {
+          "text": "what",
+          "start": 4.377,
+          "end": 4.481
+        },
+        {
+          "text": "you",
+          "start": 4.516,
+          "end": 4.586
+        },
+        {
+          "text": "want.",
+          "start": 4.656,
+          "end": 5.944
+        }
+      ],
+      "plan": "paid"
+    },
+    "backend": {
+      "file": "backend.mp3",
+      "hash": "d2406cde89",
+      "text": "The backend checks the rules, then asks the database for your data.",
+      "duration": 3.901,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.163
+        },
+        {
+          "text": "backend",
+          "start": 0.209,
+          "end": 0.58
+        },
+        {
+          "text": "checks",
+          "start": 0.615,
+          "end": 0.871
+        },
+        {
+          "text": "the",
+          "start": 0.917,
+          "end": 0.987
+        },
+        {
+          "text": "rules,",
+          "start": 1.033,
+          "end": 1.567
+        },
+        {
+          "text": "then",
+          "start": 1.614,
+          "end": 1.765
+        },
+        {
+          "text": "asks",
+          "start": 1.823,
+          "end": 2.067
+        },
+        {
+          "text": "the",
+          "start": 2.101,
+          "end": 2.171
+        },
+        {
+          "text": "database",
+          "start": 2.218,
+          "end": 2.647
+        },
+        {
+          "text": "for",
+          "start": 2.682,
+          "end": 2.775
+        },
+        {
+          "text": "your",
+          "start": 2.81,
+          "end": 2.914
+        },
+        {
+          "text": "data.",
+          "start": 2.949,
+          "end": 3.901
+        }
+      ],
+      "plan": "paid"
+    },
+    "response": {
+      "file": "response.mp3",
+      "hash": "919c8ab12d",
+      "text": "It packs the answer into a response and sends it back. Usually in under a second.",
+      "duration": 5.062,
+      "words": [
+        {
+          "text": "It",
+          "start": 0,
+          "end": 0.186
+        },
+        {
+          "text": "packs",
+          "start": 0.221,
+          "end": 0.464
+        },
+        {
+          "text": "the",
+          "start": 0.499,
+          "end": 0.569
+        },
+        {
+          "text": "answer",
+          "start": 0.615,
+          "end": 0.871
+        },
+        {
+          "text": "into",
+          "start": 0.917,
+          "end": 1.068
+        },
+        {
+          "text": "a",
+          "start": 1.138,
+          "end": 1.161
+        },
+        {
+          "text": "response",
+          "start": 1.219,
+          "end": 1.695
+        },
+        {
+          "text": "and",
+          "start": 1.73,
+          "end": 1.846
+        },
+        {
+          "text": "sends",
+          "start": 1.916,
+          "end": 2.136
+        },
+        {
+          "text": "it",
+          "start": 2.183,
+          "end": 2.241
+        },
+        {
+          "text": "back.",
+          "start": 2.276,
+          "end": 2.717
+        },
+        {
+          "text": "Usually",
+          "start": 3.158,
+          "end": 3.518
+        },
+        {
+          "text": "in",
+          "start": 3.564,
+          "end": 3.611
+        },
+        {
+          "text": "under",
+          "start": 3.657,
+          "end": 3.831
+        },
+        {
+          "text": "a",
+          "start": 3.878,
+          "end": 3.913
+        },
+        {
+          "text": "second.",
+          "start": 3.959,
+          "end": 5.062
+        }
+      ],
+      "plan": "paid"
+    },
+    "roles": {
+      "file": "roles.mp3",
+      "hash": "af12807df2",
+      "text": "So the client shows things, and the server decides things. Never trust the client with the rules.",
+      "duration": 5.851,
+      "words": [
+        {
+          "text": "So",
+          "start": 0,
+          "end": 0.163
+        },
+        {
+          "text": "the",
+          "start": 0.209,
+          "end": 0.279
+        },
+        {
+          "text": "client",
+          "start": 0.302,
+          "end": 0.615
+        },
+        {
+          "text": "shows",
+          "start": 0.662,
+          "end": 0.894
+        },
+        {
+          "text": "things,",
+          "start": 0.94,
+          "end": 1.37
+        },
+        {
+          "text": "and",
+          "start": 1.405,
+          "end": 1.533
+        },
+        {
+          "text": "the",
+          "start": 1.579,
+          "end": 1.649
+        },
+        {
+          "text": "server",
+          "start": 1.695,
+          "end": 1.985
+        },
+        {
+          "text": "decides",
+          "start": 2.043,
+          "end": 2.403
+        },
+        {
+          "text": "things.",
+          "start": 2.45,
+          "end": 3.007
+        },
+        {
+          "text": "Never",
+          "start": 3.448,
+          "end": 3.669
+        },
+        {
+          "text": "trust",
+          "start": 3.715,
+          "end": 3.924
+        },
+        {
+          "text": "the",
+          "start": 3.959,
+          "end": 4.029
+        },
+        {
+          "text": "client",
+          "start": 4.052,
+          "end": 4.342
+        },
+        {
+          "text": "with",
+          "start": 4.365,
+          "end": 4.458
+        },
+        {
+          "text": "the",
+          "start": 4.493,
+          "end": 4.563
+        },
+        {
+          "text": "rules.",
+          "start": 4.598,
+          "end": 5.851
+        }
+      ],
+      "plan": "paid"
+    },
+    "twotier": {
+      "file": "twotier.mp3",
+      "hash": "9c726e2ed0",
+      "text": "Some apps are two-tier: the client talks straight to the database. Simple, but risky: anyone can poke your data.",
+      "duration": 7.848,
+      "words": [
+        {
+          "text": "Some",
+          "start": 0,
+          "end": 0.232
+        },
+        {
+          "text": "apps",
+          "start": 0.255,
+          "end": 0.453
+        },
+        {
+          "text": "are",
+          "start": 0.476,
+          "end": 0.58
+        },
+        {
+          "text": "two-tier:",
+          "start": 0.627,
+          "end": 1.347
+        },
+        {
+          "text": "the",
+          "start": 1.672,
+          "end": 1.765
+        },
+        {
+          "text": "client",
+          "start": 1.8,
+          "end": 2.125
+        },
+        {
+          "text": "talks",
+          "start": 2.148,
+          "end": 2.392
+        },
+        {
+          "text": "straight",
+          "start": 2.426,
+          "end": 2.775
+        },
+        {
+          "text": "to",
+          "start": 2.81,
+          "end": 2.868
+        },
+        {
+          "text": "the",
+          "start": 2.914,
+          "end": 2.984
+        },
+        {
+          "text": "database.",
+          "start": 3.019,
+          "end": 3.75
+        },
+        {
+          "text": "Simple,",
+          "start": 4.133,
+          "end": 4.516
+        },
+        {
+          "text": "but",
+          "start": 4.539,
+          "end": 4.667
+        },
+        {
+          "text": "risky:",
+          "start": 4.714,
+          "end": 5.306
+        },
+        {
+          "text": "anyone",
+          "start": 5.747,
+          "end": 6.095
+        },
+        {
+          "text": "can",
+          "start": 6.13,
+          "end": 6.223
+        },
+        {
+          "text": "poke",
+          "start": 6.281,
+          "end": 6.478
+        },
+        {
+          "text": "your",
+          "start": 6.513,
+          "end": 6.618
+        },
+        {
+          "text": "data.",
+          "start": 6.653,
+          "end": 7.848
+        }
+      ],
+      "plan": "paid"
+    },
+    "threetier": {
+      "file": "threetier.mp3",
+      "hash": "504bfa9b4a",
+      "text": "Three-tier puts a server in the middle. Client, server, database: each with one job.",
+      "duration": 6.316,
+      "words": [
+        {
+          "text": "Three-tier",
+          "start": 0,
+          "end": 0.546
+        },
+        {
+          "text": "puts",
+          "start": 0.615,
+          "end": 0.789
+        },
+        {
+          "text": "a",
+          "start": 0.824,
+          "end": 0.848
+        },
+        {
+          "text": "server",
+          "start": 0.906,
+          "end": 1.184
+        },
+        {
+          "text": "in",
+          "start": 1.231,
+          "end": 1.277
+        },
+        {
+          "text": "the",
+          "start": 1.312,
+          "end": 1.382
+        },
+        {
+          "text": "middle.",
+          "start": 1.416,
+          "end": 1.869
+        },
+        {
+          "text": "Client,",
+          "start": 2.31,
+          "end": 2.868
+        },
+        {
+          "text": "server,",
+          "start": 2.902,
+          "end": 3.367
+        },
+        {
+          "text": "database:",
+          "start": 3.413,
+          "end": 4.145
+        },
+        {
+          "text": "each",
+          "start": 4.319,
+          "end": 4.563
+        },
+        {
+          "text": "with",
+          "start": 4.598,
+          "end": 4.725
+        },
+        {
+          "text": "one",
+          "start": 4.783,
+          "end": 4.923
+        },
+        {
+          "text": "job.",
+          "start": 4.969,
+          "end": 6.316
+        }
+      ],
+      "plan": "paid"
+    },
+    "crowd": {
+      "file": "crowd.mp3",
+      "hash": "2044642ddc",
+      "text": "Now a million people show up at once, and one server starts to melt.",
+      "duration": 4.737,
+      "words": [
+        {
+          "text": "Now",
+          "start": 0,
+          "end": 0.29
+        },
+        {
+          "text": "a",
+          "start": 0.673,
+          "end": 0.766
+        },
+        {
+          "text": "million",
+          "start": 0.859,
+          "end": 1.184
+        },
+        {
+          "text": "people",
+          "start": 1.242,
+          "end": 1.533
+        },
+        {
+          "text": "show",
+          "start": 1.579,
+          "end": 1.765
+        },
+        {
+          "text": "up",
+          "start": 1.823,
+          "end": 1.927
+        },
+        {
+          "text": "at",
+          "start": 1.974,
+          "end": 2.055
+        },
+        {
+          "text": "once,",
+          "start": 2.136,
+          "end": 2.485
+        },
+        {
+          "text": "and",
+          "start": 2.508,
+          "end": 2.635
+        },
+        {
+          "text": "one",
+          "start": 2.705,
+          "end": 2.902
+        },
+        {
+          "text": "server",
+          "start": 2.961,
+          "end": 3.286
+        },
+        {
+          "text": "starts",
+          "start": 3.344,
+          "end": 3.622
+        },
+        {
+          "text": "to",
+          "start": 3.669,
+          "end": 3.738
+        },
+        {
+          "text": "melt.",
+          "start": 3.808,
+          "end": 4.737
+        }
+      ],
+      "plan": "paid"
+    },
+    "scale": {
+      "file": "scale.mp3",
+      "hash": "a65f11aab2",
+      "text": "Don't buy one bigger server. Add more servers, put a load balancer in front, and spread the load.",
+      "duration": 5.759,
+      "words": [
+        {
+          "text": "Don't",
+          "start": 0,
+          "end": 0.244
+        },
+        {
+          "text": "buy",
+          "start": 0.279,
+          "end": 0.395
+        },
+        {
+          "text": "one",
+          "start": 0.464,
+          "end": 0.592
+        },
+        {
+          "text": "bigger",
+          "start": 0.627,
+          "end": 0.836
+        },
+        {
+          "text": "server.",
+          "start": 0.906,
+          "end": 1.405
+        },
+        {
+          "text": "Add",
+          "start": 1.788,
+          "end": 2.009
+        },
+        {
+          "text": "more",
+          "start": 2.055,
+          "end": 2.241
+        },
+        {
+          "text": "servers,",
+          "start": 2.287,
+          "end": 2.821
+        },
+        {
+          "text": "put",
+          "start": 2.868,
+          "end": 2.995
+        },
+        {
+          "text": "a",
+          "start": 3.03,
+          "end": 3.053
+        },
+        {
+          "text": "load",
+          "start": 3.1,
+          "end": 3.274
+        },
+        {
+          "text": "balancer",
+          "start": 3.309,
+          "end": 3.692
+        },
+        {
+          "text": "in",
+          "start": 3.738,
+          "end": 3.796
+        },
+        {
+          "text": "front,",
+          "start": 3.866,
+          "end": 4.168
+        },
+        {
+          "text": "and",
+          "start": 4.203,
+          "end": 4.319
+        },
+        {
+          "text": "spread",
+          "start": 4.377,
+          "end": 4.656
+        },
+        {
+          "text": "the",
+          "start": 4.69,
+          "end": 4.76
+        },
+        {
+          "text": "load.",
+          "start": 4.807,
+          "end": 5.759
+        }
+      ],
+      "plan": "paid"
+    },
+    "gist": {
+      "file": "gist.mp3",
+      "hash": "b4980e1ef4",
+      "text": "That's the gist: clients ask, servers answer, and more servers answer more clients. Follow for more.",
+      "duration": 7.152,
+      "words": [
+        {
+          "text": "That's",
+          "start": 0,
+          "end": 0.267
+        },
+        {
+          "text": "the",
+          "start": 0.313,
+          "end": 0.383
+        },
+        {
+          "text": "gist:",
+          "start": 0.43,
+          "end": 0.998
+        },
+        {
+          "text": "clients",
+          "start": 1.324,
+          "end": 1.753
+        },
+        {
+          "text": "ask,",
+          "start": 1.811,
+          "end": 2.403
+        },
+        {
+          "text": "servers",
+          "start": 2.647,
+          "end": 3.077
+        },
+        {
+          "text": "answer,",
+          "start": 3.146,
+          "end": 3.611
+        },
+        {
+          "text": "and",
+          "start": 3.646,
+          "end": 3.75
+        },
+        {
+          "text": "more",
+          "start": 3.82,
+          "end": 4.029
+        },
+        {
+          "text": "servers",
+          "start": 4.075,
+          "end": 4.47
+        },
+        {
+          "text": "answer",
+          "start": 4.54,
+          "end": 4.818
+        },
+        {
+          "text": "more",
+          "start": 4.865,
+          "end": 5.016
+        },
+        {
+          "text": "clients.",
+          "start": 5.05,
+          "end": 5.77
+        },
+        {
+          "text": "Follow",
+          "start": 6.095,
+          "end": 6.385
+        },
+        {
+          "text": "for",
+          "start": 6.444,
+          "end": 6.548
+        },
+        {
+          "text": "more.",
+          "start": 6.594,
+          "end": 7.152
+        }
+      ],
+      "plan": "paid"
+    }
+  }
+}

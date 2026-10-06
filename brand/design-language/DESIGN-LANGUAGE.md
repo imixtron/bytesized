@@ -1,6 +1,6 @@
-# Bytesized Design Language — v1.4
+# Bytesized Design Language — v1.6.1
 
-> **v1.4, locked (v1.3 approved by Imad 2026-09-29; v1.4 music change requested by Imad 2026-10-01).** Changes need a versioned update (v1.5…) with explicit approval. See the [changelog](#changelog).
+> **v1.6.1, locked (focus fades + ghost slots requested by Imad 2026-10-06 after the 003 draft review; BigPicture + cover approved 2026-10-06; v1.5 diagram templates 2026-10-06; v1.4 music 2026-10-01; v1.3 2026-09-29).** Changes need a versioned update (v1.7…) with explicit approval. See the [changelog](#changelog).
 > - Machine-readable values: [`tokens.json`](tokens.json). The engine reads this file and never hard-codes values.
 > - Visual reference: [`v1.2-reference.png`](v1.2-reference.png) (rendered by the engine) for layout. [`design-language-v1.1.html`](design-language-v1.1.html) is frozen for colour, type and components (it predates the rename, so it still says "bitesized").
 
@@ -67,6 +67,28 @@ Minimum text size is 32px. The Canva brand fonts (Holiday, Trend Sans Four) are 
 - **Icons:** 24-grid line icons, 2px rounded strokes. Starter set: server, db, lb, phone, cache, queue, city, box, cop, scale, pulse, gauge.
 - **Cards:** same style as nodes. The **gist card** is a cream card with the logo's bite cut from its corner.
 
+## 5b. Diagram templates (v1.5)
+Values live in `tokens.json → diagram`. Gallery: Studio → Gallery → Diagrams-v1-5 (approved renders in `engine/out/v1.5-diagrams/`).
+
+- **Panels.** Every diagram template draws its body inside a panel (local coordinates, sized to the stage), so a later BigPicture beat can tile several panels into one composite.
+- **Direction.** Flows still run top → bottom, except **Sequence messages and the rows inside Split halves, which run left → right**.
+- **No new colours.** Lit paths and the current step badge are orange; wedges and bars reuse the node hatch. ok/warn/down stay system-health only (accepted ✓, rejected ✕, lost ✕).
+
+| Template | Shows | Variants |
+|---|---|---|
+| **Sequence** | 2–3 actors with dashed lifelines; numbered messages step down over time. The current badge is orange and a packet rides the arrow as it draws | 2 lanes · 3 lanes · side note (done locally) · lost message (✕ halfway) · continues across scenes (`reuse`) |
+| **Split** (also draws `BeforeAfter`) | The same idea twice, stacked top/bottom: a title chip and a row of nodes per half. The focused half stays bright, the other dims | compare · race (both send at once; the faster half's result lands first, in ember) |
+| **Decision** | Start node, 1–3 question diamonds down a spine, the "yes" outcome below, "no" outcomes to the right. The path a packet takes lights orange | linear checks · shared reject outcome · retry loop (dashed "fix + resend") |
+| **Tiers** | Levels of a trade-off | stack + up to 2 tapered axis wedges · pyramid · spectrum dial with a sliding marker |
+
+New verbs: `step` (Sequence), `branch` (Decision, `args.to: yes|no`), `race` (Split). Sound map: step/branch → `pop`, race → `whoosh`. New icons: check, cross, lock, key, file, clock, retry, hot, warm, cold, shield, cpu, disk.
+
+## 5c. BigPicture and the cover (v1.6)
+Values live in `tokens.json → bigPicture` and `cover`. Approved renders: `engine/out/v1.6-bigpicture/`.
+
+- **BigPicture beat (optional).** The last breakdown scene, straight before the gist, 3–5s: 2–4 of the episode's own diagrams, **frozen on their last frame**, tiled two across. The camera starts inside panel 1 and pulls back (24 frames) to show how the pieces fit; the rest fade in. Each panel has a number badge on its top border and a short mono label on its bottom border. `highlight` keeps one panel bright and dims the others. Usually no headline (it's a big-visual moment). Use it only when the breakdown described **parts of one system that connect**; skip it for single-mechanism topics.
+- **Cover / thumbnail.** One 1080×1920 image per episode: the title (Unbounded, last word in ember) over up to 4 diagram panels: the BigPicture's panels, or, without one, the last frame of each diagram (one per template). Corner mark only: our logos stay in the sting, and there's no end card. `npm run cover -- <nnn>` → `episodes/<nnn-slug>/out/cover.png` (generated, not committed).
+
 ## 6. Motion
 | Token | Value |
 |---|---|
@@ -77,6 +99,8 @@ Minimum text size is 32px. The Canva brand fonts (Holiday, Trend Sans Four) are 
 | Shake (failure) | 300ms, ±6px |
 | Bite wipe | 300ms, **branding sting only** |
 | Rhythm | A new motion every 1.5–2s, always on a voiceover word |
+| Focus fade (v1.6.1) | A change of focus (highlight, dim, the newest card) eases over Standard (300ms). Nothing switches bright ↔ dim in one frame |
+| Ghost slots (v1.6.1) | Reveal templates (Analogy, ThreeCards, Tiers) draw faint dashed slots from the first frame; each item pops in over its slot, so the stage is never empty before the first named word |
 | Scene change | Hard cut or camera push, on a beat |
 
 ## 7. Branding sting (fixed, right after the hook)
@@ -119,5 +143,8 @@ Playful and slightly cheeky ("every CPU earns its keep"), tuned per episode.
 ## Changelog
 | Version | Date | Change |
 |---|---|---|
+| v1.6.1 | 2026-10-06 | §6 focus fades and ghost slots (`motion.focusFade`, `motion.ghost`). Fixes the "snaps at the scene end" / "plays late" feel Imad flagged on the 003 draft |
+| v1.6 | 2026-10-06 | §5c BigPicture pull-back beat and the episode cover, `tokens.bigPicture` / `tokens.cover`. Approved by Imad 2026-10-06 |
+| v1.5 | 2026-10-06 | §5b wave-1 diagram templates (Sequence, Split, Decision, Tiers), panels, new verbs and icons, `tokens.diagram`. Approved by Imad 2026-10-06 |
 | v1.4 | 2026-10-01 | §8 Music: "one channel theme under every short" → one of the four sibling theme tracks (`bytesized-theme`, `-2`, `-3`, `-4`), picked at random per episode (`episodes/music.json`, `npm run music:assign`). Requested by Imad 2026-10-01 |
 | v1.3 | 2026-09-29 | Audio library, sound map and licensing gate (approved by Imad) |

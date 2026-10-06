@@ -2,7 +2,8 @@
 // and the headline (which carries over without re-animating when two scenes share it).
 import { useCurrentFrame } from "remotion";
 import type { Episode, NodeSpec, Scene } from "../episode/schema";
-import { pop } from "../motion/motion";
+import { interpolateColors } from "remotion";
+import { pop, tween } from "../motion/motion";
 import type { NodeState } from "../parts/Node";
 import { fonts } from "../theme/fonts";
 import { tokens } from "../theme/tokens";
@@ -103,3 +104,36 @@ export function stageBox(scene: Scene, hasHeadline = Boolean(scene.headline)) {
 }
 /** Top y that vertically centres a block of height `h` in the stage. */
 export const centredTop = (scene: Scene, h: number) => stageBox(scene).center - h / 2;
+
+// ---------------------------------------------------------------- focus fades (design language v1.6.1)
+/** A change of focus: `id` becomes the focus. `explicit` (a highlight) also pushes everything else back;
+ *  a plain reveal only marks the newest item. */
+export type FocusEvent = { at: number; id?: string; explicit: boolean };
+
+/** How focused (`on`) and how pushed back (`dim`) an item is at frame f, 0→1, easing over the standard
+ *  motion between focus changes instead of jumping in one frame. */
+export function focusLevels(events: FocusEvent[], id: string, f: number) {
+  const target = (e?: FocusEvent) => ({ on: e?.id === id ? 1 : 0, dim: e?.explicit && e.id !== undefined && e.id !== id ? 1 : 0 });
+  const past = events.filter((e) => f >= e.at).sort((x, y) => x.at - y.at);
+  const cur = past.at(-1);
+  const a = target(past.at(-2));
+  const b = target(cur);
+  const t = cur ? tween(f, cur.at, tokens.motion.standard.frames) : 1;
+  return { on: a.on + (b.on - a.on) * t, dim: a.dim + (b.dim - a.dim) * t };
+}
+
+/** Colour blend for focus fades. */
+export const mixColor = (a: string, b: string, t: number) => (t <= 0 ? a : t >= 1 ? b : interpolateColors(t, [0, 1], [a, b]));
+
+/** Focus events from highlight beats (explicit) on the given ids. */
+export const highlightEvents = (beats: LocalBeat[], ids: string[]): FocusEvent[] =>
+  beats.filter((b) => b.do === "highlight").flatMap((b) => {
+    const id = b.targets.find((t) => ids.includes(t));
+    return id ? [{ at: b.at, id, explicit: true }] : [];
+  });
+
+/** A faint dashed slot where something will appear, drawn from the scene start so the stage is never
+ *  empty before the first named word (design language v1.6.1). */
+export const GhostSlot = ({ x, y, w, h, radius = 30, k = 1 }: { x: number; y: number; w: number; h: number; radius?: number; k?: number }) => (
+  <div style={{ position: "absolute", left: x, top: y, width: w, height: h, borderRadius: radius, border: `4px dashed ${c.line}`, opacity: Math.min(1, k * 1.4) * tokens.motion.ghost.opacity }} />
+);

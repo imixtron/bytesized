@@ -1,33 +1,56 @@
 # Bytesized: status
 
-_Last updated 2026-10-05. Replaces the old PLAN.md and PROGRESS.md._
+_Last updated 2026-10-06. Replaces the old PLAN.md and PROGRESS.md._
 
 ## Where we are
 | Area | State |
 |---|---|
 | Brand | ✅ Bytesized logo ("The Bite") + Back in a Gist logo, both vector |
-| Design language | ✅ **v1.4 locked** (music: 4 sibling themes, random per episode; charcoal stage, orange sting after the hook, top bar and mark, centred stage, lower captions, audio library and sound map) |
-| Script format | ✅ **v1.1 locked** (Hook → sting → Idea → Breakdown → Gist, 30–60s, Part 1/2, beat `sfx:` override) |
-| Engine | ✅ Remotion engine: 5 of 8 templates built (Hook, Analogy, FlowDiagram, ThreeCards, GistCard). BeforeAfter, MetricChart and Zoom get built when an episode needs them |
-| Audio | ✅ ElevenLabs voiceover with word timing · round-robin voices · 8 SFX + 4 sibling theme tracks (random per episode, `episodes/music.json`), all paid-plan and ✔ licensed |
+| Design language | ✅ **v1.6.1 locked** 2026-10-06 (focus fades + ghost slots; v1.6 BigPicture pull-back + episode cover; v1.5 wave-1 diagram templates: Sequence, Split, Decision, Tiers, as panels; v1.4 music: 4 sibling themes, random per episode; charcoal stage, orange sting after the hook, top bar and mark, centred stage, lower captions, audio library and sound map) |
+| Script format | ✅ **v1.4 locked** 2026-10-06 (optional BigPicture before the gist; `/script` writes `format: "1.4"`). v1.3: diagram-choice table §3b, Sequence/Split/Decision/Tiers in the menu, variety rules (hard fails for format ≥1.3). v1.2 (Hook → sting → Idea → Breakdown ×6–12 → Gist, **80–90s**, never over 90s, Part 1/2, beat `sfx:` override) |
+| Engine | ✅ Remotion engine: 10 templates (Hook, Analogy, FlowDiagram, ThreeCards, GistCard + v1.5 Sequence, Split/BeforeAfter, Decision, Tiers + v1.6 BigPicture) and `npm run cover`. Validator has the v1.3 variety rules (hard only for `format: "1.3"` episodes). The v1.5–v1.6.1 engine, brand and doc changes were committed with 003. Gallery renders in `engine/out/` stay uncommitted. MetricChart and Zoom are wave 2 |
+| Audio | ✅ ElevenLabs voiceover with word timing · round-robin voices · 8 SFX + 4 sibling theme tracks, **95s each** (random per episode, `episodes/music.json`), all paid-plan and ✔ licensed |
 | Skills | ✅ `/script`, `/video` and `/queue` |
-| Pilot (ep 001) | ✅ **Final rendered and locked** (41.75s, paid audio, `out/upload.md`) · Notion #3 Rendered · ready to publish |
+| Pilot (ep 001) | 🔁 **Rebuild to 80–90s** (after 002). Old 41.75s final exists, don't publish it |
 | Notion queue | ✅ `/queue` skill, `Pipeline Status` + `AI Notes` columns, status map (AGENTS.md §1b). ✅ Mac mini set up |
 | Discord | ✅ **Approvals in Discord** (`bridge/`): gateway integration `bytesized`, `bytesized-bridge` container (webhooks + 6h tick at 00/06/12/18), launchd runner → `claude -p`. Thread per episode, script card, storyboard section images, draft MP4, Approve / Request changes. Desktop scheduled task paused |
-| Episode 002 | ✅ **Final rendered**: Monolith vs Microservices (Notion #1, Laura, 38.1s, 512 credits, `out/upload.md`) · ready to publish |
-| Next | Publish the pilot and 002 · next Idea via Discord "Start the next Idea now?" or the next tick |
+| Episode 002 | 🔁 **Rebuild to 80–90s** (after 003): Monolith vs Microservices (Notion #1, Laura). Old 38.1s final exists, don't publish it |
+| Episode 003 | ✅ **Final rendered** 2026-10-06: The Client–Server Model (Notion #2, Jessica, 81.1s, 1,108 credits). Ready for Imad to publish |
+| Next | Rebuild 002 → then 001 (`/queue` §1b) → then new Ideas |
+| Diagram variety plan | Agreed 2026-10-06. Process steps + 4-wave template roadmap (25 templates) in [Diagram roadmap](#diagram-roadmap) below. Now: wave 1 ✅ (v1.5) · step 2 ✅ (v1.3) · step 3 ✅ (v1.6 / v1.4) · step 4 🟡 wired, needs one live test · next: wave 2 |
+
+## Diagram roadmap
+_Agreed with Imad 2026-10-06. Goal: varied, diagram-first shorts that don't reuse the last episode's look. Each wave adds templates (gallery stills + MP4s → Imad approves → design language bump) and nothing reaches an episode before approval._
+
+**Process steps**
+1. ✅ Wave 1 templates as composable panels (approved 2026-10-06, design language v1.5)
+2. ✅ Approved 2026-10-06 (SCRIPT-FORMAT v1.3 + `/script`): diagram-choice table + variety rules in `/script` and the validator (SCRIPT-FORMAT v1.3): max 2–3 scenes per template, ≥4–5 different templates in the breakdown, never the previous episode's template order
+3. ✅ Approved 2026-10-06 (design language v1.6, script format v1.4): optional **BigPicture** beat (3–5s pull-back over the panels just before the gist, only for whole-system topics) + cover/thumbnail frame export
+4. 🟡 Wired 2026-10-06, live test pending: the queue fetches the row's **Visual Reference** files (§3a) → `npm run refs` saves them to `bridge/files/notion-<ID>/` (gitignored) → `/script` maps each to a template, or raises a missing template at Parts Review
+5. Waves 2–4 below, one at a time
+
+**Template waves (25 total)**
+| Wave | Templates | Status | Covers |
+|---|---|---|---|
+| — | Hook, Analogy, FlowDiagram, ThreeCards, GistCard | ✅ approved | Openers, analogies, request flow, three points, takeaway |
+| 1 | Sequence, Split (+BeforeAfter), Decision, Tiers | ✅ approved 2026-10-06 | Protocols, A vs B, rules/branching, trade-off levels |
+| 2 | Tree (radial = MindMap), Chart, Timeline, Zoom, StateMachine | planned | Hierarchies/data structures, numbers, time, internals, state loops (circuit breaker, leader election) |
+| 3 | Ring, Cells, Stream, Cluster, Graph | planned | Consistent hashing, sharding/buckets, queues/partitions, quorum/consensus, dependencies |
+| 4 | Transform, Snippet, Estimate, Fleet, Map, DataView, Matrix | planned | Hashing/encryption/serialization, payloads/APIs, back-of-envelope maths, autoscaling/deploys, geography, the data itself, multi-option comparisons |
+
+**Variants, not new templates:** Layers (OSI, middleware) → Tiers · Funnel (traffic through CDN → cache → DB) → Chart · logical clocks → multi-lane Timeline · MindMap → Tree (radial). Anything else rare comes in through Visual Reference + the Parts Review gate.
 
 ## Key decisions (the why, in one line each)
 - **Remotion + TypeScript**, one `episode.yaml` per episode, visuals only from fixed menus, so output is predictable and on-brand.
 - **Logos after the hook, not at the start or end:** retention research says hook first. The sting is the brand moment.
 - **Charcoal everywhere, orange only for the sting:** the brand rule is that our logos always sit on orange.
-- **30–60s** (was under 30s): room to explain properly. Topics too big for 60s split into two parts.
+- **80–90s** (was 30–60s, before that under 30s): 30–60s felt cramped. A fixed window keeps every short consistent and clears TikTok's 60s Creator Rewards floor, while staying under 3 min (Shorts and Reels recommendation limit). Topics too big for 90s split into two parts.
 - **Round-robin voices** keep the channel lively. **One theme track** makes it recognisable by ear.
 - **Generate audio once, reuse it; licensing gate on final renders:** saves credits and prevents publishing free-plan audio.
 - **Captions sit below the old TikTok safe line** (Imad's call, for more content room). Check this on the phone.
 
 ## ElevenLabs
-- Plan: **Creator (paid)** (`engine/plan.json` = paid) since 2026-10-01. 128,974 credits at start; ≈ 6,100 spent (themes ×4 + preview, SFX, pilot re-voice, 002 voice 512) → ≈ 122.9k left.
+- Plan: **Creator (paid)** (`engine/plan.json` = paid) since 2026-10-01. 128,974 credits at start; ≈ 12,900 spent (themes ×4 + preview, SFX, pilot re-voice, 002 voice 512, themes regenerated at 95s 5,700, 003 voice 1,108) → ≈ 116.1k left. An 80–90s episode voice ≈ 1,100–1,200 credits.
 - Key permissions: Text to Speech, Voices: Read, Sound Effects, Music Generation, User: Read, Models: Read, Pronunciation Dictionaries.
 
 ## Changelog (condensed)
@@ -42,3 +65,15 @@ _Last updated 2026-10-05. Replaces the old PLAN.md and PROGRESS.md._
 - **2026-10-02 (later):** 002 draft changes from Imad (beats out of sync). Engine fix in `FlowDiagram`: wires stay hidden until both ends appear (was 20% ghost wires), and no packets go into a down node (queued, ambient and in-flight). Re-timed 002 beats (hook split on "just", Analogy rows highlight as they're named). 0 credits. Redrafted (38.1s). Note: re-rendering 001 would now pick up the FlowDiagram fix too.
 - **2026-10-05:** Discord approvals. `bridge/` (manifest + register, Docker webhook receiver + 6h tick, launchd runner that starts `claude -p "/queue tick|event …"` one at a time), `npm run discord` (gates, notes, blockers, rendered + "start next idea?"), `storyboard-sheet` composition + `storyboard/sections/*.jpg`. `/queue` and AGENTS §1b: gates post to Discord and end the run. Tested live: headless tick read Notion + posted, signature/dedupe checks, 002 draft gate posted (`002:draft:r1`). Desktop "Bytesized queue" task paused. 0 credits.
 - **2026-10-05 (later):** 002 draft approved in Discord (first live click, `002:draft:r1`) → `render:final` (38.1s, 5 MB, licensing ✔) + `upload.md`. Notion #1 Rendered. 512 credits total, nothing new in the library this run.
+- **2026-10-06:** Script format **v1.1 → v1.2** (approved by Imad): **80–90s**, 9–15 scenes, Breakdown ×6–12. Validator, `/script`, `/video`, `/queue` (Engineering Level sets depth, not length; new §1b rebuilds), AGENTS and bridge README updated. `npm run discord` now splits long script cards and storyboards over several messages (buttons on the last). 4 themes regenerated at 95s (≈5,700 credits). Rebuild plan: 003 → 002 → 001. 003 rewritten (199 words, 12 scenes, ~94.7s est) and posted as `003:script:r2`.
+- **2026-10-06 (later):** Diagram variety, step 1: built the wave-1 templates **Sequence, Split (also BeforeAfter), Decision, Tiers** as composable panels, plus verbs `step`/`branch`/`race`, 13 icons, validator shape rules, and a v1.5 gallery (9 demos + sheet → `engine/out/v1.5-diagrams/`). Design language v1.5 is **proposed** (§5b + `tokens.diagram`), pending Imad. Added the empty optional `Visual Reference` (files) column to the Notion Shorts DB. 003 still validates ✔. 0 credits.
+- **2026-10-06 (later):** Diagram roadmap agreed with Imad: 4 waves, 25 templates (adds StateMachine, Stream, Cluster, Transform, Snippet, Estimate, Fleet, Map, DataView; MindMap → Tree; StateMachine promoted to wave 2). See [Diagram roadmap](#diagram-roadmap).
+- **2026-10-06 (later):** Imad approved wave 1 → **design language v1.5 locked**. Step 2 drafted: SCRIPT-FORMAT v1.3 + `/script` changes in `episodes/drafts/` (diagram-choice table §3b, new templates and verbs in the menu, variety rules). Validator: `format` field, variety rules (≥4 breakdown templates, ≤3 scenes per template, not the previous episode's order; hard only for `format: "1.3"`). 003 unchanged (warnings only); a template-only remap of 003 passes clean. 0 credits.
+- **2026-10-06 (later):** **Script format v1.3 locked** (Imad). SCRIPT-FORMAT.md + `/script` updated; drafts removed. 003 visuals remapped to the v1.5 diagrams at Imad's request (history → Tiers dial, request/backend/response → one Sequence, twotier → Split, threetier → Tiers stack; `format: "1.3"`; VO unchanged, 0 credits). Sequence now keeps one layout across headline/no-headline scenes. Re-storyboarded, self-checked, posted `003:storyboard:r2`. Notion #2 AI Notes hit ~2,000 chars → continues in the page body.
+- **2026-10-06 (later):** Diagram roadmap step 3 built (awaiting Imad): **BigPicture** template (2–4 of the episode's own diagrams frozen on their last frame, tiled, camera pulls back from panel 1; `highlight` per panel) via a shared `PanelGrid`, plus a per-episode **cover** (`cover-<nnn>` composition, `npm run cover -- <nnn>`). Validator: BigPicture placement/panel rules, exempt from variety; variety hard for format ≥1.3. Previews on 003's real scenes in `engine/out/v1.6-bigpicture/`. Proposed: design language v1.6 (§5c, `tokens.bigPicture`/`cover`), drafts of SCRIPT-FORMAT v1.4 + `/script` + `/video` in `episodes/drafts/`. 003 itself unchanged. 0 credits.
+- **2026-10-06 (later):** 003 Draft Review r1: Imad flagged animations slightly out of sync with the VO. Word alignment checked: exact. The lag came from beat word choice and packet/arrow travel time, so 13 beats were re-keyed in `episode.yaml` (no engine change). Draft r2 rendered (81.1s) and posted as `003:draft:r2`. 0 credits.
+- **2026-10-06 (later):** Imad approved step 3 → **design language v1.6** + **script format v1.4** locked (BigPicture + cover). SCRIPT-FORMAT.md, `/script` (`format: "1.4"`) and `/video` (cover step) updated, drafts removed. 003 left as is (no BigPicture); meanwhile the queue moved it to Draft Review r2. Note: the step-4 Visual Reference rule is already in `/script` (v1.3); step 4 is now about wiring the Notion files through.
+- **2026-10-06 (later):** 003 Draft Review r2: Imad saw diagram animations "snap" at scene ends. The render matched the timeline and the VO, so the cause was choreography: focus only moved at the end (Order up, Show vs. decide), a lone headline on `backend`, and the three-tier half popping in on the last word. Fixed in `episode.yaml` only (no engine change). Draft r3 (81.1s) posted as `003:draft:r3`. 0 credits.
+- **2026-10-06 (later):** Roadmap step 4 wired: `npm run refs -- <ID> <url>…` (downloads signed Notion file URLs → `bridge/files/notion-<ID>/`, gitignored, images/PDF ≤20 MB), `/queue` §3a (fetch row → file references → `get-file-download-urls` → `refs`, before Scripting and on script changes; never blocks), `/script` looks at the images and reports image → scene/template in the hand-over. No settings change needed (`npm run` + Notion tools already allowed). Needs one live test with a real attachment.
+- **2026-10-06 (later):** 003 draft r3 → Imad's "snaps at the end / plays late" traced to the engine: focus changes switched in one frame and reveal scenes opened on an empty stage. **Design language v1.6.1:** focus fades over 300ms (Analogy, Tiers, ThreeCards, Split, BigPicture via `focusLevels`), ghost slots from the scene start. 003 re-rendered → **draft r4** posted (`003:draft:r4`), storyboard regenerated. 0 credits. Visual Reference live test still pending (no image attached yet).
+- **2026-10-06 (later):** 003 draft r4 approved in Discord (`003:draft:r4`) → `render:final` (81.1s, 9.5 MB, licensing ✔) + `upload.md` + cover. Notion #2 Rendered. 1,108 credits total. Committed with the v1.5–v1.6.1 library (Sequence, Split, Decision, Tiers, BigPicture, cover, focus fades).

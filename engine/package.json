@@ -19,7 +19,10 @@
     "storyboard": "npm run sync && tsx scripts/storyboard.ts",
     "audio": "tsx scripts/audio.ts",
     "render:final": "tsx scripts/render-final.ts",
-    "doctor": "tsx scripts/doctor.ts"
+    "doctor": "tsx scripts/doctor.ts",
+    "discord": "tsx scripts/discord.ts",
+    "cover": "tsx scripts/cover.ts",
+    "refs": "tsx scripts/refs.ts"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.529",

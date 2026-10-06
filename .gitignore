@@ -20,6 +20,15 @@ assets/logos/**/*.eps
 assets/logos/**/*.psd
 assets/logos/**/*.zip
 
+# --- Discord bridge runtime (bridge/.env is covered above) ---
+bridge/inbox/
+bridge/processing/
+bridge/done/
+bridge/failed/
+bridge/files/
+bridge/logs/
+bridge/state/
+
 # --- local machine settings ---
 .claude/settings.local.json
 .DS_Store

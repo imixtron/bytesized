@@ -1,0 +1,55 @@
+{
+  "contract_version": "1.0.0",
+  "id": "bytesized",
+  "name": "Bytesized",
+  "description": "Bytesized shorts pipeline: review gates (script, parts, storyboard, draft), blockers and the next-idea prompt",
+  "channel_id": "1556623888769613854",
+  "webhook": { "url": "http://bytesized-bridge:9100/events" },
+  "health": { "url": "http://bytesized-bridge:9100/health" },
+  "delivery": { "timeout": "10s", "failure_threshold": 3, "give_up_after": "168h" },
+  "defaults": {
+    "thread": { "create": false, "auto_archive": "1w" },
+    "responses": { "mode": "single", "allowed": { "users": ["690970287390588949"] }, "on_close": "disable" }
+  },
+  "forms": {
+    "review": {
+      "description": "A review gate: approve, or request changes with notes and reference images",
+      "actions": [
+        { "id": "approve", "label": "Approve", "style": "success", "emoji": "✅" },
+        {
+          "id": "changes",
+          "label": "Request changes",
+          "style": "primary",
+          "emoji": "✏️",
+          "modal_title": "What should change?",
+          "fields": [
+            { "id": "feedback", "type": "paragraph", "label": "Changes", "placeholder": "e.g. hook: make the monolith shake longer; gist: shorter line", "required": true, "max_length": 4000 },
+            { "id": "refs", "type": "file", "label": "Reference images (optional)", "max_files": 3, "mime": ["image/*"], "required": false }
+          ]
+        }
+      ]
+    },
+    "blocked": {
+      "description": "A blocked or failed stage",
+      "actions": [
+        { "id": "retry", "label": "Retry", "style": "primary", "emoji": "🔁" },
+        { "id": "resolved", "label": "Fixed, continue", "style": "success", "emoji": "✅" },
+        {
+          "id": "reply",
+          "label": "Reply",
+          "style": "secondary",
+          "emoji": "📝",
+          "modal_title": "Tell Claude",
+          "fields": [{ "id": "note", "type": "paragraph", "label": "Note", "required": true, "max_length": 4000 }]
+        }
+      ]
+    },
+    "next-idea": {
+      "description": "After a render: start the next Idea now, or leave it to the 6-hour schedule",
+      "actions": [
+        { "id": "start", "label": "Yes, start next idea", "style": "success", "emoji": "▶️" },
+        { "id": "wait", "label": "No, wait for schedule", "style": "secondary", "emoji": "⏸️" }
+      ]
+    }
+  }
+}

@@ -26,6 +26,20 @@ export const ICONS = {
   cop: <G><rect x={8} y={2} width={8} height={20} rx={3} /><circle cx={12} cy={7} r={1.6} /><circle cx={12} cy={12} r={1.6} /><circle cx={12} cy={17} r={1.6} fill="currentColor" /></G>,
   scale: <G><path d="M4 20V14M10 20V10M16 20V6M3 21h18" /><path d="M15 3h5v5M20 3l-6 6" /></G>,
   pulse: <G><path d="M2 12h4l2-5 4 10 3-7 2 2h5" /></G>,
+  // v1.5 diagram icons
+  check: <G><circle cx={12} cy={12} r={9} /><path d="M8 12.5l2.8 2.8L16.5 9.5" /></G>,
+  cross: <G><circle cx={12} cy={12} r={9} /><path d="M9 9l6 6M15 9l-6 6" /></G>,
+  lock: <G><rect x={4.5} y={10.5} width={15} height={10.5} rx={2.5} /><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3M12 14.5v2.5" /></G>,
+  key: <G><circle cx={7.5} cy={14.5} r={4} /><path d="M10.5 11.5L20 2M16.5 5.5l2.5 2.5M14 8l2 2" /></G>,
+  file: <G><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" /><path d="M14 3v5h5M9 13h6M9 17h4" /></G>,
+  clock: <G><circle cx={12} cy={12} r={9} /><path d="M12 7v5l3.5 2" /></G>,
+  retry: <G><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3" /><path d="M18 3v4h-4M6 21v-4h4" /></G>,
+  hot: <G><path d="M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5.3 1.6 1 2.5 2 3-.4-3 .3-5.8 1-8.5z" /></G>,
+  warm: <G><path d="M10 4a2 2 0 0 1 4 0v9.5a4 4 0 1 1-4 0z" /><path d="M12 10v5" /></G>,
+  cold: <G><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7" /><path d="M9.5 4L12 6l2.5-2M9.5 20l2.5-2 2.5 2" /></G>,
+  shield: <G><path d="M12 2.5l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10v-6z" /><path d="M8.5 12l2.5 2.5 4.5-4.5" /></G>,
+  cpu: <G><rect x={6} y={6} width={12} height={12} rx={2} /><rect x={9.5} y={9.5} width={5} height={5} rx={1} /><path d="M9 2.5V6M15 2.5V6M9 18v3.5M15 18v3.5M2.5 9H6M2.5 15H6M18 9h3.5M18 15h3.5" /></G>,
+  disk: <G><circle cx={12} cy={12} r={9} /><circle cx={12} cy={12} r={2.5} /><path d="M12 3a9 9 0 0 1 9 9" /></G>,
   gauge: <G><path d="M4 18a8 8 0 1 1 16 0" /><path d="M12 18l4-6" /><circle cx={12} cy={18} r={1.3} fill="currentColor" /></G>,
 } as const;
 

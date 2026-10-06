@@ -7,7 +7,7 @@ Remotion (React + TypeScript) project. It renders `episodes/<nnn-slug>/episode.y
 |---|---|
 | `npm run voice:assign -- <nnn>` | Gives the episode the next round-robin voice (`episodes/voices.json`) |
 | `npm run music:assign -- <nnn> [--force\|--dry-run]` | Picks the episode's theme track at random, never the previous episode's (`episodes/music.json`), and writes `music.track`. Keeps an existing pick unless `--force`. Part 2 reuses Part 1's track |
-| `npm run validate [-- <nnn>]` | Checks episodes against SCRIPT-FORMAT v1.1. Uses the measured length once voiced |
+| `npm run validate [-- <nnn>]` | Checks episodes against SCRIPT-FORMAT v1.2 (80–90s). Uses the measured length once voiced |
 | `npm run voice -- <nnn> [--force\|--upgrade]` | ElevenLabs voiceover per scene with word timestamps, cached → `episodes/<nnn-slug>/audio/` |
 | `npm run storyboard -- <nnn>` | One still per beat → `episodes/<nnn-slug>/storyboard/storyboard.html`, plus one phone-readable image per section → `storyboard/sections/*.jpg` (`storyboard-sheet` composition) |
 | `npm run render -- ep-<nnn> <out.mp4>` | Draft render (add `--crf=18` for full quality) |
@@ -20,6 +20,8 @@ Remotion (React + TypeScript) project. It renders `episodes/<nnn-slug>/episode.y
 | `npm run sync` | Copies `brand/`, `assets/` and `episodes/` into `public/` (generated, never edit it) |
 | `npm run typecheck` | TypeScript check |
 | `npm run discord -- <gate\|note\|blocked\|failed\|rendered\|status\|close\|state> …` | Posts the pipeline to Discord through the gateway bot (usage at the top of `scripts/discord.ts`, setup in `bridge/README.md`) |
+| `npm run cover -- <nnn>` | (v1.6) Cover / thumbnail → `episodes/<nnn-slug>/out/cover.png`: the title + the episode's diagrams |
+| `npm run refs -- <Notion ID> <url>… \| --list` | Saves a Notion row's Visual Reference images (signed URLs from the Notion connector) → `bridge/files/notion-<ID>/` (gitignored) |
 | `npm run doctor [-- --online]` | Checks a machine is ready: Node, deps, key present, plan, audio files, sync, types, episodes, ffmpeg |
 
 **Typical episode:** `voice:assign` → `music:assign` → `validate` → `voice` → `validate` → `storyboard` ✋ → `render` (draft) → `render:final`.
@@ -32,12 +34,14 @@ episode.yaml ─ parse (episode/schema.ts) ─► Episode ─ rules.ts ─► er
 voice.json (measured words) ────────────────► timing/timeline.ts: frames for scenes, words, beats, sting
                                               │
 Root.tsx → one composition per episode (ep-001…) → compositions/Episode.tsx
-   scenes: templates/*        (Hook, Analogy, FlowDiagram, ThreeCards, GistCard)
-   parts:  parts/*            (Node, Wires/Packet, Crowd/Counter, icons)
+   scenes: templates/*        (Hook, Analogy, FlowDiagram, ThreeCards, GistCard; v1.5: Sequence, Split/BeforeAfter, Decision, Tiers, drawn in panels; v1.6: BigPicture, via PanelGrid)
+   parts:  parts/*            (Node, Wires/Packet, Crowd/Counter, icons, Diagram: arrows, step badges, notes, diamonds, chips)
    chrome: chrome/*           (BrandSting, Captions, Chrome = bar/mark/PART tag, SoundLayer)
    values: theme/tokens.ts    (tokens.json; never hard-code a value)
    audio:  audio/library.ts   (assets/{sfx,music}/library.json + sound map)
 ```
-- **Templates still to build** when an episode first needs them: BeforeAfter, MetricChart, Zoom.
-- **Studio folders:** Episodes · Checks (tokens, sting preview) · Gallery (nodes, flow, crowd/counter/icons).
+- **Templates still to build** when an episode first needs them: MetricChart, Zoom (BeforeAfter is drawn by Split).
+- **v1.5 diagram gallery:** Studio → Gallery → Diagrams-v1-5 (`gallery-diagrams-sheet`, plus one `gallery-<demo>` per variant). Review renders: `engine/out/v1.5-diagrams/`.
+- **v1.6:** Studio → Gallery → `preview-bigpicture-003` (a BigPicture added to 003, estimated timing) and Covers → `cover-<nnn>`. Review renders: `engine/out/v1.6-bigpicture/`.
+- **Studio folders:** Episodes · Checks (tokens, sting preview) · Gallery (nodes, flow, crowd/counter/icons, Diagrams-v1-5).
 - `public/` and `out/` are generated and safe to delete.

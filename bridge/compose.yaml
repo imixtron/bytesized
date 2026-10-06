@@ -1,0 +1,23 @@
+# Bytesized bridge: joins the gateway's network (mario_default) so the gateway reaches it as bytesized-bridge:9100.
+#   docker compose -f bridge/compose.yaml up -d --build
+services:
+  bytesized-bridge:
+    build: .
+    container_name: bytesized-bridge
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      GATEWAY_URL: http://gateway:8787
+      DATA_DIR: /data
+    volumes:
+      - ./inbox:/data/inbox
+      - ./files:/data/files
+      - ./state:/data/state
+    ports:
+      - "127.0.0.1:9100:9100"
+    networks: [mario]
+
+networks:
+  mario:
+    name: mario_default
+    external: true

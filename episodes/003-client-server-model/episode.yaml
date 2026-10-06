@@ -1,0 +1,274 @@
+# Episode 003. Script approved 2026-10-06 (Discord 003:script:r2) · voiced · visuals remapped to v1.5 diagrams 2026-10-06 (VO unchanged) · beats re-timed to the VO after Draft Review r1 (Discord 003:draft:r1) · focus/headline choreography fixed after r2 (003:draft:r2)
+# Notion row #2 · Fundamentals · Junior / Entry · target ~85s (script format v1.3; rewritten from the ~41s v1.1 draft)
+id: 3
+slug: client-server-model
+title: The Client–Server Model
+topic: the client-server model, request/response, tiers and scaling out
+target_sec: 85
+format: "1.3"
+
+brands: []
+
+voice: { voice_id: cgSgspJ2msm6clMCkdW9, speed: 1.0, name: Jessica }
+
+music:
+  track: bytesized-theme-2
+
+scenes:
+  # ---------- HOOK ----------
+  - id: hook
+    part: hook
+    template: FlowDiagram
+    vo: "Every web app you've ever used is built on one idea: the client-server
+      model."
+    headline: { text: "One idea. Every app.", accent: "Every app." }
+    stage:
+      layers: [ [ c ], [ s ] ]
+      nodes:
+        - { id: c, type: phone, family: solid, label: client }
+        - { id: s, type: server, family: hero, label: server }
+      links: [ [ c, s ] ]
+    beats:
+      - { on: "app", do: appear, target: c }
+      - { on: "idea", do: appear, target: s }
+      # request on "client-server", response back on "model" (was both on "model", squeezed into the last 0.9s)
+      - { on: "client-server", do: send, target: s, args: { kind: request, count: 2 } }
+      - { on: "model", do: send, target: c, args: { kind: response, count: 2 } }
+
+  # ---------- BRANDING (automatic, ~1.5s) ----------
+
+  # ---------- IDEA: the restaurant ----------
+  - id: idea
+    part: idea
+    template: Analogy
+    vo: "Think restaurant. You're the client: you order. The waiter carries it to
+      the kitchen, that's the server. It cooks, and your food comes back."
+    headline: { text: "Order up!", accent: "up!" }
+    stage:
+      rows:
+        - { id: r1, icon: user, key: Client, value: "you, ordering" }
+        - { id: r2, icon: internet, key: Waiter, value: the network }
+        - { id: r3, icon: server, key: Server, value: the kitchen }
+    beats:
+      # focus follows the order as it's spoken: client → waiter → kitchen → waiter → client
+      # (draft r2: focus sat on Client until "cooks", then snapped through at the end)
+      - { on: "client", do: reveal, target: r1 }
+      - { on: "order", do: highlight, target: r1 }
+      - { on: "waiter", do: reveal, target: r2 }
+      - { on: "waiter", do: highlight, target: r2 }
+      - { on: "kitchen", do: reveal, target: r3 }
+      - { on: "kitchen", do: highlight, target: r3 }
+      - { on: "food", do: highlight, target: r2 }
+      - { on: "back", do: highlight, target: r1 }
+
+  # ---------- BREAKDOWN 1: how we got here (trade-off dial) ----------
+  - id: history
+    part: breakdown
+    template: Tiers
+    vo: "First, one giant mainframe did everything. Then your PC did it all alone.
+      Then the web split the job."
+    headline: { text: "How we got here", accent: "here" }
+    stage:
+      variant: spectrum
+      ends: [ "all in one box", "split the job" ]
+      tiers:
+        - { id: t1, icon: server, title: mainframe, sub: "one giant brain" }
+        - { id: t2, icon: phone, title: your PC, sub: "all on your desk" }
+        - { id: t3, icon: internet, title: the web, sub: "client + server" }
+    beats:
+      - { on: "mainframe", do: reveal, target: t1 }
+      - { on: "everything", do: highlight, target: t1 }
+      - { on: "PC", do: reveal, target: t2 }
+      - { on: "alone", do: highlight, target: t2 }
+      - { on: "web", do: reveal, target: t3 }
+      - { on: "job", do: highlight, target: t3 }
+
+  # ---------- BREAKDOWN 2–4: one request, step by step (Sequence over 3 scenes) ----------
+  - id: request
+    part: breakdown
+    template: Sequence
+    vo: "Tap a button, and your browser sends a request: a tiny message saying
+      what you want."
+    stage:
+      actors:
+        - { id: b, type: phone, family: solid, label: browser }
+        - { id: app, type: server, label: backend }
+        - { id: db, type: db, label: postgres }
+      steps:
+        - { id: req, from: b, to: app, label: "GET /me" }
+    beats:
+      - { on: "Tap", do: appear, target: b }
+      - { on: "browser", do: appear, target: [ app, db ] }
+      - { on: "sends", do: step, target: req } # arrow draws on "sends", lands on "request"
+      - { on: "request", do: state, target: app, args: { to: active }, offset: 0.3 } # lights up as the request arrives (was "want", 2.5s late)
+
+  - id: backend
+    part: breakdown
+    template: Sequence
+    transition: push
+    vo: "The backend checks the rules, then asks the database for your data."
+    # no headline across request → backend → response (draft r2: only backend had one, so it popped
+    # in mid-sequence and the other two kept an empty headline band). The diagram uses the full stage.
+    stage:
+      reuse: request
+      steps:
+        - { id: rules, at: app, note: "check the rules" }
+        - { id: query, from: app, to: db, label: "query" }
+    beats:
+      - { on: "checks", do: step, target: rules }
+      - { on: "asks", do: step, target: query }
+      - { on: "database", do: state, target: db, args: { to: active } } # as the query lands (was "data", 0.7s late)
+
+  - id: response
+    part: breakdown
+    template: Sequence
+    vo: "It packs the answer into a response and sends it back. Usually in under
+      a second."
+    stage:
+      reuse: request
+      steps:
+        - { id: rows, from: db, to: app, label: "rows", kind: response }
+        - { id: resp, from: app, to: b, label: "200 OK", kind: response }
+    beats:
+      - { on: "packs", do: step, target: rows }
+      - { on: "sends", do: step, target: resp } # "sends it back" (was "response", ahead of the words)
+      - { on: "under", do: highlight, target: resp }
+
+  # ---------- BREAKDOWN 5: who does what ----------
+  - id: roles
+    part: breakdown
+    template: Analogy
+    vo: "So the client shows things, and the server decides things. Never trust
+      the client with the rules."
+    headline: { text: "Show vs. decide", accent: "decide" }
+    stage:
+      rows:
+        - { id: r1, icon: phone, key: Client, value: "shows things" }
+        - { id: r2, icon: server, key: Server, value: "decides things" }
+    beats:
+      # rows pop on the noun so the value text is in place as "shows" / "decides" is spoken
+      - { on: "client", do: reveal, target: r1 }
+      - { on: "shows", do: highlight, target: r1 }
+      - { on: "server", do: reveal, target: r2 }
+      - { on: "decides", do: highlight, target: r2 } # focus moves as each verb is spoken (was only on "trust", near the end)
+
+  # ---------- BREAKDOWN 6: two-tier vs three-tier ----------
+  - id: twotier
+    part: breakdown
+    template: Split
+    vo: "Some apps are two-tier: the client talks straight to the database. Simple,
+      but risky: anyone can poke your data."
+    headline: { text: "Two tiers: risky", accent: "risky" }
+    stage:
+      variant: compare
+      before:
+        id: two
+        title: two-tier
+        note: "anyone can poke the data"
+        nodes:
+          - { id: c2, type: phone, family: solid, label: client }
+          - { id: db2, type: db, label: database }
+      after:
+        id: three
+        title: three-tier
+        note: "a server guards the data"
+        nodes:
+          - { id: c3, type: phone, family: solid, label: client }
+          - { id: s3, type: server, label: server }
+          - { id: db3, type: db, label: database }
+    beats:
+      # draft r2: three-tier popped in on the last word, then cut away. Now both halves are there
+      # from the start and two-tier holds focus (three-tier dimmed) until the next scene takes over.
+      - { on: "Some", do: appear, target: two }
+      - { on: "Some", do: appear, target: three, offset: 0.2 }
+      - { on: "two-tier", do: highlight, target: two }
+      - { on: "talks", do: send, target: two }
+      - { on: "anyone", do: send, target: two }
+      - { on: "poke", do: shake, target: db2 }
+      - { on: "poke", do: state, target: db2, args: { to: overloaded } }
+
+  # ---------- BREAKDOWN 7: three-tier (literally three tiers) ----------
+  - id: threetier
+    part: breakdown
+    template: Tiers
+    vo: "Three-tier puts a server in the middle. Client, server, database: each
+      with one job."
+    headline: { text: "Three tiers win", accent: "win" }
+    stage:
+      variant: stack
+      tiers:
+        - { id: tc, icon: phone, title: client, sub: "what you see" }
+        - { id: ts, icon: server, title: server, sub: "the rules" }
+        - { id: td, icon: db, title: database, sub: "the memory" }
+    beats:
+      - { on: "server", do: reveal, target: ts } # the middle tier lands first, on "a server in the middle"
+      - { on: "client", do: reveal, target: tc }
+      - { on: "database", do: reveal, target: td }
+      - { on: "job", do: highlight, target: ts }
+
+  # ---------- BREAKDOWN 8: too many clients (no headline) ----------
+  - id: crowd
+    part: breakdown
+    template: FlowDiagram
+    vo: "Now a million people show up at once, and one server starts to melt."
+    stage:
+      layers: [ [ u1, u2, u3 ], [ s1 ] ]
+      nodes:
+        - { id: u1, type: phone, family: solid }
+        - { id: u2, type: phone, family: solid }
+        - { id: u3, type: phone, family: solid }
+        - { id: s1, type: server, label: app-1 }
+      links: [ [ u1, s1 ], [ u2, s1 ], [ u3, s1 ] ]
+    beats:
+      - { on: "Now", do: appear, target: s1 }
+      - { on: "million", do: appear, target: [ u1, u2, u3 ] }
+      - { on: "show", do: send, target: s1, args: { kind: request, count: 8 } } # traffic lands on "once"
+      - { on: "starts", do: state, target: s1, args: { to: overloaded } }
+      - { on: "melt", do: shake, target: s1 }
+
+  # ---------- BREAKDOWN 9: scale out ----------
+  - id: scale
+    part: breakdown
+    template: FlowDiagram
+    vo: "Don't buy one bigger server. Add more servers, put a load balancer in
+      front, and spread the load."
+    headline: { text: "Go wide, not tall", accent: "wide," }
+    stage:
+      layers: [ [ u1, u2, u3 ], [ lb ], [ s1, s2, s3 ] ]
+      nodes:
+        - { id: u1, type: phone, family: solid }
+        - { id: u2, type: phone, family: solid }
+        - { id: u3, type: phone, family: solid }
+        - { id: lb, type: lb, label: lb-01 }
+        - { id: s1, type: server, label: app-1 }
+        - { id: s2, type: server, label: app-2 }
+        - { id: s3, type: server, label: app-3 }
+      links: [ [ u1, lb ], [ u2, lb ], [ u3, lb ], [ lb, s1 ], [ lb, s2 ], [ lb, s3 ] ]
+    beats:
+      - { on: "Don't", do: appear, target: [ u1, u2, u3 ] }
+      - { on: "bigger", do: appear, target: s1 }
+      - { on: "bigger", do: state, target: s1, args: { to: overloaded } }
+      - { on: "Add", do: appear, target: [ s2, s3 ] }
+      - { on: "balancer", do: appear, target: lb }
+      - {
+          on: "spread",
+          do: send,
+          target: [ s1, s2, s3 ],
+          args: { kind: request, count: 6 },
+          offset: -0.3
+        }
+      - { on: "load#2", do: state, target: s1, args: { to: recovered }, offset: 0.3 } # once the spread packets arrive
+
+  # ---------- GIST (no headline) ----------
+  - id: gist
+    part: gist
+    template: GistCard
+    vo: "That's the gist: clients ask, servers answer, and more servers answer more
+      clients. Follow for more."
+    stage:
+      text: "Clients ask. Servers answer."
+      accent: "answer."
+    beats:
+      - { on: "gist", do: appear, target: card }
+      - { on: "answer", do: highlight, target: card }
+      - { on: "more#2", do: highlight, target: card }
