@@ -224,12 +224,15 @@ export const DIAGRAMS = new Set(["FlowDiagram", "Sequence", "Split", "BeforeAfte
 /** Fixed bookends, never counted for variety. */
 const BOOKENDS = new Set(["Hook", "GistCard", "BigPicture"]);
 export const VARIETY = { minBreakdownTemplates: 4, goodBreakdownTemplates: 5, maxScenesPerTemplate: 3, sharedRun: 3 };
+/** Format 1.5+: topic-first visual plan. Guards both extremes (one template overused, or a sampler of everything). */
+export const VARIETY_V15 = { maxDiagramsPerTemplate: 3, maxReuseChain: 5, samplerTemplates: 6, maxVisualPlanChars: 300 };
 
 /** The breakdown's template order, with `reuse` continuations folded into the scene they continue. */
 export const breakdownShape = (ep: Episode) => ep.scenes.filter((s) => s.part === "breakdown" && !s.stage.reuse && s.template !== "BigPicture").map((s) => s.template as string);
 
 /** Variety rules: enough different diagrams, none overused, and not the previous episode's shape. */
 export function varietyIssues(ep: Episode, previous?: Episode): { hard: boolean; where: string; msg: string }[] {
+  if (Number(ep.format ?? 0) >= 1.5) return varietyIssuesV15(ep, previous);
   const out: { hard: boolean; where: string; msg: string }[] = [];
   const shape = breakdownShape(ep);
   const breakdown = ep.scenes.filter((s) => s.part === "breakdown" && s.template !== "BigPicture"); // a recap, not a diagram of its own
@@ -251,6 +254,54 @@ export function varietyIssues(ep: Episode, previous?: Episode): { hard: boolean;
   if (previous) {
     const prevShape = breakdownShape(previous);
     if (shape.join(">") === prevShape.join(">")) out.push({ hard: true, where: "variety", msg: `breakdown has the same template order as episode ${previous.id} (${shape.join(" → ")})` });
+    else {
+      const runs = (xs: string[]) => new Set(xs.slice(0, xs.length - VARIETY.sharedRun + 1).map((_, i) => xs.slice(i, i + VARIETY.sharedRun).join(" → ")));
+      const shared = [...runs(shape)].filter((r) => runs(prevShape).has(r));
+      if (shared.length) out.push({ hard: false, where: "variety", msg: `repeats episode ${previous.id}'s run ${shared[0]}` });
+    }
+  }
+  return out;
+}
+
+/** Variety rules for format 1.5+ (SCRIPT-FORMAT §4): the visual plan decides the templates; the rules only stop the extremes. */
+function varietyIssuesV15(ep: Episode, previous?: Episode): { hard: boolean; where: string; msg: string }[] {
+  const out: { hard: boolean; where: string; msg: string }[] = [];
+  const V = VARIETY_V15;
+  const plan = (ep.visual_plan ?? "").trim();
+  if (!plan) out.push({ hard: true, where: "visual_plan", msg: "format 1.5 needs a visual_plan: the spine diagram(s) and why each other template is there" });
+  else if (plan.length > V.maxVisualPlanChars) out.push({ hard: true, where: "visual_plan", msg: `visual_plan is ${plan.length} characters (max ${V.maxVisualPlanChars})` });
+
+  const byId = new Map(ep.scenes.map((s) => [s.id, s]));
+  const rootOf = (s: Scene): Scene => {
+    const seen = new Set<string>([s.id]);
+    let cur = s;
+    while (cur.stage.reuse && byId.has(cur.stage.reuse) && !seen.has(cur.stage.reuse)) { cur = byId.get(cur.stage.reuse)!; seen.add(cur.id); }
+    return cur;
+  };
+  // A reuse chain is one diagram: count chain roots per template, and chain lengths
+  const chains = new Map<string, number>();
+  for (const s of ep.scenes) { const r = rootOf(s); chains.set(r.id, (chains.get(r.id) ?? 0) + 1); }
+  for (const [id, n] of chains) if (n > V.maxReuseChain) out.push({ hard: true, where: id, msg: `diagram ${id} is continued over ${n} scenes with reuse (max ${V.maxReuseChain})` });
+
+  const breakdown = ep.scenes.filter((s) => s.part === "breakdown" && s.template !== "BigPicture"); // a recap, not a diagram of its own
+  const diagramsPer = new Map<string, number>();
+  for (const s of breakdown) if (!BOOKENDS.has(s.template) && rootOf(s).id === s.id) diagramsPer.set(s.template, (diagramsPer.get(s.template) ?? 0) + 1);
+  for (const [t, n] of diagramsPer) if (n > V.maxDiagramsPerTemplate) out.push({ hard: true, where: "variety", msg: `${t} is used for ${n} separate diagrams (max ${V.maxDiagramsPerTemplate}; a reuse chain counts as one)` });
+
+  const distinct = new Set(breakdown.map((s) => s.template));
+  if (distinct.size >= V.samplerTemplates) out.push({ hard: false, where: "variety", msg: `breakdown uses ${distinct.size} different templates; reads like a sampler. Does the topic need all of them?` });
+
+  breakdown.forEach((s, i) => {
+    const prev = breakdown[i - 1];
+    if (prev && prev.template === s.template && !s.stage.reuse) out.push({ hard: false, where: s.id, msg: `same template as the scene before (${s.template}) without continuing it; switch template or use stage.reuse` });
+  });
+  const diagrams = breakdown.filter((s) => DIAGRAMS.has(s.template)).length;
+  if (diagrams * 2 < breakdown.length) out.push({ hard: false, where: "variety", msg: `only ${diagrams} of ${breakdown.length} breakdown scenes are diagrams; Bytesized is diagram-first` });
+
+  if (previous) {
+    const shape = breakdownShape(ep);
+    const prevShape = breakdownShape(previous);
+    if (shape.join(">") === prevShape.join(">")) out.push({ hard: false, where: "variety", msg: `breakdown has the same template order as episode ${previous.id} (${shape.join(" → ")})` });
     else {
       const runs = (xs: string[]) => new Set(xs.slice(0, xs.length - VARIETY.sharedRun + 1).map((_, i) => xs.slice(i, i + VARIETY.sharedRun).join(" → ")));
       const shared = [...runs(shape)].filter((r) => runs(prevShape).has(r));

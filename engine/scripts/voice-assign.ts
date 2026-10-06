@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 import { parseDocument } from "yaml";
 
 type Voice = { name: string; voice_id: string; style?: string };
-type Roster = { $note?: string; roster: Voice[]; next: number; history: { episode: string; voice: string; date: string }[] };
+type Roster = { $note?: string; roster: Voice[]; retired?: Voice[]; next: number; history: { episode: string; voice: string; date: string }[] };
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const ROSTER_PATH = join(ROOT, "episodes/voices.json");
@@ -23,7 +23,7 @@ const roster: Roster = JSON.parse(readFileSync(ROSTER_PATH, "utf8"));
 const yamlPath = join(ROOT, "episodes", folder, "episode.yaml");
 const doc = parseDocument(readFileSync(yamlPath, "utf8"));
 
-const byName = (name: string) => roster.roster.find((v) => v.name === name);
+const byName = (name: string) => [...roster.roster, ...(roster.retired ?? [])].find((v) => v.name === name);
 const existing = roster.history.find((h) => h.episode === folder);
 let voice: Voice | undefined;
 let advance = false;

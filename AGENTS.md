@@ -15,7 +15,7 @@ Current state and open items: **[STATUS.md](STATUS.md)**. Human to-dos: **[TASKS
 | "Make an episode about X", "script X", a topic or notes | **`/script`** (`.claude/skills/script/SKILL.md`), then stop for approval, then **`/video`** |
 | "Render / voice / storyboard / finish episode N" | **`/video`** (`.claude/skills/video/SKILL.md`) |
 | Change the look, layout, colours, motion or sounds | Propose a **versioned change** to `brand/design-language/DESIGN-LANGUAGE.md` + `tokens.json` (v1.4 → v1.5). Show a render. Apply only after approval |
-| Change script rules or structure | Propose a versioned change to `episodes/SCRIPT-FORMAT.md` (v1.2 → v1.3). Apply only after approval |
+| Change script rules or structure | Propose a versioned change to `episodes/SCRIPT-FORMAT.md` (v1.5 → v1.6). Apply only after approval |
 | New logo, music or sound | Put it in `assets/<asset_type>/…` and register it (logos: `SOURCE.md` + `derived/node.png`; audio: `library.json`) |
 | "I subscribed to ElevenLabs" | Walk through TASKS.md → "After subscribing", in order |
 | "Publish episode N" | `npm run render:final -- N`, then write `upload.md` (see `/video` step 5) |
@@ -97,7 +97,7 @@ Log approvals ("approved by Imad in session"), changes requested, credits spent,
 - **Corner mark and progress bar** at the very top of every charcoal scene.
 - **Structure:** Hook → (sting) → Idea → Breakdown ×6–12 → Gist. **80–90s** measured, never over 90s. Big topics → Part 1 / Part 2 (max 2).
 - **Third-party logos** (e.g. Netflix) only as a `brand` node inside diagrams, unaltered, from the official kit, and never implying sponsorship. The upload description carries the "not affiliated" line.
-- **Voices:** round robin of Liam → Laura → Jessica → Chris (`episodes/voices.json`, `npm run voice:assign`). Part 2 reuses Part 1's voice.
+- **Voices:** round robin of Liam → Matilda → Jessica → Chris (`episodes/voices.json`, `npm run voice:assign`). Part 2 reuses Part 1's voice.
 - **Music:** one of four sibling theme tracks (`bytesized-theme`, `-2`, `-3`, `-4`) per short, picked at random by `npm run music:assign` (`episodes/music.json`; never the previous episode's, Part 2 reuses Part 1's). **SFX** come from the sound map, never listed per script, with a beat `sfx:` override only for exceptions.
 - **Licensing:** only paid-plan ElevenLabs output or original work is `licensed`. `render:final` enforces it. Never bypass it.
 - **Fonts:** Holiday and Trend Sans Four (Canva) are used only inside logo files. Video text uses Unbounded, Inter, JetBrains Mono and Yellowtail.

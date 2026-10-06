@@ -1,6 +1,7 @@
-# Bytesized Script Format — v1.4
+# Bytesized Script Format — v1.5
 
-> **v1.4, locked (approved by Imad 2026-10-06).** Changes need a versioned update with explicit approval.
+> **v1.5, locked (approved by Imad 2026-10-07).** Changes need a versioned update with explicit approval.
+> v1.5: **topic-first visual plan**. Each script decides its 1–2 core diagrams (the "spine") before writing scenes and records them in `visual_plan`; extra templates only where the idea changes kind. Reuse chains up to 5 scenes; variety rules (§4) now guard both extremes. v1.4 approved 2026-10-06.
 > v1.4: an optional **BigPicture** scene (a pull-back over the episode's own diagrams) just before the gist, for whole-system topics. v1.3 approved 2026-10-06.
 > v1.3: the wave-1 diagram templates (Sequence, Split, Decision, Tiers) join the menu, **diagrams are picked from the idea** (§3b), and **variety rules** (§4) keep episodes from looking alike. v1.2 approved 2026-10-06.
 > v1.2: length 30–60s → **80–90s** (fixed, so every short is consistent and clears TikTok's 60s rewards floor), more breakdown scenes. v1.1 approved 2026-09-29.
@@ -58,7 +59,7 @@ When a topic can't be explained well in 90s, `/script` **splits it into Part 1 a
 - **On screen:** a small `PART 1/2` tag sits next to the corner mark. This is part of design language v1.1.
 
 ### Voice rotation
-- Each new episode gets the **next voice in the roster** (`episodes/voices.json`: Liam → Laura → Jessica → Chris → Liam…). `/script` runs `npm run voice:assign -- <nnn>` right after writing the file.
+- Each new episode gets the **next voice in the roster** (`episodes/voices.json`: Liam → Matilda → Jessica → Chris → Liam…). `/script` runs `npm run voice:assign -- <nnn>` right after writing the file.
 - The tracker records every assignment in `history` and advances `next`. Running it again for the same episode keeps that episode's voice.
 - **Part 2 of a series reuses Part 1's voice**, for continuity, and doesn't advance the rotation.
 - To change the lineup, edit `roster`. Only ElevenLabs premade voices work on the free tier.
@@ -90,7 +91,8 @@ slug: what-is-system-design            # folder name: episodes/001-what-is-syste
 title: What is System Design?          # used for the upload title
 topic: system design basics
 target_sec: 85                         # 80–90, chosen by /script (85 suits most)
-format: "1.3"                          # the script format it was written to; turns the variety rules (§4) into hard fails
+format: "1.5"                          # the script format it was written to (1.3+ makes the variety rules hard fails; 1.5 uses the visual-plan rules)
+visual_plan: "Spine: one FlowDiagram (app box splits into services, then one fails alone) over 4 scenes. Split for the comparison, Decision for when to pick which, Analogy for the restaurant."   # required for 1.5+, ≤300 characters: the spine diagram(s) and why each other template is there
 
 series:                                # only for two-part episodes
   key: caching                         # shared by both parts
@@ -179,8 +181,10 @@ Families: `outlined` (default, inside our system) · `solid` (outside our system
 | `branch` | **Decision:** a packet goes through a check. `args: {to: yes\|no}`; the path it takes lights up |
 | `race` | **Split (race):** both halves send at once; each result lands when its packet arrives |
 
-### 3b. Pick the diagram from the idea
-Before choosing a template, name **what kind of idea** the scene explains, then use its template. Text templates (Analogy, ThreeCards) are for analogies and short lists, not for mechanisms.
+### 3b. Plan the visuals from the topic
+Before writing scenes, make a **visual plan**: decide the topic's **1–2 core diagrams** (the "spine", e.g. one evolving FlowDiagram, or one Sequence) and add another template **only where the idea genuinely changes kind** (a comparison, a rule or fork, an analogy, levels). Use only the diagram kinds the topic actually has. A single-mechanism topic can be one evolving diagram plus an analogy. Never add a template to tick it off, and never force variety. Write the plan in the `visual_plan` field (≤300 characters): the spine, and why each other template is there.
+
+The table below is a lookup ("if the scene explains X, use Y"), not a menu to cover. Text templates (Analogy, ThreeCards) are for analogies and short lists, not for mechanisms.
 | The scene explains… | Template | e.g. |
 |---|---|---|
 | Requests moving through parts of a system | `FlowDiagram` | load balancer spreading traffic, a server going down |
@@ -190,9 +194,9 @@ Before choosing a template, name **what kind of idea** the scene explains, then 
 | Levels or a scale with a trade-off | `Tiers` (stack / pyramid / spectrum) | storage tiers, memory hierarchy, consistency levels |
 | "X is like Y" | `Analogy` | restaurant = client/server |
 | Three properties or steps | `ThreeCards` | the three things every system needs |
-| An idea best shown by a template that isn't built yet (Tree, Chart, Timeline, Zoom, StateMachine, Ring, Cells, Stream, Cluster, Graph, Transform, Snippet, Estimate, Fleet, Map, DataView, Matrix; see STATUS.md → Diagram roadmap) | the closest built one, and name the better template in the hand-over so it counts toward that wave | |
+| An idea best shown by a template that isn't built yet (Tree, Chart, Timeline, Zoom, StateMachine, Ring, Cells, Stream, Cluster, Graph, Transform, Snippet, Estimate, Fleet, Map, DataView, Matrix; see STATUS.md → Diagram roadmap) | the closest built one, and name the better template in the hand-over if one fits | |
 
-A long mechanism can continue one diagram over up to 3 scenes (`stage.reuse`), then switch to a different kind.
+The spine can be built up over **up to 5 scenes** with `stage.reuse` (up to 3 for `format` below 1.5), then the script moves on to a different kind only if the idea changes.
 
 **BigPicture: when to use it.** Add one (and only one) as the last breakdown scene when the breakdown described **parts of one system that connect** (a request's journey, a pipeline, an architecture). Skip it for single-mechanism topics (a hash function, one protocol, one rule). Its voiceover is one short line that ties the panels together ("Put it together: ask, check, answer, scale out."), with a `highlight` on each panel as it's named. Pick the panels that tell the story in order; use the last scene of a continued diagram so it's complete. It doesn't count toward the variety rules.
 
@@ -215,9 +219,14 @@ A long mechanism can continue one diagram over up to 3 scenes (`stage.reuse`), t
 - A BigPicture that isn't the last breakdown scene before the gist, has other than 2–4 panels, points at a scene that isn't an earlier breakdown diagram, or appears more than once
 - A diagram that breaks its template's shape: Sequence with other than 2–3 actors or more than 7 steps in total; Split without both halves or with more than 4 nodes in one; Decision without a start or with other than 1–3 checks; Tiers with other than 2–5 tiers or more than 2 axes; an `icon` not in the set; `step` / `branch` / `race` outside their template
 
-**Variety (hard fails for `format: "1.3"` episodes, warnings for older ones):**
-- The breakdown uses **fewer than 4 different templates** (5+ reads better: warning)
-- One template is used in **more than 3 scenes** (continuations with `reuse` count; Hook and GistCard don't)
-- The breakdown's template order (continuations folded in) is **identical to the previous episode's**
+**Variety, `format: "1.5"` and later (the visual plan decides the templates; these rules only stop the extremes):**
+- Hard fail: one template used for **more than 3 separate diagrams** in the breakdown (a `reuse` continuation chain counts as ONE diagram; Hook, GistCard and BigPicture never count)
+- Hard fail: a `reuse` chain **longer than 5 scenes**
+- Hard fail: `visual_plan` missing or empty, or longer than 300 characters
+- Warning: **6 or more different templates** in the breakdown (reads like a sampler; does the topic need all of them?)
+- Warning: the breakdown's template order (continuations folded in) is identical to the previous episode's
+- Warning: two breakdown scenes in a row with the same template that don't continue it (`reuse`) · fewer than half the breakdown scenes are diagrams · a run of 3 templates in the same order as the previous episode
 
-**Warnings only:** word count far from the target length · a scene over 8s · fewer beats than one per 2s · two breakdown scenes in a row with the same template that don't continue it (`reuse`) · fewer than half the breakdown scenes are diagrams · a run of 3 templates in the same order as the previous episode.
+**Variety for `format: "1.3"`–`"1.4"` (unchanged; hard fails for 1.3+, warnings for older):** fewer than 4 different templates in the breakdown (5+ reads better: warning), one template in more than 3 scenes (continuations count), or the same template order as the previous episode.
+
+**Other warnings:** word count far from the target length · a scene over 8s · fewer beats than one per 2s. The repeat-style warnings above apply to every format.

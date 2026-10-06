@@ -1,5 +1,5 @@
 {
-  "$note": "Voice rotation (round robin). /script assigns the next voice when it creates an episode (npm run voice:assign). Both parts of a two-part episode share one voice. Edit 'roster' to add, remove or reorder voices.",
+  "$note": "Voice rotation (round robin). /script assigns the next voice when it creates an episode (npm run voice:assign). Both parts of a two-part episode share one voice. Edit 'roster' to add, remove or reorder voices. 'retired' voices are out of rotation but stay valid for episodes already made with them.",
   "roster": [
     {
       "name": "Liam",
@@ -7,9 +7,9 @@
       "style": "energetic, social media"
     },
     {
-      "name": "Laura",
-      "voice_id": "FGY2WhTYpPnrIDTdsKH5",
-      "style": "quirky enthusiast"
+      "name": "Matilda",
+      "voice_id": "XrExE9yKIg1WjnnlVkGX",
+      "style": "knowledgeable, upbeat"
     },
     {
       "name": "Jessica",
@@ -20,6 +20,14 @@
       "name": "Chris",
       "voice_id": "iP95p4xoKVk53GoZ742B",
       "style": "charming, down-to-earth"
+    }
+  ],
+  "retired": [
+    {
+      "name": "Laura",
+      "voice_id": "FGY2WhTYpPnrIDTdsKH5",
+      "style": "quirky enthusiast",
+      "note": "replaced by Matilda 2026-10-07; used by 002"
     }
   ],
   "next": 3,

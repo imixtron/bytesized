@@ -8,7 +8,7 @@
 - [x] **Start the 002 → 001 rebuilds**: 002 started 2026-10-06
 - [ ] **Live test for Visual Reference (2 min):** in Notion → Shorts, attach any image to the `Visual Reference` cell of row **#2** (Client–Server Model; it won't change that episode), then tell me "test refs". I'll run the fetch → download → look path and remove nothing from Notion
 - [x] **Review SCRIPT-FORMAT v1.3**: approved 2026-10-06
-- [x] **Review step 3: BigPicture + cover**: approved 2026-10-06 (design language v1.6, script format v1.4)
+- [x] **Review step 3: BigPicture + cover**: approved 2026-10-06 (design language v1.6, script format v1.4; superseded by v1.5 on 2026-10-07)
 - [ ] **Review the 003 storyboard (round 2)** in Discord: the visuals now use the new diagrams. Approve, or Request changes
 - [x] **Review the v1.5 diagram templates (wave 1)**: approved 2026-10-06
 - [ ] **Publish the pilot**: `episodes/001-what-is-system-design/out/what-is-system-design.mp4` + copy from `out/upload.md`, then set Notion #3 → **Published**

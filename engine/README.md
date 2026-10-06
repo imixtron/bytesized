@@ -7,7 +7,7 @@ Remotion (React + TypeScript) project. It renders `episodes/<nnn-slug>/episode.y
 |---|---|
 | `npm run voice:assign -- <nnn>` | Gives the episode the next round-robin voice (`episodes/voices.json`) |
 | `npm run music:assign -- <nnn> [--force\|--dry-run]` | Picks the episode's theme track at random, never the previous episode's (`episodes/music.json`), and writes `music.track`. Keeps an existing pick unless `--force`. Part 2 reuses Part 1's track |
-| `npm run validate [-- <nnn>]` | Checks episodes against SCRIPT-FORMAT v1.2 (80–90s). Uses the measured length once voiced |
+| `npm run validate [-- <nnn>]` | Checks episodes against SCRIPT-FORMAT v1.5 (80–90s; format 1.5 needs a `visual_plan`). Uses the measured length once voiced |
 | `npm run voice -- <nnn> [--force\|--upgrade]` | ElevenLabs voiceover per scene with word timestamps, cached → `episodes/<nnn-slug>/audio/` |
 | `npm run storyboard -- <nnn>` | One still per beat → `episodes/<nnn-slug>/storyboard/storyboard.html`, plus one phone-readable image per section → `storyboard/sections/*.jpg` (`storyboard-sheet` composition), plus contact sheets → `storyboard/contact-*.jpg` |
 | `npm run contact -- <nnn>` | Re-makes only the contact sheets from existing storyboard frames: 12 small stills per image, tagged `<n> <scene> <time>` (`contact-sheet` composition). Claude's self-check uses these, not the section images, because an image costs tokens by its pixels |

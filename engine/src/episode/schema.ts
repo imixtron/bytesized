@@ -69,8 +69,10 @@ export const EpisodeSchema = z.strictObject({
   title: z.string(),
   topic: z.string(),
   target_sec: z.number().min(80).max(90),
-  /** script format the episode was written to; "1.3" or later turns the variety rules into hard fails */
+  /** script format the episode was written to; "1.3" or later turns the variety rules into hard fails; "1.5" or later uses the visual-plan rules */
   format: z.string().optional(),
+  /** format 1.5+: the topic's spine diagram(s) and why each other template is there (max 300 characters, checked by the validator) */
+  visual_plan: z.string().optional(),
   series: z
     .object({
       key: z.string(),

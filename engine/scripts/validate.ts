@@ -1,4 +1,4 @@
-// Validates episode.yaml files against SCRIPT-FORMAT.md (variety rules: v1.3).
+// Validates episode.yaml files against SCRIPT-FORMAT.md (variety rules: v1.3, visual plan: v1.5).
 // Usage: npm run validate            → all episodes
 //        npm run validate -- 001     → episodes whose folder starts with 001
 import { existsSync, readdirSync, readFileSync } from "node:fs";
@@ -30,7 +30,8 @@ for (const folder of folders) {
   try {
     const ep = parseEpisode(readFileSync(join(ROOT, "episodes", folder, "episode.yaml"), "utf8"));
     if (ep.slug !== folder.replace(/^\d+-/, "")) console.log(`  ⚠ slug "${ep.slug}" doesn't match folder "${folder}"`);
-    const roster = JSON.parse(readFileSync(join(ROOT, "episodes/voices.json"), "utf8")).roster;
+    const voices = JSON.parse(readFileSync(join(ROOT, "episodes/voices.json"), "utf8"));
+    const roster = [...voices.roster, ...(voices.retired ?? [])]; // retired voices stay valid for episodes made with them
     const manifestPath = join(ROOT, "episodes", folder, "audio/voice.json");
     let measured;
     if (existsSync(manifestPath)) {

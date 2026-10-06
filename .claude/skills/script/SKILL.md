@@ -30,16 +30,17 @@ You write **one Bytesized episode** as `episodes/<nnn-slug>/episode.yaml`. Every
 ### 3. Write the story (Hook → Idea → Breakdown ×6–12 → Gist)
 - **Hook (0–3s):** a question or surprising claim in the first sentence. No greetings. Make it concrete (a real product, a number, a failure).
 - **Idea:** name the concept in plain words, ideally with an everyday analogy.
-- **Breakdown:** show *how it works*, one idea per scene, 3–8s each, ideally with a failure/recovery moment. Mix kinds of idea (a flow, a sequence, a comparison, a rule, a trade-off) so the diagrams vary (§3b).
+- **Breakdown:** show *how it works*, one idea per scene, 3–8s each, ideally with a failure/recovery moment. Show the kinds of idea the topic really has (a flow, a sequence, a comparison, a rule, a trade-off), following your visual plan (step 4); don't force variety.
 - **BigPicture (optional):** if the breakdown described parts of one system that connect, end the breakdown with a 3–5s `BigPicture` scene: one short line tying it together, 2–4 panels from your own diagram scenes, a `highlight` on each panel as the VO names it (SCRIPT-FORMAT §3b). Skip it for single-mechanism topics. Budget its words inside the 80–90s.
 - **Gist:** the VO starts with *"That's the gist:"*, gives a one-line takeaway (≤ 8 words on the card), then *"Follow for more."* (or the Part 2 line).
 - **Voice:** playful, a bit cheeky, short sentences. Write numbers as spoken ("two million"). No emojis. Spell brand names the way they're said.
 - **Headlines:** ≤ 5 words, exactly one `accent` word that's in the text. Most scenes, but at least one without, never more than 3 in a row, and never on the GistCard. The headline names the idea and must not repeat the VO.
 
-### 4. Pick the visuals (menus only)
+### 4. Make the visual plan, then pick the visuals (menus only)
+- **Visual plan first (SCRIPT-FORMAT §3b), before writing scenes:** decide the topic's **1–2 core diagrams** (the spine; it can be built up over up to 5 scenes with `stage.reuse`), then add another template only where the idea genuinely changes kind (a comparison, a rule/fork, an analogy, levels). Use only the diagram kinds the topic has; a single-mechanism topic can be one evolving diagram plus an analogy. Never add a template to tick it off. Write the plan in `visual_plan` (≤300 characters), e.g. `"Spine: one FlowDiagram (app box splits into services, then one fails alone) over 4 scenes. Split for the comparison, Decision for when to pick which, Analogy for the restaurant."`
 - Templates, node types, families and verbs come **only** from SCRIPT-FORMAT §3. Prefer built templates. If a scene truly needs an unbuilt one (MetricChart, Zoom), use it and list it under "Needs for /video" in your summary.
-- **Pick each breakdown diagram from the idea** with the table in SCRIPT-FORMAT §3b: name the kind of idea first, then the template. If a planned template would fit better (STATUS.md → Diagram roadmap), use the closest built one and name the better one in the hand-over.
-- **Variety:** at least 4 different templates in the breakdown (aim for 5+), no template in more than 3 scenes (continuations count), no two breakdown scenes in a row with the same template unless one continues the other (`reuse`), at least half the breakdown as diagrams, and a template order that isn't the previous episode's. `npm run validate` enforces it.
+- **Pick each breakdown diagram from the idea** with the lookup table in SCRIPT-FORMAT §3b ("if the scene explains X, use Y"): name the kind of idea first, then the template. If an unbuilt template would fit better (STATUS.md → Diagram roadmap), use the closest built one and name the better one in the hand-over.
+- **Variety (format 1.5 guards the extremes, `npm run validate` enforces it):** no template for more than 3 separate diagrams in the breakdown (a `reuse` chain counts as one), no `reuse` chain over 5 scenes, `visual_plan` present (≤300 characters). Warnings: 6+ different templates (reads like a sampler), the previous episode's template order, two breakdown scenes in a row with the same template that don't continue it, fewer than half the breakdown as diagrams.
 - **Visual Reference:** if the Notion row has `Visual Reference` images (the queue saves them to `bridge/files/notion-<ID>/` first; `npm --prefix engine run refs -- <ID> --list` shows them), open each with the Read tool and look at it. Map each to a template from §3b. If none fits, use the closest and list "missing template: <what the reference shows>" under "Needs for /video", which raises it at Parts Review. It's optional: never wait for one.
 - **Families:** `outlined` = inside our system (with states), `solid` = outside it (users, third parties), `hero` = the episode's topic, at most one on screen.
 - **FlowDiagram:** give `layers` top → bottom, `nodes`, `links`. Reuse the same diagram across scenes with `stage.reuse: <scene id>` so nodes don't jump.
@@ -55,7 +56,7 @@ You write **one Bytesized episode** as `episodes/<nnn-slug>/episode.yaml`. Every
 ### 5. Write the file(s)
 - Folder: `episodes/<nnn>-<slug>/episode.yaml`, where `<nnn>` = highest existing number + 1 (zero-padded) and `slug` is lowercase-kebab. For a series, use consecutive numbers (`007-caching-part-1`, `008-caching-part-2`).
 - Start with a comment line: `# Episode <nnn>. Draft (awaiting approval ✋)`.
-- Set `format: "1.4"`.
+- Set `format: "1.5"` and `visual_plan: "…"` (step 4).
 - Leave `voice:` as `{ voice_id: TBD, speed: 1.0 }`. The next step fills it.
 
 ### 6. Assign the voice and music, then validate (run from `engine/`)

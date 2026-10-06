@@ -172,6 +172,7 @@ function scriptEmbeds(e: Ep) {
       { name: "Words", value: String(words), inline: true },
       { name: "Sections", value: String(e.ep.scenes.length), inline: true },
       ...(e.ep.brands.length ? [{ name: "Brands", value: e.ep.brands.join(", "), inline: true }] : []),
+      ...(e.ep.visual_plan ? [{ name: "Visual plan", value: e.ep.visual_plan, inline: false }] : []),
     ],
   };
   const scenes = e.tl.scenes.map((ts, i) => ({
