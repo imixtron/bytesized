@@ -2,7 +2,7 @@
 // It is only the mailbox and the clock: it checks the gateway's signed webhooks, saves each click to bridge/inbox/,
 // and adds a "tick" every 6 hours. The host runner (bridge/runner.mjs) turns each inbox item into a Claude run.
 import { createHmac, timingSafeEqual } from "node:crypto";
-import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, unlinkSync, writeFileSync } from "node:fs";
 import http from "node:http";
 import { join } from "node:path";
 
@@ -83,7 +83,11 @@ async function handleRunFailed(data) {
   const src = join(FAILED, item);
   if (data.action === "drop") return reply(data.message_id, "🗑️ OK, left it. It stays in `bridge/failed/`.");
   if (!/^[\w.-]+\.json$/.test(item) || !existsSync(src)) return reply(data.message_id, `Nothing to retry: \`${item}\` is no longer in bridge/failed/.`);
-  renameSync(src, join(INBOX, item));
+  // failed/ and inbox/ are separate bind mounts, so rename() can't cross them: copy (dotfile first), then remove.
+  const tmp = join(INBOX, `.${item}.tmp`);
+  writeFileSync(tmp, readFileSync(src));
+  renameSync(tmp, join(INBOX, item));
+  unlinkSync(src);
   log(`inbox ← ${item} (retry)`);
   await reply(data.message_id, "🔁 Re-queued. Claude picks it up now.");
 }
