@@ -25,11 +25,13 @@ export const Cover = ({ loaded }: CoverProps) => {
   const words = episode.title.replace(/\?$/, "").split(/\s+/);
   const accent = words.at(-1) ?? "";
   const ts = big ?? timeline.scenes[0];
+  // Long titles wrap to 4 lines at the full size and run under the panels, so step the size down.
+  const titleSize = episode.title.length > 22 ? Math.round(C.titleSize * 0.78) : C.titleSize;
   return (
     <AbsoluteFill style={{ background: c.charcoal, color: c.cream }}>
       <CornerMark />
       {episode.series && <PartTag part={episode.series.part} of={episode.series.of} />}
-      <div style={{ position: "absolute", left: safe.left, top: C.titleY, width: safe.right - safe.left, font: `800 ${C.titleSize}px/1.02 ${fonts.display}`, letterSpacing: "-.01em", textWrap: "balance" }}>
+      <div style={{ position: "absolute", left: safe.left, top: C.titleY, width: safe.right - safe.left, font: `800 ${titleSize}px/1.02 ${fonts.display}`, letterSpacing: "-.01em", textWrap: "balance" }}>
         <AccentText text={episode.title} accent={accent} />
       </div>
       <PanelGrid ctx={{ ts, episode, timeline }} items={items.slice(0, C.maxPanels)} area={{ x: safe.left, y: C.gridTop, w: safe.right - safe.left, h: C.gridBottom - C.gridTop }} f={1e6} />

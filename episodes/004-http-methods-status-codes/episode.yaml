@@ -1,0 +1,265 @@
+# Episode 004. Script r3 (2026-10-07): rewritten after draft feedback (004:draft:r1: lines too clipped/robotic); flowing sentences, 10 scenes, ~175 words. Awaiting approval before re-voicing
+# (r2 was approved 2026-10-07, 004:script:r2; r1 voiced 95.8s, trimmed to fit 80–90s)
+# Notion row #8 · Networking · Junior / Entry · target ~85s (script format v1.5)
+id: 4
+slug: http-methods-status-codes
+title: HTTP Methods & Status Codes
+topic: HTTP methods (GET, POST, PUT, DELETE), idempotency, status code families
+  and what can be cached
+target_sec: 85
+format: "1.5"
+visual_plan: "Spine: one Sequence (your app ↔ server) over 3 scenes, one verb at
+  a time with its reply code. Split for send-it-twice and for the
+  200-with-an-error bug, Decision for safe-to-retry, Tiers for the four code
+  families, FlowDiagram for the cache."
+
+brands: []
+
+voice: { voice_id: iP95p4xoKVk53GoZ742B, speed: 1.0, name: Chris }
+
+music:
+  track: bytesized-theme-4
+
+scenes:
+  # ---------- HOOK ----------
+  - id: hook
+    part: hook
+    template: Hook
+    vo: "GET, POST, PUT. It all sounds simple, so why do so many API bugs start
+      right here?"
+    headline: { text: "Simple. Until it isn't.", accent: "isn't." }
+    stage:
+      nodes:
+        - { id: api, type: server, family: hero, label: api }
+      crowd: { id: reqs, count: 30, target: api }
+      counter: { id: code, from: 0, to: 404, label: not found }
+    beats:
+      - { on: "GET", do: appear, target: api }
+      - { on: "PUT", do: flood, target: reqs }
+      - { on: "bugs", do: count, target: code }
+      - { on: "here", do: shake, target: api }
+
+  # ---------- BRANDING (automatic, ~1.5s) ----------
+
+  # ---------- IDEA: verb + path in, number back ----------
+  - id: idea
+    part: idea
+    template: Analogy
+    vo: "Your app sends a verb, what to do, and a path, which thing. The server
+      replies with a number."
+    headline: { text: "Ask, then get a number", accent: "number" }
+    stage:
+      rows:
+        - { id: r1, icon: user, key: Verb, value: "what to do" }
+        - { id: r2, icon: file, key: Path, value: "which thing" }
+        - { id: r3, icon: check, key: Status, value: "how it went" }
+    beats:
+      - { on: "verb", do: reveal, target: r1 }
+      - { on: "path", do: reveal, target: r2 }
+      - { on: "replies", do: reveal, target: r3 }
+      - { on: "number", do: highlight, target: r3 }
+
+  # ---------- BREAKDOWN 1–3: one verb at a time (Sequence over 3 scenes) ----------
+  - id: get
+    part: breakdown
+    template: Sequence
+    vo: "A GET just reads. Ask for your cart, and the server answers two hundred:
+      all good."
+    headline: { text: "Just looking", accent: "looking" }
+    stage:
+      actors:
+        - { id: app, type: phone, family: solid, label: your app }
+        - { id: srv, type: server, label: server }
+      steps:
+        - { id: g1, from: app, to: srv, label: "GET /cart" }
+        - { id: g2, from: srv, to: app, label: "200 OK", kind: response }
+    beats:
+      - { on: "GET", do: appear, target: [ app, srv ] }
+      - { on: "cart", do: step, target: g1 }
+      - { on: "answers", do: step, target: g2 }
+      - { on: "good", do: highlight, target: g2 }
+
+  - id: post
+    part: breakdown
+    template: Sequence
+    transition: push
+    vo: "A POST creates something. Place an order, and you get back a two oh one:
+      created."
+    stage:
+      reuse: get
+      steps:
+        - { id: p1, from: app, to: srv, label: "POST /orders" }
+        - { id: p2, from: srv, to: app, label: "201 Created", kind: response }
+    beats:
+      - { on: "order", do: step, target: p1 }
+      - { on: "order", do: state, target: srv, args: { to: active }, offset: 0.4 }
+      - { on: "get", do: step, target: p2 }
+      - { on: "created", do: highlight, target: p2 }
+
+  - id: putdelete
+    part: breakdown
+    template: Sequence
+    vo: "A PUT replaces your whole address. A DELETE removes it, and it's gone."
+    headline: { text: "Replace or remove", accent: "remove" }
+    stage:
+      reuse: get
+      steps:
+        - { id: u1, from: app, to: srv, label: "PUT /address" }
+        - { id: d1, from: app, to: srv, label: "DELETE /cart" }
+    beats:
+      - { on: "PUT", do: step, target: u1 }
+      - { on: "address", do: highlight, target: u1 }
+      - { on: "DELETE", do: step, target: d1 }
+      - { on: "gone", do: highlight, target: d1 }
+
+  # ---------- BREAKDOWN 4: send it twice ----------
+  - id: twice
+    part: breakdown
+    template: Split
+    vo: "Now send it twice. A PUT twice leaves the same address, but a POST twice
+      makes two orders."
+    headline: { text: "The double-tap test", accent: "double-tap" }
+    stage:
+      variant: compare
+      before:
+        id: put
+        title: PUT ×2
+        note: "same result"
+        nodes:
+          - { id: pu-app, type: phone, family: solid, label: app }
+          - { id: pu-db, type: db, label: one address }
+      after:
+        id: post
+        title: POST ×2
+        note: "two orders!"
+        nodes:
+          - { id: po-app, type: phone, family: solid, label: app }
+          - { id: po-1, type: db, label: order 1 }
+          - { id: po-2, type: db, label: order 2 }
+    beats:
+      - { on: "send", do: appear, target: put }
+      - { on: "send", do: appear, target: post, offset: 0.2 }
+      - { on: "PUT", do: send, target: pu-db, args: { kind: request, count: 2 } }
+      - { on: "address", do: highlight, target: put }
+      - { on: "POST", do: send, target: [ po-1, po-2 ], args: { kind: request } }
+      - { on: "orders", do: state, target: [ po-1, po-2 ], args: { to: overloaded } }
+      - { on: "orders", do: shake, target: po-2, offset: 0.4 }
+
+  # ---------- BREAKDOWN 5: safe to retry? ----------
+  - id: retry
+    part: breakdown
+    template: Decision
+    vo: "That's idempotency. If a request times out, retry freely for GET, PUT and
+      DELETE. For POST, use an idempotency key."
+    headline: { text: "Try again?", accent: "again?" }
+    stage:
+      start: { id: req, type: phone, family: solid, label: timed out }
+      checks:
+        - {
+            id: idem,
+            q: "Idempotent?",
+            no: { id: key, label: "use a key", icon: key, tone: down }
+          }
+      yes: { id: again, label: "just retry", icon: retry, tone: ok, retry: true }
+    beats:
+      - { on: "idempotency", do: appear, target: req }
+      - { on: "times", do: state, target: req, args: { to: down } }
+      - { on: "freely", do: branch, target: idem, args: { to: yes } }
+      - { on: "POST", do: branch, target: idem, args: { to: no } }
+      - { on: "key", do: highlight, target: key }
+
+  # ---------- BREAKDOWN 6: four families of status codes (no headline) ----------
+  - id: codes
+    part: breakdown
+    template: Tiers
+    vo: "Codes come in four families. Two hundreds mean it worked, three hundreds
+      look elsewhere, four hundreds are your mistake, and five hundreds are
+      ours."
+    stage:
+      variant: stack
+      tiers:
+        - { id: c2, icon: check, title: 2xx, sub: "it worked" }
+        - { id: c3, icon: retry, title: 3xx, sub: "look elsewhere" }
+        - { id: c4, icon: cross, title: 4xx, sub: "your mistake" }
+        - { id: c5, icon: hot, title: 5xx, sub: "our mistake" }
+    beats:
+      - { on: "Two", do: reveal, target: c2 }
+      - { on: "Three", do: reveal, target: c3 }
+      - { on: "Four#2", do: reveal, target: c4 }
+      - { on: "mistake", do: highlight, target: c4 }
+      - { on: "Five", do: reveal, target: c5 }
+      - { on: "ours", do: highlight, target: c5 }
+
+  # ---------- BREAKDOWN 7: the lying 200 ----------
+  - id: bug
+    part: breakdown
+    template: Split
+    vo: "Here's the classic bug. Some APIs answer two hundred even when the work
+      failed, so always read the body, not just the code."
+    headline: { text: "The lying 200", accent: "lying" }
+    stage:
+      variant: compare
+      before:
+        id: honest
+        title: "Honest"
+        note: "404, not found"
+        nodes:
+          - { id: ho-app, type: phone, family: solid, label: app }
+          - { id: ho-srv, type: server, label: server }
+      after:
+        id: liar
+        title: "Lying 200"
+        note: "200, but it failed"
+        nodes:
+          - { id: li-app, type: phone, family: solid, label: app }
+          - { id: li-srv, type: server, label: server }
+    beats:
+      - { on: "classic", do: appear, target: honest }
+      - { on: "classic", do: appear, target: liar, offset: 0.2 }
+      - { on: "two", do: send, target: li-srv, args: { kind: request } }
+      - { on: "failed", do: shake, target: li-srv }
+      - { on: "body", do: highlight, target: liar }
+
+  # ---------- BREAKDOWN 8: what a cache may answer ----------
+  - id: cache
+    part: breakdown
+    template: FlowDiagram
+    vo: "Caching? A GET only reads, so a cache can answer. A POST changes things,
+      so it goes to the server."
+    headline: { text: "Cache the reads", accent: "reads" }
+    stage:
+      layers: [ [ app ], [ cache ], [ srv ] ]
+      nodes:
+        - { id: app, type: phone, family: solid, label: your app }
+        - { id: cache, type: cache, label: cache }
+        - { id: srv, type: server, label: server }
+      links: [ [ app, cache ], [ cache, srv ] ]
+    beats:
+      - { on: "caching", do: appear, target: [ app, cache, srv ] }
+      - { on: "GET", do: send, target: cache, args: { kind: request, count: 2 } }
+      - { on: "answer", do: state, target: cache, args: { to: active } }
+      - {
+          on: "answer",
+          do: send,
+          target: app,
+          args: { kind: response, count: 2 },
+          offset: 0.2
+        }
+      - { on: "POST", do: send, target: srv, args: { kind: request, count: 2 } }
+      - { on: "server", do: highlight, target: srv }
+
+  # ---------- GIST (no headline) ----------
+  - id: gist
+    part: gist
+    template: GistCard
+    vo: "That's the gist: pick the right verb, and answer with the right code.
+      Follow for more."
+    stage:
+      text: "Right verb. Right status code."
+      accent: "Right"
+    beats:
+      - { on: "gist", do: appear, target: card }
+      - { on: "verb", do: highlight, target: card }
+      - { on: "code", do: highlight, target: card }
+
+# No outro: the video ends on the gist card and loops back into the hook.

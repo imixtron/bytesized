@@ -19,6 +19,13 @@ _Last updated 2026-10-06. Replaces the old PLAN.md and PROGRESS.md._
 | Next | Rebuild 001 (`/queue` §1b) → then new Ideas |
 | Diagram variety plan | Agreed 2026-10-06. Process steps + 4-wave template roadmap (25 templates) in [Diagram roadmap](#diagram-roadmap) below. Now: wave 1 ✅ (v1.5) · step 2 ✅ (v1.3) · step 3 ✅ (v1.6 / v1.4) · step 4 🟡 wired, needs one live test · next: wave 2 |
 
+_2026-10-10 13:49: 004 script r4 approved, `bug` scene voiced (123 chars, 2847 total), 81.7s measured, validate PASS; Storyboard Review r2 posted (`004:storyboard:r2`)._
+
+_2026-10-10 14:14: 004 storyboard r2 approved; draft r2 rendered (81.7s, 9.3 MB, 0 credits); Draft Review posted (`004:draft:r2`)._
+_2026-10-10 15:55: 004 draft r2 approved; final render + `upload.md` + cover done (81.7s, 9.3 MB, 0 credits, 2847 total). Cover title now steps down to 78% for titles over 22 characters (it ran under the panels at full size); token default unchanged._
+
+_2026-10-10 13:42: 004 script r3 approved and voiced, measured 73.8s (under the 80s floor) → lying-200 scene re-added; Script Review r4 posted (`004:script:r4`), voice the new scene only after approval._
+
 ## Diagram roadmap
 _Agreed with Imad 2026-10-06. Goal: varied, diagram-first shorts that don't reuse the last episode's look. Each wave adds templates (gallery stills + MP4s → Imad approves → design language bump) and nothing reaches an episode before approval._
 
@@ -89,3 +96,8 @@ _Agreed with Imad 2026-10-06. Goal: varied, diagram-first shorts that don't reus
 - **2026-10-07 02:30:** 001 script approved in Discord (`001:script:r1`) → re-voiced 9 scenes (Liam, 962 credits, paid plan), **85.2s measured**. Storyboard self-checked (interview note shortened) and posted (`001:storyboard:r1`).
 - **2026-10-07 02:40:** 001 storyboard approved in Discord → draft rendered (85.2s, 10.6 MB), posted for Draft Review (`001:draft:r1`).
 - **2026-10-07 02:50:** 001 draft approved in Discord → final render + `upload.md` + cover (85.2s, 10.6 MB). Rebuild to 80–90s done; 962 credits for the rebuild. Next: Idea #8.
+- **2026-10-07 02:51:** Imad tapped "Start the next Idea" → picked up **#8 HTTP Methods & Status Codes** as `004` (Chris, `bytesized-theme-4`). Script at format 1.5 (198 words, 11 scenes; app↔server Sequence spine ×3 + Split ×2, Decision, Tiers, FlowDiagram), validate PASS. Script Review posted. 0 credits.
+- **2026-10-07 03:03:** 004 script approved (`004:script:r1`) → voiced with Chris (1086 credits) at **95.8s**, over 90s: Chris reads ~0.48s/word vs ~0.41 for Laura/Jessica. Trimmed to 181 words (7 scenes), ~86.7s projected; Script Review r2 posted (`004:script:r2`). Re-voice ~700 credits after approval. Budget future Chris scripts at ~175–180 words.
+- **2026-10-07 03:18:** 004 r2 approved (`004:script:r2`) → re-voiced 7 scenes (693 credits; 1779 total), **90.0s** measured (at the cap; the trimmed scenes came out slower than projected, so ~170 words is safer for Chris). Storyboard self-check fixed one early beat (`Four#2`); Storyboard Review posted (`004:storyboard:r1`).
+- **2026-10-07 03:24:** 004 storyboard approved (`004:storyboard:r1`) → draft rendered (90.0s, 9.7 MB); Draft Review posted (`004:draft:r1`).
+- **2026-10-07 16:40:** 004 draft changes requested (`004:draft:r1`: dialog too clipped/robotic) → script rewritten as flowing sentences (10 scenes, 179 words, lying-200 scene dropped); Script Review r3 posted (`004:script:r3`), re-voice only after approval.

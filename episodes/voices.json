@@ -30,7 +30,7 @@
       "note": "replaced by Matilda 2026-10-07; used by 002"
     }
   ],
-  "next": 3,
+  "next": 0,
   "history": [
     {
       "episode": "001-what-is-system-design",
@@ -46,6 +46,11 @@
       "episode": "003-client-server-model",
       "voice": "Jessica",
       "date": "2026-10-05"
+    },
+    {
+      "episode": "004-http-methods-status-codes",
+      "voice": "Chris",
+      "date": "2026-10-06"
     }
   ]
 }

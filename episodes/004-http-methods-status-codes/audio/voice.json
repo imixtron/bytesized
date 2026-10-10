@@ -1,0 +1,1118 @@
+{
+  "voice": "Chris",
+  "voice_id": "iP95p4xoKVk53GoZ742B",
+  "model": "eleven_multilingual_v2",
+  "plan": "paid",
+  "generated": "2026-10-10T13:39:44.918Z",
+  "scenes": {
+    "hook": {
+      "file": "hook.mp3",
+      "hash": "4fd8cdf89e",
+      "text": "GET, POST, PUT. It all sounds simple, so why do so many API bugs start right here?",
+      "duration": 6.455,
+      "words": [
+        {
+          "text": "GET,",
+          "start": 0,
+          "end": 0.43
+        },
+        {
+          "text": "POST,",
+          "start": 0.604,
+          "end": 1.161
+        },
+        {
+          "text": "PUT.",
+          "start": 1.335,
+          "end": 1.858
+        },
+        {
+          "text": "It",
+          "start": 2.461,
+          "end": 2.566
+        },
+        {
+          "text": "all",
+          "start": 2.601,
+          "end": 2.682
+        },
+        {
+          "text": "sounds",
+          "start": 2.728,
+          "end": 2.949
+        },
+        {
+          "text": "simple,",
+          "start": 2.972,
+          "end": 3.32
+        },
+        {
+          "text": "so",
+          "start": 3.355,
+          "end": 3.587
+        },
+        {
+          "text": "why",
+          "start": 3.971,
+          "end": 4.133
+        },
+        {
+          "text": "do",
+          "start": 4.18,
+          "end": 4.249
+        },
+        {
+          "text": "so",
+          "start": 4.319,
+          "end": 4.377
+        },
+        {
+          "text": "many",
+          "start": 4.435,
+          "end": 4.574
+        },
+        {
+          "text": "API",
+          "start": 4.632,
+          "end": 4.992
+        },
+        {
+          "text": "bugs",
+          "start": 5.074,
+          "end": 5.271
+        },
+        {
+          "text": "start",
+          "start": 5.294,
+          "end": 5.492
+        },
+        {
+          "text": "right",
+          "start": 5.526,
+          "end": 5.666
+        },
+        {
+          "text": "here?",
+          "start": 5.7,
+          "end": 6.455
+        }
+      ],
+      "plan": "paid"
+    },
+    "idea": {
+      "file": "idea.mp3",
+      "hash": "dd790f09b8",
+      "text": "Your app sends a verb, what to do, and a path, which thing. The server replies with a number.",
+      "duration": 5.48,
+      "words": [
+        {
+          "text": "Your",
+          "start": 0,
+          "end": 0.197
+        },
+        {
+          "text": "app",
+          "start": 0.244,
+          "end": 0.372
+        },
+        {
+          "text": "sends",
+          "start": 0.418,
+          "end": 0.615
+        },
+        {
+          "text": "a",
+          "start": 0.65,
+          "end": 0.673
+        },
+        {
+          "text": "verb,",
+          "start": 0.72,
+          "end": 1.022
+        },
+        {
+          "text": "what",
+          "start": 1.068,
+          "end": 1.242
+        },
+        {
+          "text": "to",
+          "start": 1.289,
+          "end": 1.347
+        },
+        {
+          "text": "do,",
+          "start": 1.405,
+          "end": 1.649
+        },
+        {
+          "text": "and",
+          "start": 1.672,
+          "end": 1.753
+        },
+        {
+          "text": "a",
+          "start": 1.788,
+          "end": 1.811
+        },
+        {
+          "text": "path,",
+          "start": 1.858,
+          "end": 2.357
+        },
+        {
+          "text": "which",
+          "start": 2.531,
+          "end": 2.786
+        },
+        {
+          "text": "thing.",
+          "start": 2.844,
+          "end": 3.239
+        },
+        {
+          "text": "The",
+          "start": 3.68,
+          "end": 3.796
+        },
+        {
+          "text": "server",
+          "start": 3.843,
+          "end": 4.087
+        },
+        {
+          "text": "replies",
+          "start": 4.133,
+          "end": 4.516
+        },
+        {
+          "text": "with",
+          "start": 4.54,
+          "end": 4.644
+        },
+        {
+          "text": "a",
+          "start": 4.69,
+          "end": 4.714
+        },
+        {
+          "text": "number.",
+          "start": 4.76,
+          "end": 5.48
+        }
+      ],
+      "plan": "paid"
+    },
+    "get": {
+      "file": "get.mp3",
+      "hash": "63d0e22fe2",
+      "text": "A GET just reads. Ask for your cart, and the server answers two hundred: all good.",
+      "duration": 7.291,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.139
+        },
+        {
+          "text": "GET",
+          "start": 0.313,
+          "end": 0.662
+        },
+        {
+          "text": "just",
+          "start": 0.871,
+          "end": 1.103
+        },
+        {
+          "text": "reads.",
+          "start": 1.184,
+          "end": 1.776
+        },
+        {
+          "text": "Ask",
+          "start": 2.473,
+          "end": 2.728
+        },
+        {
+          "text": "for",
+          "start": 2.786,
+          "end": 2.879
+        },
+        {
+          "text": "your",
+          "start": 2.926,
+          "end": 3.03
+        },
+        {
+          "text": "cart,",
+          "start": 3.077,
+          "end": 3.483
+        },
+        {
+          "text": "and",
+          "start": 3.692,
+          "end": 3.843
+        },
+        {
+          "text": "the",
+          "start": 3.889,
+          "end": 3.959
+        },
+        {
+          "text": "server",
+          "start": 4.005,
+          "end": 4.296
+        },
+        {
+          "text": "answers",
+          "start": 4.365,
+          "end": 4.702
+        },
+        {
+          "text": "two",
+          "start": 4.772,
+          "end": 4.946
+        },
+        {
+          "text": "hundred:",
+          "start": 5.016,
+          "end": 5.433
+        },
+        {
+          "text": "all",
+          "start": 5.712,
+          "end": 5.991
+        },
+        {
+          "text": "good.",
+          "start": 6.049,
+          "end": 7.291
+        }
+      ],
+      "plan": "paid"
+    },
+    "post": {
+      "file": "post.mp3",
+      "hash": "d9aa5441e3",
+      "text": "A POST creates something. Place an order, and you get back a two oh one: created.",
+      "duration": 5.433,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.116
+        },
+        {
+          "text": "POST",
+          "start": 0.232,
+          "end": 0.662
+        },
+        {
+          "text": "creates",
+          "start": 0.778,
+          "end": 1.126
+        },
+        {
+          "text": "something.",
+          "start": 1.149,
+          "end": 1.602
+        },
+        {
+          "text": "Place",
+          "start": 2.113,
+          "end": 2.357
+        },
+        {
+          "text": "an",
+          "start": 2.38,
+          "end": 2.426
+        },
+        {
+          "text": "order,",
+          "start": 2.461,
+          "end": 2.763
+        },
+        {
+          "text": "and",
+          "start": 2.798,
+          "end": 2.949
+        },
+        {
+          "text": "you",
+          "start": 2.995,
+          "end": 3.065
+        },
+        {
+          "text": "get",
+          "start": 3.123,
+          "end": 3.216
+        },
+        {
+          "text": "back",
+          "start": 3.262,
+          "end": 3.413
+        },
+        {
+          "text": "a",
+          "start": 3.471,
+          "end": 3.495
+        },
+        {
+          "text": "two",
+          "start": 3.541,
+          "end": 3.715
+        },
+        {
+          "text": "oh",
+          "start": 3.808,
+          "end": 3.913
+        },
+        {
+          "text": "one:",
+          "start": 3.971,
+          "end": 4.284
+        },
+        {
+          "text": "created.",
+          "start": 4.412,
+          "end": 5.433
+        }
+      ],
+      "plan": "paid"
+    },
+    "putdelete": {
+      "file": "putdelete.mp3",
+      "hash": "222e82f342",
+      "text": "A PUT replaces your whole address. A DELETE removes it, and it's gone.",
+      "duration": 5.016,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.104
+        },
+        {
+          "text": "PUT",
+          "start": 0.221,
+          "end": 0.418
+        },
+        {
+          "text": "replaces",
+          "start": 0.464,
+          "end": 0.894
+        },
+        {
+          "text": "your",
+          "start": 0.94,
+          "end": 1.057
+        },
+        {
+          "text": "whole",
+          "start": 1.103,
+          "end": 1.277
+        },
+        {
+          "text": "address.",
+          "start": 1.3,
+          "end": 1.881
+        },
+        {
+          "text": "A",
+          "start": 2.392,
+          "end": 2.473
+        },
+        {
+          "text": "DELETE",
+          "start": 2.543,
+          "end": 2.833
+        },
+        {
+          "text": "removes",
+          "start": 2.856,
+          "end": 3.158
+        },
+        {
+          "text": "it,",
+          "start": 3.204,
+          "end": 3.402
+        },
+        {
+          "text": "and",
+          "start": 3.46,
+          "end": 3.611
+        },
+        {
+          "text": "it's",
+          "start": 3.657,
+          "end": 3.785
+        },
+        {
+          "text": "gone.",
+          "start": 3.831,
+          "end": 5.016
+        }
+      ],
+      "plan": "paid"
+    },
+    "twice": {
+      "file": "twice.mp3",
+      "hash": "9f8685fa16",
+      "text": "Now send it twice. A PUT twice leaves the same address, but a POST twice makes two orders.",
+      "duration": 6.873,
+      "words": [
+        {
+          "text": "Now",
+          "start": 0,
+          "end": 0.163
+        },
+        {
+          "text": "send",
+          "start": 0.221,
+          "end": 0.372
+        },
+        {
+          "text": "it",
+          "start": 0.418,
+          "end": 0.488
+        },
+        {
+          "text": "twice.",
+          "start": 0.511,
+          "end": 1.01
+        },
+        {
+          "text": "A",
+          "start": 1.393,
+          "end": 1.486
+        },
+        {
+          "text": "PUT",
+          "start": 1.579,
+          "end": 1.881
+        },
+        {
+          "text": "twice",
+          "start": 2.159,
+          "end": 2.519
+        },
+        {
+          "text": "leaves",
+          "start": 2.577,
+          "end": 2.821
+        },
+        {
+          "text": "the",
+          "start": 2.879,
+          "end": 2.949
+        },
+        {
+          "text": "same",
+          "start": 2.995,
+          "end": 3.193
+        },
+        {
+          "text": "address,",
+          "start": 3.216,
+          "end": 3.541
+        },
+        {
+          "text": "but",
+          "start": 3.564,
+          "end": 3.692
+        },
+        {
+          "text": "a",
+          "start": 3.727,
+          "end": 3.75
+        },
+        {
+          "text": "POST",
+          "start": 3.82,
+          "end": 4.284
+        },
+        {
+          "text": "twice",
+          "start": 4.609,
+          "end": 5.062
+        },
+        {
+          "text": "makes",
+          "start": 5.12,
+          "end": 5.352
+        },
+        {
+          "text": "two",
+          "start": 5.422,
+          "end": 5.619
+        },
+        {
+          "text": "orders.",
+          "start": 5.689,
+          "end": 6.873
+        }
+      ],
+      "plan": "paid"
+    },
+    "retry": {
+      "file": "retry.mp3",
+      "hash": "8a837774ae",
+      "text": "That's idempotency. If a request times out, retry freely for GET, PUT and DELETE. For POST, use an idempotency key.",
+      "duration": 10.542,
+      "words": [
+        {
+          "text": "That's",
+          "start": 0,
+          "end": 0.244
+        },
+        {
+          "text": "idempotency.",
+          "start": 0.313,
+          "end": 1.521
+        },
+        {
+          "text": "If",
+          "start": 1.904,
+          "end": 2.032
+        },
+        {
+          "text": "a",
+          "start": 2.078,
+          "end": 2.101
+        },
+        {
+          "text": "request",
+          "start": 2.171,
+          "end": 2.566
+        },
+        {
+          "text": "times",
+          "start": 2.612,
+          "end": 2.902
+        },
+        {
+          "text": "out,",
+          "start": 2.961,
+          "end": 3.239
+        },
+        {
+          "text": "retry",
+          "start": 3.564,
+          "end": 4.087
+        },
+        {
+          "text": "freely",
+          "start": 4.203,
+          "end": 4.54
+        },
+        {
+          "text": "for",
+          "start": 4.598,
+          "end": 4.725
+        },
+        {
+          "text": "GET,",
+          "start": 4.807,
+          "end": 5.201
+        },
+        {
+          "text": "PUT",
+          "start": 5.375,
+          "end": 5.677
+        },
+        {
+          "text": "and",
+          "start": 5.921,
+          "end": 6.118
+        },
+        {
+          "text": "DELETE.",
+          "start": 6.2,
+          "end": 6.757
+        },
+        {
+          "text": "For",
+          "start": 7.454,
+          "end": 7.593
+        },
+        {
+          "text": "POST,",
+          "start": 7.663,
+          "end": 8.255
+        },
+        {
+          "text": "use",
+          "start": 8.533,
+          "end": 8.684
+        },
+        {
+          "text": "an",
+          "start": 8.707,
+          "end": 8.754
+        },
+        {
+          "text": "idempotency",
+          "start": 8.8,
+          "end": 9.625
+        },
+        {
+          "text": "key.",
+          "start": 9.683,
+          "end": 10.542
+        }
+      ],
+      "plan": "paid"
+    },
+    "codes": {
+      "file": "codes.mp3",
+      "hash": "8106d79f6f",
+      "text": "Codes come in four families. Two hundreds mean it worked, three hundreds look elsewhere, four hundreds are your mistake, and five hundreds are ours.",
+      "duration": 10.495,
+      "words": [
+        {
+          "text": "Codes",
+          "start": 0,
+          "end": 0.325
+        },
+        {
+          "text": "come",
+          "start": 0.36,
+          "end": 0.488
+        },
+        {
+          "text": "in",
+          "start": 0.522,
+          "end": 0.58
+        },
+        {
+          "text": "four",
+          "start": 0.673,
+          "end": 0.952
+        },
+        {
+          "text": "families.",
+          "start": 1.022,
+          "end": 1.66
+        },
+        {
+          "text": "Two",
+          "start": 2.264,
+          "end": 2.473
+        },
+        {
+          "text": "hundreds",
+          "start": 2.531,
+          "end": 2.798
+        },
+        {
+          "text": "mean",
+          "start": 2.844,
+          "end": 2.972
+        },
+        {
+          "text": "it",
+          "start": 3.03,
+          "end": 3.077
+        },
+        {
+          "text": "worked,",
+          "start": 3.123,
+          "end": 3.564
+        },
+        {
+          "text": "three",
+          "start": 4.005,
+          "end": 4.203
+        },
+        {
+          "text": "hundreds",
+          "start": 4.238,
+          "end": 4.47
+        },
+        {
+          "text": "look",
+          "start": 4.516,
+          "end": 4.667
+        },
+        {
+          "text": "elsewhere,",
+          "start": 4.714,
+          "end": 5.329
+        },
+        {
+          "text": "four",
+          "start": 5.84,
+          "end": 6.06
+        },
+        {
+          "text": "hundreds",
+          "start": 6.107,
+          "end": 6.397
+        },
+        {
+          "text": "are",
+          "start": 6.432,
+          "end": 6.513
+        },
+        {
+          "text": "your",
+          "start": 6.548,
+          "end": 6.653
+        },
+        {
+          "text": "mistake,",
+          "start": 6.699,
+          "end": 7.291
+        },
+        {
+          "text": "and",
+          "start": 7.895,
+          "end": 8.057
+        },
+        {
+          "text": "five",
+          "start": 8.208,
+          "end": 8.545
+        },
+        {
+          "text": "hundreds",
+          "start": 8.58,
+          "end": 8.916
+        },
+        {
+          "text": "are",
+          "start": 8.951,
+          "end": 9.102
+        },
+        {
+          "text": "ours.",
+          "start": 9.149,
+          "end": 10.495
+        }
+      ],
+      "plan": "paid"
+    },
+    "bug": {
+      "file": "bug.mp3",
+      "hash": "a41ea071cc",
+      "text": "Here's the classic bug. Some APIs answer two hundred even when the work failed, so always read the body, not just the code.",
+      "duration": 7.57,
+      "words": [
+        {
+          "text": "Here's",
+          "start": 0,
+          "end": 0.29
+        },
+        {
+          "text": "the",
+          "start": 0.325,
+          "end": 0.395
+        },
+        {
+          "text": "classic",
+          "start": 0.441,
+          "end": 0.813
+        },
+        {
+          "text": "bug.",
+          "start": 0.871,
+          "end": 1.277
+        },
+        {
+          "text": "Some",
+          "start": 1.974,
+          "end": 2.194
+        },
+        {
+          "text": "APIs",
+          "start": 2.229,
+          "end": 2.624
+        },
+        {
+          "text": "answer",
+          "start": 2.682,
+          "end": 2.926
+        },
+        {
+          "text": "two",
+          "start": 2.984,
+          "end": 3.135
+        },
+        {
+          "text": "hundred",
+          "start": 3.204,
+          "end": 3.529
+        },
+        {
+          "text": "even",
+          "start": 3.587,
+          "end": 3.785
+        },
+        {
+          "text": "when",
+          "start": 3.82,
+          "end": 3.936
+        },
+        {
+          "text": "the",
+          "start": 3.982,
+          "end": 4.052
+        },
+        {
+          "text": "work",
+          "start": 4.087,
+          "end": 4.272
+        },
+        {
+          "text": "failed,",
+          "start": 4.342,
+          "end": 4.679
+        },
+        {
+          "text": "so",
+          "start": 4.702,
+          "end": 4.853
+        },
+        {
+          "text": "always",
+          "start": 4.911,
+          "end": 5.213
+        },
+        {
+          "text": "read",
+          "start": 5.271,
+          "end": 5.422
+        },
+        {
+          "text": "the",
+          "start": 5.457,
+          "end": 5.526
+        },
+        {
+          "text": "body,",
+          "start": 5.561,
+          "end": 5.921
+        },
+        {
+          "text": "not",
+          "start": 5.968,
+          "end": 6.118
+        },
+        {
+          "text": "just",
+          "start": 6.165,
+          "end": 6.327
+        },
+        {
+          "text": "the",
+          "start": 6.374,
+          "end": 6.444
+        },
+        {
+          "text": "code.",
+          "start": 6.49,
+          "end": 7.57
+        }
+      ],
+      "plan": "paid"
+    },
+    "cache": {
+      "file": "cache.mp3",
+      "hash": "5e24558109",
+      "text": "Caching? A GET only reads, so a cache can answer. A POST changes things, so it goes to the server.",
+      "duration": 6.037,
+      "words": [
+        {
+          "text": "Caching?",
+          "start": 0,
+          "end": 0.604
+        },
+        {
+          "text": "A",
+          "start": 0.929,
+          "end": 0.975
+        },
+        {
+          "text": "GET",
+          "start": 1.068,
+          "end": 1.184
+        },
+        {
+          "text": "only",
+          "start": 1.219,
+          "end": 1.382
+        },
+        {
+          "text": "reads,",
+          "start": 1.44,
+          "end": 1.8
+        },
+        {
+          "text": "so",
+          "start": 1.823,
+          "end": 1.962
+        },
+        {
+          "text": "a",
+          "start": 2.02,
+          "end": 2.043
+        },
+        {
+          "text": "cache",
+          "start": 2.09,
+          "end": 2.357
+        },
+        {
+          "text": "can",
+          "start": 2.38,
+          "end": 2.485
+        },
+        {
+          "text": "answer.",
+          "start": 2.531,
+          "end": 2.995
+        },
+        {
+          "text": "A",
+          "start": 3.506,
+          "end": 3.576
+        },
+        {
+          "text": "POST",
+          "start": 3.669,
+          "end": 3.947
+        },
+        {
+          "text": "changes",
+          "start": 3.994,
+          "end": 4.354
+        },
+        {
+          "text": "things,",
+          "start": 4.389,
+          "end": 4.621
+        },
+        {
+          "text": "so",
+          "start": 4.644,
+          "end": 4.772
+        },
+        {
+          "text": "it",
+          "start": 4.841,
+          "end": 4.888
+        },
+        {
+          "text": "goes",
+          "start": 4.934,
+          "end": 5.097
+        },
+        {
+          "text": "to",
+          "start": 5.132,
+          "end": 5.19
+        },
+        {
+          "text": "the",
+          "start": 5.248,
+          "end": 5.317
+        },
+        {
+          "text": "server.",
+          "start": 5.352,
+          "end": 6.037
+        }
+      ],
+      "plan": "paid"
+    },
+    "gist": {
+      "file": "gist.mp3",
+      "hash": "3347b8b30b",
+      "text": "That's the gist: pick the right verb, and answer with the right code. Follow for more.",
+      "duration": 5.155,
+      "words": [
+        {
+          "text": "That's",
+          "start": 0,
+          "end": 0.279
+        },
+        {
+          "text": "the",
+          "start": 0.348,
+          "end": 0.441
+        },
+        {
+          "text": "gist:",
+          "start": 0.488,
+          "end": 0.964
+        },
+        {
+          "text": "pick",
+          "start": 1.347,
+          "end": 1.509
+        },
+        {
+          "text": "the",
+          "start": 1.556,
+          "end": 1.625
+        },
+        {
+          "text": "right",
+          "start": 1.672,
+          "end": 1.834
+        },
+        {
+          "text": "verb,",
+          "start": 1.881,
+          "end": 2.218
+        },
+        {
+          "text": "and",
+          "start": 2.264,
+          "end": 2.403
+        },
+        {
+          "text": "answer",
+          "start": 2.473,
+          "end": 2.717
+        },
+        {
+          "text": "with",
+          "start": 2.752,
+          "end": 2.844
+        },
+        {
+          "text": "the",
+          "start": 2.868,
+          "end": 2.937
+        },
+        {
+          "text": "right",
+          "start": 2.972,
+          "end": 3.123
+        },
+        {
+          "text": "code.",
+          "start": 3.181,
+          "end": 3.622
+        },
+        {
+          "text": "Follow",
+          "start": 4.133,
+          "end": 4.423
+        },
+        {
+          "text": "for",
+          "start": 4.481,
+          "end": 4.563
+        },
+        {
+          "text": "more.",
+          "start": 4.609,
+          "end": 5.155
+        }
+      ],
+      "plan": "paid"
+    }
+  }
+}

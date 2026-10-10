@@ -33,6 +33,11 @@
       "episode": "003-client-server-model",
       "track": "bytesized-theme-2",
       "date": "2026-10-05"
+    },
+    {
+      "episode": "004-http-methods-status-codes",
+      "track": "bytesized-theme-4",
+      "date": "2026-10-06"
     }
   ]
 }
