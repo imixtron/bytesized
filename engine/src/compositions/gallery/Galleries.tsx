@@ -2,6 +2,7 @@
 import type { ReactElement } from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { pop } from "../../motion/motion";
+import { SceneStyleContext, ambient, type EnterStyle } from "../../motion/style";
 import { Counter, Crowd } from "../../parts/Crowd";
 import { Packet, Wires, back, chain, flowPath, travelFrames, type Pt } from "../../parts/Flow";
 import { ICONS, Icon, type IconName } from "../../parts/icons";
@@ -153,6 +154,30 @@ export const GalleryBits = () => {
           </div>
         ))}
       </div>
+    </AbsoluteFill>
+  );
+};
+
+// ---------------------------------------------------------------- entrance styles (v1.7, proposed)
+export const GALLERY_ENTER_FRAMES = 150;
+export const GalleryEnter = () => {
+  const f = useCurrentFrame();
+  const styles: EnterStyle[] = ["pop", "drop", "snap", "stamp", "wipe"];
+  const types = ["phone", "lb", "db"] as const;
+  return (
+    <AbsoluteFill style={{ background: c.charcoal }}>
+      <Title text="Entrances" sub="pop · drop · snap · stamp · wipe (per scene: enter:)" />
+      {styles.map((st, r) => {
+        ambient.enter = st; // what SceneBody does per scene
+        return (
+        <SceneStyleContext.Provider key={st} value={{ enter: st, camera: "still" }}>
+          <Caption x={150} y={380 + r * 230} text={st} color={c.ember} size={40} width={220} />
+          {types.map((t, i) => (
+            <Node key={t} type={t} family={i === 1 ? "hero" : "outlined"} x={420 + i * 220} y={420 + r * 230} w={150} enter={pop(f, 8 + i * 8)} />
+          ))}
+        </SceneStyleContext.Provider>
+        );
+      })}
     </AbsoluteFill>
   );
 };

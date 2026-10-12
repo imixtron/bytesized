@@ -1,12 +1,13 @@
-# Bytesized Script Format — v1.5
+# Bytesized Script Format — v1.6
 
-> **v1.5, locked (approved by Imad 2026-10-07).** Changes need a versioned update with explicit approval.
+> **v1.6, locked (approved by Imad 2026-10-12): variety plan v2.** Every episode gets a **look** (two motion recipes, `npm run look:assign`), scenes can set `transition` / `enter` / `camera`, 25 templates are on the menu, and variety is measured by **fingerprints** (template · entrance · transition · camera), not template names alone. Hard fails apply to `format: "1.6"` scripts (§4); older formats keep their warnings. Changes need a versioned update with explicit approval.
+> v1.5.1 (2026-10-12, folded into v1.6): templates `Timeline`, `MetricChart`, `Snippet`, `Stat` are built (design language v1.8). `Zoom`, `StateMachine`, `Tree`, `Transform` are built (v1.9), and `Ring`, `Cells`, `Stream`, `Cluster` (v1.10). The motion fields `transition` (cut, push, whip, flip, stack, dive, iris), `enter` (pop, drop, snap, stamp, wipe) and `camera` (still, drift, rack) are optional per scene (v1.7); the full variety rules arrive with v1.6.
 > v1.5: **topic-first visual plan**. Each script decides its 1–2 core diagrams (the "spine") before writing scenes and records them in `visual_plan`; extra templates only where the idea changes kind. Reuse chains up to 5 scenes; variety rules (§4) now guard both extremes. v1.4 approved 2026-10-06.
 > v1.4: an optional **BigPicture** scene (a pull-back over the episode's own diagrams) just before the gist, for whole-system topics. v1.3 approved 2026-10-06.
 > v1.3: the wave-1 diagram templates (Sequence, Split, Decision, Tiers) join the menu, **diagrams are picked from the idea** (§3b), and **variety rules** (§4) keep episodes from looking alike. v1.2 approved 2026-10-06.
 > v1.2: length 30–60s → **80–90s** (fixed, so every short is consistent and clears TikTok's 60s rewards floor), more breakdown scenes. v1.1 approved 2026-09-29.
 
-Every episode is one `episode.yaml`. The **Script Creator** (`/script`) writes it, and the **Video Creator** (`/video`) turns it into a video. Visuals are chosen from a fixed menu of **templates**, **node types** and **verbs**, so the output is predictable and always on-brand ([design language v1.6](../brand/design-language/DESIGN-LANGUAGE.md)).
+Every episode is one `episode.yaml`. The **Script Creator** (`/script`) writes it, and the **Video Creator** (`/video`) turns it into a video. Visuals are chosen from a fixed menu of **templates**, **node types** and **verbs**, so the output is predictable and always on-brand ([design language v1.11](../brand/design-language/DESIGN-LANGUAGE.md)).
 
 ---
 
@@ -91,7 +92,7 @@ slug: what-is-system-design            # folder name: episodes/001-what-is-syste
 title: What is System Design?          # used for the upload title
 topic: system design basics
 target_sec: 85                         # 80–90, chosen by /script (85 suits most)
-format: "1.5"                          # the script format it was written to (1.3+ makes the variety rules hard fails; 1.5 uses the visual-plan rules)
+format: "1.6"                          # the script format it was written to (1.3+ makes the variety rules hard fails; 1.5 adds the visual-plan rules; 1.6 adds looks and the fingerprint rules)
 visual_plan: "Spine: one FlowDiagram (app box splits into services, then one fails alone) over 4 scenes. Split for the comparison, Decision for when to pick which, Analogy for the restaurant."   # required for 1.5+, ≤300 characters: the spine diagram(s) and why each other template is there
 
 series:                                # only for two-part episodes
@@ -112,10 +113,15 @@ music:                                 # set by `npm run music:assign -- <nnn>` 
   track: bytesized-theme-2             # a track id from assets/music/library.json (random from episodes/music.json)
   volume: 0.12                         # ducked under the voice automatically
 
+look:                                  # set by `npm run look:assign -- <nnn>`, never by hand (format 1.6 requires it)
+  recipes: [slam, drop]                # two recipes from episodes/looks.json (snap · draw · slam · drop); random, not the last 3 episodes'; Part 2 reuses Part 1's
+
 scenes:
   - id: hook                           # unique within the episode
     part: hook                         # hook | idea | breakdown | gist  (branding is automatic)
     template: Hook                     # from the template menu (§3)
+    # optional motion overrides: transition (cut | push | whip | flip | stack | dive | iris), enter (pop | drop | snap | stamp | wipe),
+    # camera (still | drift | rack). Leave them out and the episode's look fills them in; set one only for a deliberate exception.
     vo: "How does Netflix survive millions of people hitting play at once?"
     headline: { text: "Millions. At once.", accent: "At once." }   # optional
     stage:                             # what's on screen (template-specific)
@@ -151,8 +157,25 @@ scenes:
 | `Tiers` | Levels of a trade-off. `variant: stack` (+ up to 2 axis wedges), `pyramid`, or `spectrum` (a dial between two ends) | `variant`, `tiers: [{id, title, sub?, icon?}]`, `axes: [{id, label, dir}]`, `ends: [left, right]` |
 | `BeforeAfter` | Older name for `Split` (same template) | as `Split` |
 | `BigPicture` | Optional, last breakdown scene: 2–4 earlier diagrams frozen on their last frame, tiled; the camera pulls back from panel 1. Usually no headline | `panels: [{id, scene: <earlier diagram scene id>, label?}]` (label ≤16 characters) |
-| `MetricChart` | Growth, latency or uptime numbers | `chart: {type: bar\|line\|gauge, data}` |
-| `Zoom` | Zooming into one node to show what's inside | `from`, `into` |
+| `Timeline` | Events in time, down the whole stage. `variant: line` (2–6 events) or `lanes` (2–3 lanes, ≤7 events, links between events: messages, logical clocks, waterfalls) | `variant`, `events: [{id, at, label, sub?, icon?, lane?}]`, `lanes: [{id, label}]`, `links: [{id, from, to}]` |
+| `MetricChart` | Numbers that fill the stage: `bar` (2–5), `line` (2–5 points), `gauge` (1 value + `max`) | `chart: {type, unit?, max?, data: [{id, label, value, tone?: ok\|warn\|down}]}` |
+| `Snippet` | A terminal or code window that types itself: a request, a response, a config, a log | `title?`, `lines: [{id, text, kind?: cmd\|out\|json\|comment}]` (2–8 lines) |
+| `Stat` | Hook only: one giant number slams in, then its label | `stat: {id, value (≤7 chars), unit?, label?}`, `sub?: {id, text}` |
+| `Zoom` | Diving into one node to show what is inside it | `from: node`, `inside: {nodes: [2–4], links?: [{from, to}]}` |
+| `StateMachine` | States and the transitions between them (circuit breaker, leader election, order status) | `states: [{id, label (≤10), icon?, tone?}]` (2–5), `transitions: [{id, from, to, label? (≤14)}]`, `start?` |
+| `Tree` | A hierarchy: `variant: tree` (levels down the stage) or `radial` (mind map). ≤3 levels, ≤10 nodes | `variant`, `root: {id, label, icon?, children?: [...]}` |
+| `Ring` | Consistent hashing: servers on a ring, keys slide clockwise to the next live server; a `down` server re-homes only its keys | `servers: [{id, label, at}]` (2–5), `keys: [{id, label?, at}]` (1–8); `at` = degrees clockwise from the top |
+| `Cells` | Sharding and buckets: items fly into 2–6 cells; a cell can run hot | `cells: [{id, label}]`, `items: [{id, label?, into}]` (1–14) |
+| `Stream` | Queues and partitions: messages queue down 1–4 lanes, consumers take one per `step` | `lanes: [{id, label, producer?: icon, consumer?: icon}]`, `messages: [{id, lane, label?}]` (2–12) |
+| `Cluster` | Nodes that must agree: leader, acks counted against the majority, a new leader after a failure | `nodes: [{id, type, label}]` (3–5), `leader: id` |
+| `Fleet` | Autoscaling: traffic meter + pods whose cpu bars follow traffic ÷ pods | `pods: [{id, label?}]` (2–12), `load: {id, label?, max?, perPod?}`; beats `count` + `args.to` |
+| `Map` | Geography: pins on a dot-matrix world, arcs a packet rides, a latency list | `pins: [{id, label, at: [lon, lat], kind?: origin\|edge\|user}]` (2–6), `routes: [{id, from, to, ms?}]` (≤5) |
+| `Estimate` | Napkin maths written by hand; the result line is circled | `lines: [{id, text (≤30), result?}]` (2–6) |
+| `Chat` | A protocol as a conversation (typing dots, then bubbles) | `actors: [node, node]`, `messages: [{id, from, text (≤40), kind?}]` (2–7) |
+| `Diorama` | A top-down mini-world for analogies: rooms and characters that walk between them | `zones: [{id, label, x, y, w, h, icon?}]` (2–5, fractions 0–1), `actors: [{id, icon, label?, at}]` (1–4); `step` + `args.to: zone` |
+| `Matrix` | Options × criteria, filled in row by row | `cols: [{id, label, icon?}]` (2–4), `rows: [{id, label, cells: [yes\|no\|partial\|"text"]}]` (2–5) |
+| `Slider` | A before / after wipe with a divider | `before` / `after`: `{id, title, nodes (1–4), note?, result? (≤8)}` |
+| `Transform` | Something goes into a machine and comes out changed (hash, encrypt, serialize) | `items: [{id, text (≤30), label?}]` (2–4), `via: [{id, label, icon?}]` (one fewer than items) |
 | `GistCard` | The one-line takeaway (bite-corner card), plus the Part 2 teaser if there is one | `text`, `accent`, `teaser` |
 
 ### Node types
@@ -171,18 +194,18 @@ Families: `outlined` (default, inside our system) · `solid` (outside our system
 | `state` | `args: {to: idle\|active\|overloaded\|down\|recovered}` |
 | `send` | Packets along a link. `args: {kind: request\|response, count}` |
 | `flood` | A crowd rushes in toward its target |
-| `count` | Animate a counter to its `to` value |
+| `count` | Animate a counter to its `to` value. **Fleet:** set the traffic level (`args.to`); **MetricChart:** grow a bar / swing the gauge |
 | `reveal` | Reveal the next row or card |
 | `shake` | Failure shake |
 | `reroute` | Traffic moves from one target to others |
-| `zoom` | Camera push toward a node |
+| `zoom` | **Zoom:** start the dive (the node grows into the stage) |
 | `accent` | Show the script accent text. `args: {text}`, once per episode |
-| `step` | **Sequence:** draw the next message (a packet rides the arrow) or show a side note |
+| `step` | **Sequence:** draw the next message (a packet rides the arrow) or show a side note. **Timeline (lanes):** draw a link between two events. **StateMachine:** the token rides a transition. **Transform:** run a machine (the next item appears). **Ring:** a key slides to its server. **Diorama:** a character walks to `args.to` (a zone). **Chat:** a bubble. **Map:** a packet rides a route. **Cells:** an item flies into its cell. **Stream:** a lane's consumer takes one message |
 | `branch` | **Decision:** a packet goes through a check. `args: {to: yes\|no}`; the path it takes lights up |
 | `race` | **Split (race):** both halves send at once; each result lands when its packet arrives |
 
 ### 3b. Plan the visuals from the topic
-Before writing scenes, make a **visual plan**: decide the topic's **1–2 core diagrams** (the "spine", e.g. one evolving FlowDiagram, or one Sequence) and add another template **only where the idea genuinely changes kind** (a comparison, a rule or fork, an analogy, levels). Use only the diagram kinds the topic actually has. A single-mechanism topic can be one evolving diagram plus an analogy. Never add a template to tick it off, and never force variety. Write the plan in the `visual_plan` field (≤300 characters): the spine, and why each other template is there.
+Before writing scenes, make a **visual plan**: decide the topic's **1–2 core diagrams** (the "spine", e.g. one evolving FlowDiagram, or one Sequence) and add another template **only where the idea genuinely changes kind** (a comparison, a rule or fork, an analogy, levels). Use only the diagram kinds the topic actually has. A single-mechanism topic can be one evolving diagram plus an analogy. Never add a template to tick it off, but **don't repeat the last episode's treatment by default**: the 25 templates and the look exist so each short feels different. If a scene repeats a template the previous episode used in the same place, say why in the plan. Write the plan in the `visual_plan` field (≤300 characters): the spine, and why each other template is there.
 
 The table below is a lookup ("if the scene explains X, use Y"), not a menu to cover. Text templates (Analogy, ThreeCards) are for analogies and short lists, not for mechanisms.
 | The scene explains… | Template | e.g. |
@@ -193,8 +216,27 @@ The table below is a lookup ("if the scene explains X, use Y"), not a menu to co
 | A rule, a check, a fork | `Decision` | rate limiter, validation, cache hit or miss, retry |
 | Levels or a scale with a trade-off | `Tiers` (stack / pyramid / spectrum) | storage tiers, memory hierarchy, consistency levels |
 | "X is like Y" | `Analogy` | restaurant = client/server |
+| Events in time, or messages between servers over time | `Timeline` (`lanes` for who-did-what-when) | page-load waterfall, logical clocks |
+| Numbers: how much, how fast, how many | `MetricChart` (`bar` compare, `line` growth, `gauge` one value) | latency by layer, uptime |
+| The thing itself: a request, a response, a config | `Snippet` | `curl` + JSON reply |
+| Something with states that change on events | `StateMachine` | circuit breaker, order lifecycle |
+| What is inside a box | `Zoom` | the service is a cache + a database |
+| A hierarchy or a map of ideas | `Tree` (`radial` for a mind map) | DNS, file systems, "ways to scale" |
+| Data changed by a function | `Transform` | hash, encrypt, compress |
+| Data spread by a hash, and what happens when a server leaves | `Ring` | consistent hashing |
+| Splitting data into buckets or shards, a hot shard | `Cells` | sharding |
+| Messages waiting for a consumer | `Stream` | queue, Kafka partitions |
+| Servers that must agree, a leader and a majority | `Cluster` | quorum, leader election |
+| Servers scaling out under load | `Fleet` | autoscaling, a traffic spike |
+| Where things are in the world | `Map` | CDN edges, regions, latency |
+| A back-of-envelope number | `Estimate` | requests per second from users |
+| A protocol told as a conversation | `Chat` | the handshake as "hello?" / "hello!" |
+| A place with people moving through it | `Diorama` | restaurant, post office, library |
+| Several options against several criteria | `Matrix` | which database, which protocol |
+| Before and after | `Slider` (full-stage wipe; `Split` when both must stay on screen) | with and without a cache |
+| A shocking number as the opener | `Stat` (hook) | "400 ms" |
 | Three properties or steps | `ThreeCards` | the three things every system needs |
-| An idea best shown by a template that isn't built yet (Tree, Chart, Timeline, Zoom, StateMachine, Ring, Cells, Stream, Cluster, Graph, Transform, Snippet, Estimate, Fleet, Map, DataView, Matrix; see STATUS.md → Diagram roadmap) | the closest built one, and name the better template in the hand-over if one fits | |
+| An idea no template covers (Graph, DataView; see STATUS.md → Diagram roadmap) | the closest built one, and name the better template in the hand-over if one fits | |
 
 The spine can be built up over **up to 5 scenes** with `stage.reuse` (up to 3 for `format` below 1.5), then the script moves on to a different kind only if the idea changes.
 
@@ -219,6 +261,14 @@ The spine can be built up over **up to 5 scenes** with `stage.reuse` (up to 3 fo
 - A BigPicture that isn't the last breakdown scene before the gist, has other than 2–4 panels, points at a scene that isn't an earlier breakdown diagram, or appears more than once
 - A diagram that breaks its template's shape: Sequence with other than 2–3 actors or more than 7 steps in total; Split without both halves or with more than 4 nodes in one; Decision without a start or with other than 1–3 checks; Tiers with other than 2–5 tiers or more than 2 axes; an `icon` not in the set; `step` / `branch` / `race` outside their template
 
+**Variety, `format: "1.6"` and later (hard fails; for 1.5 and older the same checks are warnings):**
+- A `look:` is required (`npm run look:assign -- <nnn>`)
+- Fewer than **3 kinds of scene transition** in the episode (cut, push, whip, flip, stack, dive, iris; the first scene and the one after the hook count as cuts)
+- The same entrance style in **3 scenes in a row** (pop counts)
+- The same **3-scene run of fingerprints** (template · entrance · transition · camera) as any of the **last 3 episodes**
+- An **Analogy** Idea scene in a **third episode running** (try Diorama, Transform, Zoom, Chat or Slider)
+- Everything from 1.5 below still applies
+
 **Variety, `format: "1.5"` and later (the visual plan decides the templates; these rules only stop the extremes):**
 - Hard fail: one template used for **more than 3 separate diagrams** in the breakdown (a `reuse` continuation chain counts as ONE diagram; Hook, GistCard and BigPicture never count)
 - Hard fail: a `reuse` chain **longer than 5 scenes**
@@ -229,4 +279,4 @@ The spine can be built up over **up to 5 scenes** with `stage.reuse` (up to 3 fo
 
 **Variety for `format: "1.3"`–`"1.4"` (unchanged; hard fails for 1.3+, warnings for older):** fewer than 4 different templates in the breakdown (5+ reads better: warning), one template in more than 3 scenes (continuations count), or the same template order as the previous episode.
 
-**Other warnings:** word count far from the target length · a scene over 8s · fewer beats than one per 2s. The repeat-style warnings above apply to every format.
+**Other warnings:** word count far from the target length · a scene over 8s · fewer beats than one per 2s. The repeat-style warnings above apply to every format. Warnings, not failures: a transition that cannot play (`whip` / `flip` / `stack` / `dive` / `iris` on the first scene or straight after the hook).

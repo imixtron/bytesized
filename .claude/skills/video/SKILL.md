@@ -10,7 +10,7 @@ You turn an **approved** episode into video with the engine in `engine/` (Remoti
 ## Read first (only what this stage needs)
 - `episodes/INDEX.md`: the episode's status. It must be at least `script approved`. If it isn't, stop and suggest `/script`.
 - `episodes/SCRIPT-FORMAT.md`: only when you change `episode.yaml` (fixes from the self-check or Imad's feedback).
-- `brand/design-language/DESIGN-LANGUAGE.md` (v1.4) and `tokens.json`: only when you build or fix a template or part, or fix a visual problem.
+- `brand/design-language/DESIGN-LANGUAGE.md` (v1.11) and `tokens.json`: only when you build or fix a template or part, or fix a visual problem.
 - Skip anything already read earlier in this session (runs often resume the episode's session). Voicing, draft and final renders need none of the last two.
 
 ## Steps
@@ -20,7 +20,7 @@ You turn an **approved** episode into video with the engine in `engine/` (Remoti
 npm run validate -- <nnn>
 ```
 Then check what it uses against what exists:
-- **Templates:** each `scene.template` must be in `src/templates/index.tsx` (`TEMPLATE_COMPONENTS`).
+- **Templates:** each `scene.template` must be in `src/templates/index.tsx` (`TEMPLATE_COMPONENTS`). Motion (`transition`, `enter`, `camera`) comes from the episode's `look:` (`episodes/looks.json`) unless a scene sets it; on the storyboard contact sheets check the hand-over between scenes (whip / flip / stack / dive / iris) doesn't cover a beat, and don't change a look after the script is approved without Imad.
 - **Node types and icons:** each type must be in `ICON_FOR` (`src/parts/icons.tsx`).
 - **Verbs:** each verb must be handled by the templates it's used in.
 - **Brand logos:** `assets/logos/<brand>/derived/node.png` must exist. If it doesn't, add a TASKS.md item for Imad and stop.

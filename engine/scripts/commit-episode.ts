@@ -18,7 +18,7 @@ import { costLine, folderOf } from "./cost";
 const ENGINE = join(dirname(fileURLToPath(import.meta.url)), "..");
 const ROOT = join(ENGINE, "..");
 const SHARED = [
-  "episodes/INDEX.md", "episodes/SCRIPT-FORMAT.md", "episodes/voices.json", "episodes/music.json", "episodes/pronunciations.md",
+  "episodes/INDEX.md", "episodes/SCRIPT-FORMAT.md", "episodes/voices.json", "episodes/music.json", "episodes/looks.json", "episodes/pronunciations.md",
   "assets", "brand", "engine", "bridge", ".claude/skills", ".claude/settings.json",
   "AGENTS.md", "CLAUDE.md", "STATUS.md", "TASKS.md", "SETUP.md", ".gitignore",
 ];

@@ -1,6 +1,6 @@
-# Bytesized Design Language — v1.6.1
+# Bytesized Design Language — v1.11
 
-> **v1.6.1, locked (focus fades + ghost slots requested by Imad 2026-10-06 after the 003 draft review; BigPicture + cover approved 2026-10-06; v1.5 diagram templates 2026-10-06; v1.4 music 2026-10-01; v1.3 2026-09-29).** Changes need a versioned update (v1.7…) with explicit approval. See the [changelog](#changelog).
+> **v1.11, locked 2026-10-12 (Batch 4 templates: Fleet, Map, Estimate, Chat, Diorama, Matrix, Slider, and motion looks; approved by Imad). v1.10 (Batch 3 templates), v1.9 (Batch 2 templates + `iris`), v1.8 (Batch 1 templates: Timeline, MetricChart, Snippet, Stat) and v1.7 (motion primitives: per-scene entrance style, transitions and camera) locked the same day. v1.6.1 (focus fades + ghost slots requested by Imad 2026-10-06 after the 003 draft review; BigPicture + cover approved 2026-10-06; v1.5 diagram templates 2026-10-06; v1.4 music 2026-10-01; v1.3 2026-09-29).** Changes need a versioned update (v1.12…) with explicit approval. See the [changelog](#changelog).
 > - Machine-readable values: [`tokens.json`](tokens.json). The engine reads this file and never hard-codes values.
 > - Visual reference: [`v1.2-reference.png`](v1.2-reference.png) (rendered by the engine) for layout. [`design-language-v1.1.html`](design-language-v1.1.html) is frozen for colour, type and components (it predates the rename, so it still says "bitesized").
 
@@ -83,6 +83,57 @@ Values live in `tokens.json → diagram`. Gallery: Studio → Gallery → Diagra
 
 New verbs: `step` (Sequence), `branch` (Decision, `args.to: yes|no`), `race` (Split). Sound map: step/branch → `pop`, race → `whoosh`. New icons: check, cross, lock, key, file, clock, retry, hot, warm, cold, shield, cpu, disk.
 
+## 5d. Batch 1 templates (v1.8)
+Variety plan v2. All four are **full-height**: content spreads over the whole stage instead of sitting in its top half. Same system rules as §5b (panels, focus fades, ghost slots, no new colours).
+
+| Template | Shows | Variants |
+|---|---|---|
+| **Timeline** | Time down the whole stage. An ember playhead sweeps to each event as it's revealed; the focused event is orange, the rest push back | `line` (2–6 events: time chip · dot · card) · `lanes` (2–3 columns, up to 7 events, `step` draws arrows between events) |
+| **MetricChart** | Numbers that fill the stage. Values count up as bars grow; ok/warn/down tones allowed for system health | `bar` (2–5 tall bars) · `line` (drawn point by point) · `gauge` (a needle swings on a half-dial) |
+| **Snippet** | A terminal or code window that types lines on, with a blinking cursor; `highlight` gives a line an ember bar | `cmd` (`$` prompt) · `out` · `json` (strings cream, numbers ember) · `comment` |
+| **Stat** | The stat-slam opener: a giant number slams in (scale-down, screen jolt, impact ring), then the label rises. Hooks only | number + optional unit, label, sub line |
+
+Verbs: `step` also works in Timeline (`lanes` links); `count` also grows a MetricChart bar or swings the gauge. Sound map unchanged.
+
+## 5e. Batch 2 templates (v1.9)
+Same system rules as §5b and §5d (panels, focus fades, ghost slots, full-height layouts, no new colours).
+
+| Template | Shows | Variants |
+|---|---|---|
+| **Zoom** | One node dives open: on the `zoom` beat it grows until it is the stage, its outline becomes a frame with a title chip, and 2–4 inside parts pop in (optional links) | one node → inside parts |
+| **StateMachine** | 2–5 state circles on an ellipse, curved labelled transitions (a pair going both ways bends apart). An ember token rides each `step` and lights the state it arrives in; tones ok / warn / down for system health | circles + transitions |
+| **Tree** | A hierarchy (≤3 levels, ≤10 nodes). `highlight` lights the path from the root to a node and pushes the rest back | `tree` (levels down the stage) · `radial` (root in the middle, rings of children) |
+| **Transform** | 2–4 items down the stage with a machine (icon + label) between each pair. On `step` the item above flows in, the machine works (jiggle), and the next item's characters scramble then settle | items + `via` machines |
+
+Verbs: `zoom` is Zoom-only (starts the dive); `step` also works in StateMachine (token rides a transition) and Transform (runs a machine). Transition `iris`: a circle opens from the stage centre over the outgoing scene; sound `whoosh`.
+
+## 5f. Batch 3 templates (v1.10)
+Same system rules as §5b, §5d and §5e (panels, focus fades, ghost slots, full-height layouts, no new colours). amber (`warn`) marks a hot cell or lane (system health).
+
+| Template | Shows | Variants |
+|---|---|---|
+| **Ring** | Consistent hashing: 2–5 servers on a ring (by angle), up to 8 keys that slide clockwise to the next live server. A `down` server drops out and only its keys re-home | one ring |
+| **Cells** | Sharding and buckets: 2–6 cells, items fly in from the top and stack inside their cell. `state: overloaded` runs a cell hot; `highlight` focuses one | 1 or 2 columns, by cell count |
+| **Stream** | 1–4 lanes from producer to consumer. Messages join at the top, slide down and queue up; each `step` on a lane lets its consumer take the next one | partitions / queues |
+| **Cluster** | 3–5 nodes around a count chip. A `send` fans a write out from the leader, followers answer ✓, the chip counts acks against the majority ("3/5 committed"). `down` nodes can't answer; the next `highlight` on a node makes it the new leader | one cluster |
+
+Verbs: `step` also works in Ring (a key slides to its server), Cells (an item flies in) and Stream (a consumer takes one); `send` in Cluster fans a write out; `state to: down` re-homes Ring keys and silences Cluster nodes.
+
+## 5g. Batch 4 templates (v1.11)
+Same system rules as §5b and §5d–§5f (panels, focus fades, ghost slots, full-height layouts, no new colours).
+
+| Template | Shows | Variants |
+|---|---|---|
+| **Fleet** | Autoscaling: a traffic meter above a grid of 2–12 pods. Each pod's cpu bar is traffic ÷ pods running (cream, amber above 85%, red above 100%); `reveal` spins a pod up, `count args.to` sets traffic, `state: down` removes one | pods grid |
+| **Map** | A dot-matrix world, pins placed by `[lon, lat]` (origin = orange, edge/user = cream), arcs a packet rides, and a latency list that fills in per route | pins + routes |
+| **Estimate** | Napkin maths: lines written on left → right in the script font on a tilted dashed card; the `result` line is circled in ember | 2–6 lines |
+| **Chat** | A protocol as a conversation: two actors on top, 2–7 bubbles alternating down the stage, typing dots before each. Requests are ember-outlined, responses cream | one conversation |
+| **Diorama** | A top-down mini-world for analogies: 2–5 rooms on a dotted floor, 1–4 characters that `step` (`args.to`) between rooms | rooms + characters |
+| **Matrix** | Options × criteria: 2–4 columns, 2–5 rows filled one at a time with ✓ / ✕ / ~ (accepted / rejected / partly) or a short word; `highlight` a column or row | grid |
+| **Slider** | A before / after wipe: both sides fill the stage (title chip, node column, note, big result) and an ember divider sweeps across on `reveal` of a side | before → after |
+
+Verbs: `count` also sets Fleet traffic (`args.to`); `step` also in Diorama (`args.to: zone`), Chat (a bubble) and Map (a route).
+
 ## 5c. BigPicture and the cover (v1.6)
 Values live in `tokens.json → bigPicture` and `cover`. Approved renders: `engine/out/v1.6-bigpicture/`.
 
@@ -101,7 +152,10 @@ Values live in `tokens.json → bigPicture` and `cover`. Approved renders: `engi
 | Rhythm | A new motion every 1.5–2s, always on a voiceover word |
 | Focus fade (v1.6.1) | A change of focus (highlight, dim, the newest card) eases over Standard (300ms). Nothing switches bright ↔ dim in one frame |
 | Ghost slots (v1.6.1) | Reveal templates (Analogy, ThreeCards, Tiers) draw faint dashed slots from the first frame; each item pops in over its slot, so the stage is never empty before the first named word |
-| Scene change | Hard cut or camera push, on a beat |
+| Scene change | A `transition` per scene, on a beat: `cut`, `push` (4% camera push), `whip` (horizontal slide with blur), `flip` (card turn), `stack` (new scene rises over the old, which sinks back), `dive` (zoom through the old scene), `iris` (a circle opens over the old scene, v1.9). `whip`, `flip`, `stack`, `dive` and `iris` keep the outgoing scene on screen for `transitionOverlap` (10f). Nothing slides in after the hook (the sting sits there), and the orange bite stays exclusive to the sting |
+| Entrance style (v1.7) | A per-scene `enter` sets how nodes arrive and the timing of every pop in that scene: `pop` (default, 12f), `drop` (falls and bounces, 22f), `snap` (slides in tilted from the nearest side, 18f), `stamp` (slams in from larger with an impact ring, 12f), `wipe` (left-to-right reveal, 18f). Springs in `motion.enter.springs` |
+| Looks (v1.11) | A **look** is two named motion recipes per episode (`episodes/looks.json`, `npm run look:assign`): each recipe bundles an entrance style, a camera and a list of transitions (`snap`, `draw`, `slam`, `drop`). Scenes that don't set `transition` / `enter` / `camera` take them from the pair: recipes alternate every 2 scenes, transitions cycle through the recipe's list (never the same twice in a row), a continued diagram (`stage.reuse`) stays a cut. Picked at random, never a recipe used by the last 3 episodes where possible |
+| Camera (v1.7) | A per-scene `camera`: `still` (default), `drift` (2% scale and 14px pan over the scene), `rack` (dimmed nodes blur 6px instead of only fading) |
 
 ## 7. Branding sting (fixed, right after the hook)
 ~1.5s (45 frames at 30fps, max 2s), orange background, no voiceover, just a "chomp" sound effect.
@@ -143,6 +197,11 @@ Playful and slightly cheeky ("every CPU earns its keep"), tuned per episode.
 ## Changelog
 | Version | Date | Change |
 |---|---|---|
+| v1.11 | 2026-10-12 | §5g Batch 4 templates: Fleet, Map, Estimate, Chat, Diorama, Matrix, Slider (full-height); §6 Looks (motion recipes per episode, `episodes/looks.json`). Approved by Imad 2026-10-12 |
+| v1.10 | 2026-10-12 | §5f Batch 3 templates: Ring, Cells, Stream, Cluster (full-height). Approved by Imad 2026-10-12 |
+| v1.9 | 2026-10-12 | §5e Batch 2 templates: Zoom, StateMachine, Tree, Transform (full-height), and the `iris` transition (§6). Approved by Imad 2026-10-12 |
+| v1.8 | 2026-10-12 | §5d Batch 1 templates: Timeline, MetricChart, Snippet, Stat (full-height). Approved by Imad 2026-10-12 |
+| v1.7 | 2026-10-12 | §6 per-scene motion style: transitions (whip, flip, stack, dive), entrance styles (drop, snap, stamp, wipe), camera (drift, rack); sounds reuse whoosh / swoosh-up. `tokens.motion.enter/camera/transitionOverlap`. Approved by Imad 2026-10-12 (variety plan v2, Batch 0) |
 | v1.6.1 | 2026-10-06 | §6 focus fades and ghost slots (`motion.focusFade`, `motion.ghost`). Fixes the "snaps at the scene end" / "plays late" feel Imad flagged on the 003 draft |
 | v1.6 | 2026-10-06 | §5c BigPicture pull-back beat and the episode cover, `tokens.bigPicture` / `tokens.cover`. Approved by Imad 2026-10-06 |
 | v1.5 | 2026-10-06 | §5b wave-1 diagram templates (Sequence, Split, Decision, Tiers), panels, new verbs and icons, `tokens.diagram`. Approved by Imad 2026-10-06 |

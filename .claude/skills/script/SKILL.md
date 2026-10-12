@@ -38,9 +38,9 @@ You write **one Bytesized episode** as `episodes/<nnn-slug>/episode.yaml`. Every
 
 ### 4. Make the visual plan, then pick the visuals (menus only)
 - **Visual plan first (SCRIPT-FORMAT §3b), before writing scenes:** decide the topic's **1–2 core diagrams** (the spine; it can be built up over up to 5 scenes with `stage.reuse`), then add another template only where the idea genuinely changes kind (a comparison, a rule/fork, an analogy, levels). Use only the diagram kinds the topic has; a single-mechanism topic can be one evolving diagram plus an analogy. Never add a template to tick it off. Write the plan in `visual_plan` (≤300 characters), e.g. `"Spine: one FlowDiagram (app box splits into services, then one fails alone) over 4 scenes. Split for the comparison, Decision for when to pick which, Analogy for the restaurant."`
-- Templates, node types, families and verbs come **only** from SCRIPT-FORMAT §3. Prefer built templates. If a scene truly needs an unbuilt one (MetricChart, Zoom), use it and list it under "Needs for /video" in your summary.
+- Templates, node types, families and verbs come **only** from SCRIPT-FORMAT §3. Prefer built templates. If a scene truly needs an unbuilt one (anything listed as not built in SCRIPT-FORMAT §3b), use it and list it under "Needs for /video" in your summary.
 - **Pick each breakdown diagram from the idea** with the lookup table in SCRIPT-FORMAT §3b ("if the scene explains X, use Y"): name the kind of idea first, then the template. If an unbuilt template would fit better (STATUS.md → Diagram roadmap), use the closest built one and name the better one in the hand-over.
-- **Variety (format 1.5 guards the extremes, `npm run validate` enforces it):** no template for more than 3 separate diagrams in the breakdown (a `reuse` chain counts as one), no `reuse` chain over 5 scenes, `visual_plan` present (≤300 characters). Warnings: 6+ different templates (reads like a sampler), the previous episode's template order, two breakdown scenes in a row with the same template that don't continue it, fewer than half the breakdown as diagrams.
+- **Variety (format 1.6, `npm run validate` enforces it):** the episode gets a **look** (step 6) and the validator measures fingerprints (template · entrance · transition · camera): 3+ kinds of scene transition, the same entrance never in 3 scenes in a row, no 3-scene run identical to any of the last 3 episodes, and no Analogy Idea scene in a third episode running (try Diorama, Transform, Zoom, Chat or Slider). Don't repeat the previous episode's templates by default: 25 templates are built, so pick the one that fits the idea (SCRIPT-FORMAT §3b) and say in `visual_plan` why if you do repeat. From 1.5, still: no template for more than 3 separate diagrams in the breakdown (a `reuse` chain counts as one), no `reuse` chain over 5 scenes, `visual_plan` present (≤300 characters). Warnings: 6+ different templates (reads like a sampler), the previous episode's template order, two breakdown scenes in a row with the same template that don't continue it, fewer than half the breakdown as diagrams.
 - **Visual Reference:** if the Notion row has `Visual Reference` images (the queue saves them to `bridge/files/notion-<ID>/` first; `npm --prefix engine run refs -- <ID> --list` shows them), open each with the Read tool and look at it. Map each to a template from §3b. If none fits, use the closest and list "missing template: <what the reference shows>" under "Needs for /video", which raises it at Parts Review. It's optional: never wait for one.
 - **Families:** `outlined` = inside our system (with states), `solid` = outside it (users, third parties), `hero` = the episode's topic, at most one on screen.
 - **FlowDiagram:** give `layers` top → bottom, `nodes`, `links`. Reuse the same diagram across scenes with `stage.reuse: <scene id>` so nodes don't jump.
@@ -56,13 +56,14 @@ You write **one Bytesized episode** as `episodes/<nnn-slug>/episode.yaml`. Every
 ### 5. Write the file(s)
 - Folder: `episodes/<nnn>-<slug>/episode.yaml`, where `<nnn>` = highest existing number + 1 (zero-padded) and `slug` is lowercase-kebab. For a series, use consecutive numbers (`007-caching-part-1`, `008-caching-part-2`).
 - Start with a comment line: `# Episode <nnn>. Draft (awaiting approval ✋)`.
-- Set `format: "1.5"` and `visual_plan: "…"` (step 4).
+- Set `format: "1.6"` and `visual_plan: "…"` (step 4). Leave `transition` / `enter` / `camera` out of scenes: the look (step 6) fills them in; set one only for a deliberate exception.
 - Leave `voice:` as `{ voice_id: TBD, speed: 1.0 }`. The next step fills it.
 
 ### 6. Assign the voice and music, then validate (run from `engine/`)
 ```bash
 npm run voice:assign -- <nnn>        # round robin; Part 2 reuses Part 1's voice (assign Part 1 first)
 npm run music:assign -- <nnn>        # random theme track, never the previous episode's; Part 2 reuses Part 1's
+npm run look:assign -- <nnn>         # two motion recipes (episodes/looks.json), not the last 3 episodes'; Part 2 reuses Part 1's
 npm run validate -- <nnn>
 ```
 Fix every `✖` error and re-run until it says `✔ PASS`. Warnings are fine if you can justify them.
@@ -84,4 +85,4 @@ Ask for approval or changes. On approval, change the file's first comment to `# 
 ## Don'ts
 - Don't invent templates, node types or verbs outside the menus. Don't hand-write captions (they come from `vo`).
 - Don't show third-party logos outside diagram nodes, or imply sponsorship.
-- Don't call ElevenLabs here. `voice:assign` and `music:assign` are local only, so no credits are used.
+- Don't call ElevenLabs here. `voice:assign`, `music:assign` and `look:assign` are local only, so no credits are used.

@@ -10,6 +10,7 @@ import type { TimedScene } from "../timing/timeline";
 import { fonts } from "../theme/fonts";
 import { tokens } from "../theme/tokens";
 import { ease, pop, tween } from "../motion/motion";
+import { OVERLAP, OVERLAP_TRANSITIONS, SceneStyleContext, ambient, transitionLook, type Transition } from "../motion/style";
 import { TEMPLATE_COMPONENTS } from "../templates";
 
 export type EpisodeProps = { folder: string; loaded: LoadedEpisode | null };
@@ -31,11 +32,17 @@ export const Episode = ({ loaded }: EpisodeProps) => {
 
   return (
     <AbsoluteFill style={{ background: c.charcoal, color: c.cream }}>
-      {timeline.scenes.map((ts) => (
-        <Sequence key={ts.scene.id} from={ts.start} durationInFrames={ts.duration + (ts.scene.part === "hook" ? wipeFrames : 0)} layout="none">
-          <SceneBody ts={ts} loaded={loaded} />
-        </Sequence>
-      ))}
+      {timeline.scenes.map((ts, i) => {
+        const inKind = arrival(timeline.scenes, i);
+        const outKind = arrival(timeline.scenes, i + 1);
+        const keep = (OVERLAP_TRANSITIONS as readonly string[]).includes(outKind) ? OVERLAP : 0; // stays under the next scene while it arrives
+        return (
+          <Sequence key={ts.scene.id} from={ts.start} durationInFrames={ts.duration + (ts.scene.part === "hook" ? wipeFrames : 0) + keep} layout="none">
+            <SceneBody ts={ts} loaded={loaded} inKind={inKind} outKind={keep ? outKind : undefined} />
+          </Sequence>
+        );
+      })}
+      <ResetStyle />
       {chromeAlpha > 0 && (
         <AbsoluteFill style={{ opacity: chromeAlpha }}>
           <Chrome progress={frame / timeline.totalFrames} series={episode.series} />
@@ -63,20 +70,48 @@ export const Episode = ({ loaded }: EpisodeProps) => {
   );
 };
 
+/** Renders after the scenes: puts the entrance style back to pop for the chrome, captions and sting. */
+const ResetStyle = () => {
+  ambient.enter = "pop";
+  return null;
+};
+
 const AbsoluteCaptions = ({ ts, offset }: { ts: TimedScene; offset: number }) => {
   // shift absolute word frames into this Sequence's local time
   const local: TimedScene = { ...ts, start: 0, words: ts.words.map((w) => ({ ...w, start: w.start - offset, end: w.end - offset })) };
   return <Captions scene={local} />;
 };
 
-/** Renders a scene with its template (placeholder if the template isn't built yet), plus the optional camera push. */
-const SceneBody = ({ ts, loaded }: { ts: TimedScene; loaded: LoadedEpisode }) => {
+/** How scene `i` arrives. Nothing slides in after the hook: the branding sting sits between them. */
+function arrival(scenes: TimedScene[], i: number): Transition {
+  const ts = scenes[i];
+  if (!ts || i === 0 || scenes[i - 1].scene.part === "hook") return "cut";
+  return ts.scene.transition;
+}
+
+/** Renders a scene with its template (placeholder if the template isn't built yet), its motion style
+ *  (entrance, camera) and its hand-over to and from the neighbouring scenes. */
+const SceneBody = ({ ts, loaded, inKind, outKind }: { ts: TimedScene; loaded: LoadedEpisode; inKind: Transition; outKind?: Transition }) => {
   const f = useCurrentFrame();
   const T = TEMPLATE_COMPONENTS[ts.scene.template];
-  const push = ts.scene.transition === "push" ? 1 + 0.04 * tween(f, 0, tokens.motion.pop.frames, ease.std) : 1;
+  const push = inKind === "push" ? 1 + 0.04 * tween(f, 0, tokens.motion.pop.frames, ease.std) : 1;
+  const drift = ts.scene.camera === "drift" ? Math.min(1, f / Math.max(1, ts.duration)) : 0;
+  const { scale, panPx } = tokens.motion.camera.drift;
+  const overlapIn = (OVERLAP_TRANSITIONS as readonly string[]).includes(inKind);
+  // a flip is two halves (away, then in) and an iris should be seen opening, so those run linearly; the others ease
+  const lin = (from: number) => Math.max(0, Math.min(1, (f - from) / OVERLAP));
+  const tin = overlapIn ? (inKind === "flip" || inKind === "iris" ? lin(0) : tween(f, 0, OVERLAP, ease.std)) : 1;
+  const tout = outKind ? (outKind === "flip" ? lin(ts.duration) : tween(f, ts.duration, OVERLAP, ease.exit)) : 0;
+  const hand = transitionLook(inKind, tin, outKind, tout);
+  ambient.enter = ts.scene.enter;
+  const camera = `scale(${push * (1 + scale * drift)}) translateX(${-panPx * drift}px)`;
   return (
-    <AbsoluteFill style={{ transform: `scale(${push})`, transformOrigin: "497px 900px" }}>
-      {T ? <T ctx={{ ts, episode: loaded.episode, timeline: loaded.timeline }} /> : <ScenePlaceholder ts={ts} />}
+    <AbsoluteFill style={{ ...hand, background: overlapIn ? c.charcoal : undefined }}>
+      <AbsoluteFill style={{ transform: camera, transformOrigin: "497px 900px" }}>
+        <SceneStyleContext.Provider value={{ enter: ts.scene.enter, camera: ts.scene.camera }}>
+          {T ? <T ctx={{ ts, episode: loaded.episode, timeline: loaded.timeline }} /> : <ScenePlaceholder ts={ts} />}
+        </SceneStyleContext.Provider>
+      </AbsoluteFill>
     </AbsoluteFill>
   );
 };

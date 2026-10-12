@@ -14,8 +14,8 @@ Current state and open items: **[STATUS.md](STATUS.md)**. Human to-dos: **[TASKS
 | Setting up a new machine | `SETUP.md`, then `npm run doctor` |
 | "Make an episode about X", "script X", a topic or notes | **`/script`** (`.claude/skills/script/SKILL.md`), then stop for approval, then **`/video`** |
 | "Render / voice / storyboard / finish episode N" | **`/video`** (`.claude/skills/video/SKILL.md`) |
-| Change the look, layout, colours, motion or sounds | Propose a **versioned change** to `brand/design-language/DESIGN-LANGUAGE.md` + `tokens.json` (v1.4 → v1.5). Show a render. Apply only after approval |
-| Change script rules or structure | Propose a versioned change to `episodes/SCRIPT-FORMAT.md` (v1.5 → v1.6). Apply only after approval |
+| Change the look, layout, colours, motion or sounds | Propose a **versioned change** to `brand/design-language/DESIGN-LANGUAGE.md` + `tokens.json` (v1.11 → v1.12). Show a render. Apply only after approval |
+| Change script rules or structure | Propose a versioned change to `episodes/SCRIPT-FORMAT.md` (v1.6 → v1.7). Apply only after approval |
 | New logo, music or sound | Put it in `assets/<asset_type>/…` and register it (logos: `SOURCE.md` + `derived/node.png`; audio: `library.json`) |
 | "I subscribed to ElevenLabs" | Walk through TASKS.md → "After subscribing", in order |
 | "Publish episode N" | `npm run render:final -- N`, then write `upload.md` (see `/video` step 5) |
@@ -98,6 +98,7 @@ Log approvals ("approved by Imad in session"), changes requested, credits spent,
 - **Structure:** Hook → (sting) → Idea → Breakdown ×6–12 → Gist. **80–90s** measured, never over 90s. Big topics → Part 1 / Part 2 (max 2).
 - **Third-party logos** (e.g. Netflix) only as a `brand` node inside diagrams, unaltered, from the official kit, and never implying sponsorship. The upload description carries the "not affiliated" line.
 - **Voices:** round robin of Liam → Matilda → Jessica → Chris (`episodes/voices.json`, `npm run voice:assign`). Part 2 reuses Part 1's voice.
+- **Look:** every episode gets two motion recipes (`snap`, `draw`, `slam`, `drop`) from `episodes/looks.json`, picked at random by `npm run look:assign` (never recipes used by the last 3 episodes where possible; Part 2 reuses Part 1's). They set how nodes enter, the camera and the scene transitions. Variety is measured on fingerprints (template · entrance · transition · camera), and 25 templates are built: don't reuse the previous episode's treatment by default.
 - **Music:** one of four sibling theme tracks (`bytesized-theme`, `-2`, `-3`, `-4`) per short, picked at random by `npm run music:assign` (`episodes/music.json`; never the previous episode's, Part 2 reuses Part 1's). **SFX** come from the sound map, never listed per script, with a beat `sfx:` override only for exceptions.
 - **Licensing:** only paid-plan ElevenLabs output or original work is `licensed`. `render:final` enforces it. Never bypass it.
 - **Fonts:** Holiday and Trend Sans Four (Canva) are used only inside logo files. Video text uses Unbounded, Inter, JetBrains Mono and Yellowtail.
@@ -105,14 +106,14 @@ Log approvals ("approved by Imad in session"), changes requested, credits spent,
 ## 4. Where the truth lives (read these, don't restate them)
 | Topic | File |
 |---|---|
-| Look, layout, motion, audio rules (v1.4) | `brand/design-language/DESIGN-LANGUAGE.md` |
+| Look, layout, motion, audio rules (v1.11) | `brand/design-language/DESIGN-LANGUAGE.md` |
 | Every value the engine uses | `brand/design-language/tokens.json` |
-| Episode rules, `episode.yaml` format, menus, validation (v1.2) | `episodes/SCRIPT-FORMAT.md` |
+| Episode rules, `episode.yaml` format, menus, validation (v1.6) | `episodes/SCRIPT-FORMAT.md` |
 | Reference episode (approved pilot) | `episodes/001-what-is-system-design/episode.yaml` |
 | Engine commands and architecture | `engine/README.md` |
 | Episode statuses | `episodes/INDEX.md` |
 | Tricky pronunciations | `episodes/pronunciations.md` |
-| Voice and music rotation | `episodes/voices.json`, `episodes/music.json` |
+| Voice, music and motion-look rotation | `episodes/voices.json`, `episodes/music.json`, `episodes/looks.json` |
 | Audio library (prompts, provenance, licence) | `assets/sfx/library.json`, `assets/music/library.json` |
 | ElevenLabs plan for new audio | `engine/plan.json` |
 

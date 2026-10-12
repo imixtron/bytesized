@@ -4,7 +4,7 @@ import { StingPreview, STING_PREVIEW_FRAMES } from "./compositions/StingPreview"
 import { TokensCheck } from "./compositions/TokensCheck";
 import { sheetHeight, StoryboardSheet, type StoryboardSheetProps } from "./compositions/StoryboardSheet";
 import { CONTACT_HEIGHT, CONTACT_WIDTH, ContactSheet, type ContactSheetProps } from "./compositions/ContactSheet";
-import { GALLERY_BITS_FRAMES, GALLERY_FLOW_FRAMES, GALLERY_NODES_FRAMES, GalleryBits, GalleryFlow, GalleryNodes } from "./compositions/gallery/Galleries";
+import { GALLERY_BITS_FRAMES, GALLERY_ENTER_FRAMES, GALLERY_FLOW_FRAMES, GALLERY_NODES_FRAMES, GalleryBits, GalleryEnter, GalleryFlow, GalleryNodes } from "./compositions/gallery/Galleries";
 import { BigPicturePreview, DEMOS, DiagramDemo, DiagramSheet, bigPicturePreviewFrames } from "./compositions/gallery/Diagrams";
 import { Cover } from "./compositions/Cover";
 import { loadEpisode } from "./episode/load";
@@ -74,6 +74,7 @@ export const Root = () => (
       />
     </Folder>
     <Folder name="Gallery">
+      <Composition id="gallery-enter" component={GalleryEnter} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={GALLERY_ENTER_FRAMES} />
       <Composition id="gallery-nodes" component={GalleryNodes} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={GALLERY_NODES_FRAMES} />
       <Composition id="gallery-flow" component={GalleryFlow} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={GALLERY_FLOW_FRAMES} />
       <Composition id="gallery-bits" component={GalleryBits} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={GALLERY_BITS_FRAMES} />
@@ -92,6 +93,10 @@ export const Root = () => (
       />
       <Folder name="Diagrams-v1-5">
         <Composition id="gallery-diagrams-sheet" component={DiagramSheet} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={Math.max(...Object.values(DEMOS).map((d) => d.frames))} />
+        <Composition id="gallery-batch1-sheet" component={DiagramSheet} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={Math.max(...Object.values(DEMOS).map((d) => d.frames))} defaultProps={{ only: "v18" as const }} />
+        <Composition id="gallery-batch2-sheet" component={DiagramSheet} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={Math.max(...Object.values(DEMOS).map((d) => d.frames))} defaultProps={{ only: "v19" as const }} />
+        <Composition id="gallery-batch3-sheet" component={DiagramSheet} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={Math.max(...Object.values(DEMOS).map((d) => d.frames))} defaultProps={{ only: "v110" as const }} />
+        <Composition id="gallery-batch4-sheet" component={DiagramSheet} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={Math.max(...Object.values(DEMOS).map((d) => d.frames))} defaultProps={{ only: "v111" as const }} />
         {Object.entries(DEMOS).map(([name, d]) => (
           <Composition key={name} id={`gallery-${name}`} component={DiagramDemo} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={d.frames} defaultProps={{ demo: name }} />
         ))}

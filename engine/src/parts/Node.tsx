@@ -1,8 +1,9 @@
 // A system-design node (design language §5): four families, six states (outlined only),
 // hatched offset shadow, corner badges, and the brand plate for third-party logos.
-import { Img, interpolate, interpolateColors, staticFile } from "remotion";
+import { Img, interpolateColors, staticFile } from "remotion";
 import type { NodeSpec } from "../episode/schema";
 import { fonts } from "../theme/fonts";
+import { enterLook, useSceneStyle } from "../motion/style";
 import { tokens } from "../theme/tokens";
 import { ICON_FOR, Icon, type IconName } from "./icons";
 
@@ -83,13 +84,18 @@ export const Node = ({
   const radius = Math.min(N.radius, Math.min(w, h) * 0.22);
   const shadow = N.shadow;
   const dx = shake > 0 && shake < 1 ? Math.sin(shake * Math.PI * 6) * tokens.motion.shake.amplitude * (1 - shake) : 0;
-  const scale = interpolate(enter, [0, 1], [0.4, 1]);
+  const scene = useSceneStyle();
+  const look_ = enterLook(scene.enter, enter, x, w);
+  // rack focus: a dimmed node blurs instead of only fading
+  const dimAmount = state === "dimmed" ? t : from === "dimmed" ? 1 - t : 0;
+  const blur = scene.camera === "rack" && dimAmount > 0 ? dimAmount * tokens.motion.camera.rack.blurPx : 0;
   const ringGap = hero && fam === "brand" ? N.families.brand.heroRing : null;
   const hatchBg = `repeating-linear-gradient(${shadow.angle}deg, ${hero && fam === "brand" ? HATCH_ORANGE : L.hatch} 0 ${shadow.line}px, transparent ${shadow.line}px ${shadow.line + shadow.gap}px)`;
   const shadowOffset = shadow.offset + (ringGap ? ringGap.gap + ringGap.width : 0);
 
   return (
-    <div style={{ position: "absolute", left: x - w / 2, top: y - h / 2, width: w, height: h, transform: `translateX(${dx}px) scale(${scale})`, opacity: Math.min(1, enter * 1.6) }}>
+    <div style={{ position: "absolute", left: x - w / 2, top: y - h / 2, width: w, height: h, ...look_.style, transform: `translateX(${dx}px) ${look_.style.transform ?? ""}`, filter: blur ? `blur(${blur}px)` : undefined }}>
+      {look_.ring > 0 && <div style={{ position: "absolute", inset: 0, borderRadius: radius, border: `${N.stroke}px solid ${c.orange}`, transform: `scale(${1 + 0.7 * look_.ring})`, opacity: 1 - look_.ring }} />}
       {/* hatched offset shadow, borrowed from the GIST logo */}
       <div style={{ position: "absolute", inset: 0, transform: `translate(${shadowOffset}px, ${shadowOffset}px)`, borderRadius: radius, background: hatchBg, opacity: state === "dimmed" && t >= 1 ? 0.3 : 1 }} />
       <div

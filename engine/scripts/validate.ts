@@ -19,9 +19,13 @@ const folders = readdirSync(join(ROOT, "episodes")).filter(
 /** The episode just before this one (by folder number), for the variety rules. */
 const all = readdirSync(join(ROOT, "episodes")).filter((d) => /^\d+-/.test(d) && existsSync(join(ROOT, "episodes", d, "episode.yaml"))).sort();
 function previousOf(folder: string) {
-  const prev = all.filter((d) => d < folder).at(-1);
-  if (!prev) return undefined;
-  try { return parseEpisode(readFileSync(join(ROOT, "episodes", prev, "episode.yaml"), "utf8")); } catch { return undefined; }
+  return previousEpisodes(folder, 1).at(-1);
+}
+/** The episodes before this one, nearest last (the motion fingerprint rules compare against 3). */
+function previousEpisodes(folder: string, n = 3) {
+  return all.filter((d) => d < folder).slice(-n).flatMap((d) => {
+    try { return [parseEpisode(readFileSync(join(ROOT, "episodes", d, "episode.yaml"), "utf8"))]; } catch { return []; }
+  });
 }
 
 let failed = 0;
@@ -43,7 +47,7 @@ for (const folder of folders) {
     const musicLib = JSON.parse(readFileSync(join(ROOT, "assets/music/library.json"), "utf8"));
     const issues = validate(ep, {
       fileExists: (p) => existsSync(join(ROOT, p)), roster, measured,
-      sfxIds: Object.keys(sfxLib.sounds), musicIds: [...Object.keys(musicLib.tracks)], previous: previousOf(folder),
+      sfxIds: Object.keys(sfxLib.sounds), musicIds: [...Object.keys(musicLib.tracks)], previous: previousOf(folder), previousEpisodes: previousEpisodes(folder),
     });
     const tl = buildTimeline(ep, measured);
     const vo = ep.scenes.reduce((n, s) => n + s.vo.split(/\s+/).length, 0);

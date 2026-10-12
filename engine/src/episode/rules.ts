@@ -8,7 +8,7 @@ import { ICONS } from "../parts/icons";
 
 export type Issue = { level: "error" | "warn"; where: string; msg: string };
 export type RosterVoice = { name: string; voice_id: string };
-export type ValidateOptions = { fileExists?: (projectPath: string) => boolean; measured?: MeasuredWords; roster?: RosterVoice[]; sfxIds?: string[]; musicIds?: string[]; previous?: Episode };
+export type ValidateOptions = { fileExists?: (projectPath: string) => boolean; measured?: MeasuredWords; roster?: RosterVoice[]; sfxIds?: string[]; musicIds?: string[]; previous?: Episode; /** the episodes before this one, nearest last (the motion fingerprint rules look at 3) */ previousEpisodes?: Episode[] };
 
 const words = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
 
@@ -133,11 +133,40 @@ export function validate(ep: Episode, opts: ValidateOptions = {}): Issue[] {
     if (d > 8) warn(ts.scene.id, `scene is ${d.toFixed(1)}s (guide: 3–8s)`);
     if (ts.beats.length < Math.floor(d / 2)) warn(ts.scene.id, `${ts.beats.length} beats in ${d.toFixed(1)}s (guide: one every 1.5–2s)`);
   }
+  // Motion variety (SCRIPT-FORMAT v1.6): hard fails for `format` 1.6 and later, warnings for older scripts
+  const motion = (hard: boolean, where: string, msg: string) => (hard && Number(ep.format ?? 0) >= 1.6 ? err : warn)(where, msg);
+  if (Number(ep.format ?? 0) >= 1.6 && !ep.look) err("look", "format 1.6 needs a look: run npm run look:assign -- <nnn> (two motion recipes from episodes/looks.json)");
+  ep.scenes.forEach((s, i) => {
+    const slides = ["whip", "flip", "stack", "dive", "iris"].includes(s.transition);
+    if (slides && (i === 0 || ep.scenes[i - 1].part === "hook")) warn(s.id, `transition "${s.transition}" won't play here: nothing slides in after the hook (the branding sting sits between), so it's treated as a cut`);
+  });
+  const arrivals = new Set(ep.scenes.map((s, i) => (i === 0 || ep.scenes[i - 1].part === "hook" ? "cut" : s.transition)));
+  if (arrivals.size < 3) motion(true, "episode", `only ${arrivals.size} kind(s) of scene transition (${[...arrivals].join(", ")}); needs 3+ (cut, push, whip, flip, stack, dive, iris)`);
+  for (let i = 2; i < ep.scenes.length; i++) {
+    const [a, b, c] = [ep.scenes[i - 2], ep.scenes[i - 1], ep.scenes[i]];
+    if (a.enter === b.enter && b.enter === c.enter && (a.enter !== "pop" || Number(ep.format ?? 0) >= 1.6)) motion(true, c.id, `entrance style "${c.enter}" in 3 scenes in a row (max 2)`);
+  }
+  if (!ep.look && ep.scenes.every((s) => s.camera === "still") && ep.scenes.every((s) => s.enter === "pop")) warn("episode", "every scene uses the default entrance (pop) and a still camera: add a look (npm run look:assign) or set enter: / camera: per scene");
+
+  // Fingerprints: template · entrance · transition · camera per scene. The same 3-scene run as any of the last 3 episodes is a hard fail,
+  // and so is an Analogy "Idea" scene in a third episode running.
+  const fp = (e: Episode) => e.scenes.map((s) => `${s.template}|${s.enter}|${s.transition}|${s.camera}`);
+  const prevs = (opts.previousEpisodes ?? (opts.previous ? [opts.previous] : [])).slice(-3);
+  const runs = (xs: string[]) => new Set(xs.slice(0, Math.max(0, xs.length - 2)).map((_, i) => xs.slice(i, i + 3).join(" ▸ ")));
+  const mine = fp(ep);
+  for (const pe of prevs) {
+    const theirs = runs(fp(pe));
+    const same = [...runs(mine)].filter((r) => theirs.has(r));
+    if (same.length) motion(true, "variety", `the same 3-scene run (template, entrance, transition, camera) as episode ${pe.id}: ${same[0].replace(/\|/g, "/")}`);
+  }
+  const idea = (e: Episode) => e.scenes.find((s) => s.part === "idea")?.template;
+  if (idea(ep) === "Analogy" && prevs.length >= 2 && prevs.slice(-2).every((p) => idea(p) === "Analogy")) motion(true, "idea", "an Analogy Idea scene in 3 episodes running; try Diorama, Transform, Zoom, Chat or Slider for the idea");
+
   return issues;
 }
 
 type St = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
-const VERB_HOME: Record<string, string[]> = { step: ["Sequence"], branch: ["Decision"], race: ["Split", "BeforeAfter"] };
+const VERB_HOME: Record<string, string[]> = { step: ["Sequence", "Timeline", "StateMachine", "Transform", "Ring", "Cells", "Stream", "Diorama", "Chat", "Map"], zoom: ["Zoom"], branch: ["Decision"], race: ["Split", "BeforeAfter"] };
 const isIcon = (i: unknown) => typeof i === "string" && i in ICONS;
 
 /** Shape rules for Sequence, Split, Decision and Tiers (design language v1.5). */
@@ -208,6 +237,194 @@ export function diagramIssues(s: Scene, byId: Map<string, Scene>, err: (m: strin
     if ([...byId.values()].filter((x) => x.template === "BigPicture").length > 1) err("at most one BigPicture per episode");
   }
 
+  if (s.template === "Timeline") {
+    const events = (st.events ?? []) as St[];
+    const lanes = (st.lanes ?? []) as St[];
+    const max = st.variant === "lanes" ? 7 : 6;
+    if (events.length < 2 || events.length > max) err(`Timeline needs 2–${max} events, has ${events.length}`);
+    for (const e of events) {
+      if (!e.at) err(`event "${e.id}" needs at: (its time label)`);
+      if (e.icon && !isIcon(e.icon)) err(`icon "${e.icon}" isn't in the icon set`);
+    }
+    if (st.variant === "lanes") {
+      if (lanes.length < 2 || lanes.length > 3) err(`Timeline lanes needs 2–3 lanes, has ${lanes.length}`);
+      for (const e of events) if (!lanes.some((l) => l.id === e.lane)) err(`event "${e.id}" needs lane: <lane id>`);
+      const ids = new Set(events.map((e) => e.id));
+      for (const l of (st.links ?? []) as St[]) if (!ids.has(l.from) || !ids.has(l.to)) err(`link "${l.id}" needs from/to event ids`);
+    } else if (events.some((e) => String(e.label ?? "").length > 22)) warn("event labels over 22 characters may wrap");
+  }
+
+  if (s.template === "MetricChart") {
+    const ch = (st.chart ?? {}) as St;
+    const data = (ch.data ?? []) as St[];
+    const type = ch.type ?? "bar";
+    if (!["bar", "line", "gauge"].includes(type)) err(`chart.type must be bar, line or gauge`);
+    if (type === "gauge" ? data.length !== 1 : data.length < 2 || data.length > 5) err(type === "gauge" ? "a gauge takes exactly 1 data item" : `a ${type} chart needs 2–5 data items, has ${data.length}`);
+    if (data.some((d) => typeof d.value !== "number")) err("every data item needs a numeric value");
+    if (type === "gauge" && ch.max === undefined) warn("gauge: set chart.max (the dial's full scale)");
+  }
+
+  if (s.template === "Snippet") {
+    const lines = (st.lines ?? []) as St[];
+    if (lines.length < 2 || lines.length > 8) err(`Snippet needs 2–8 lines, has ${lines.length}`);
+    for (const l of lines) if (String(l.text ?? "").length > 90) warn(`line "${l.id}" is long; it will wrap`);
+  }
+
+  if (s.template === "Stat") {
+    if (s.part !== "hook") warn("Stat is made for hooks");
+    const stat = st.stat as St | undefined;
+    if (!stat?.id || !stat?.value) err("Stat needs stat: { id, value }");
+    else if (String(stat.value).length > 7) err(`stat value "${stat.value}" is over 7 characters (it has to slam in big; put the unit in unit:)`);
+  }
+
+  if (s.template === "Zoom") {
+    const from = st.from as St | undefined;
+    const inner = ((st.inside ?? {}).nodes ?? []) as St[];
+    if (!from?.id) err("Zoom needs from: (the node to dive into)");
+    if (inner.length < 2 || inner.length > 4) err(`Zoom needs 2–4 nodes inside, has ${inner.length}`);
+    if (!s.beats.some((b) => b.do === "zoom")) warn("Zoom: add a `zoom` beat on the from node (the dive starts at 50 frames otherwise)");
+    const ids = new Set(inner.map((n) => n.id));
+    for (const l of ((st.inside ?? {}).links ?? []) as St[]) if (!ids.has(l.from) || !ids.has(l.to)) err("inside links need from/to inside node ids");
+  }
+
+  if (s.template === "StateMachine") {
+    const states = (st.states ?? []) as St[];
+    const trs = (st.transitions ?? []) as St[];
+    if (states.length < 2 || states.length > 5) err(`StateMachine needs 2–5 states, has ${states.length}`);
+    const ids = new Set(states.map((x) => x.id));
+    for (const t of trs) {
+      if (!ids.has(t.from) || !ids.has(t.to)) err(`transition "${t.id}" needs from/to state ids`);
+      else if (t.from === t.to) err(`transition "${t.id}" loops back to its own state (not supported)`);
+      if (t.label && String(t.label).length > 14) warn(`transition label "${t.label}" is long (≤14 characters)`);
+    }
+    if (st.start && !ids.has(st.start)) err(`start "${st.start}" isn't a state`);
+    for (const x of states) if (String(x.label ?? "").length > 10) warn(`state label "${x.label}" may not fit the circle (≤10 characters)`);
+  }
+
+  if (s.template === "Tree") {
+    const root = st.root as St | undefined;
+    if (!root?.id) err("Tree needs root: { id, label, children }");
+    else {
+      let count = 0;
+      let depth = 0;
+      const walk = (n: St, d: number) => { count++; depth = Math.max(depth, d); for (const ch of (n.children ?? []) as St[]) walk(ch, d + 1); };
+      walk(root, 1);
+      if (count > 10) err(`Tree has ${count} nodes (max 10)`);
+      if (depth > 3) err(`Tree is ${depth} levels deep (max 3)`);
+      if (count < 3) err("Tree needs at least 3 nodes");
+    }
+  }
+
+  if (s.template === "Transform") {
+    const items = (st.items ?? []) as St[];
+    const via = (st.via ?? []) as St[];
+    if (items.length < 2 || items.length > 4) err(`Transform needs 2–4 items, has ${items.length}`);
+    if (via.length !== items.length - 1) err(`Transform needs one via per gap: ${items.length - 1}, has ${via.length}`);
+    for (const v of via) if (v.icon && !isIcon(v.icon)) err(`icon "${v.icon}" isn't in the icon set`);
+    for (const it of items) if (String(it.text ?? "").length > 30) warn(`item "${it.id}" text is long (≤30 characters)`);
+  }
+
+  if (s.template === "Ring") {
+    const servers = (st.servers ?? []) as St[];
+    const keys = (st.keys ?? []) as St[];
+    if (servers.length < 2 || servers.length > 5) err(`Ring needs 2–5 servers, has ${servers.length}`);
+    if (keys.length < 1 || keys.length > 8) err(`Ring needs 1–8 keys, has ${keys.length}`);
+    for (const x of [...servers, ...keys]) if (typeof x.at !== "number" || x.at < 0 || x.at >= 360) err(`"${x.id}" needs at: 0–359 (degrees clockwise from the top)`);
+    for (const x of servers) if (String(x.label ?? "").length > 12) warn(`server label "${x.label}" is long (≤12 characters)`);
+  }
+
+  if (s.template === "Cells") {
+    const cells = (st.cells ?? []) as St[];
+    const items = (st.items ?? []) as St[];
+    if (cells.length < 2 || cells.length > 6) err(`Cells needs 2–6 cells, has ${cells.length}`);
+    if (items.length < 1 || items.length > 14) err(`Cells needs 1–14 items, has ${items.length}`);
+    const ids = new Set(cells.map((x) => x.id));
+    for (const it of items) if (!ids.has(it.into)) err(`item "${it.id}" needs into: <cell id>`);
+    for (const cell of cells) if (items.filter((it) => it.into === cell.id).length > 9) warn(`cell "${cell.id}" gets more than 9 items (they won't fit)`);
+  }
+
+  if (s.template === "Stream") {
+    const lanes = (st.lanes ?? []) as St[];
+    const msgs = (st.messages ?? []) as St[];
+    if (lanes.length < 1 || lanes.length > 4) err(`Stream needs 1–4 lanes, has ${lanes.length}`);
+    if (msgs.length < 2 || msgs.length > 12) err(`Stream needs 2–12 messages, has ${msgs.length}`);
+    const ids = new Set(lanes.map((x) => x.id));
+    for (const m of msgs) if (!ids.has(m.lane)) err(`message "${m.id}" needs lane: <lane id>`);
+    for (const l of lanes) { if (l.producer && !isIcon(l.producer)) err(`icon "${l.producer}" isn't in the icon set`); if (l.consumer && !isIcon(l.consumer)) err(`icon "${l.consumer}" isn't in the icon set`); }
+  }
+
+  if (s.template === "Cluster") {
+    const nodes = (st.nodes ?? []) as St[];
+    if (nodes.length < 3 || nodes.length > 5) err(`Cluster needs 3–5 nodes, has ${nodes.length}`);
+    if (st.leader && !nodes.some((x) => x.id === st.leader)) err(`leader "${st.leader}" isn't a node`);
+    if (!s.beats.some((b) => b.do === "send")) warn("Cluster: add `send` beats (the leader fans a write out to the followers)");
+  }
+
+  if (s.template === "Fleet") {
+    const pods = (st.pods ?? []) as St[];
+    if (pods.length < 2 || pods.length > 12) err(`Fleet needs 2–12 pods, has ${pods.length}`);
+    if (!s.beats.some((b) => b.do === "count")) warn("Fleet: add a `count` beat with args.to (the traffic level) so the cpu bars move");
+  }
+
+  if (s.template === "Map") {
+    const pins = (st.pins ?? []) as St[];
+    const routes = (st.routes ?? []) as St[];
+    if (pins.length < 2 || pins.length > 6) err(`Map needs 2–6 pins, has ${pins.length}`);
+    if (routes.length > 5) err(`Map takes at most 5 routes, has ${routes.length}`);
+    const ids = new Set(pins.map((p) => p.id));
+    for (const p of pins) if (!Array.isArray(p.at) || p.at.length !== 2 || Math.abs(p.at[0]) > 180 || Math.abs(p.at[1]) > 75) err(`pin "${p.id}" needs at: [lon, lat] (lon −180…180, lat −45…75)`);
+    for (const r of routes) if (!ids.has(r.from) || !ids.has(r.to)) err(`route "${r.id}" needs from/to pin ids`);
+  }
+
+  if (s.template === "Estimate") {
+    const lines = (st.lines ?? []) as St[];
+    if (lines.length < 2 || lines.length > 6) err(`Estimate needs 2–6 lines, has ${lines.length}`);
+    for (const l of lines) if (String(l.text ?? "").length > 30) warn(`line "${l.id}" is long for the napkin (≤30 characters)`);
+    if (!lines.some((l) => l.result)) warn("Estimate: mark the answer line with result: true (it gets circled)");
+  }
+
+  if (s.template === "Chat") {
+    const actors = (st.actors ?? []) as St[];
+    const msgs = (st.messages ?? []) as St[];
+    if (actors.length !== 2) err(`Chat needs exactly 2 actors, has ${actors.length}`);
+    if (msgs.length < 2 || msgs.length > 7) err(`Chat needs 2–7 messages, has ${msgs.length}`);
+    const ids = new Set(actors.map((a) => a.id));
+    for (const m of msgs) { if (!ids.has(m.from)) err(`message "${m.id}" needs from: <actor id>`); if (String(m.text ?? "").length > 40) warn(`message "${m.id}" is long (≤40 characters)`); }
+  }
+
+  if (s.template === "Diorama") {
+    const zones = (st.zones ?? []) as St[];
+    const actors = (st.actors ?? []) as St[];
+    if (zones.length < 2 || zones.length > 5) err(`Diorama needs 2–5 zones, has ${zones.length}`);
+    if (actors.length < 1 || actors.length > 4) err(`Diorama needs 1–4 actors, has ${actors.length}`);
+    const ids = new Set(zones.map((z) => z.id));
+    for (const z of zones) { if (!["x", "y", "w", "h"].every((k) => typeof z[k] === "number")) err(`zone "${z.id}" needs x, y, w, h (fractions 0–1)`); else if (z.x < 0 || z.y < 0 || z.x + z.w > 1.001 || z.y + z.h > 1.001) err(`zone "${z.id}" leaves the stage (x + w and y + h must be ≤ 1)`); if (z.icon && !isIcon(z.icon)) err(`icon "${z.icon}" isn't in the icon set`); }
+    for (const a of actors) { if (!ids.has(a.at)) err(`actor "${a.id}" needs at: <zone id>`); if (!isIcon(a.icon)) err(`actor "${a.id}" needs an icon from the icon set`); }
+    for (const b of s.beats) if (b.do === "step" && !ids.has(String(b.args?.to))) err(`step needs args.to: <zone id>`);
+  }
+
+  if (s.template === "Matrix") {
+    const cols = (st.cols ?? []) as St[];
+    const rows = (st.rows ?? []) as St[];
+    if (cols.length < 2 || cols.length > 4) err(`Matrix needs 2–4 columns, has ${cols.length}`);
+    if (rows.length < 2 || rows.length > 5) err(`Matrix needs 2–5 rows, has ${rows.length}`);
+    for (const r of rows) {
+      if (((r.cells ?? []) as unknown[]).length !== cols.length) err(`row "${r.id}" needs ${cols.length} cells (one per column)`);
+      for (const cell of (r.cells ?? []) as string[]) if (!["yes", "no", "partial"].includes(cell) && String(cell).length > 10) warn(`cell "${cell}" is long (≤10 characters, or use yes / no / partial)`);
+    }
+    for (const col of cols) if (col.icon && !isIcon(col.icon)) err(`icon "${col.icon}" isn't in the icon set`);
+  }
+
+  if (s.template === "Slider") {
+    for (const k of ["before", "after"]) {
+      const h = st[k] as St | undefined;
+      if (!h?.id) { err(`Slider needs ${k}: { id, title, nodes }`); continue; }
+      const n = (h.nodes ?? []).length;
+      if (n < 1 || n > 4) err(`${k} needs 1–4 nodes, has ${n}`);
+      if (String(h.result ?? "").length > 8) warn(`${k} result "${h.result}" is long (≤8 characters, it is big)`);
+    }
+  }
+
   if (s.template === "Tiers") {
     const tiers = (st.tiers ?? []) as St[];
     if (tiers.length < 2 || tiers.length > 5) err(`Tiers needs 2–5 tiers, has ${tiers.length}`);
@@ -220,9 +437,9 @@ export function diagramIssues(s: Scene, byId: Map<string, Scene>, err: (m: strin
 }
 
 /** Templates that draw a diagram (vs text: Analogy, ThreeCards). */
-export const DIAGRAMS = new Set(["FlowDiagram", "Sequence", "Split", "BeforeAfter", "Decision", "Tiers", "MetricChart", "Zoom"]);
+export const DIAGRAMS = new Set(["FlowDiagram", "Sequence", "Split", "BeforeAfter", "Decision", "Tiers", "MetricChart", "Zoom", "Timeline", "Snippet", "StateMachine", "Tree", "Transform", "Ring", "Cells", "Stream", "Cluster", "Fleet", "Map", "Estimate", "Chat", "Diorama", "Matrix", "Slider"]);
 /** Fixed bookends, never counted for variety. */
-const BOOKENDS = new Set(["Hook", "GistCard", "BigPicture"]);
+const BOOKENDS = new Set(["Hook", "GistCard", "BigPicture", "Stat"]);
 export const VARIETY = { minBreakdownTemplates: 4, goodBreakdownTemplates: 5, maxScenesPerTemplate: 3, sharedRun: 3 };
 /** Format 1.5+: topic-first visual plan. Guards both extremes (one template overused, or a sampler of everything). */
 export const VARIETY_V15 = { maxDiagramsPerTemplate: 3, maxReuseChain: 5, samplerTemplates: 6, maxVisualPlanChars: 300 };

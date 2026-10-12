@@ -14,6 +14,7 @@
     "voices": "tsx scripts/voices.ts",
     "voice:assign": "tsx scripts/voice-assign.ts",
     "music:assign": "tsx scripts/music-assign.ts",
+    "look:assign": "tsx scripts/look-assign.ts",
     "voice": "tsx scripts/voice.ts",
     "make-audio": "tsx scripts/make-audio.ts",
     "storyboard": "npm run sync && tsx scripts/storyboard.ts",

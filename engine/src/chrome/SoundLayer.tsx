@@ -14,11 +14,15 @@ const level = (id: string) => (A.levels as Record<string, number>)[id] ?? A.leve
 
 type Cue = { frame: number; id: string };
 
+/** Sound id for a scene transition (cut has none). */
+export const transitionSound = (t: string): string | undefined => (A.map as Record<string, string>)[t];
+
 /** Every sound cue in the episode, in frame order, with repeats of one sound thinned to minGapFrames. */
 export function sfxCues(timeline: Timeline): Cue[] {
   const cues: Cue[] = [{ frame: timeline.sting.start, id: A.map.sting }];
   for (const ts of timeline.scenes) {
-    if (ts.scene.transition === "push") cues.push({ frame: ts.start, id: A.map.push });
+    const tr = transitionSound(ts.scene.transition);
+    if (tr && ts.index > 0) cues.push({ frame: ts.start, id: tr });
     for (const b of ts.beats) {
       const id = sfxForBeat(b);
       if (id) cues.push({ frame: b.frame, id });
@@ -53,7 +57,7 @@ export const SoundLayer = ({ episode, timeline, voiced, library }: { episode: Ep
         const path = sfxPath(library, c.id);
         if (!path) return null;
         // whooshes lead their cue slightly so the peak lands on the beat
-        const lead = c.id === A.map.flood || c.id === A.map.push ? 4 : 0;
+        const lead = c.id === A.map.flood || c.id === A.map.push || c.id === A.map.whip ? 4 : 0;
         return (
           <Sequence key={i} from={Math.max(0, c.frame - lead)} durationInFrames={2 * FPS} layout="none">
             <Audio src={staticFile(path)} volume={level(c.id)} />

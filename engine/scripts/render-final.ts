@@ -39,7 +39,8 @@ else {
 // sound effects actually used by this episode
 const used = new Set<string>([tokens.audio.map.sting]);
 for (const s of ep.scenes) {
-  if (s.transition === "push") used.add(tokens.audio.map.push);
+  const tr = (tokens.audio.map as Record<string, string>)[s.transition];
+  if (tr) used.add(tr);
   for (const b of s.beats) { const id = sfxForBeat(b); if (id) used.add(id); }
 }
 for (const id of used) {

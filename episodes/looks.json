@@ -1,0 +1,55 @@
+{
+  "$note": "Motion looks (variety plan v2, SCRIPT-FORMAT v1.6, design language v1.7). A recipe bundles how nodes enter, how the camera behaves and which scene transitions to use. /script gives every episode TWO recipes (npm run look:assign -- <nnn>): picked at random, never one used by the last 3 episodes where possible; Part 2 reuses Part 1's pair. The pair is written to the episode's look.recipes, so renders are reproducible. The engine fills any scene that doesn't set transition / enter / camera itself from the pair: recipes alternate every 2 scenes, transitions cycle through the recipe's list (never the same twice in a row), a scene that continues another (stage.reuse) stays a cut. Edit 'recipes' to add or change one (transitions: cut, push, whip, flip, stack, dive, iris).",
+  "recipes": {
+    "snap": {
+      "label": "Snap",
+      "enter": "snap",
+      "camera": "rack",
+      "transitions": [
+        "whip",
+        "push",
+        "stack"
+      ]
+    },
+    "draw": {
+      "label": "Draw",
+      "enter": "wipe",
+      "camera": "drift",
+      "transitions": [
+        "iris",
+        "stack",
+        "push"
+      ]
+    },
+    "slam": {
+      "label": "Slam",
+      "enter": "stamp",
+      "camera": "still",
+      "transitions": [
+        "flip",
+        "dive",
+        "whip"
+      ]
+    },
+    "drop": {
+      "label": "Drop",
+      "enter": "drop",
+      "camera": "drift",
+      "transitions": [
+        "stack",
+        "dive",
+        "iris"
+      ]
+    }
+  },
+  "history": [
+    {
+      "episode": "005-tcp-vs-udp",
+      "recipes": [
+        "slam",
+        "drop"
+      ],
+      "date": "2026-10-12"
+    }
+  ]
+}

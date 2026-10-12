@@ -7,7 +7,8 @@ Remotion (React + TypeScript) project. It renders `episodes/<nnn-slug>/episode.y
 |---|---|
 | `npm run voice:assign -- <nnn>` | Gives the episode the next round-robin voice (`episodes/voices.json`) |
 | `npm run music:assign -- <nnn> [--force\|--dry-run]` | Picks the episode's theme track at random, never the previous episode's (`episodes/music.json`), and writes `music.track`. Keeps an existing pick unless `--force`. Part 2 reuses Part 1's track |
-| `npm run validate [-- <nnn>]` | Checks episodes against SCRIPT-FORMAT v1.5 (80–90s; format 1.5 needs a `visual_plan`). Uses the measured length once voiced |
+| `npm run look:assign -- <nnn> [--force\|--dry-run]` | Picks the episode's two motion recipes at random (`episodes/looks.json`), not the last 3 episodes', and writes `look.recipes`. Keeps an existing one; Part 2 reuses Part 1's |
+| `npm run validate [-- <nnn>]` | Checks episodes against SCRIPT-FORMAT v1.6 (80–90s; format 1.5 needs a `visual_plan`, 1.6 a `look` and passes the fingerprint rules vs the last 3 episodes). Uses the measured length once voiced |
 | `npm run voice -- <nnn> [--force\|--upgrade]` | ElevenLabs voiceover per scene with word timestamps, cached → `episodes/<nnn-slug>/audio/` |
 | `npm run storyboard -- <nnn>` | One still per beat → `episodes/<nnn-slug>/storyboard/storyboard.html`, plus one phone-readable image per section → `storyboard/sections/*.jpg` (`storyboard-sheet` composition), plus contact sheets → `storyboard/contact-*.jpg` |
 | `npm run contact -- <nnn>` | Re-makes only the contact sheets from existing storyboard frames: 12 small stills per image, tagged `<n> <scene> <time>` (`contact-sheet` composition). Claude's self-check uses these, not the section images, because an image costs tokens by its pixels |
@@ -27,7 +28,7 @@ Remotion (React + TypeScript) project. It renders `episodes/<nnn-slug>/episode.y
 | `npm run refs -- <Notion ID> <url>… \| --list` | Saves a Notion row's Visual Reference images (signed URLs from the Notion connector) → `bridge/files/notion-<ID>/` (gitignored) |
 | `npm run doctor [-- --online]` | Checks a machine is ready: Node, deps, key present, plan, audio files, sync, types, episodes, ffmpeg |
 
-**Typical episode:** `voice:assign` → `music:assign` → `validate` → `voice` → `validate` → `storyboard` ✋ → `render` (draft) → `render:final`.
+**Typical episode:** `voice:assign` → `music:assign` → `look:assign` → `validate` → `voice` → `validate` → `storyboard` ✋ → `render` (draft) → `render:final`.
 `engine/plan.json` records which ElevenLabs plan new audio is made on (`free` or `paid`). Only `paid` output is licensed.
 
 ## Architecture
@@ -43,7 +44,8 @@ Root.tsx → one composition per episode (ep-001…) → compositions/Episode.ts
    values: theme/tokens.ts    (tokens.json; never hard-code a value)
    audio:  audio/library.ts   (assets/{sfx,music}/library.json + sound map)
 ```
-- **Templates still to build** when an episode first needs them: MetricChart, Zoom (BeforeAfter is drawn by Split).
+- **Templates still to build** when an episode first needs them: Graph, DataView (BeforeAfter is drawn by Split). 25 are built: v1.8 Timeline, MetricChart, Snippet, Stat; v1.9 Zoom, StateMachine, Tree, Transform; v1.10 Ring, Cells, Stream, Cluster; v1.11 Fleet, Map, Estimate, Chat, Diorama, Matrix, Slider. Motion: `src/motion/style.tsx` (entrance styles, transitions, camera) and `src/episode/look.ts` (fills a scene's motion from the episode's look).
+- **Variety galleries:** Studio → Gallery → `gallery-batch1-sheet` … `gallery-batch4-sheet`, plus one `gallery-v18-…` / `v19` / `v110` / `v111` composition per variant.
 - **v1.5 diagram gallery:** Studio → Gallery → Diagrams-v1-5 (`gallery-diagrams-sheet`, plus one `gallery-<demo>` per variant). Review renders: `engine/out/v1.5-diagrams/`.
 - **v1.6:** Studio → Gallery → `preview-bigpicture-003` (a BigPicture added to 003, estimated timing) and Covers → `cover-<nnn>`. Review renders: `engine/out/v1.6-bigpicture/`.
 - **Studio folders:** Episodes · Checks (tokens, sting preview) · Gallery (nodes, flow, crowd/counter/icons, Diagrams-v1-5).

@@ -17,7 +17,7 @@ _Last updated 2026-10-06. Replaces the old PLAN.md and PROGRESS.md._
 | Episode 002 | ✅ **Final rendered** 2026-10-07 (rebuild): Monolith vs Microservices (Notion #1, Laura, 82.2s, 1,083 credits for the rebuild voice). Ready for Imad to publish |
 | Episode 003 | ✅ **Final rendered** 2026-10-06: The Client–Server Model (Notion #2, Jessica, 81.1s, 1,108 credits). Ready for Imad to publish |
 | Next | Rebuild 001 (`/queue` §1b) → then new Ideas |
-| Diagram variety plan | Agreed 2026-10-06. Process steps + 4-wave template roadmap (25 templates) in [Diagram roadmap](#diagram-roadmap) below. Now: wave 1 ✅ (v1.5) · step 2 ✅ (v1.3) · step 3 ✅ (v1.6 / v1.4) · step 4 🟡 wired, needs one live test · next: wave 2 |
+| Diagram variety plan | **v2 agreed 2026-10-12** (five layers: treatment, entrance, transition, camera, composition; motion recipes + per-episode `look`). Batch 0 ✅ (v1.7 locked); Batch 1 ✅ (v1.8 locked); Batch 2 ✅ (v1.9 locked); Batch 3 ✅ (v1.10 locked); Batch 4 ✅ (v1.11 locked); Close step ✅ built, awaiting Imad. See [Diagram roadmap](#diagram-roadmap) |
 
 _2026-10-10 13:49: 004 script r4 approved, `bug` scene voiced (123 chars, 2847 total), 81.7s measured, validate PASS; Storyboard Review r2 posted (`004:storyboard:r2`)._
 
@@ -27,25 +27,42 @@ _2026-10-10 15:55: 004 draft r2 approved; final render + `upload.md` + cover don
 _2026-10-10 13:42: 004 script r3 approved and voiced, measured 73.8s (under the 80s floor) → lying-200 scene re-added; Script Review r4 posted (`004:script:r4`), voice the new scene only after approval._
 
 ## Diagram roadmap
-_Agreed with Imad 2026-10-06. Goal: varied, diagram-first shorts that don't reuse the last episode's look. Each wave adds templates (gallery stills + MP4s → Imad approves → design language bump) and nothing reaches an episode before approval._
+_Variety plan v2, agreed with Imad 2026-10-12 (replaces the 2026-10-06 template-only roadmap; its wave-1 and BigPicture items are done). Goal: shorts that don't feel alike. Diagnosis: only the template varied, and the same 4–5 templates recurred. Motion (one pop-in), transitions (cut, a 4% push), camera and composition never varied; the validator compared templates with the previous episode only. Nothing reaches an episode before Imad approves it (gallery stills + clip → design language bump). No ElevenLabs credits are spent by this work. Previous episodes (001–004) are **not** re-rendered; 005 is built with the new look._
 
-**Process steps**
-1. ✅ Wave 1 templates as composable panels (approved 2026-10-06, design language v1.5)
-2. ✅ Approved 2026-10-06 (SCRIPT-FORMAT v1.3 + `/script`): diagram-choice table + variety rules in `/script` and the validator (SCRIPT-FORMAT v1.3): max 2–3 scenes per template, ≥4–5 different templates in the breakdown, never the previous episode's template order
-3. ✅ Approved 2026-10-06 (design language v1.6, script format v1.4): optional **BigPicture** beat (3–5s pull-back over the panels just before the gist, only for whole-system topics) + cover/thumbnail frame export
-4. 🟡 Wired 2026-10-06, live test pending: the queue fetches the row's **Visual Reference** files (§3a) → `npm run refs` saves them to `bridge/files/notion-<ID>/` (gitignored) → `/script` maps each to a template, or raises a missing template at Parts Review
-5. Waves 2–4 below, one at a time
+**Five layers, mixed per scene:** A. scene treatment (template) · B. entrance style · C. transition · D. camera · E. composition. Named **motion recipes** bundle B+C+D+E; each episode gets a `look` (2 recipes, `episodes/looks.json`, never the last 3 episodes' picks, assigned like voices and music).
 
-**Template waves (25 total)**
-| Wave | Templates | Status | Covers |
-|---|---|---|---|
-| — | Hook, Analogy, FlowDiagram, ThreeCards, GistCard | ✅ approved | Openers, analogies, request flow, three points, takeaway |
-| 1 | Sequence, Split (+BeforeAfter), Decision, Tiers | ✅ approved 2026-10-06 | Protocols, A vs B, rules/branching, trade-off levels |
-| 2 | Tree (radial = MindMap), Chart, Timeline, Zoom, StateMachine | planned | Hierarchies/data structures, numbers, time, internals, state loops (circuit breaker, leader election) |
-| 3 | Ring, Cells, Stream, Cluster, Graph | planned | Consistent hashing, sharding/buckets, queues/partitions, quorum/consensus, dependencies |
-| 4 | Transform, Snippet, Estimate, Fleet, Map, DataView, Matrix | planned | Hashing/encryption/serialization, payloads/APIs, back-of-envelope maths, autoscaling/deploys, geography, the data itself, multi-option comparisons |
+**Catalogue by situation** (★ built)
+| Situation | Treatments |
+|---|---|
+| Hook | ★Crowd rush · Stat slam · Cold-open break (glitch) · Terminal/Snippet · Question flip |
+| Idea / analogy | ★Analogy rows · Diorama (top-down mini-world) · Transform (object morphs into the system part) · Letter run |
+| Requests moving | ★FlowDiagram · Stream (conveyor) · Graph / route map · Waterfall |
+| Who talks to whom | ★Sequence · Chat bubbles · Ping-pong lanes |
+| A vs B | ★Split · Slider wipe · Versus cards · Matrix · Seesaw |
+| Rule or fork | ★Decision · Bouncer gate · Plinko · StateMachine |
+| Levels / trade-off | ★Tiers · Onion peel · Exploded view |
+| Time / order | Timeline (multi-lane variant) · Clock sweep |
+| Numbers | Chart (bars, odometer) · Gauge · Estimate (napkin maths, Yellowtail) |
+| Data structure | Tree · Ring · Cells · Linked chain |
+| What's inside | Zoom (dive-in) · X-ray cutaway |
+| Scale and failure | ★shake · Cluster (leader election) · Fleet (autoscale) · Map (CDN edges) |
+| Wrap-up | ★BigPicture · Recap stamps · Gist variants (sticky note, receipt, stamp) |
 
-**Variants, not new templates:** Layers (OSI, middleware) → Tiers · Funnel (traffic through CDN → cache → DB) → Chart · logical clocks → multi-lane Timeline · MindMap → Tree (radial). Anything else rare comes in through Visual Reference + the Parts Review gate.
+**Layers B–E:** entrances: ★pop · drop · snap · stamp · wipe (wires already draw on) · flip · type-on · unfold. Transitions: ★cut · ★push · whip · flip · stack · dive (zoom-through) · match-cut · glitch/smash. Camera: ★push · drift · rack focus · pan-along · pull-back (general) · tilt-shake. Composition: ★top-heavy · full-height · hero centre · vertical scroll · picture-in-picture lens.
+
+**Variety rules to add (validator, with SCRIPT-FORMAT v1.6):** no identical 3-scene run vs the last 3 episodes · ≥3 transition types per episode · same entrance style in ≤2 consecutive scenes · Analogy as the Idea scene in ≤2 episodes in a row · replace "never force variety" with "justify any repeat of the last episode's treatment".
+
+**Build order** (each batch: gallery stills + clip → Imad approves → registered)
+| Batch | Contents | Status |
+|---|---|---|
+| 0 Primitives | entrances (drop, snap, stamp, wipe), transitions (whip, flip, stack, dive), camera (drift, rack), per-scene `enter` / `camera`, validator warnings | ✅ approved 2026-10-12, design language **v1.7 locked** |
+| 1 | Timeline (line + lanes), MetricChart (bar, line, gauge), Snippet, Stat-slam hook; full-height by design | ✅ approved 2026-10-12, design language **v1.8 locked** |
+| 2 | Zoom, StateMachine, Tree (+ radial), Transform, `iris` transition (replaces match-cut) | ✅ approved 2026-10-12, design language **v1.9 locked** |
+| 3 | Ring, Cells, Stream, Cluster | ✅ approved 2026-10-12, design language **v1.10 locked** |
+| 4 | Fleet, Map, Estimate, Chat bubbles, Diorama, Matrix, Slider wipe | ✅ approved 2026-10-12, design language **v1.11 locked** |
+| Close | `looks.json` + `look:assign`, fingerprint validator, SCRIPT-FORMAT v1.6, `/script` + `/video` + `/queue` + AGENTS updates, 005 given its look | ✅ built 2026-10-12, awaiting Imad (SCRIPT-FORMAT v1.6 needs sign-off) |
+
+Full-height composition is deferred to Batch 1: it needs per-template layout work and is cheaper to design in from the start (Timeline, Chart).
 
 ## Key decisions (the why, in one line each)
 - **Remotion + TypeScript**, one `episode.yaml` per episode, visuals only from fixed menus, so output is predictable and on-brand.
@@ -101,3 +118,10 @@ _Agreed with Imad 2026-10-06. Goal: varied, diagram-first shorts that don't reus
 - **2026-10-07 03:18:** 004 r2 approved (`004:script:r2`) → re-voiced 7 scenes (693 credits; 1779 total), **90.0s** measured (at the cap; the trimmed scenes came out slower than projected, so ~170 words is safer for Chris). Storyboard self-check fixed one early beat (`Four#2`); Storyboard Review posted (`004:storyboard:r1`).
 - **2026-10-07 03:24:** 004 storyboard approved (`004:storyboard:r1`) → draft rendered (90.0s, 9.7 MB); Draft Review posted (`004:draft:r1`).
 - **2026-10-07 16:40:** 004 draft changes requested (`004:draft:r1`: dialog too clipped/robotic) → script rewritten as flowing sentences (10 scenes, 179 words, lying-200 scene dropped); Script Review r3 posted (`004:script:r3`), re-voice only after approval.
+
+- **2026-10-12:** Variety plan v2 agreed (see [Diagram roadmap](#diagram-roadmap)); Imad: don't re-render 001–004, 005 gets the new look. **Batch 0 (approved, v1.7 locked 2026-10-12):** per-scene `transition` (+ whip, flip, stack, dive), `enter` (pop, drop, snap, stamp, wipe), `camera` (still, drift, rack); entrance timing set per scene in `motion/style.tsx`; transition sounds reuse whoosh / swoosh-up (no new audio); validator motion warnings; tokens `motion.enter/camera/transitionOverlap` (design language v1.7 **proposed**). Review: `engine/out/batch0/` (4 transition clips, entrance stills). 0 credits.
+- **2026-10-12 (later):** Design language **v1.7 locked** (Batch 0 approved). **Batch 1 built, awaiting Imad:** templates `Timeline` (`line`: vertical axis + ember playhead; `lanes`: 2–3 columns + `step` links), `MetricChart` (`bar`, `line`, `gauge`), `Snippet` (typed-on terminal / JSON), `Stat` (stat-slam hook: number + unit). All use the full stage height. Validator shape rules, `step` verb also in Timeline, `Timeline`/`Snippet` count as diagrams, `Stat` is a bookend. Gallery: `gallery-batch1-sheet`, `gallery-v18-*`; review files in `engine/out/batch1/`. Not yet in SCRIPT-FORMAT or `/script` (added at approval, with design language v1.8). 0 credits.
+- **2026-10-12 (later):** Design language **v1.8 locked** (Batch 1 approved): §5d, SCRIPT-FORMAT template table + §3b lookup rows, `/script` note. **Batch 2 built, awaiting Imad:** `Zoom` (node grows into a frame, parts pop in), `StateMachine` (circles + curved transitions, ember token on `step`), `Tree` (`tree` levels down the stage, `radial` mind map; `highlight` lights the root path), `Transform` (items run through machines, scrambled text resolves), and transition `iris` (circle opens; match-cut dropped, Zoom is the in-scene match). Validator shape rules; `zoom` verb is Zoom-only, `step` also in StateMachine and Transform. Gallery `gallery-batch2-sheet`, `gallery-v19-*`; review files in `engine/out/batch2/`. Not yet in SCRIPT-FORMAT / `/script` (added at approval with design language v1.9). 0 credits.
+- **2026-10-12 (later):** Design language **v1.9 locked** (Batch 2 approved): §5e, `iris` in §6, SCRIPT-FORMAT rows + §3b lookup + verbs, `/script` note. **Batch 3 built, awaiting Imad:** `Ring` (consistent hashing: servers on a ring, keys slide clockwise, a `down` server re-homes only its keys), `Cells` (shards/buckets: items fly into cells and stack, a cell can run hot), `Stream` (partition lanes: messages queue up, `step` lets the consumer take one), `Cluster` (leader + followers: a `send` fans a write out, ✓ acks count against the majority, a down leader is replaced by the next `highlight`). Validator shape rules; `step` also in Ring, Cells, Stream. Gallery `gallery-batch3-sheet`, `gallery-v110-*`; review files in `engine/out/batch3/`. Not yet in SCRIPT-FORMAT / `/script` (added at approval with design language v1.10). 0 credits.
+- **2026-10-12 (later):** Design language **v1.10 locked** (Batch 3 approved): §5f, SCRIPT-FORMAT rows + §3b lookup + verbs. **Batch 4 built, awaiting Imad:** `Fleet` (autoscaling: traffic meter + pods whose cpu bars follow traffic ÷ pods; `count args.to` sets traffic), `Map` (dot-matrix world, pins by `[lon, lat]`, arcs a packet rides, latency list; component `WorldMap`), `Estimate` (napkin maths in the script font, result circled), `Chat` (protocol as a conversation, typing dots), `Diorama` (top-down rooms, characters `step` to a zone), `Matrix` (options × criteria, ✓ ✕ ~ or a word, `highlight` a column), `Slider` (before / after wipe with a divider). Validator shape rules; `step` also in Diorama, Chat, Map. Gallery `gallery-batch4-sheet`, `gallery-v111-*`; review files in `engine/out/batch4/`. Not yet in SCRIPT-FORMAT / `/script` (added at approval with design language v1.11). This is the last template batch: next is the Close step (looks.json, fingerprint validator, SCRIPT-FORMAT v1.6, `/script` + `/video`). 0 credits.
+- **2026-10-12 (later):** Design language **v1.11 locked** (Batch 4 approved): §5g Batch 4 templates, §6 Looks. **Close step built, awaiting Imad's sign-off on SCRIPT-FORMAT v1.6:** `episodes/looks.json` (4 recipes: snap, draw, slam, drop; assignment history), `npm run look:assign -- <nnn>` (two recipes, random, not the last 3 episodes'; Part 2 reuses Part 1's), `engine/src/episode/look.ts` (fills a scene's transition / enter / camera from the look unless it sets them; recipes alternate every 2 scenes; a continued diagram stays a cut; only when `look:` is present, so 001–004 render exactly as before), the **fingerprint validator** (template · entrance · transition · camera: 3+ transition kinds, no entrance in 3 scenes in a row, no 3-scene run identical to the last 3 episodes, no Analogy idea scene in a third episode running; hard for `format: "1.6"`, warnings for older), SCRIPT-FORMAT v1.6 (look field, motion fields, Batch 4 rows, §3b lookup, new variety policy), `/script` `/video` `/queue` AGENTS.md and engine README updated, `commit:episode` stages `looks.json`. **005 now has its look: slam + drop** (stamp / drop entrances, 6 kinds of transition); no template or word changed, so its voice stays valid. 005 stays `format: "1.5"` (its Analogy idea scene would fail the 1.6 rule; swapping it needs a script re-approval). 0 credits.
