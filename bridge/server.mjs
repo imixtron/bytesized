@@ -44,8 +44,10 @@ const api = async (method, path, body) => {
   if (!res.ok) throw new Error(`${method} ${path} → ${res.status} ${(await res.text()).slice(0, 300)}`);
   return res.json();
 };
-const reply = (messageId, content) =>
-  api("POST", "/v1/messages", { thread_of: messageId, content }).catch((e) => log(`reply failed: ${e.message}`));
+// Gate forms live inside the episode's thread, so thread_of just answers there. Channel-level forms ("Start next idea?",
+// run-failed) must reply as a plain channel line: thread_of on a channel message would spawn a new, empty thread.
+const reply = (messageId, content, { channel = false } = {}) =>
+  api("POST", "/v1/messages", channel ? { content } : { thread_of: messageId, content }).catch((e) => log(`reply failed: ${e.message}`));
 
 // ---------------------------------------------------------------- inbox
 const writeInbox = (kind, data, files = []) => {
@@ -81,15 +83,15 @@ const LABEL = { approve: "✅ Approve", changes: "✏️ Request changes", retry
 async function handleRunFailed(data) {
   const item = String(data.metadata?.item ?? data.correlation_id?.replace(/^run:/, "") ?? "");
   const src = join(FAILED, item);
-  if (data.action === "drop") return reply(data.message_id, "🗑️ OK, left it. It stays in `bridge/failed/`.");
-  if (!/^[\w.-]+\.json$/.test(item) || !existsSync(src)) return reply(data.message_id, `Nothing to retry: \`${item}\` is no longer in bridge/failed/.`);
+  if (data.action === "drop") return reply(data.message_id, "🗑️ OK, left it. It stays in `bridge/failed/`.", { channel: true });
+  if (!/^[\w.-]+\.json$/.test(item) || !existsSync(src)) return reply(data.message_id, `Nothing to retry: \`${item}\` is no longer in bridge/failed/.`, { channel: true });
   // failed/ and inbox/ are separate bind mounts, so rename() can't cross them: copy (dotfile first), then remove.
   const tmp = join(INBOX, `.${item}.tmp`);
   writeFileSync(tmp, readFileSync(src));
   renameSync(tmp, join(INBOX, item));
   unlinkSync(src);
   log(`inbox ← ${item} (retry)`);
-  await reply(data.message_id, "🔁 Re-queued. Claude picks it up now.");
+  await reply(data.message_id, "🔁 Re-queued. Claude picks it up now.", { channel: true });
 }
 
 /** One response from Imad → an inbox item (or, for "wait", nothing to do until the next tick). */
@@ -100,11 +102,11 @@ async function handleResponse(data) {
   } else if (data.template === "run-failed" || data.correlation_id?.startsWith("run:")) {
     await handleRunFailed(data);
   } else if (data.action === "wait") {
-    await reply(data.message_id, "⏸️ OK. The next scheduled run will pick it up.");
+    await reply(data.message_id, "⏸️ OK. The next scheduled run will pick it up.", { channel: true });
   } else {
     const files = await downloadFiles(data);
     writeInbox("response", data, files);
-    await reply(data.message_id, `📥 Got it: **${LABEL[data.action] ?? data.action}**. Claude is on it.`);
+    await reply(data.message_id, `📥 Got it: **${LABEL[data.action] ?? data.action}**. Claude is on it.`, { channel: data.template === "next-idea" || data.correlation_id?.startsWith("next:") });
   }
   state.responses.push(data.response_id);
   if (data.submitted_at && data.submitted_at > state.cursor) state.cursor = data.submitted_at;
