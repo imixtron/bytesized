@@ -1,0 +1,248 @@
+# Episode 007. Script approved 2026-10-18
+# Notion row #6 · Scalability · Junior / Entry · target ~85s (script format v1.6)
+id: 7
+slug: load-balancing-basics
+title: "Load Balancing Basics: Round Robin vs Least Connections"
+topic: load balancers, round robin, least connections, health checks, layer 4 vs
+  layer 7, global balancing and common tools
+target_sec: 85
+format: "1.6"
+visual_plan: "Spine: one FlowDiagram (users hit a load balancer, round robin,
+  least connections, then a health check drops a dead server) over 4 scenes.
+  Analogy for the restaurant host, Split for layer 4 vs 7, Map for global
+  routing."
+
+brands: []
+
+voice:
+  voice_id: cgSgspJ2msm6clMCkdW9
+  speed: 1.0
+  name: Jessica
+
+music:
+  track: bytesized-theme-4
+
+look:
+  recipes:
+    - drop
+    - snap
+
+scenes:
+  # ---------- HOOK ----------
+  - id: hook
+    part: hook
+    template: Hook
+    vo: "One server can't handle the whole world. So what stands in front of
+      millions of users? A load balancer."
+    headline: { text: "One server? Never.", accent: "Never." }
+    stage:
+      nodes:
+        - { id: lbh, type: lb, family: hero, label: "load balancer" }
+      crowd: { id: users, count: 30, target: lbh }
+    beats:
+      - { on: "server", do: appear, target: lbh }
+      - { on: "millions", do: flood, target: users }
+      - { on: "balancer", do: highlight, target: lbh }
+
+  # ---------- BRANDING (automatic, ~1.5s) ----------
+
+  # ---------- IDEA: the restaurant host ----------
+  - id: idea
+    part: idea
+    template: Analogy
+    vo: "A load balancer is a restaurant host. Guests arrive, and the host sends
+      each one to a table with room."
+    headline: { text: "The host at the door", accent: "host" }
+    stage:
+      rows:
+        - { id: r1, icon: user, key: Guests, value: arrive all at once }
+        - { id: r2, icon: lb, key: Host, value: picks a free table }
+        - { id: r3, icon: server, key: Tables, value: serve one party each }
+    beats:
+      - { on: "Guests", do: reveal, target: r1 }
+      - { on: "host", do: reveal, target: r2 }
+      - { on: "host", do: highlight, target: r2, offset: 0.5 }
+      - { on: "table", do: reveal, target: r3 }
+
+  # ---------- BREAKDOWN 1-4: the balancer (FlowDiagram over 4 scenes) ----------
+  - id: lb
+    part: breakdown
+    template: FlowDiagram
+    vo: "Without one, every user piles onto one server, and it melts. With one,
+      users hit the balancer first, and it spreads them across the team."
+    headline: { text: "Spread the load", accent: "Spread" }
+    stage:
+      layers: [ [ u1, u2, u3 ], [ lb ], [ s1, s2, s3 ] ]
+      nodes:
+        - { id: u1, type: phone, family: solid }
+        - { id: u2, type: phone, family: solid }
+        - { id: u3, type: phone, family: solid }
+        - { id: lb, type: lb, family: hero, label: balancer }
+        - { id: s1, type: server, label: "server 1" }
+        - { id: s2, type: server, label: "server 2" }
+        - { id: s3, type: server, label: "server 3" }
+      links: [ [ u1, lb ], [ u2, lb ], [ u3, lb ], [ lb, s1 ], [ lb, s2 ], [ lb, s3 ] ]
+    beats:
+      - { on: "user", do: appear, target: [ u1, u2, u3 ] }
+      - { on: "melts", do: appear, target: s1 }
+      - {
+          on: "melts",
+          do: state,
+          target: s1,
+          args: { to: overloaded },
+          offset: 0.2
+        }
+      - { on: "balancer", do: appear, target: lb }
+      - { on: "spreads", do: appear, target: [ s2, s3 ] }
+      - {
+          on: "spreads",
+          do: state,
+          target: s1,
+          args: { to: recovered },
+          offset: 0.3
+        }
+      - {
+          on: "team",
+          do: send,
+          target: [ s1, s2, s3 ],
+          args: { kind: request, count: 2 }
+        }
+
+  - id: rr
+    part: breakdown
+    template: FlowDiagram
+    vo: "Round robin is the simplest: server one, server two, server three, repeat.
+      Fair, but it ignores how busy each one is."
+    stage:
+      reuse: lb
+    beats:
+      - { on: "one", do: send, target: s1, args: { kind: request, count: 1 } }
+      - { on: "two", do: send, target: s2, args: { kind: request, count: 1 } }
+      - { on: "three", do: send, target: s3, args: { kind: request, count: 1 } }
+      - { on: "repeat", do: highlight, target: lb }
+      - { on: "busy", do: state, target: s2, args: { to: overloaded } }
+
+  - id: lc
+    part: breakdown
+    template: FlowDiagram
+    vo: "Least connections is smarter. A slow request keeps one server busy, so new
+      traffic goes to whoever has the fewest."
+    headline: { text: "Fewest wins", accent: "Fewest" }
+    stage:
+      reuse: lb
+    beats:
+      - { on: "slow", do: shake, target: s2 }
+      - { on: "busy", do: highlight, target: s2 }
+      - { on: "traffic", do: reroute, target: lb }
+      - {
+          on: "fewest",
+          do: send,
+          target: [ s1, s3 ],
+          args: { kind: request, count: 3 }
+        }
+      - {
+          on: "fewest",
+          do: state,
+          target: s2,
+          args: { to: recovered },
+          offset: 0.6
+        }
+
+  - id: health
+    part: breakdown
+    template: FlowDiagram
+    vo: "Health checks keep it honest. The balancer pings every server, and when one
+      stops answering, it quietly stops sending traffic there."
+    headline: { text: "Skip the dead", accent: "dead" }
+    stage:
+      reuse: lb
+    beats:
+      - {
+          on: "pings",
+          do: send,
+          target: [ s1, s2, s3 ],
+          args: { kind: request, count: 1 }
+        }
+      - { on: "stops", do: state, target: s3, args: { to: down } }
+      - { on: "stops", do: shake, target: s3, offset: 0.2 }
+      - { on: "quietly", do: dim, target: s3 }
+      - {
+          on: "traffic",
+          do: send,
+          target: [ s1, s2 ],
+          args: { kind: request, count: 3 }
+        }
+
+  # ---------- BREAKDOWN 5: layer 4 vs layer 7 ----------
+  - id: layers
+    part: breakdown
+    template: Split
+    vo: "Layer four balances by address and port: fast, but blind. Layer seven reads
+      the request itself, so images go one way and checkout another."
+    headline: { text: "Blind or smart", accent: "smart" }
+    stage:
+      variant: compare
+      before:
+        id: l4
+        title: Layer 4
+        note: "address + port"
+        result: "fast, blind"
+        nodes:
+          - { id: l4lb, type: lb, label: balancer }
+          - { id: l4s, type: server, label: servers }
+      after:
+        id: l7
+        title: Layer 7
+        note: "reads the request"
+        result: "smart routing"
+        nodes:
+          - { id: l7lb, type: lb, label: balancer }
+          - { id: l7img, type: storage, label: images }
+          - { id: l7pay, type: service, label: checkout }
+    beats:
+      - { on: "four", do: appear, target: l4 }
+      - { on: "blind", do: highlight, target: l4 }
+      - { on: "seven", do: appear, target: l7 }
+      - { on: "images", do: send, target: l7img, args: { kind: request, count: 2 } }
+      - {
+          on: "checkout",
+          do: send,
+          target: l7pay,
+          args: { kind: request, count: 2 }
+        }
+
+  # ---------- BREAKDOWN 6: global + tools (no headline) ----------
+  - id: global
+    part: breakdown
+    template: Map
+    vo: "Go global, and DNS sends you to the nearest region first. For the software,
+      NGINX, HAProxy and AWS ALB are the usual picks."
+    stage:
+      pins:
+        - { id: you, label: Sydney, at: [ 151.2, -33.9 ], kind: user }
+        - { id: sg, label: Singapore, at: [ 103.8, 1.3 ], kind: edge }
+        - { id: va, label: Virginia, at: [ -77.4, 39.0 ], kind: origin }
+      routes:
+        - { id: near, from: you, to: sg, ms: 60 }
+        - { id: far, from: you, to: va, ms: 220 }
+    beats:
+      - { on: "global", do: reveal, target: [ you, sg, va ] }
+      - { on: "DNS", do: step, target: far }
+      - { on: "nearest", do: step, target: near }
+      - { on: "nearest", do: highlight, target: sg, offset: 0.4 }
+
+  # ---------- GIST (no headline) ----------
+  - id: gist
+    part: gist
+    template: GistCard
+    vo: "That's the gist: spread the traffic, skip the broken, stay up. Follow for
+      more."
+    stage:
+      text: "Spread traffic. Skip the broken."
+      accent: "broken."
+    beats:
+      - { on: "gist", do: appear, target: card }
+      - { on: "spread", do: highlight, target: card }
+      - { on: "broken", do: highlight, target: card }
+
+# No outro: the video ends on the gist card and loops back into the hook.

@@ -30,7 +30,7 @@
       "note": "replaced by Matilda 2026-10-07; used by 002"
     }
   ],
-  "next": 2,
+  "next": 3,
   "history": [
     {
       "episode": "001-what-is-system-design",
@@ -60,6 +60,11 @@
     {
       "episode": "006-rest-vs-graphql",
       "voice": "Matilda",
+      "date": "2026-10-17"
+    },
+    {
+      "episode": "007-load-balancing-basics",
+      "voice": "Jessica",
       "date": "2026-10-17"
     }
   ]

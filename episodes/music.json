@@ -48,6 +48,11 @@
       "episode": "006-rest-vs-graphql",
       "track": "bytesized-theme",
       "date": "2026-10-17"
+    },
+    {
+      "episode": "007-load-balancing-basics",
+      "track": "bytesized-theme-4",
+      "date": "2026-10-17"
     }
   ]
 }

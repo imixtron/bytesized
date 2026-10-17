@@ -58,6 +58,14 @@
         "draw"
       ],
       "date": "2026-10-17"
+    },
+    {
+      "episode": "007-load-balancing-basics",
+      "recipes": [
+        "drop",
+        "snap"
+      ],
+      "date": "2026-10-17"
     }
   ]
 }

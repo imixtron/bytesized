@@ -48,6 +48,17 @@ function wordsFrom(al: Alignment) {
   return words;
 }
 
+// episodes/pronunciations.json: { "NGINX": "engine-x" }. Respelled only in the text sent to ElevenLabs;
+// scene.vo (captions, beat words, the manifest) keeps the written term. Each respelling must stay one word.
+const PRON_PATH = join(ROOT, "episodes", "pronunciations.json");
+const PRON: [RegExp, string][] = existsSync(PRON_PATH)
+  ? Object.entries(JSON.parse(readFileSync(PRON_PATH, "utf8")) as Record<string, string>).map(([term, say]) => {
+      if (/\s/.test(say)) throw new Error(`pronunciations.json: "${term}" → "${say}" must be a single word`);
+      return [new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "g"), say] as [RegExp, string];
+    })
+  : [];
+const spoken = (vo: string) => PRON.reduce((t, [re, say]) => t.replace(re, say), vo);
+
 const key = apiKey(ENGINE);
 const settings = { ...SETTINGS, speed: ep.voice.speed ?? 1 };
 const plan: "free" | "paid" = JSON.parse(readFileSync(join(ENGINE, "plan.json"), "utf8")).elevenlabs_plan;
@@ -55,7 +66,7 @@ const manifest: VoiceManifest = { voice: ep.voice.name, voice_id: ep.voice.voice
 let chars = 0;
 
 for (const [i, scene] of ep.scenes.entries()) {
-  const hash = createHash("sha1").update(JSON.stringify([scene.vo, ep.voice.voice_id, MODEL, settings])).digest("hex").slice(0, 10);
+  const hash = createHash("sha1").update(JSON.stringify([spoken(scene.vo), ep.voice.voice_id, MODEL, settings])).digest("hex").slice(0, 10);
   const file = `${scene.id}.mp3`;
   const cached = old?.scenes[scene.id];
   const upgrade = flag === "--upgrade" && plan === "paid" && (cached?.plan ?? old?.plan) !== "paid";
@@ -65,9 +76,9 @@ for (const [i, scene] of ep.scenes.entries()) {
     continue;
   }
   // neighbouring lines help ElevenLabs keep intonation continuous across clips
-  const { audio, alignment } = await speakWithTimestamps(key, ep.voice.voice_id, scene.vo, settings, {
-    previous_text: ep.scenes[i - 1]?.vo,
-    next_text: ep.scenes[i + 1]?.vo,
+  const { audio, alignment } = await speakWithTimestamps(key, ep.voice.voice_id, spoken(scene.vo), settings, {
+    previous_text: ep.scenes[i - 1] && spoken(ep.scenes[i - 1].vo),
+    next_text: ep.scenes[i + 1] && spoken(ep.scenes[i + 1].vo),
   });
   writeFileSync(join(audioDir, file), audio);
   const words = wordsFrom(alignment);

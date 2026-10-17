@@ -1,0 +1,1025 @@
+{
+  "voice": "Jessica",
+  "voice_id": "cgSgspJ2msm6clMCkdW9",
+  "model": "eleven_multilingual_v2",
+  "plan": "paid",
+  "generated": "2026-10-17T22:18:51.681Z",
+  "scenes": {
+    "hook": {
+      "file": "hook.mp3",
+      "hash": "6c52eeb96e",
+      "text": "One server can't handle the whole world. So what stands in front of millions of users? A load balancer.",
+      "duration": 7.616,
+      "words": [
+        {
+          "text": "One",
+          "start": 0,
+          "end": 0.186
+        },
+        {
+          "text": "server",
+          "start": 0.221,
+          "end": 0.511
+        },
+        {
+          "text": "can't",
+          "start": 0.58,
+          "end": 0.801
+        },
+        {
+          "text": "handle",
+          "start": 0.836,
+          "end": 1.08
+        },
+        {
+          "text": "the",
+          "start": 1.103,
+          "end": 1.173
+        },
+        {
+          "text": "whole",
+          "start": 1.207,
+          "end": 1.358
+        },
+        {
+          "text": "world.",
+          "start": 1.393,
+          "end": 1.962
+        },
+        {
+          "text": "So",
+          "start": 2.914,
+          "end": 3.042
+        },
+        {
+          "text": "what",
+          "start": 3.077,
+          "end": 3.193
+        },
+        {
+          "text": "stands",
+          "start": 3.251,
+          "end": 3.576
+        },
+        {
+          "text": "in",
+          "start": 3.622,
+          "end": 3.68
+        },
+        {
+          "text": "front",
+          "start": 3.715,
+          "end": 3.866
+        },
+        {
+          "text": "of",
+          "start": 3.889,
+          "end": 3.947
+        },
+        {
+          "text": "millions",
+          "start": 4.017,
+          "end": 4.354
+        },
+        {
+          "text": "of",
+          "start": 4.389,
+          "end": 4.435
+        },
+        {
+          "text": "users?",
+          "start": 4.505,
+          "end": 5.201
+        },
+        {
+          "text": "A",
+          "start": 5.898,
+          "end": 5.968
+        },
+        {
+          "text": "load",
+          "start": 6.06,
+          "end": 6.258
+        },
+        {
+          "text": "balancer.",
+          "start": 6.316,
+          "end": 7.616
+        }
+      ],
+      "plan": "paid"
+    },
+    "idea": {
+      "file": "idea.mp3",
+      "hash": "5b52a892e0",
+      "text": "A load balancer is a restaurant host. Guests arrive, and the host sends each one to a table with room.",
+      "duration": 8.638,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.093
+        },
+        {
+          "text": "load",
+          "start": 0.163,
+          "end": 0.337
+        },
+        {
+          "text": "balancer",
+          "start": 0.383,
+          "end": 0.906
+        },
+        {
+          "text": "is",
+          "start": 0.998,
+          "end": 1.126
+        },
+        {
+          "text": "a",
+          "start": 1.184,
+          "end": 1.207
+        },
+        {
+          "text": "restaurant",
+          "start": 1.265,
+          "end": 1.66
+        },
+        {
+          "text": "host.",
+          "start": 1.695,
+          "end": 2.241
+        },
+        {
+          "text": "Guests",
+          "start": 3.541,
+          "end": 3.878
+        },
+        {
+          "text": "arrive,",
+          "start": 3.924,
+          "end": 4.505
+        },
+        {
+          "text": "and",
+          "start": 4.656,
+          "end": 4.795
+        },
+        {
+          "text": "the",
+          "start": 4.841,
+          "end": 4.911
+        },
+        {
+          "text": "host",
+          "start": 4.969,
+          "end": 5.271
+        },
+        {
+          "text": "sends",
+          "start": 5.352,
+          "end": 5.642
+        },
+        {
+          "text": "each",
+          "start": 5.712,
+          "end": 5.933
+        },
+        {
+          "text": "one",
+          "start": 6.002,
+          "end": 6.177
+        },
+        {
+          "text": "to",
+          "start": 6.211,
+          "end": 6.281
+        },
+        {
+          "text": "a",
+          "start": 6.351,
+          "end": 6.374
+        },
+        {
+          "text": "table",
+          "start": 6.432,
+          "end": 6.745
+        },
+        {
+          "text": "with",
+          "start": 6.78,
+          "end": 6.92
+        },
+        {
+          "text": "room.",
+          "start": 6.978,
+          "end": 8.638
+        }
+      ],
+      "plan": "paid"
+    },
+    "lb": {
+      "file": "lb.mp3",
+      "hash": "5ad294d0b7",
+      "text": "Without one, every user piles onto one server, and it melts. With one, users hit the balancer first, and it spreads them across the team.",
+      "duration": 9.427,
+      "words": [
+        {
+          "text": "Without",
+          "start": 0,
+          "end": 0.372
+        },
+        {
+          "text": "one,",
+          "start": 0.43,
+          "end": 0.685
+        },
+        {
+          "text": "every",
+          "start": 0.755,
+          "end": 1.045
+        },
+        {
+          "text": "user",
+          "start": 1.115,
+          "end": 1.37
+        },
+        {
+          "text": "piles",
+          "start": 1.428,
+          "end": 1.8
+        },
+        {
+          "text": "onto",
+          "start": 1.869,
+          "end": 2.055
+        },
+        {
+          "text": "one",
+          "start": 2.148,
+          "end": 2.31
+        },
+        {
+          "text": "server,",
+          "start": 2.357,
+          "end": 2.798
+        },
+        {
+          "text": "and",
+          "start": 2.833,
+          "end": 2.972
+        },
+        {
+          "text": "it",
+          "start": 3.03,
+          "end": 3.088
+        },
+        {
+          "text": "melts.",
+          "start": 3.123,
+          "end": 3.727
+        },
+        {
+          "text": "With",
+          "start": 4.168,
+          "end": 4.342
+        },
+        {
+          "text": "one,",
+          "start": 4.4,
+          "end": 4.899
+        },
+        {
+          "text": "users",
+          "start": 5.178,
+          "end": 5.457
+        },
+        {
+          "text": "hit",
+          "start": 5.492,
+          "end": 5.584
+        },
+        {
+          "text": "the",
+          "start": 5.619,
+          "end": 5.689
+        },
+        {
+          "text": "balancer",
+          "start": 5.735,
+          "end": 6.165
+        },
+        {
+          "text": "first,",
+          "start": 6.246,
+          "end": 6.676
+        },
+        {
+          "text": "and",
+          "start": 6.699,
+          "end": 6.827
+        },
+        {
+          "text": "it",
+          "start": 6.885,
+          "end": 6.954
+        },
+        {
+          "text": "spreads",
+          "start": 7.001,
+          "end": 7.314
+        },
+        {
+          "text": "them",
+          "start": 7.349,
+          "end": 7.465
+        },
+        {
+          "text": "across",
+          "start": 7.5,
+          "end": 7.814
+        },
+        {
+          "text": "the",
+          "start": 7.86,
+          "end": 7.93
+        },
+        {
+          "text": "team.",
+          "start": 7.964,
+          "end": 9.427
+        }
+      ],
+      "plan": "paid"
+    },
+    "rr": {
+      "file": "rr.mp3",
+      "hash": "7cc96274ea",
+      "text": "Round robin is the simplest: server one, server two, server three, repeat. Fair, but it ignores how busy each one is.",
+      "duration": 10.867,
+      "words": [
+        {
+          "text": "Round",
+          "start": 0,
+          "end": 0.313
+        },
+        {
+          "text": "robin",
+          "start": 0.383,
+          "end": 0.708
+        },
+        {
+          "text": "is",
+          "start": 0.778,
+          "end": 0.882
+        },
+        {
+          "text": "the",
+          "start": 0.94,
+          "end": 1.01
+        },
+        {
+          "text": "simplest:",
+          "start": 1.057,
+          "end": 1.753
+        },
+        {
+          "text": "server",
+          "start": 2.136,
+          "end": 2.461
+        },
+        {
+          "text": "one,",
+          "start": 2.543,
+          "end": 3.03
+        },
+        {
+          "text": "server",
+          "start": 3.413,
+          "end": 3.727
+        },
+        {
+          "text": "two,",
+          "start": 3.773,
+          "end": 4.331
+        },
+        {
+          "text": "server",
+          "start": 4.841,
+          "end": 5.155
+        },
+        {
+          "text": "three,",
+          "start": 5.201,
+          "end": 5.782
+        },
+        {
+          "text": "repeat.",
+          "start": 6.594,
+          "end": 7.21
+        },
+        {
+          "text": "Fair,",
+          "start": 7.814,
+          "end": 8.243
+        },
+        {
+          "text": "but",
+          "start": 8.278,
+          "end": 8.44
+        },
+        {
+          "text": "it",
+          "start": 8.499,
+          "end": 8.557
+        },
+        {
+          "text": "ignores",
+          "start": 8.603,
+          "end": 9.033
+        },
+        {
+          "text": "how",
+          "start": 9.091,
+          "end": 9.183
+        },
+        {
+          "text": "busy",
+          "start": 9.253,
+          "end": 9.497
+        },
+        {
+          "text": "each",
+          "start": 9.543,
+          "end": 9.718
+        },
+        {
+          "text": "one",
+          "start": 9.776,
+          "end": 9.915
+        },
+        {
+          "text": "is.",
+          "start": 9.961,
+          "end": 10.867
+        }
+      ],
+      "plan": "paid"
+    },
+    "lc": {
+      "file": "lc.mp3",
+      "hash": "9814e11eae",
+      "text": "Least connections is smarter. A slow request keeps one server busy, so new traffic goes to whoever has the fewest.",
+      "duration": 8.638,
+      "words": [
+        {
+          "text": "Least",
+          "start": 0,
+          "end": 0.302
+        },
+        {
+          "text": "connections",
+          "start": 0.36,
+          "end": 0.882
+        },
+        {
+          "text": "is",
+          "start": 0.929,
+          "end": 1.01
+        },
+        {
+          "text": "smarter.",
+          "start": 1.068,
+          "end": 1.718
+        },
+        {
+          "text": "A",
+          "start": 2.322,
+          "end": 2.403
+        },
+        {
+          "text": "slow",
+          "start": 2.473,
+          "end": 2.705
+        },
+        {
+          "text": "request",
+          "start": 2.763,
+          "end": 3.216
+        },
+        {
+          "text": "keeps",
+          "start": 3.286,
+          "end": 3.518
+        },
+        {
+          "text": "one",
+          "start": 3.587,
+          "end": 3.796
+        },
+        {
+          "text": "server",
+          "start": 3.843,
+          "end": 4.145
+        },
+        {
+          "text": "busy,",
+          "start": 4.191,
+          "end": 4.76
+        },
+        {
+          "text": "so",
+          "start": 5.085,
+          "end": 5.294
+        },
+        {
+          "text": "new",
+          "start": 5.375,
+          "end": 5.503
+        },
+        {
+          "text": "traffic",
+          "start": 5.55,
+          "end": 5.898
+        },
+        {
+          "text": "goes",
+          "start": 5.944,
+          "end": 6.177
+        },
+        {
+          "text": "to",
+          "start": 6.223,
+          "end": 6.281
+        },
+        {
+          "text": "whoever",
+          "start": 6.339,
+          "end": 6.699
+        },
+        {
+          "text": "has",
+          "start": 6.769,
+          "end": 6.966
+        },
+        {
+          "text": "the",
+          "start": 7.036,
+          "end": 7.105
+        },
+        {
+          "text": "fewest.",
+          "start": 7.163,
+          "end": 8.638
+        }
+      ],
+      "plan": "paid"
+    },
+    "health": {
+      "file": "health.mp3",
+      "hash": "6fb43b0d79",
+      "text": "Health checks keep it honest. The balancer pings every server, and when one stops answering, it quietly stops sending traffic there.",
+      "duration": 8.452,
+      "words": [
+        {
+          "text": "Health",
+          "start": 0,
+          "end": 0.279
+        },
+        {
+          "text": "checks",
+          "start": 0.337,
+          "end": 0.685
+        },
+        {
+          "text": "keep",
+          "start": 0.731,
+          "end": 0.894
+        },
+        {
+          "text": "it",
+          "start": 0.94,
+          "end": 0.998
+        },
+        {
+          "text": "honest.",
+          "start": 1.045,
+          "end": 1.707
+        },
+        {
+          "text": "The",
+          "start": 2.148,
+          "end": 2.264
+        },
+        {
+          "text": "balancer",
+          "start": 2.31,
+          "end": 2.705
+        },
+        {
+          "text": "pings",
+          "start": 2.763,
+          "end": 3.042
+        },
+        {
+          "text": "every",
+          "start": 3.1,
+          "end": 3.286
+        },
+        {
+          "text": "server,",
+          "start": 3.355,
+          "end": 3.855
+        },
+        {
+          "text": "and",
+          "start": 3.878,
+          "end": 3.994
+        },
+        {
+          "text": "when",
+          "start": 4.029,
+          "end": 4.133
+        },
+        {
+          "text": "one",
+          "start": 4.18,
+          "end": 4.331
+        },
+        {
+          "text": "stops",
+          "start": 4.354,
+          "end": 4.644
+        },
+        {
+          "text": "answering,",
+          "start": 4.69,
+          "end": 5.259
+        },
+        {
+          "text": "it",
+          "start": 5.375,
+          "end": 5.515
+        },
+        {
+          "text": "quietly",
+          "start": 5.573,
+          "end": 6.026
+        },
+        {
+          "text": "stops",
+          "start": 6.084,
+          "end": 6.397
+        },
+        {
+          "text": "sending",
+          "start": 6.42,
+          "end": 6.711
+        },
+        {
+          "text": "traffic",
+          "start": 6.757,
+          "end": 7.082
+        },
+        {
+          "text": "there.",
+          "start": 7.129,
+          "end": 8.452
+        }
+      ],
+      "plan": "paid"
+    },
+    "layers": {
+      "file": "layers.mp3",
+      "hash": "c0e7892918",
+      "text": "Layer four balances by address and port: fast, but blind. Layer seven reads the request itself, so images go one way and checkout another.",
+      "duration": 11.796,
+      "words": [
+        {
+          "text": "Layer",
+          "start": 0,
+          "end": 0.313
+        },
+        {
+          "text": "four",
+          "start": 0.406,
+          "end": 0.766
+        },
+        {
+          "text": "balances",
+          "start": 1.149,
+          "end": 1.718
+        },
+        {
+          "text": "by",
+          "start": 1.776,
+          "end": 1.892
+        },
+        {
+          "text": "address",
+          "start": 1.962,
+          "end": 2.392
+        },
+        {
+          "text": "and",
+          "start": 2.438,
+          "end": 2.554
+        },
+        {
+          "text": "port:",
+          "start": 2.612,
+          "end": 3.193
+        },
+        {
+          "text": "fast,",
+          "start": 3.634,
+          "end": 4.307
+        },
+        {
+          "text": "but",
+          "start": 4.481,
+          "end": 4.644
+        },
+        {
+          "text": "blind.",
+          "start": 4.679,
+          "end": 5.329
+        },
+        {
+          "text": "Layer",
+          "start": 6.142,
+          "end": 6.42
+        },
+        {
+          "text": "seven",
+          "start": 6.49,
+          "end": 6.861
+        },
+        {
+          "text": "reads",
+          "start": 6.954,
+          "end": 7.233
+        },
+        {
+          "text": "the",
+          "start": 7.279,
+          "end": 7.349
+        },
+        {
+          "text": "request",
+          "start": 7.396,
+          "end": 7.79
+        },
+        {
+          "text": "itself,",
+          "start": 7.848,
+          "end": 8.522
+        },
+        {
+          "text": "so",
+          "start": 8.615,
+          "end": 8.777
+        },
+        {
+          "text": "images",
+          "start": 8.87,
+          "end": 9.265
+        },
+        {
+          "text": "go",
+          "start": 9.334,
+          "end": 9.462
+        },
+        {
+          "text": "one",
+          "start": 9.555,
+          "end": 9.718
+        },
+        {
+          "text": "way",
+          "start": 9.752,
+          "end": 9.973
+        },
+        {
+          "text": "and",
+          "start": 10.031,
+          "end": 10.124
+        },
+        {
+          "text": "checkout",
+          "start": 10.182,
+          "end": 10.565
+        },
+        {
+          "text": "another.",
+          "start": 10.612,
+          "end": 11.796
+        }
+      ],
+      "plan": "paid"
+    },
+    "global": {
+      "file": "global.mp3",
+      "hash": "554e155a97",
+      "text": "Go global, and DNS sends you to the nearest region first. For the software, NGINX, HAProxy and AWS ALB are the usual picks.",
+      "duration": 11.192,
+      "words": [
+        {
+          "text": "Go",
+          "start": 0,
+          "end": 0.186
+        },
+        {
+          "text": "global,",
+          "start": 0.232,
+          "end": 0.813
+        },
+        {
+          "text": "and",
+          "start": 0.882,
+          "end": 1.068
+        },
+        {
+          "text": "DNS",
+          "start": 1.115,
+          "end": 1.556
+        },
+        {
+          "text": "sends",
+          "start": 1.614,
+          "end": 1.858
+        },
+        {
+          "text": "you",
+          "start": 1.904,
+          "end": 2.009
+        },
+        {
+          "text": "to",
+          "start": 2.067,
+          "end": 2.125
+        },
+        {
+          "text": "the",
+          "start": 2.183,
+          "end": 2.252
+        },
+        {
+          "text": "nearest",
+          "start": 2.299,
+          "end": 2.635
+        },
+        {
+          "text": "region",
+          "start": 2.705,
+          "end": 2.984
+        },
+        {
+          "text": "first.",
+          "start": 3.042,
+          "end": 3.587
+        },
+        {
+          "text": "For",
+          "start": 4.029,
+          "end": 4.156
+        },
+        {
+          "text": "the",
+          "start": 4.203,
+          "end": 4.272
+        },
+        {
+          "text": "software,",
+          "start": 4.307,
+          "end": 5.108
+        },
+        {
+          "text": "engine-x,",
+          "start": 5.283,
+          "end": 6.327
+        },
+        {
+          "text": "HAProxy",
+          "start": 6.502,
+          "end": 7.407
+        },
+        {
+          "text": "and",
+          "start": 7.477,
+          "end": 7.593
+        },
+        {
+          "text": "AWS",
+          "start": 7.709,
+          "end": 8.394
+        },
+        {
+          "text": "ALB",
+          "start": 8.51,
+          "end": 8.916
+        },
+        {
+          "text": "are",
+          "start": 9.427,
+          "end": 9.625
+        },
+        {
+          "text": "the",
+          "start": 9.648,
+          "end": 9.729
+        },
+        {
+          "text": "usual",
+          "start": 9.799,
+          "end": 10.124
+        },
+        {
+          "text": "picks.",
+          "start": 10.194,
+          "end": 11.192
+        }
+      ],
+      "plan": "paid"
+    },
+    "gist": {
+      "file": "gist.mp3",
+      "hash": "21fad06a98",
+      "text": "That's the gist: spread the traffic, skip the broken, stay up. Follow for more.",
+      "duration": 5.48,
+      "words": [
+        {
+          "text": "That's",
+          "start": 0,
+          "end": 0.255
+        },
+        {
+          "text": "the",
+          "start": 0.302,
+          "end": 0.372
+        },
+        {
+          "text": "gist:",
+          "start": 0.418,
+          "end": 0.998
+        },
+        {
+          "text": "spread",
+          "start": 1.324,
+          "end": 1.567
+        },
+        {
+          "text": "the",
+          "start": 1.614,
+          "end": 1.683
+        },
+        {
+          "text": "traffic,",
+          "start": 1.707,
+          "end": 2.194
+        },
+        {
+          "text": "skip",
+          "start": 2.287,
+          "end": 2.508
+        },
+        {
+          "text": "the",
+          "start": 2.566,
+          "end": 2.635
+        },
+        {
+          "text": "broken,",
+          "start": 2.67,
+          "end": 3.17
+        },
+        {
+          "text": "stay",
+          "start": 3.286,
+          "end": 3.553
+        },
+        {
+          "text": "up.",
+          "start": 3.611,
+          "end": 3.947
+        },
+        {
+          "text": "Follow",
+          "start": 4.389,
+          "end": 4.679
+        },
+        {
+          "text": "for",
+          "start": 4.725,
+          "end": 4.818
+        },
+        {
+          "text": "more.",
+          "start": 4.876,
+          "end": 5.48
+        }
+      ],
+      "plan": "paid"
+    }
+  }
+}
