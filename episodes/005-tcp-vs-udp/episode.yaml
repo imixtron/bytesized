@@ -1,0 +1,231 @@
+# Episode 005. Script approved 2026-10-16
+# Notion row #4 · Networking · Junior / Entry · target ~85s (script format v1.6) · fresh start after the earlier 005 attempt was reset
+id: 5
+slug: tcp-vs-udp
+title: "TCP vs UDP: When to Use Which"
+topic: TCP vs UDP, reliability vs latency, and which one streaming, gaming and
+  downloads use
+target_sec: 85
+format: "1.6"
+visual_plan: "Spine: one Sequence of TCP (handshake, then a lost chunk resent)
+  over 2 scenes, plus a short UDP Sequence where packets just vanish. Diorama
+  for the courier vs postcard idea, Split race for speed, Matrix for the
+  trade-off, Decision for the rule."
+
+brands: []
+
+voice: { voice_id: TX3LPaxmHKxFdv7VOQHJ, speed: 1.0, name: Liam }
+
+music:
+  track: bytesized-theme-2
+
+look:
+  recipes:
+    - drop
+    - snap
+
+scenes:
+  # ---------- HOOK ----------
+  - id: hook
+    part: hook
+    template: Hook
+    vo: "Netflix runs on TCP, but your online game runs on UDP. Why would anything
+      choose the sloppy one?"
+    headline: { text: "Careful or fast?", accent: "fast?" }
+    stage:
+      nodes:
+        - { id: movie, type: server, family: hero, label: movie }
+        - { id: game, type: phone, family: solid, label: game }
+      crowd: { id: pkts, count: 24, target: movie }
+    beats:
+      - { on: "Netflix", do: appear, target: movie }
+      - { on: "TCP", do: flood, target: pkts }
+      - { on: "game", do: appear, target: game }
+      - { on: "sloppy", do: shake, target: game }
+
+  # ---------- BRANDING (automatic, ~1.5s) ----------
+
+  # ---------- IDEA: courier vs postcards ----------
+  - id: idea
+    part: idea
+    template: Diorama
+    vo: "Both carry data between machines. TCP is a courier who waits for your
+      signature. UDP drops postcards in the mailbox and walks away."
+    headline: { text: "Courier or postcard", accent: "postcard" }
+    stage:
+      zones:
+        - { id: home, label: "you", x: 0.04, y: 0.04, w: 0.92, h: 0.27, icon: user }
+        - { id: road, label: "the road", x: 0.04, y: 0.37, w: 0.92, h: 0.2 }
+        - {
+            id: door,
+            label: "their door",
+            x: 0.04,
+            y: 0.63,
+            w: 0.92,
+            h: 0.33,
+            icon: file
+          }
+      actors:
+        - { id: courier, icon: service, label: "TCP courier", at: home }
+        - { id: card, icon: file, label: "UDP postcard", at: home }
+    beats:
+      - { on: "Both", do: reveal, target: [ home, road, door ] }
+      - { on: "TCP", do: reveal, target: courier }
+      - { on: "signature", do: step, target: courier, args: { to: door } }
+      - { on: "UDP", do: reveal, target: card }
+      - { on: "mailbox", do: step, target: card, args: { to: door } }
+      - { on: "walks", do: step, target: courier, args: { to: home } }
+
+  # ---------- BREAKDOWN 1: TCP handshake (Sequence, 1 of 2) ----------
+  - id: handshake
+    part: breakdown
+    template: Sequence
+    vo: "TCP starts with a handshake. The client says hello, the server says hello
+      back, then okay. Only then does data move."
+    headline: { text: "Handshake first", accent: "Handshake" }
+    stage:
+      actors:
+        - { id: app, type: phone, family: solid, label: client }
+        - { id: srv, type: server, label: server }
+      steps:
+        - { id: h1, from: app, to: srv, label: "SYN" }
+        - { id: h2, from: srv, to: app, label: "SYN-ACK", kind: response }
+        - { id: h3, from: app, to: srv, label: "ACK" }
+    beats:
+      - { on: "TCP", do: appear, target: [ app, srv ] }
+      - { on: "client", do: step, target: h1 }
+      - { on: "server", do: step, target: h2 }
+      - { on: "okay", do: step, target: h3 }
+      - { on: "data", do: highlight, target: h3 }
+
+  # ---------- BREAKDOWN 2: receipts and resends (Sequence, 2 of 2) ----------
+  - id: resend
+    part: breakdown
+    template: Sequence
+    vo: "Then every chunk gets a receipt. If one goes missing, it's sent again.
+      Nothing is lost, and it all arrives in order."
+    stage:
+      reuse: handshake
+      steps:
+        - { id: d1, from: app, to: srv, label: "chunk 1", lost: true }
+        - { id: d2, from: app, to: srv, label: "chunk 1 again" }
+        - { id: d3, from: srv, to: app, label: "receipt", kind: response }
+    beats:
+      - { on: "chunk", do: step, target: d1 }
+      - { on: "missing", do: shake, target: srv }
+      - { on: "again", do: step, target: d2 }
+      - { on: "order", do: step, target: d3 }
+      - { on: "order", do: highlight, target: d3, offset: 0.4 }
+
+  # ---------- BREAKDOWN 3: UDP just sends ----------
+  - id: udp
+    part: breakdown
+    template: Sequence
+    vo: "UDP skips all that. No handshake, no receipts, no resends. A lost packet
+      is just gone."
+    headline: { text: "Fire and forget", accent: "forget" }
+    stage:
+      actors:
+        - { id: me, type: phone, family: solid, label: player }
+        - { id: gs, type: server, label: game }
+      steps:
+        - { id: u1, from: me, to: gs, label: "move" }
+        - { id: u2, from: me, to: gs, label: "move" }
+        - { id: u3, from: me, to: gs, label: "move", lost: true }
+    beats:
+      - { on: "UDP", do: appear, target: [ me, gs ] }
+      - { on: "handshake", do: step, target: u1 }
+      - { on: "receipts", do: step, target: u2 }
+      - { on: "resends", do: step, target: u3 }
+      - { on: "gone", do: shake, target: gs }
+
+  # ---------- BREAKDOWN 4: speed ----------
+  - id: speed
+    part: breakdown
+    template: Split
+    vo: "Checking costs time. TCP double-checks, so it's slower. UDP just sends, so
+      it wins the race."
+    headline: { text: "Checking costs time", accent: "time" }
+    stage:
+      variant: race
+      before:
+        id: tcp
+        title: TCP
+        note: "checks first"
+        result: "slower"
+        slow: 2.2
+        nodes:
+          - { id: ta, type: phone, family: solid, label: client }
+          - { id: ts, type: server, label: server }
+      after:
+        id: udpr
+        title: UDP
+        note: "just sends"
+        result: "faster"
+        slow: 1
+        nodes:
+          - { id: ua, type: phone, family: solid, label: client }
+          - { id: us, type: server, label: server }
+    beats:
+      - { on: "Checking", do: appear, target: tcp }
+      - { on: "Checking", do: appear, target: udpr, offset: 0.2 }
+      - { on: "double-checks", do: race, target: [ tcp, udpr ] }
+      - { on: "wins", do: highlight, target: udpr }
+
+  # ---------- BREAKDOWN 5: the trade-off (no headline) ----------
+  - id: trade
+    part: breakdown
+    template: Matrix
+    vo: "The trade: TCP keeps data complete and in order, great for downloads. UDP
+      stays quick and light, great for games. Pick what you can live without."
+    stage:
+      cols:
+        - { id: tcpc, label: TCP, icon: check }
+        - { id: udpc, label: UDP, icon: cpu }
+      rows:
+        - { id: complete, label: "nothing lost", cells: [ yes, no ] }
+        - { id: ordered, label: "in order", cells: [ yes, no ] }
+        - { id: light, label: "quick, light", cells: [ partial, yes ] }
+    beats:
+      - { on: "complete", do: reveal, target: complete }
+      - { on: "order", do: reveal, target: ordered }
+      - { on: "quick", do: reveal, target: light }
+      - { on: "live", do: highlight, target: udpc }
+
+  # ---------- BREAKDOWN 6: the rule ----------
+  - id: rule
+    part: breakdown
+    template: Decision
+    vo: "Ask one question: is late data useless? In a game, yes, so UDP. A movie
+      can buffer, so Netflix waits for TCP."
+    headline: { text: "Is late useless?", accent: "useless?" }
+    stage:
+      start: { id: data, type: phone, family: solid, label: your data }
+      checks:
+        - {
+            id: late,
+            q: "Late is useless?",
+            no: { id: usetcp, label: "use TCP", icon: check, tone: ok }
+          }
+      yes: { id: useudp, label: "use UDP", icon: cpu, tone: ok }
+    beats:
+      - { on: "Ask", do: appear, target: data }
+      - { on: "game", do: branch, target: late, args: { to: yes } }
+      - { on: "UDP", do: highlight, target: useudp }
+      - { on: "movie", do: branch, target: late, args: { to: no } }
+      - { on: "TCP", do: highlight, target: usetcp }
+
+  # ---------- GIST (no headline) ----------
+  - id: gist
+    part: gist
+    template: GistCard
+    vo: "That's the gist: TCP never loses data, UDP never waits. Follow for more."
+    stage:
+      text: "TCP is safe. UDP is fast."
+      accent: "fast."
+    beats:
+      - { on: "gist", do: appear, target: card }
+      - { on: "TCP", do: highlight, target: card }
+      - { on: "UDP", do: highlight, target: card }
+
+# No outro: the video ends on the gist card and loops back into the hook.

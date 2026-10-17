@@ -1,0 +1,975 @@
+{
+  "voice": "Liam",
+  "voice_id": "TX3LPaxmHKxFdv7VOQHJ",
+  "model": "eleven_multilingual_v2",
+  "plan": "paid",
+  "generated": "2026-10-16T11:22:55.516Z",
+  "scenes": {
+    "hook": {
+      "file": "hook.mp3",
+      "hash": "3cfaacef17",
+      "text": "Netflix runs on TCP, but your online game runs on UDP. Why would anything choose the sloppy one?",
+      "duration": 7.523,
+      "words": [
+        {
+          "text": "Netflix",
+          "start": 0,
+          "end": 0.511
+        },
+        {
+          "text": "runs",
+          "start": 0.592,
+          "end": 0.824
+        },
+        {
+          "text": "on",
+          "start": 0.871,
+          "end": 0.94
+        },
+        {
+          "text": "TCP,",
+          "start": 0.998,
+          "end": 1.741
+        },
+        {
+          "text": "but",
+          "start": 1.788,
+          "end": 1.916
+        },
+        {
+          "text": "your",
+          "start": 1.962,
+          "end": 2.125
+        },
+        {
+          "text": "online",
+          "start": 2.194,
+          "end": 2.543
+        },
+        {
+          "text": "game",
+          "start": 2.577,
+          "end": 2.786
+        },
+        {
+          "text": "runs",
+          "start": 2.821,
+          "end": 3.019
+        },
+        {
+          "text": "on",
+          "start": 3.065,
+          "end": 3.135
+        },
+        {
+          "text": "UDP.",
+          "start": 3.216,
+          "end": 3.913
+        },
+        {
+          "text": "Why",
+          "start": 5.027,
+          "end": 5.213
+        },
+        {
+          "text": "would",
+          "start": 5.259,
+          "end": 5.422
+        },
+        {
+          "text": "anything",
+          "start": 5.492,
+          "end": 5.921
+        },
+        {
+          "text": "choose",
+          "start": 5.991,
+          "end": 6.269
+        },
+        {
+          "text": "the",
+          "start": 6.304,
+          "end": 6.374
+        },
+        {
+          "text": "sloppy",
+          "start": 6.409,
+          "end": 6.769
+        },
+        {
+          "text": "one?",
+          "start": 6.838,
+          "end": 7.523
+        }
+      ],
+      "plan": "paid"
+    },
+    "idea": {
+      "file": "idea.mp3",
+      "hash": "5a316eb819",
+      "text": "Both carry data between machines. TCP is a courier who waits for your signature. UDP drops postcards in the mailbox and walks away.",
+      "duration": 9.195,
+      "words": [
+        {
+          "text": "Both",
+          "start": 0,
+          "end": 0.279
+        },
+        {
+          "text": "carry",
+          "start": 0.337,
+          "end": 0.58
+        },
+        {
+          "text": "data",
+          "start": 0.639,
+          "end": 0.859
+        },
+        {
+          "text": "between",
+          "start": 0.906,
+          "end": 1.184
+        },
+        {
+          "text": "machines.",
+          "start": 1.242,
+          "end": 1.939
+        },
+        {
+          "text": "TCP",
+          "start": 2.322,
+          "end": 2.775
+        },
+        {
+          "text": "is",
+          "start": 2.891,
+          "end": 2.961
+        },
+        {
+          "text": "a",
+          "start": 2.995,
+          "end": 3.03
+        },
+        {
+          "text": "courier",
+          "start": 3.1,
+          "end": 3.495
+        },
+        {
+          "text": "who",
+          "start": 3.541,
+          "end": 3.646
+        },
+        {
+          "text": "waits",
+          "start": 3.692,
+          "end": 3.889
+        },
+        {
+          "text": "for",
+          "start": 3.913,
+          "end": 3.994
+        },
+        {
+          "text": "your",
+          "start": 4.04,
+          "end": 4.145
+        },
+        {
+          "text": "signature.",
+          "start": 4.191,
+          "end": 4.795
+        },
+        {
+          "text": "UDP",
+          "start": 5.492,
+          "end": 5.933
+        },
+        {
+          "text": "drops",
+          "start": 6.06,
+          "end": 6.339
+        },
+        {
+          "text": "postcards",
+          "start": 6.409,
+          "end": 6.954
+        },
+        {
+          "text": "in",
+          "start": 6.978,
+          "end": 7.036
+        },
+        {
+          "text": "the",
+          "start": 7.059,
+          "end": 7.129
+        },
+        {
+          "text": "mailbox",
+          "start": 7.163,
+          "end": 7.628
+        },
+        {
+          "text": "and",
+          "start": 7.674,
+          "end": 7.744
+        },
+        {
+          "text": "walks",
+          "start": 7.79,
+          "end": 8.011
+        },
+        {
+          "text": "away.",
+          "start": 8.046,
+          "end": 9.195
+        }
+      ],
+      "plan": "paid"
+    },
+    "handshake": {
+      "file": "handshake.mp3",
+      "hash": "28ed714329",
+      "text": "TCP starts with a handshake. The client says hello, the server says hello back, then okay. Only then does data move.",
+      "duration": 9.752,
+      "words": [
+        {
+          "text": "TCP",
+          "start": 0,
+          "end": 0.557
+        },
+        {
+          "text": "starts",
+          "start": 0.731,
+          "end": 0.998
+        },
+        {
+          "text": "with",
+          "start": 1.022,
+          "end": 1.126
+        },
+        {
+          "text": "a",
+          "start": 1.161,
+          "end": 1.196
+        },
+        {
+          "text": "handshake.",
+          "start": 1.242,
+          "end": 1.904
+        },
+        {
+          "text": "The",
+          "start": 2.508,
+          "end": 2.624
+        },
+        {
+          "text": "client",
+          "start": 2.659,
+          "end": 2.984
+        },
+        {
+          "text": "says",
+          "start": 3.019,
+          "end": 3.286
+        },
+        {
+          "text": "hello,",
+          "start": 3.402,
+          "end": 4.11
+        },
+        {
+          "text": "the",
+          "start": 4.493,
+          "end": 4.598
+        },
+        {
+          "text": "server",
+          "start": 4.644,
+          "end": 4.946
+        },
+        {
+          "text": "says",
+          "start": 4.992,
+          "end": 5.178
+        },
+        {
+          "text": "hello",
+          "start": 5.236,
+          "end": 5.468
+        },
+        {
+          "text": "back,",
+          "start": 5.538,
+          "end": 5.782
+        },
+        {
+          "text": "then",
+          "start": 5.805,
+          "end": 6.014
+        },
+        {
+          "text": "okay.",
+          "start": 6.258,
+          "end": 6.861
+        },
+        {
+          "text": "Only",
+          "start": 7.465,
+          "end": 7.721
+        },
+        {
+          "text": "then",
+          "start": 7.779,
+          "end": 7.918
+        },
+        {
+          "text": "does",
+          "start": 7.976,
+          "end": 8.15
+        },
+        {
+          "text": "data",
+          "start": 8.266,
+          "end": 8.557
+        },
+        {
+          "text": "move.",
+          "start": 8.615,
+          "end": 9.752
+        }
+      ],
+      "plan": "paid"
+    },
+    "resend": {
+      "file": "resend.mp3",
+      "hash": "1ee397ad8d",
+      "text": "Then every chunk gets a receipt. If one goes missing, it's sent again. Nothing is lost, and it all arrives in order.",
+      "duration": 8.22,
+      "words": [
+        {
+          "text": "Then",
+          "start": 0,
+          "end": 0.372
+        },
+        {
+          "text": "every",
+          "start": 0.546,
+          "end": 0.836
+        },
+        {
+          "text": "chunk",
+          "start": 0.894,
+          "end": 1.126
+        },
+        {
+          "text": "gets",
+          "start": 1.196,
+          "end": 1.37
+        },
+        {
+          "text": "a",
+          "start": 1.405,
+          "end": 1.428
+        },
+        {
+          "text": "receipt.",
+          "start": 1.486,
+          "end": 2.032
+        },
+        {
+          "text": "If",
+          "start": 2.635,
+          "end": 2.775
+        },
+        {
+          "text": "one",
+          "start": 2.844,
+          "end": 2.984
+        },
+        {
+          "text": "goes",
+          "start": 3.019,
+          "end": 3.216
+        },
+        {
+          "text": "missing,",
+          "start": 3.286,
+          "end": 3.68
+        },
+        {
+          "text": "it's",
+          "start": 3.727,
+          "end": 3.924
+        },
+        {
+          "text": "sent",
+          "start": 3.947,
+          "end": 4.145
+        },
+        {
+          "text": "again.",
+          "start": 4.191,
+          "end": 4.69
+        },
+        {
+          "text": "Nothing",
+          "start": 5.387,
+          "end": 5.677
+        },
+        {
+          "text": "is",
+          "start": 5.724,
+          "end": 5.805
+        },
+        {
+          "text": "lost,",
+          "start": 5.886,
+          "end": 6.269
+        },
+        {
+          "text": "and",
+          "start": 6.293,
+          "end": 6.374
+        },
+        {
+          "text": "it",
+          "start": 6.432,
+          "end": 6.502
+        },
+        {
+          "text": "all",
+          "start": 6.571,
+          "end": 6.78
+        },
+        {
+          "text": "arrives",
+          "start": 6.827,
+          "end": 7.152
+        },
+        {
+          "text": "in",
+          "start": 7.21,
+          "end": 7.268
+        },
+        {
+          "text": "order.",
+          "start": 7.338,
+          "end": 8.22
+        }
+      ],
+      "plan": "paid"
+    },
+    "udp": {
+      "file": "udp.mp3",
+      "hash": "a5d8ca5f99",
+      "text": "UDP skips all that. No handshake, no receipts, no resends. A lost packet is just gone.",
+      "duration": 7.198,
+      "words": [
+        {
+          "text": "UDP",
+          "start": 0,
+          "end": 0.372
+        },
+        {
+          "text": "skips",
+          "start": 0.464,
+          "end": 0.743
+        },
+        {
+          "text": "all",
+          "start": 0.778,
+          "end": 0.882
+        },
+        {
+          "text": "that.",
+          "start": 0.929,
+          "end": 1.219
+        },
+        {
+          "text": "No",
+          "start": 1.823,
+          "end": 1.95
+        },
+        {
+          "text": "handshake,",
+          "start": 2.02,
+          "end": 2.485
+        },
+        {
+          "text": "no",
+          "start": 2.508,
+          "end": 2.601
+        },
+        {
+          "text": "receipts,",
+          "start": 2.682,
+          "end": 3.17
+        },
+        {
+          "text": "no",
+          "start": 3.216,
+          "end": 3.344
+        },
+        {
+          "text": "resends.",
+          "start": 3.425,
+          "end": 4.075
+        },
+        {
+          "text": "A",
+          "start": 4.772,
+          "end": 4.853
+        },
+        {
+          "text": "lost",
+          "start": 4.923,
+          "end": 5.201
+        },
+        {
+          "text": "packet",
+          "start": 5.271,
+          "end": 5.619
+        },
+        {
+          "text": "is",
+          "start": 5.666,
+          "end": 5.747
+        },
+        {
+          "text": "just",
+          "start": 5.817,
+          "end": 6.049
+        },
+        {
+          "text": "gone.",
+          "start": 6.118,
+          "end": 7.198
+        }
+      ],
+      "plan": "paid"
+    },
+    "speed": {
+      "file": "speed.mp3",
+      "hash": "ecd85396f2",
+      "text": "Checking costs time. TCP double-checks, so it's slower. UDP just sends, so it wins the race.",
+      "duration": 7.802,
+      "words": [
+        {
+          "text": "Checking",
+          "start": 0,
+          "end": 0.383
+        },
+        {
+          "text": "costs",
+          "start": 0.43,
+          "end": 0.801
+        },
+        {
+          "text": "time.",
+          "start": 0.859,
+          "end": 1.358
+        },
+        {
+          "text": "TCP",
+          "start": 2.055,
+          "end": 2.531
+        },
+        {
+          "text": "double-checks,",
+          "start": 2.624,
+          "end": 3.146
+        },
+        {
+          "text": "so",
+          "start": 3.17,
+          "end": 3.274
+        },
+        {
+          "text": "it's",
+          "start": 3.344,
+          "end": 3.448
+        },
+        {
+          "text": "slower.",
+          "start": 3.471,
+          "end": 3.994
+        },
+        {
+          "text": "UDP",
+          "start": 4.807,
+          "end": 5.19
+        },
+        {
+          "text": "just",
+          "start": 5.317,
+          "end": 5.468
+        },
+        {
+          "text": "sends,",
+          "start": 5.503,
+          "end": 5.979
+        },
+        {
+          "text": "so",
+          "start": 6.014,
+          "end": 6.142
+        },
+        {
+          "text": "it",
+          "start": 6.211,
+          "end": 6.258
+        },
+        {
+          "text": "wins",
+          "start": 6.304,
+          "end": 6.513
+        },
+        {
+          "text": "the",
+          "start": 6.548,
+          "end": 6.618
+        },
+        {
+          "text": "race.",
+          "start": 6.664,
+          "end": 7.802
+        }
+      ],
+      "plan": "paid"
+    },
+    "trade": {
+      "file": "trade.mp3",
+      "hash": "16eb1513c7",
+      "text": "The trade: TCP keeps data complete and in order, great for downloads. UDP stays quick and light, great for games. Pick what you can live without.",
+      "duration": 10.913,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.174
+        },
+        {
+          "text": "trade:",
+          "start": 0.221,
+          "end": 0.789
+        },
+        {
+          "text": "TCP",
+          "start": 1.173,
+          "end": 1.707
+        },
+        {
+          "text": "keeps",
+          "start": 1.858,
+          "end": 2.101
+        },
+        {
+          "text": "data",
+          "start": 2.148,
+          "end": 2.357
+        },
+        {
+          "text": "complete",
+          "start": 2.415,
+          "end": 2.844
+        },
+        {
+          "text": "and",
+          "start": 2.891,
+          "end": 3.088
+        },
+        {
+          "text": "in",
+          "start": 3.146,
+          "end": 3.204
+        },
+        {
+          "text": "order,",
+          "start": 3.274,
+          "end": 3.611
+        },
+        {
+          "text": "great",
+          "start": 3.704,
+          "end": 3.936
+        },
+        {
+          "text": "for",
+          "start": 3.982,
+          "end": 4.075
+        },
+        {
+          "text": "downloads.",
+          "start": 4.122,
+          "end": 4.807
+        },
+        {
+          "text": "UDP",
+          "start": 5.503,
+          "end": 5.956
+        },
+        {
+          "text": "stays",
+          "start": 6.13,
+          "end": 6.409
+        },
+        {
+          "text": "quick",
+          "start": 6.49,
+          "end": 6.722
+        },
+        {
+          "text": "and",
+          "start": 6.769,
+          "end": 6.838
+        },
+        {
+          "text": "light,",
+          "start": 6.896,
+          "end": 7.256
+        },
+        {
+          "text": "great",
+          "start": 7.372,
+          "end": 7.581
+        },
+        {
+          "text": "for",
+          "start": 7.616,
+          "end": 7.721
+        },
+        {
+          "text": "games.",
+          "start": 7.767,
+          "end": 8.301
+        },
+        {
+          "text": "Pick",
+          "start": 8.998,
+          "end": 9.195
+        },
+        {
+          "text": "what",
+          "start": 9.23,
+          "end": 9.323
+        },
+        {
+          "text": "you",
+          "start": 9.358,
+          "end": 9.427
+        },
+        {
+          "text": "can",
+          "start": 9.474,
+          "end": 9.567
+        },
+        {
+          "text": "live",
+          "start": 9.625,
+          "end": 9.776
+        },
+        {
+          "text": "without.",
+          "start": 9.799,
+          "end": 10.913
+        }
+      ],
+      "plan": "paid"
+    },
+    "rule": {
+      "file": "rule.mp3",
+      "hash": "f56552019c",
+      "text": "Ask one question: is late data useless? In a game, yes, so UDP. A movie can buffer, so Netflix waits for TCP.",
+      "duration": 11.981,
+      "words": [
+        {
+          "text": "Ask",
+          "start": 0,
+          "end": 0.325
+        },
+        {
+          "text": "one",
+          "start": 0.406,
+          "end": 0.604
+        },
+        {
+          "text": "question:",
+          "start": 0.65,
+          "end": 1.324
+        },
+        {
+          "text": "is",
+          "start": 2.02,
+          "end": 2.229
+        },
+        {
+          "text": "late",
+          "start": 2.322,
+          "end": 2.543
+        },
+        {
+          "text": "data",
+          "start": 2.577,
+          "end": 2.833
+        },
+        {
+          "text": "useless?",
+          "start": 2.914,
+          "end": 3.622
+        },
+        {
+          "text": "In",
+          "start": 4.737,
+          "end": 4.876
+        },
+        {
+          "text": "a",
+          "start": 4.923,
+          "end": 4.946
+        },
+        {
+          "text": "game,",
+          "start": 5.004,
+          "end": 5.41
+        },
+        {
+          "text": "yes,",
+          "start": 5.48,
+          "end": 5.991
+        },
+        {
+          "text": "so",
+          "start": 6.072,
+          "end": 6.327
+        },
+        {
+          "text": "UDP.",
+          "start": 6.536,
+          "end": 7.396
+        },
+        {
+          "text": "A",
+          "start": 7.906,
+          "end": 7.988
+        },
+        {
+          "text": "movie",
+          "start": 8.069,
+          "end": 8.348
+        },
+        {
+          "text": "can",
+          "start": 8.371,
+          "end": 8.487
+        },
+        {
+          "text": "buffer,",
+          "start": 8.545,
+          "end": 9.079
+        },
+        {
+          "text": "so",
+          "start": 9.253,
+          "end": 9.427
+        },
+        {
+          "text": "Netflix",
+          "start": 9.509,
+          "end": 9.95
+        },
+        {
+          "text": "waits",
+          "start": 10.019,
+          "end": 10.252
+        },
+        {
+          "text": "for",
+          "start": 10.286,
+          "end": 10.391
+        },
+        {
+          "text": "TCP.",
+          "start": 10.449,
+          "end": 11.981
+        }
+      ],
+      "plan": "paid"
+    },
+    "gist": {
+      "file": "gist.mp3",
+      "hash": "1a7d92a875",
+      "text": "That's the gist: TCP never loses data, UDP never waits. Follow for more.",
+      "duration": 5.619,
+      "words": [
+        {
+          "text": "That's",
+          "start": 0,
+          "end": 0.255
+        },
+        {
+          "text": "the",
+          "start": 0.29,
+          "end": 0.36
+        },
+        {
+          "text": "gist:",
+          "start": 0.418,
+          "end": 0.836
+        },
+        {
+          "text": "TCP",
+          "start": 1.08,
+          "end": 1.579
+        },
+        {
+          "text": "never",
+          "start": 1.73,
+          "end": 1.916
+        },
+        {
+          "text": "loses",
+          "start": 1.974,
+          "end": 2.299
+        },
+        {
+          "text": "data,",
+          "start": 2.345,
+          "end": 2.775
+        },
+        {
+          "text": "UDP",
+          "start": 3.019,
+          "end": 3.402
+        },
+        {
+          "text": "never",
+          "start": 3.576,
+          "end": 3.796
+        },
+        {
+          "text": "waits.",
+          "start": 3.855,
+          "end": 4.307
+        },
+        {
+          "text": "Follow",
+          "start": 4.551,
+          "end": 4.853
+        },
+        {
+          "text": "for",
+          "start": 4.911,
+          "end": 5.016
+        },
+        {
+          "text": "more.",
+          "start": 5.062,
+          "end": 5.619
+        }
+      ],
+      "plan": "paid"
+    }
+  }
+}

@@ -21,7 +21,7 @@ const D = tokens.diagram;
 const AUTO_EVERY = 18; // frames between steps when a scene has no `step` beats
 
 /** Actor x positions and step rows, in panel-local coordinates. */
-export function layoutSequence(stage: SequenceStage, box: Pick<Box, "w" | "h">) {
+export function layoutSequence(stage: SequenceStage, box: Pick<Box, "w" | "h">, maxRow = 140) {
   const actors = stage.actors ?? [];
   const steps = stage.steps ?? [];
   const xs = actors.length <= 2 ? [0.2, 0.8] : [0.13, 0.5, 0.87];
@@ -29,7 +29,7 @@ export function layoutSequence(stage: SequenceStage, box: Pick<Box, "w" | "h">) 
   const N = D.lane.node;
   const header = N + 80; // node + its label
   const top = header + 30;
-  const rowH = Math.min(140, (box.h - top) / Math.max(1, steps.length));
+  const rowH = Math.min(maxRow, (box.h - top) / Math.max(1, steps.length));
   const rows = new Map(steps.map((s, i) => [s.id, top + rowH * (i + 0.5)]));
   return { ax, rows, N, header, bottom: top + rowH * steps.length, rowH };
 }
@@ -58,7 +58,8 @@ export const SequenceBody = ({ ctx, box }: { ctx: Ctx; box: Pick<Box, "w" | "h">
   const group = ctx.timeline.scenes.filter((t) => t.scene.id === groupId || (t.scene.stage as SequenceStage).reuse === groupId);
   const allSteps = group.flatMap((t) => (t.scene.stage as SequenceStage).steps ?? []);
   const actors = rootStage.actors ?? [];
-  const L = layoutSequence({ actors, steps: allSteps }, box);
+  // episodes with a look (variety plan v2) spread a short sequence over the whole stage; older ones keep the 140px cap
+  const L = layoutSequence({ actors, steps: allSteps }, box, ctx.episode.look ? 210 : 140);
   const beats = localBeats(ctx.ts);
 
   // steps from earlier scenes in the group are already drawn

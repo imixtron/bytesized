@@ -46,10 +46,10 @@
     {
       "episode": "005-tcp-vs-udp",
       "recipes": [
-        "slam",
-        "drop"
+        "drop",
+        "snap"
       ],
-      "date": "2026-10-12"
+      "date": "2026-10-16"
     }
   ]
 }

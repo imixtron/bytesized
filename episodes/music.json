@@ -38,6 +38,11 @@
       "episode": "004-http-methods-status-codes",
       "track": "bytesized-theme-4",
       "date": "2026-10-06"
+    },
+    {
+      "episode": "005-tcp-vs-udp",
+      "track": "bytesized-theme-2",
+      "date": "2026-10-16"
     }
   ]
 }
