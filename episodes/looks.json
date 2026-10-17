@@ -50,6 +50,14 @@
         "snap"
       ],
       "date": "2026-10-16"
+    },
+    {
+      "episode": "006-rest-vs-graphql",
+      "recipes": [
+        "slam",
+        "draw"
+      ],
+      "date": "2026-10-17"
     }
   ]
 }

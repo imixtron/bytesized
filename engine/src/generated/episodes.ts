@@ -4,5 +4,6 @@ export const EPISODE_SLUGS = [
   "002-monolith-vs-microservices",
   "003-client-server-model",
   "004-http-methods-status-codes",
-  "005-tcp-vs-udp"
+  "005-tcp-vs-udp",
+  "006-rest-vs-graphql"
 ] as const;

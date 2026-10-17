@@ -1,0 +1,222 @@
+# Episode 006. Draft (awaiting approval ✋)
+# Notion row #5 · APIs · Junior / Entry · target ~85s (script format v1.6)
+id: 6
+slug: rest-vs-graphql
+title: "REST vs GraphQL Basics"
+topic: REST vs GraphQL, over-fetching and under-fetching, caching, the N+1 problem
+target_sec: 85
+format: "1.6"
+visual_plan: "Spine: Snippet for the two request styles (REST whole object,
+  GraphQL chosen fields), one Sequence for mobile trips (three REST calls vs one
+  query) and a short Sequence for N+1. Slider for the menu analogy, Split for
+  caching, Decision for the rule."
+
+brands: []
+
+voice:
+  voice_id: XrExE9yKIg1WjnnlVkGX
+  speed: 1.0
+  name: Matilda
+
+music:
+  track: bytesized-theme
+
+look:
+  recipes:
+    - slam
+    - draw
+
+scenes:
+  # ---------- HOOK ----------
+  - id: hook
+    part: hook
+    template: Hook
+    vo: "GraphQL was supposed to replace REST. So why is REST still everywhere?
+      Because they solve different problems."
+    headline: { text: "Replace? Not quite.", accent: "Not quite." }
+    stage:
+      nodes:
+        - { id: rest, type: server, family: hero, label: REST }
+        - { id: gql, type: service, family: solid, label: GraphQL }
+    beats:
+      - { on: "GraphQL", do: appear, target: gql }
+      - { on: "REST", do: appear, target: rest }
+      - { on: "problems", do: highlight, target: rest }
+
+  # ---------- BRANDING (automatic, ~1.5s) ----------
+
+  # ---------- IDEA: set menu vs custom order ----------
+  - id: idea
+    part: idea
+    template: Slider
+    vo: "REST is a set menu: every dish comes as listed. GraphQL is a custom order:
+      you name exactly what you want."
+    headline: { text: "Menu or order", accent: "order" }
+    stage:
+      before:
+        id: menu
+        title: REST
+        note: "set menu"
+        result: "fixed"
+        nodes:
+          - { id: m1, type: server, label: "dish" }
+      after:
+        id: order
+        title: GraphQL
+        note: "custom order"
+        result: "exact"
+        nodes:
+          - { id: o1, type: service, label: "your pick" }
+    beats:
+      - { on: "REST", do: appear, target: menu }
+      - { on: "GraphQL", do: appear, target: order }
+      - { on: "exactly", do: highlight, target: order }
+
+  # ---------- BREAKDOWN 1: REST request ----------
+  - id: rest
+    part: breakdown
+    template: Snippet
+    vo: "In REST, every thing has its own address. Ask for a user and you get the
+      whole user: name, email, bio, everything."
+    headline: { text: "One address each", accent: "each" }
+    stage:
+      title: REST
+      lines:
+        - { id: r1, text: "GET /users/7", kind: cmd }
+        - { id: r2, text: '{ "id": 7, "name": "Ada",', kind: json }
+        - { id: r3, text: '  "email": "ada@mail.com",', kind: json }
+        - { id: r4, text: '  "bio": "...", "age": 36 }', kind: json }
+    beats:
+      - { on: "address", do: reveal, target: r1 }
+      - { on: "user", do: reveal, target: r2 }
+      - { on: "email", do: reveal, target: r3 }
+      - { on: "everything", do: reveal, target: r4 }
+
+  # ---------- BREAKDOWN 2: GraphQL request ----------
+  - id: gql
+    part: breakdown
+    template: Snippet
+    vo: "GraphQL has one address. You send a query naming only the fields you want,
+      and the reply has exactly those."
+    stage:
+      title: GraphQL
+      lines:
+        - { id: g1, text: "POST /graphql", kind: cmd }
+        - { id: g2, text: "{ user(id: 7) { name } }", kind: cmd }
+        - { id: g3, text: '{ "name": "Ada" }', kind: json }
+    beats:
+      - { on: "address", do: reveal, target: g1 }
+      - { on: "query", do: reveal, target: g2 }
+      - { on: "reply", do: reveal, target: g3 }
+
+  # ---------- BREAKDOWN 3: mobile trips (Sequence 1 of 1) ----------
+  - id: trips
+    part: breakdown
+    template: Sequence
+    vo: "The opposite problem is under-fetching. A profile screen needs a user,
+      posts and comments: three trips on mobile data. GraphQL asks once."
+    headline: { text: "Too many trips", accent: "trips" }
+    stage:
+      actors:
+        - { id: app, type: phone, family: solid, label: app }
+        - { id: api, type: server, label: API }
+      steps:
+        - { id: t1, from: app, to: api, label: "GET user" }
+        - { id: t2, from: app, to: api, label: "GET posts" }
+        - { id: t3, from: app, to: api, label: "GET comments" }
+        - { id: t4, from: app, to: api, label: "one query" }
+        - { id: t5, from: api, to: app, label: "all of it", kind: response }
+    beats:
+      - { on: "user", do: step, target: t1 }
+      - { on: "posts", do: step, target: t2 }
+      - { on: "comments", do: step, target: t3 }
+      - { on: "once", do: step, target: t4 }
+      - { on: "once", do: step, target: t5, offset: 0.6 }
+
+  # ---------- BREAKDOWN 4: caching ----------
+  - id: cache
+    part: breakdown
+    template: Split
+    vo: "Flexibility has a price. REST addresses are easy for a CDN to cache. One
+      GraphQL address with changing queries is harder."
+    stage:
+      before:
+        id: restc
+        title: REST
+        note: "own address"
+        result: "easy cache"
+        nodes:
+          - { id: rc, type: cdn, label: CDN }
+          - { id: rs, type: server, label: API }
+      after:
+        id: gqlc
+        title: GraphQL
+        note: "one address"
+        result: "harder"
+        nodes:
+          - { id: gc, type: cdn, label: CDN }
+          - { id: gs, type: server, label: API }
+    beats:
+      - { on: "REST", do: appear, target: restc }
+      - { on: "GraphQL", do: appear, target: gqlc }
+      - { on: "easy", do: highlight, target: restc }
+      - { on: "harder", do: shake, target: gqlc }
+
+  # ---------- BREAKDOWN 5: N+1 ----------
+  - id: nplus
+    part: breakdown
+    template: Sequence
+    vo: "Then there's the N plus one problem. Load ten posts, then one author lookup
+      per post: eleven database hits."
+    headline: { text: "N plus one", accent: "one" }
+    stage:
+      actors:
+        - { id: res, type: service, label: resolver }
+        - { id: db, type: db, label: database }
+      steps:
+        - { id: n0, from: res, to: db, label: "10 posts" }
+        - { id: n1, from: res, to: db, label: "author 1" }
+        - { id: n2, from: res, to: db, label: "author 2" }
+        - { id: n3, from: res, to: db, label: "author 3" }
+    beats:
+      - { on: "posts", do: step, target: n0 }
+      - { on: "author", do: step, target: n1 }
+      - { on: "post:", do: step, target: n2 }
+      - { on: "eleven", do: step, target: n3 }
+      - { on: "eleven", do: shake, target: db, offset: 0.5 }
+
+  # ---------- BREAKDOWN 6: the rule ----------
+  - id: rule
+    part: breakdown
+    template: Matrix
+    vo: "GitHub offers both. Simple, cacheable resources? REST. Many screens needing
+      different data shapes? GraphQL."
+    headline: { text: "Pick by need", accent: "need" }
+    stage:
+      cols:
+        - { id: restc, label: REST, icon: check }
+        - { id: gqlc, label: GraphQL, icon: cpu }
+      rows:
+        - { id: simple, label: "simple, cacheable", cells: [ yes, partial ] }
+        - { id: shapes, label: "many data shapes", cells: [ partial, yes ] }
+    beats:
+      - { on: "Simple", do: reveal, target: simple }
+      - { on: "REST", do: highlight, target: restc }
+      - { on: "Many", do: reveal, target: shapes }
+      - { on: "GraphQL", do: highlight, target: gqlc }
+
+  # ---------- GIST (no headline) ----------
+  - id: gist
+    part: gist
+    template: GistCard
+    vo: "That's the gist: REST is simple and cacheable, GraphQL is flexible. Follow
+      for more."
+    stage:
+      text: "REST is simple. GraphQL is flexible."
+      accent: "flexible."
+    beats:
+      - { on: "gist", do: appear, target: card }
+      - { on: "REST", do: highlight, target: card }
+      - { on: "GraphQL", do: highlight, target: card }
+
+# No outro: the video ends on the gist card and loops back into the hook.

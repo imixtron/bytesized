@@ -19,6 +19,8 @@ _Last updated 2026-10-06. Replaces the old PLAN.md and PROGRESS.md._
 | Next | Rebuild 001 (`/queue` §1b) → then new Ideas |
 | Diagram variety plan | **v2 agreed 2026-10-12** (five layers: treatment, entrance, transition, camera, composition; motion recipes + per-episode `look`). Batch 0 ✅ (v1.7 locked); Batch 1 ✅ (v1.8 locked); Batch 2 ✅ (v1.9 locked); Batch 3 ✅ (v1.10 locked); Batch 4 ✅ (v1.11 locked); Close step ✅ built, awaiting Imad. See [Diagram roadmap](#diagram-roadmap) |
 
+_2026-10-18 02:55: 006 draft r1 approved; final render + `upload.md` + cover done (82.8s, 14.9 MB, 0 credits this stage, 992 total; format 1.6, look slam + draw). Known engine bug: Decision left-spine labels clip (006's `rule` scene uses Matrix instead)._
+
 _2026-10-18 02:35: 005 draft r1 approved; final render + `upload.md` + cover done (82.8s, 16.6 MB, 0 credits this stage, 963 total; format 1.6, look drop + snap)._
 
 _2026-10-10 13:49: 004 script r4 approved, `bug` scene voiced (123 chars, 2847 total), 81.7s measured, validate PASS; Storyboard Review r2 posted (`004:storyboard:r2`)._

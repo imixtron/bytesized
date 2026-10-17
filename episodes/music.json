@@ -43,6 +43,11 @@
       "episode": "005-tcp-vs-udp",
       "track": "bytesized-theme-2",
       "date": "2026-10-16"
+    },
+    {
+      "episode": "006-rest-vs-graphql",
+      "track": "bytesized-theme",
+      "date": "2026-10-17"
     }
   ]
 }
