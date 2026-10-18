@@ -74,6 +74,14 @@
         "draw"
       ],
       "date": "2026-10-18"
+    },
+    {
+      "episode": "009-how-dns-works",
+      "recipes": [
+        "snap",
+        "drop"
+      ],
+      "date": "2026-10-18"
     }
   ]
 }

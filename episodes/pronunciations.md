@@ -15,3 +15,6 @@ Tech terms the voiceover says wrong (or might). Add them **as they come up**: wh
 | CDN | spelled out: "C-D-N" | 008 | to check |
 | Akamai | "AH-kuh-my" | 008 | to check |
 | Cloudflare, Fastly | read as words | 008 | to check |
+| CNAME | "see-name" | 009 | to check |
+| DNS, MX, TXT, TTL, IP | spelled out: "D-N-S", "M-X", "T-X-T", "T-T-L", "I-P" | 009 | to check |
+| google.com | "google dot com" | 009 | to check |

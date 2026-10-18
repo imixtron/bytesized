@@ -58,6 +58,11 @@
       "episode": "008-what-is-a-cdn",
       "track": "bytesized-theme-3",
       "date": "2026-10-18"
+    },
+    {
+      "episode": "009-how-dns-works",
+      "track": "bytesized-theme",
+      "date": "2026-10-18"
     }
   ]
 }

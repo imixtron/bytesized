@@ -1,0 +1,243 @@
+# Episode 009. Script approved 2026-10-18 (Discord 009:script:r2)
+# Notion row #9 · Networking · Junior / Entry · target ~85s (script format v1.7, format field 1.6)
+id: 9
+slug: how-dns-works
+title: "DNS: How google.com Becomes an IP Address"
+topic: DNS, the phonebook of the internet, record types, recursive and
+  authoritative servers, TTL and caching, propagation, and how CDNs route with
+  DNS
+target_sec: 85
+format: "1.6"
+visual_plan: "Spine: a Tree for the lookup walk (root, .com, google.com), then a
+  Chat between resolver and authoritative server for the answer and its TTL.
+  Transform for the phonebook idea, Snippet for the records, Timeline for
+  propagation, Split for CDN routing, BigPicture to tie it up."
+
+brands: []
+
+voice: { voice_id: TX3LPaxmHKxFdv7VOQHJ, speed: 1.0, name: Liam }
+
+music:
+  track: bytesized-theme
+
+look:
+  recipes:
+    - snap
+    - drop
+
+scenes:
+  # ---------- HOOK ----------
+  - id: hook
+    part: hook
+    template: Hook
+    vo: "Your phone has no idea where google.com is. It only understands numbers, so
+      before a single byte loads, it has to look one up."
+    headline: { text: "Lost by name", accent: "name" }
+    stage:
+      nodes:
+        - { id: ph, type: phone, family: solid, label: "you" }
+        - { id: dns, type: dns, family: hero, label: "DNS" }
+    beats:
+      - { on: "phone", do: appear, target: ph }
+      - { on: "idea", do: shake, target: ph }
+      - { on: "numbers", do: appear, target: dns }
+      - { on: "look", do: highlight, target: dns }
+
+  # ---------- BRANDING (automatic, ~1.5s) ----------
+
+  # ---------- IDEA: the phonebook (Transform) ----------
+  - id: idea
+    part: idea
+    template: Transform
+    vo: "That lookup is DNS, the internet's phonebook: hand it a name, and it hands
+      back an IP address, the number your phone actually dials."
+    headline: { text: "Names in, digits out", accent: "digits" }
+    stage:
+      items:
+        - { id: i1, text: "google.com", label: "name" }
+        - { id: i2, text: "142.250.72.14", label: "IP address" }
+      via:
+        - { id: v1, label: "DNS", icon: dns }
+    beats:
+      - { on: "DNS", do: reveal, target: i1 }
+      - { on: "hands", do: step, target: v1 }
+      - { on: "dials", do: highlight, target: i2 }
+
+  # ---------- BREAKDOWN 1: records (Snippet) ----------
+  - id: records
+    part: breakdown
+    template: Snippet
+    vo: "Each entry is a record: A holds the address, CNAME points to another name,
+      MX handles email, and TXT carries notes, like proof you own the domain."
+    headline: { text: "The main records", accent: "records" }
+    stage:
+      title: "google.com records"
+      lines:
+        - { id: l1, text: "A      142.250.72.14", kind: out }
+        - { id: l2, text: "CNAME  www → google.com", kind: out }
+        - { id: l3, text: "MX     smtp.google.com", kind: out }
+        - { id: l4, text: "TXT    \"verify=a1b2c3\"", kind: out }
+    beats:
+      - { on: "address", do: reveal, target: l1 }
+      - { on: "CNAME", do: reveal, target: l2 }
+      - { on: "MX", do: reveal, target: l3 }
+      - { on: "TXT", do: reveal, target: l4 }
+      - { on: "proof", do: highlight, target: l4 }
+
+  # ---------- BREAKDOWN 2: the walk (Tree, no headline) ----------
+  - id: walk
+    part: breakdown
+    template: Tree
+    vo: "None of that lives on your phone. It asks a recursive resolver, usually
+      your provider's, which walks from the root, to dot com, to Google's own
+      servers."
+    stage:
+      variant: tree
+      root:
+        id: root
+        label: "root"
+        children:
+          - id: com
+            label: ".com"
+            children:
+              - { id: goog, label: "google" }
+              - { id: amzn, label: "amazon" }
+          - id: org
+            label: ".org"
+    beats:
+      - { on: "resolver", do: reveal, target: root }
+      - { on: "root", do: highlight, target: root }
+      - { on: "com", do: reveal, target: [ com, org ] }
+      - { on: "Google's", do: reveal, target: [ goog, amzn ] }
+      - { on: "servers", do: highlight, target: goog }
+
+  # ---------- BREAKDOWN 3: authoritative answer + TTL (Chat) ----------
+  - id: answer
+    part: breakdown
+    template: Chat
+    vo: "Those authoritative servers own the answer. They send back the address,
+      plus a TTL: how long anyone may keep that answer before asking again."
+    headline: { text: "The source of truth", accent: "truth" }
+    stage:
+      actors:
+        - { id: res, type: dns, label: "resolver" }
+        - { id: auth, type: server, label: "Google NS" }
+      messages:
+        - { id: m1, from: res, text: "google.com?", kind: request }
+        - { id: m2, from: auth, text: "142.250.72.14", kind: response }
+        - { id: m3, from: auth, text: "TTL: 1 hour", kind: response }
+    beats:
+      - { on: "authoritative", do: step, target: m1 }
+      - { on: "answer", do: step, target: m2 }
+      - { on: "TTL", do: step, target: m3 }
+      - { on: "keep", do: highlight, target: m3 }
+
+  # ---------- BREAKDOWN 4: caching + propagation (Timeline) ----------
+  - id: propagation
+    part: breakdown
+    template: Timeline
+    vo: "Resolvers cache it until that timer runs out, so repeat lookups are
+      instant, but a changed record spreads slowly. That lag is propagation."
+    headline: { text: "Why changes lag", accent: "lag" }
+    stage:
+      variant: line
+      events:
+        - {
+            id: e1,
+            at: "0m",
+            label: "Answer cached",
+            sub: "TTL: one hour",
+            icon: cache
+          }
+        - {
+            id: e2,
+            at: "10m",
+            label: "Record changed",
+            sub: "new IP saved",
+            icon: file
+          }
+        - {
+            id: e3,
+            at: "30m",
+            label: "Old IP served",
+            sub: "until it expires",
+            icon: clock
+          }
+        - { id: e4, at: "60m", label: "Everyone updated", icon: check }
+    beats:
+      - { on: "cache", do: reveal, target: e1 }
+      - { on: "instant", do: highlight, target: e1 }
+      - { on: "changed", do: reveal, target: e2 }
+      - { on: "slowly", do: reveal, target: e3 }
+      - { on: "propagation", do: reveal, target: e4 }
+
+  # ---------- BREAKDOWN 5: CDN routing (Split) ----------
+  - id: cdn
+    part: breakdown
+    template: Split
+    vo: "CDNs use this to route you: the same name, asked from Sydney or London,
+      points each of you at a different server, the one nearest you."
+    headline: { text: "One name, many answers", accent: "many" }
+    stage:
+      variant: compare
+      before:
+        id: syd
+        title: Sydney
+        note: "same name"
+        result: "Sydney edge"
+        nodes:
+          - { id: s_ph, type: phone, family: solid, label: you }
+          - { id: s_edge, type: cdn, label: edge }
+      after:
+        id: lon
+        title: London
+        note: "same name"
+        result: "London edge"
+        nodes:
+          - { id: l_ph, type: phone, family: solid, label: you }
+          - { id: l_edge, type: cdn, label: edge }
+    beats:
+      - { on: "Sydney", do: appear, target: syd }
+      - { on: "London", do: appear, target: lon }
+      - {
+          on: "different",
+          do: send,
+          target: s_edge,
+          args: { kind: response, count: 1 }
+        }
+      - {
+          on: "nearest",
+          do: send,
+          target: l_edge,
+          args: { kind: response, count: 1 }
+        }
+
+  # ---------- BREAKDOWN 6: big picture (no headline) ----------
+  - id: bigpicture
+    part: breakdown
+    template: BigPicture
+    vo: "You do all of this on every link you tap and every app you open, without
+      ever noticing: ask, cache, route."
+    stage:
+      panels:
+        - { id: p1, scene: walk, label: "ask" }
+        - { id: p2, scene: answer, label: "cache" }
+        - { id: p3, scene: cdn, label: "route" }
+    beats:
+      - { on: "ask", do: highlight, target: p1 }
+      - { on: "cache", do: highlight, target: p2 }
+      - { on: "route", do: highlight, target: p3 }
+
+  # ---------- GIST (no headline) ----------
+  - id: gist
+    part: gist
+    template: GistCard
+    vo: "That's the gist: DNS turns names into numbers. Follow for more."
+    stage:
+      text: "Names into numbers."
+      accent: "numbers."
+    beats:
+      - { on: "gist", do: appear, target: card }
+      - { on: "numbers", do: highlight, target: card }
+
+# No outro: the video ends on the gist card and loops back into the hook.

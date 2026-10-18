@@ -7,5 +7,6 @@ export const EPISODE_SLUGS = [
   "005-tcp-vs-udp",
   "006-rest-vs-graphql",
   "007-load-balancing-basics",
-  "008-what-is-a-cdn"
+  "008-what-is-a-cdn",
+  "009-how-dns-works"
 ] as const;

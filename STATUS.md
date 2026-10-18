@@ -19,6 +19,11 @@ _Last updated 2026-10-06. Replaces the old PLAN.md and PROGRESS.md._
 | Next | Rebuild 001 (`/queue` §1b) → then new Ideas |
 | Diagram variety plan | **v2 agreed 2026-10-12** (five layers: treatment, entrance, transition, camera, composition; motion recipes + per-episode `look`). Batch 0 ✅ (v1.7 locked); Batch 1 ✅ (v1.8 locked); Batch 2 ✅ (v1.9 locked); Batch 3 ✅ (v1.10 locked); Batch 4 ✅ (v1.11 locked); Close step ✅ built, awaiting Imad. See [Diagram roadmap](#diagram-roadmap) |
 
+_2026-10-19 00:06: 009 draft approved; final rendered (86.3s, 16.3 MB, 0 credits this stage, 1656 total), `upload.md` + cover done._
+_2026-10-19 00:02: 009 storyboard approved; draft rendered (86.3s, 16.3 MB, 0 credits this stage, 1656 total); Draft Review posted (`009:draft:r1`)._
+_2026-10-18 23:58: 009 script r2 approved; 5 scenes re-voiced (639 credits, 1656 total), 86.3s measured; storyboard posted (`009:storyboard:r1`)._
+_2026-10-18 23:21: 009 script r1 approved and voiced (1017 credits) but measured 76.7s (<80s) → 5 scenes lengthened (207 words, ~84–85s projected); Script Review r2 posted (`009:script:r2`)._
+_2026-10-18 20:46: picked up Notion #9 (DNS) via Discord "Start the next Idea" → 009 `how-dns-works` scripted (Liam, 187 words, 9 scenes, ~87s est., format 1.6, look snap + drop); Script Review posted (`009:script:r1`)._
 _2026-10-18 20:35: 008 (What is a CDN?) script r3, storyboard and draft r1 approved in Discord; final render + `upload.md` + cover done (Chris, 83.8s, 19.1 MB, 1862 credits total; format 1.6, look slam + draw)._
 _2026-10-18: 007 (load balancing) script, storyboard and draft r2 approved in Discord; final render + `upload.md` + cover done (Jessica, 87.1s, 17.6 MB, 1168 credits total; format 1.6, look drop + snap). Draft r1 changes: NGINX was read as letters → new `episodes/pronunciations.json` (`"NGINX": "engine-x"`), applied by `npm run voice` to the ElevenLabs text only (captions and beats keep the written term; one word per respelling); one scene re-voiced (123 credits)._
 _2026-10-18 02:55: 006 draft r1 approved; final render + `upload.md` + cover done (82.8s, 14.9 MB, 0 credits this stage, 992 total; format 1.6, look slam + draw). Known engine bug: Decision left-spine labels clip (006's `rule` scene uses Matrix instead)._
