@@ -55,7 +55,7 @@ if (!voice) throw new Error("voice not found in roster");
 
 doc.setIn(["voice", "name"], voice.name);
 doc.setIn(["voice", "voice_id"], voice.voice_id);
-if (!doc.hasIn(["voice", "speed"])) doc.setIn(["voice", "speed"], 1);
+if (!doc.hasIn(["voice", "speed"])) doc.setIn(["voice", "speed"], 0.93); // SCRIPT-FORMAT v1.8
 writeFileSync(yamlPath, doc.toString());
 
 if (!existing) {

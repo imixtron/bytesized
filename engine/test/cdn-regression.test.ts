@@ -55,9 +55,10 @@ test("the rewrite keeps the story in order", () => {
 });
 
 test("the rewrite stays within the length budget", () => {
-  const sec = buildTimeline(after).totalFrames / tokens.canvas.fps;
+  // SCRIPT-FORMAT v1.8: the estimate is calibrated to measured speech; judge it at the default speed 0.93.
+  const sec = buildTimeline({ ...after, voice: { ...after.voice, speed: 0.93 } }).totalFrames / tokens.canvas.fps;
   assert.ok(sec >= 80 && sec <= 90, `estimated ${sec.toFixed(1)}s`);
-  const budget = 2.2 * (after.target_sec - 1.5); // SCRIPT-FORMAT v1.7 word guidance
+  const budget = 2.2 * (after.target_sec - 1.5); // SCRIPT-FORMAT v1.7/v1.8 word guidance
   const w = voWords(after);
   assert.ok(Math.abs(w - budget) / budget <= 0.1, `${w} words vs ~${Math.round(budget)}`);
 });

@@ -7,8 +7,10 @@ import { findWord, tokenize } from "../episode/words";
 
 const FPS = tokens.canvas.fps;
 
-/** Speaking-pace estimate: ~2.5 words/sec, with pauses at punctuation. */
-export const ESTIMATE = { wordSec: 0.4, shortPauseSec: 0.15, longPauseSec: 0.3, sceneLeadSec: 0.15, sceneTailSec: 0.35 };
+/** Speaking-pace estimate: ~2.5 words/sec, with pauses at punctuation. `pace` scales it to measured
+ *  ElevenLabs speech at speed 1.0 (episodes 001–009 read ~13% faster than the raw estimate); it is
+ *  then divided by the episode's `voice.speed`. */
+export const ESTIMATE = { wordSec: 0.4, shortPauseSec: 0.15, longPauseSec: 0.3, sceneLeadSec: 0.15, sceneTailSec: 0.35, pace: 0.87 };
 
 export type TimedWord = { text: string; start: number; end: number }; // absolute frames
 export type TimedBeat = Beat & { frame: number; targets: string[] };
@@ -28,12 +30,13 @@ export type MeasuredWords = Record<string, { start: number; end: number }[]>;
 
 const sec = (s: number) => Math.round(s * FPS);
 
-function estimateWords(vo: string) {
+function estimateWords(vo: string, speed = 1) {
+  const k = ESTIMATE.pace / speed;
   let t = ESTIMATE.sceneLeadSec;
   return tokenize(vo).map((tok) => {
     const start = t;
-    const end = start + ESTIMATE.wordSec;
-    t = end + (tok.pauseAfter === "long" ? ESTIMATE.longPauseSec : tok.pauseAfter === "short" ? ESTIMATE.shortPauseSec : 0);
+    const end = start + ESTIMATE.wordSec * k;
+    t = end + k * (tok.pauseAfter === "long" ? ESTIMATE.longPauseSec : tok.pauseAfter === "short" ? ESTIMATE.shortPauseSec : 0);
     return { start, end };
   });
 }
@@ -46,7 +49,7 @@ export function buildTimeline(ep: Episode, measured?: MeasuredWords): Timeline {
 
   ep.scenes.forEach((scene, index) => {
     const toks = tokenize(scene.vo);
-    const secs = measured?.[scene.id] ?? estimateWords(scene.vo);
+    const secs = measured?.[scene.id] ?? estimateWords(scene.vo, ep.voice?.speed);
     const words = toks.map((tok, i) => ({ text: tok.text, start: cursor + sec(secs[i].start), end: cursor + sec(secs[i].end) }));
     const lastEnd = secs.length ? secs[secs.length - 1].end : 0;
     const duration = sec(lastEnd + ESTIMATE.sceneTailSec);

@@ -1,6 +1,7 @@
-# Bytesized Script Format — v1.7
+# Bytesized Script Format — v1.8
 
-> **v1.7, locked (approved by Imad 2026-10-18): narration reads as one speech.** The tone line no longer asks for "short sentences"; §1 gains the *Narration reads as one speech* rule, checked by warning-only validator rules (`engine/src/episode/narration.ts`). The word budget follows measured voiceovers (~2.2 words/s), and breakdown scenes may run to 10s so a connected sentence isn't chopped. No schema change: scripts keep `format: "1.6"`. Changes need a versioned update with explicit approval.
+> **v1.8, locked (approved by Imad 2026-10-18): calibrated length, slower voice.** New episodes are voiced at `speed: 0.93` (set by `voice:assign`; earlier episodes keep 1.0). The validator's length estimate is calibrated to measured ElevenLabs speech (it ran ~13% long, so scripts that estimated ~85s measured ~76s and came back for a second script round) and scales with `voice.speed`. A measured length under 80s is still fixed in the script, never with padded pauses (tried on 009, felt draggy). No schema change: scripts keep `format: "1.6"`. Changes need a versioned update with explicit approval.
+> v1.7, locked (approved by Imad 2026-10-18): narration reads as one speech.** The tone line no longer asks for "short sentences"; §1 gains the *Narration reads as one speech* rule, checked by warning-only validator rules (`engine/src/episode/narration.ts`). The word budget follows measured voiceovers (~2.2 words/s), and breakdown scenes may run to 10s so a connected sentence isn't chopped. No schema change: scripts keep `format: "1.6"`. Changes need a versioned update with explicit approval.
 > v1.6 (approved by Imad 2026-10-12): variety plan v2. Every episode gets a **look** (two motion recipes, `npm run look:assign`), scenes can set `transition` / `enter` / `camera`, 25 templates are on the menu, and variety is measured by **fingerprints** (template · entrance · transition · camera), not template names alone. Hard fails apply to `format: "1.6"` scripts (§4); older formats keep their warnings. Changes need a versioned update with explicit approval.
 > v1.5.1 (2026-10-12, folded into v1.6): templates `Timeline`, `MetricChart`, `Snippet`, `Stat` are built (design language v1.8). `Zoom`, `StateMachine`, `Tree`, `Transform` are built (v1.9), and `Ring`, `Cells`, `Stream`, `Cluster` (v1.10). The motion fields `transition` (cut, push, whip, flip, stack, dive, iris), `enter` (pop, drop, snap, stamp, wipe) and `camera` (still, drift, rack) are optional per scene (v1.7); the full variety rules arrive with v1.6.
 > v1.5: **topic-first visual plan**. Each script decides its 1–2 core diagrams (the "spine") before writing scenes and records them in `visual_plan`; extra templates only where the idea changes kind. Reuse chains up to 5 scenes; variety rules (§4) now guard both extremes. v1.4 approved 2026-10-06.
@@ -18,7 +19,7 @@ Every episode is one `episode.yaml`. The **Script Creator** (`/script`) writes i
 | Rule | Value |
 |---|---|
 | Total length | **80–90s**, including the ~1–2s branding sting. **Never over 90s.** Aim for **85s** so text-to-speech variance stays inside the window |
-| Voiceover words | **Guidance only, never a rejection rule.** Roughly `2.2 × (target − 1.5)` words, so ~175 words for 80s, ~185 for 85s and ~195 for 90s (measured voiceovers run 2.1–2.5 words/s, depending on the voice and the number of scenes). `/script` sizes the script to its chosen target |
+| Voiceover words | **Guidance only, never a rejection rule.** Roughly `2.2 × (target − 1.5)` words, so ~175 words for 80s, ~185 for 85s and ~195 for 90s (at `speed: 0.93` voices read ~2.3 words/s; trust `npm run validate`'s length estimate, which is calibrated to measured speech). `/script` sizes the script to its chosen target |
 | Hard check | The **real voiceover length** measured after text-to-speech must be 80–90s. If it's outside that, trim or extend only the affected scenes' lines and re-voice just those scenes |
 | Scenes | 9–15 content scenes (the branding sting is added automatically) |
 | Scene length | 3–8s each; a breakdown scene may run to 10s when its line is one connected thought |
@@ -109,7 +110,7 @@ brands: []                             # third-party logos used, e.g. [netflix] 
 voice:                                 # ElevenLabs. Set by `npm run voice:assign -- <nnn>`, never by hand
   name: Liam                           # round robin from episodes/voices.json
   voice_id: TX3LPaxmHKxFdv7VOQHJ
-  speed: 1.0
+  speed: 0.93                          # 0.93 from v1.8 (adds ~6s vs 1.0); older episodes keep 1.0
 
 music:                                 # set by `npm run music:assign -- <nnn>` (omitted → the main theme)
   track: bytesized-theme-2             # a track id from assets/music/library.json (random from episodes/music.json)

@@ -22,7 +22,7 @@ You write **one Bytesized episode** as `episodes/<nnn-slug>/episode.yaml`. Every
 - If the angle is unclear, ask **one** question at most. Otherwise pick the angle a curious beginner would care about most.
 
 ### 2. Size it
-- Pick `target_sec` in **80–90** (85 suits most; never over 90). Word budget ≈ `2.2 × (target_sec − 1.5)`: about 175 words for 80s, 185 for 85s, 195 for 90s (measured voiceovers run 2.1–2.5 words a second). This is guidance, not a hard limit.
+- Pick `target_sec` in **80–90** (85 suits most; never over 90). Word budget ≈ `2.2 × (target_sec − 1.5)`: about 175 words for 80s, 185 for 85s, 195 for 90s (at speed 0.93 voices read ~2.3 words a second). `npm run validate`'s length estimate is calibrated to measured speech: aim it at ~85s, not the 80s edge. This is guidance, not a hard limit.
 - **Split into Part 1 / Part 2** when explaining it well needs more than ~195 words or more than 12 breakdown ideas. Max 2 parts. If it would need more, narrow the scope and propose the rest as future episodes.
   - Part 1: gist VO ends with *"Part 2 is next, follow so you don't miss it."* It needs `series.teaser`.
   - Part 2: the hook contains a one-sentence recap and it needs `series.recap`. Both parts share `series.key`.
@@ -67,7 +67,7 @@ Scenes are how the video is cut, not how the person speaks. Draft the **whole vo
 - Folder: `episodes/<nnn>-<slug>/episode.yaml`, where `<nnn>` = highest existing number + 1 (zero-padded) and `slug` is lowercase-kebab. For a series, use consecutive numbers (`007-caching-part-1`, `008-caching-part-2`).
 - Start with a comment line: `# Episode <nnn>. Draft (awaiting approval ✋)`.
 - Set `format: "1.6"` and `visual_plan: "…"` (step 4). Leave `transition` / `enter` / `camera` out of scenes: the look (step 6) fills them in; set one only for a deliberate exception.
-- Leave `voice:` as `{ voice_id: TBD, speed: 1.0 }`. The next step fills it.
+- Leave `voice:` as `{ voice_id: TBD, speed: 0.93 }`. The next step fills it.
 
 ### 6. Assign the voice and music, then validate (run from `engine/`)
 ```bash
