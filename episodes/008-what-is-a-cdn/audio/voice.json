@@ -1,0 +1,1245 @@
+{
+  "voice": "Chris",
+  "voice_id": "iP95p4xoKVk53GoZ742B",
+  "model": "eleven_multilingual_v2",
+  "plan": "paid",
+  "generated": "2026-10-18T15:05:36.052Z",
+  "scenes": {
+    "hook": {
+      "file": "hook.mp3",
+      "hash": "13a6f87df1",
+      "text": "When you open Instagram, you're probably not talking to California. Your photos come from a server nearby, thanks to a CDN.",
+      "duration": 7.152,
+      "words": [
+        {
+          "text": "When",
+          "start": 0,
+          "end": 0.174
+        },
+        {
+          "text": "you",
+          "start": 0.209,
+          "end": 0.279
+        },
+        {
+          "text": "open",
+          "start": 0.325,
+          "end": 0.522
+        },
+        {
+          "text": "Instagram,",
+          "start": 0.569,
+          "end": 1.196
+        },
+        {
+          "text": "you're",
+          "start": 1.265,
+          "end": 1.44
+        },
+        {
+          "text": "probably",
+          "start": 1.463,
+          "end": 1.776
+        },
+        {
+          "text": "not",
+          "start": 1.834,
+          "end": 1.962
+        },
+        {
+          "text": "talking",
+          "start": 1.997,
+          "end": 2.287
+        },
+        {
+          "text": "to",
+          "start": 2.31,
+          "end": 2.357
+        },
+        {
+          "text": "California.",
+          "start": 2.392,
+          "end": 3.1
+        },
+        {
+          "text": "Your",
+          "start": 3.541,
+          "end": 3.704
+        },
+        {
+          "text": "photos",
+          "start": 3.727,
+          "end": 3.994
+        },
+        {
+          "text": "come",
+          "start": 4.029,
+          "end": 4.168
+        },
+        {
+          "text": "from",
+          "start": 4.191,
+          "end": 4.307
+        },
+        {
+          "text": "a",
+          "start": 4.354,
+          "end": 4.377
+        },
+        {
+          "text": "server",
+          "start": 4.435,
+          "end": 4.737
+        },
+        {
+          "text": "nearby,",
+          "start": 4.783,
+          "end": 5.317
+        },
+        {
+          "text": "thanks",
+          "start": 5.492,
+          "end": 5.735
+        },
+        {
+          "text": "to",
+          "start": 5.759,
+          "end": 5.817
+        },
+        {
+          "text": "a",
+          "start": 5.875,
+          "end": 5.898
+        },
+        {
+          "text": "CDN.",
+          "start": 5.944,
+          "end": 7.152
+        }
+      ],
+      "plan": "paid"
+    },
+    "idea": {
+      "file": "idea.mp3",
+      "hash": "568e45d302",
+      "text": "Think of it as a chain of corner shops: instead of shipping everything from one faraway warehouse, it keeps copies of popular stuff close to you.",
+      "duration": 8.824,
+      "words": [
+        {
+          "text": "Think",
+          "start": 0,
+          "end": 0.209
+        },
+        {
+          "text": "of",
+          "start": 0.244,
+          "end": 0.29
+        },
+        {
+          "text": "it",
+          "start": 0.325,
+          "end": 0.383
+        },
+        {
+          "text": "as",
+          "start": 0.418,
+          "end": 0.511
+        },
+        {
+          "text": "a",
+          "start": 0.557,
+          "end": 0.592
+        },
+        {
+          "text": "chain",
+          "start": 0.65,
+          "end": 0.952
+        },
+        {
+          "text": "of",
+          "start": 0.998,
+          "end": 1.057
+        },
+        {
+          "text": "corner",
+          "start": 1.173,
+          "end": 1.533
+        },
+        {
+          "text": "shops:",
+          "start": 1.591,
+          "end": 2.183
+        },
+        {
+          "text": "instead",
+          "start": 2.508,
+          "end": 2.833
+        },
+        {
+          "text": "of",
+          "start": 2.868,
+          "end": 2.914
+        },
+        {
+          "text": "shipping",
+          "start": 2.949,
+          "end": 3.228
+        },
+        {
+          "text": "everything",
+          "start": 3.274,
+          "end": 3.587
+        },
+        {
+          "text": "from",
+          "start": 3.634,
+          "end": 3.773
+        },
+        {
+          "text": "one",
+          "start": 3.866,
+          "end": 4.075
+        },
+        {
+          "text": "faraway",
+          "start": 4.191,
+          "end": 4.621
+        },
+        {
+          "text": "warehouse,",
+          "start": 4.667,
+          "end": 5.294
+        },
+        {
+          "text": "it",
+          "start": 5.573,
+          "end": 5.677
+        },
+        {
+          "text": "keeps",
+          "start": 5.712,
+          "end": 5.909
+        },
+        {
+          "text": "copies",
+          "start": 5.968,
+          "end": 6.339
+        },
+        {
+          "text": "of",
+          "start": 6.385,
+          "end": 6.444
+        },
+        {
+          "text": "popular",
+          "start": 6.536,
+          "end": 6.943
+        },
+        {
+          "text": "stuff",
+          "start": 6.989,
+          "end": 7.187
+        },
+        {
+          "text": "close",
+          "start": 7.245,
+          "end": 7.5
+        },
+        {
+          "text": "to",
+          "start": 7.535,
+          "end": 7.616
+        },
+        {
+          "text": "you.",
+          "start": 7.709,
+          "end": 8.824
+        }
+      ],
+      "plan": "paid"
+    },
+    "distance": {
+      "file": "distance.mp3",
+      "hash": "ca14221fa6",
+      "text": "If you're in Sydney and the origin sits in Virginia, every image makes a long trip, unless an edge server near you already has a copy. That wait is exactly what a CDN removes.",
+      "duration": 13.421,
+      "words": [
+        {
+          "text": "If",
+          "start": 0,
+          "end": 0.174
+        },
+        {
+          "text": "you're",
+          "start": 0.197,
+          "end": 0.395
+        },
+        {
+          "text": "in",
+          "start": 0.418,
+          "end": 0.464
+        },
+        {
+          "text": "Sydney",
+          "start": 0.534,
+          "end": 0.836
+        },
+        {
+          "text": "and",
+          "start": 0.871,
+          "end": 0.94
+        },
+        {
+          "text": "the",
+          "start": 0.975,
+          "end": 1.045
+        },
+        {
+          "text": "origin",
+          "start": 1.115,
+          "end": 1.486
+        },
+        {
+          "text": "sits",
+          "start": 1.556,
+          "end": 1.8
+        },
+        {
+          "text": "in",
+          "start": 1.846,
+          "end": 1.916
+        },
+        {
+          "text": "Virginia,",
+          "start": 1.974,
+          "end": 2.612
+        },
+        {
+          "text": "every",
+          "start": 3.053,
+          "end": 3.355
+        },
+        {
+          "text": "image",
+          "start": 3.413,
+          "end": 3.878
+        },
+        {
+          "text": "makes",
+          "start": 4.029,
+          "end": 4.272
+        },
+        {
+          "text": "a",
+          "start": 4.331,
+          "end": 4.354
+        },
+        {
+          "text": "long",
+          "start": 4.423,
+          "end": 4.69
+        },
+        {
+          "text": "trip,",
+          "start": 4.76,
+          "end": 5.248
+        },
+        {
+          "text": "unless",
+          "start": 5.759,
+          "end": 6.06
+        },
+        {
+          "text": "an",
+          "start": 6.095,
+          "end": 6.153
+        },
+        {
+          "text": "edge",
+          "start": 6.211,
+          "end": 6.374
+        },
+        {
+          "text": "server",
+          "start": 6.397,
+          "end": 6.676
+        },
+        {
+          "text": "near",
+          "start": 6.745,
+          "end": 6.873
+        },
+        {
+          "text": "you",
+          "start": 6.931,
+          "end": 7.036
+        },
+        {
+          "text": "already",
+          "start": 7.314,
+          "end": 7.802
+        },
+        {
+          "text": "has",
+          "start": 7.848,
+          "end": 7.964
+        },
+        {
+          "text": "a",
+          "start": 8.011,
+          "end": 8.046
+        },
+        {
+          "text": "copy.",
+          "start": 8.092,
+          "end": 8.638
+        },
+        {
+          "text": "That",
+          "start": 9.334,
+          "end": 9.59
+        },
+        {
+          "text": "wait",
+          "start": 9.671,
+          "end": 9.961
+        },
+        {
+          "text": "is",
+          "start": 10.344,
+          "end": 10.542
+        },
+        {
+          "text": "exactly",
+          "start": 10.612,
+          "end": 11.25
+        },
+        {
+          "text": "what",
+          "start": 11.297,
+          "end": 11.424
+        },
+        {
+          "text": "a",
+          "start": 11.459,
+          "end": 11.494
+        },
+        {
+          "text": "CDN",
+          "start": 11.54,
+          "end": 11.981
+        },
+        {
+          "text": "removes.",
+          "start": 12.063,
+          "end": 13.421
+        }
+      ],
+      "plan": "paid"
+    },
+    "miss": {
+      "file": "miss.mp3",
+      "hash": "66624cf980",
+      "text": "The first visitor gets the slow version: the edge asks the origin for the file, passes it along and keeps a copy, so that slow trip only happens once.",
+      "duration": 10.077,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.139
+        },
+        {
+          "text": "first",
+          "start": 0.197,
+          "end": 0.418
+        },
+        {
+          "text": "visitor",
+          "start": 0.453,
+          "end": 0.778
+        },
+        {
+          "text": "gets",
+          "start": 0.836,
+          "end": 1.022
+        },
+        {
+          "text": "the",
+          "start": 1.08,
+          "end": 1.184
+        },
+        {
+          "text": "slow",
+          "start": 1.265,
+          "end": 1.625
+        },
+        {
+          "text": "version:",
+          "start": 1.707,
+          "end": 2.206
+        },
+        {
+          "text": "the",
+          "start": 2.589,
+          "end": 2.682
+        },
+        {
+          "text": "edge",
+          "start": 2.728,
+          "end": 2.868
+        },
+        {
+          "text": "asks",
+          "start": 2.914,
+          "end": 3.262
+        },
+        {
+          "text": "the",
+          "start": 3.309,
+          "end": 3.39
+        },
+        {
+          "text": "origin",
+          "start": 3.448,
+          "end": 3.715
+        },
+        {
+          "text": "for",
+          "start": 3.75,
+          "end": 3.831
+        },
+        {
+          "text": "the",
+          "start": 3.866,
+          "end": 3.936
+        },
+        {
+          "text": "file,",
+          "start": 3.971,
+          "end": 4.423
+        },
+        {
+          "text": "passes",
+          "start": 4.748,
+          "end": 5.143
+        },
+        {
+          "text": "it",
+          "start": 5.213,
+          "end": 5.283
+        },
+        {
+          "text": "along",
+          "start": 5.317,
+          "end": 5.608
+        },
+        {
+          "text": "and",
+          "start": 5.642,
+          "end": 5.712
+        },
+        {
+          "text": "keeps",
+          "start": 5.759,
+          "end": 5.956
+        },
+        {
+          "text": "a",
+          "start": 5.991,
+          "end": 6.014
+        },
+        {
+          "text": "copy,",
+          "start": 6.06,
+          "end": 6.571
+        },
+        {
+          "text": "so",
+          "start": 7.012,
+          "end": 7.14
+        },
+        {
+          "text": "that",
+          "start": 7.187,
+          "end": 7.419
+        },
+        {
+          "text": "slow",
+          "start": 7.593,
+          "end": 7.895
+        },
+        {
+          "text": "trip",
+          "start": 7.941,
+          "end": 8.139
+        },
+        {
+          "text": "only",
+          "start": 8.185,
+          "end": 8.348
+        },
+        {
+          "text": "happens",
+          "start": 8.394,
+          "end": 8.719
+        },
+        {
+          "text": "once.",
+          "start": 8.835,
+          "end": 10.077
+        }
+      ],
+      "plan": "paid"
+    },
+    "hit": {
+      "file": "hit.mp3",
+      "hash": "3674568502",
+      "text": "From then on, everyone gets it straight from the edge. That's a hit, and the origin barely notices, even when millions of people show up.",
+      "duration": 7.895,
+      "words": [
+        {
+          "text": "From",
+          "start": 0,
+          "end": 0.186
+        },
+        {
+          "text": "then",
+          "start": 0.232,
+          "end": 0.36
+        },
+        {
+          "text": "on,",
+          "start": 0.441,
+          "end": 0.685
+        },
+        {
+          "text": "everyone",
+          "start": 0.801,
+          "end": 1.161
+        },
+        {
+          "text": "gets",
+          "start": 1.196,
+          "end": 1.37
+        },
+        {
+          "text": "it",
+          "start": 1.405,
+          "end": 1.474
+        },
+        {
+          "text": "straight",
+          "start": 1.533,
+          "end": 1.823
+        },
+        {
+          "text": "from",
+          "start": 1.846,
+          "end": 1.962
+        },
+        {
+          "text": "the",
+          "start": 1.997,
+          "end": 2.067
+        },
+        {
+          "text": "edge.",
+          "start": 2.125,
+          "end": 2.566
+        },
+        {
+          "text": "That's",
+          "start": 3.077,
+          "end": 3.332
+        },
+        {
+          "text": "a",
+          "start": 3.379,
+          "end": 3.402
+        },
+        {
+          "text": "hit,",
+          "start": 3.46,
+          "end": 3.634
+        },
+        {
+          "text": "and",
+          "start": 3.657,
+          "end": 3.738
+        },
+        {
+          "text": "the",
+          "start": 3.796,
+          "end": 3.866
+        },
+        {
+          "text": "origin",
+          "start": 3.936,
+          "end": 4.249
+        },
+        {
+          "text": "barely",
+          "start": 4.307,
+          "end": 4.563
+        },
+        {
+          "text": "notices,",
+          "start": 4.621,
+          "end": 5.294
+        },
+        {
+          "text": "even",
+          "start": 5.538,
+          "end": 5.759
+        },
+        {
+          "text": "when",
+          "start": 5.793,
+          "end": 5.921
+        },
+        {
+          "text": "millions",
+          "start": 6.002,
+          "end": 6.362
+        },
+        {
+          "text": "of",
+          "start": 6.397,
+          "end": 6.444
+        },
+        {
+          "text": "people",
+          "start": 6.49,
+          "end": 6.734
+        },
+        {
+          "text": "show",
+          "start": 6.757,
+          "end": 6.954
+        },
+        {
+          "text": "up.",
+          "start": 6.989,
+          "end": 7.895
+        }
+      ],
+      "plan": "paid"
+    },
+    "stale": {
+      "file": "stale.mp3",
+      "hash": "c13724a246",
+      "text": "Copies do go stale, so each one carries a timer, and when it runs out or gets purged, the edge fetches a fresh one, so nobody is stuck with old content.",
+      "duration": 8.638,
+      "words": [
+        {
+          "text": "Copies",
+          "start": 0,
+          "end": 0.348
+        },
+        {
+          "text": "do",
+          "start": 0.383,
+          "end": 0.453
+        },
+        {
+          "text": "go",
+          "start": 0.511,
+          "end": 0.615
+        },
+        {
+          "text": "stale,",
+          "start": 0.662,
+          "end": 1.045
+        },
+        {
+          "text": "so",
+          "start": 1.08,
+          "end": 1.242
+        },
+        {
+          "text": "each",
+          "start": 1.335,
+          "end": 1.498
+        },
+        {
+          "text": "one",
+          "start": 1.544,
+          "end": 1.672
+        },
+        {
+          "text": "carries",
+          "start": 1.718,
+          "end": 1.985
+        },
+        {
+          "text": "a",
+          "start": 2.032,
+          "end": 2.055
+        },
+        {
+          "text": "timer,",
+          "start": 2.101,
+          "end": 2.554
+        },
+        {
+          "text": "and",
+          "start": 2.728,
+          "end": 2.856
+        },
+        {
+          "text": "when",
+          "start": 2.891,
+          "end": 2.995
+        },
+        {
+          "text": "it",
+          "start": 3.019,
+          "end": 3.065
+        },
+        {
+          "text": "runs",
+          "start": 3.088,
+          "end": 3.286
+        },
+        {
+          "text": "out",
+          "start": 3.344,
+          "end": 3.495
+        },
+        {
+          "text": "or",
+          "start": 3.529,
+          "end": 3.599
+        },
+        {
+          "text": "gets",
+          "start": 3.634,
+          "end": 3.773
+        },
+        {
+          "text": "purged,",
+          "start": 3.843,
+          "end": 4.481
+        },
+        {
+          "text": "the",
+          "start": 4.807,
+          "end": 4.911
+        },
+        {
+          "text": "edge",
+          "start": 4.969,
+          "end": 5.108
+        },
+        {
+          "text": "fetches",
+          "start": 5.143,
+          "end": 5.422
+        },
+        {
+          "text": "a",
+          "start": 5.468,
+          "end": 5.492
+        },
+        {
+          "text": "fresh",
+          "start": 5.538,
+          "end": 5.747
+        },
+        {
+          "text": "one,",
+          "start": 5.793,
+          "end": 5.979
+        },
+        {
+          "text": "so",
+          "start": 6.06,
+          "end": 6.177
+        },
+        {
+          "text": "nobody",
+          "start": 6.235,
+          "end": 6.502
+        },
+        {
+          "text": "is",
+          "start": 6.548,
+          "end": 6.629
+        },
+        {
+          "text": "stuck",
+          "start": 6.664,
+          "end": 6.896
+        },
+        {
+          "text": "with",
+          "start": 6.931,
+          "end": 7.036
+        },
+        {
+          "text": "old",
+          "start": 7.07,
+          "end": 7.198
+        },
+        {
+          "text": "content.",
+          "start": 7.256,
+          "end": 8.638
+        }
+      ],
+      "plan": "paid"
+    },
+    "edgecode": {
+      "file": "edgecode.mp3",
+      "hash": "1992f95594",
+      "text": "Caching is only half the job now: modern CDNs also run your code at the edge, so dynamic pages get built close to you, not in some faraway data center.",
+      "duration": 10.495,
+      "words": [
+        {
+          "text": "Caching",
+          "start": 0,
+          "end": 0.488
+        },
+        {
+          "text": "is",
+          "start": 0.546,
+          "end": 0.627
+        },
+        {
+          "text": "only",
+          "start": 0.685,
+          "end": 0.882
+        },
+        {
+          "text": "half",
+          "start": 0.952,
+          "end": 1.173
+        },
+        {
+          "text": "the",
+          "start": 1.231,
+          "end": 1.3
+        },
+        {
+          "text": "job",
+          "start": 1.37,
+          "end": 1.625
+        },
+        {
+          "text": "now:",
+          "start": 1.695,
+          "end": 2.02
+        },
+        {
+          "text": "modern",
+          "start": 2.624,
+          "end": 2.995
+        },
+        {
+          "text": "CDNs",
+          "start": 3.053,
+          "end": 3.518
+        },
+        {
+          "text": "also",
+          "start": 3.727,
+          "end": 4.075
+        },
+        {
+          "text": "run",
+          "start": 4.133,
+          "end": 4.238
+        },
+        {
+          "text": "your",
+          "start": 4.272,
+          "end": 4.365
+        },
+        {
+          "text": "code",
+          "start": 4.412,
+          "end": 4.598
+        },
+        {
+          "text": "at",
+          "start": 4.621,
+          "end": 4.679
+        },
+        {
+          "text": "the",
+          "start": 4.714,
+          "end": 4.783
+        },
+        {
+          "text": "edge,",
+          "start": 4.841,
+          "end": 5.166
+        },
+        {
+          "text": "so",
+          "start": 5.375,
+          "end": 5.608
+        },
+        {
+          "text": "dynamic",
+          "start": 5.759,
+          "end": 6.246
+        },
+        {
+          "text": "pages",
+          "start": 6.304,
+          "end": 6.629
+        },
+        {
+          "text": "get",
+          "start": 6.664,
+          "end": 6.78
+        },
+        {
+          "text": "built",
+          "start": 6.827,
+          "end": 7.001
+        },
+        {
+          "text": "close",
+          "start": 7.047,
+          "end": 7.303
+        },
+        {
+          "text": "to",
+          "start": 7.326,
+          "end": 7.384
+        },
+        {
+          "text": "you,",
+          "start": 7.454,
+          "end": 7.721
+        },
+        {
+          "text": "not",
+          "start": 7.93,
+          "end": 8.081
+        },
+        {
+          "text": "in",
+          "start": 8.127,
+          "end": 8.185
+        },
+        {
+          "text": "some",
+          "start": 8.231,
+          "end": 8.394
+        },
+        {
+          "text": "faraway",
+          "start": 8.487,
+          "end": 8.963
+        },
+        {
+          "text": "data",
+          "start": 9.033,
+          "end": 9.311
+        },
+        {
+          "text": "center.",
+          "start": 9.369,
+          "end": 10.495
+        }
+      ],
+      "plan": "paid"
+    },
+    "players": {
+      "file": "players.mp3",
+      "hash": "ba73047786",
+      "text": "A few big providers do most of this: Cloudflare, Akamai and Fastly, and they all do the same basic job.",
+      "duration": 7.616,
+      "words": [
+        {
+          "text": "A",
+          "start": 0,
+          "end": 0.116
+        },
+        {
+          "text": "few",
+          "start": 0.197,
+          "end": 0.337
+        },
+        {
+          "text": "big",
+          "start": 0.383,
+          "end": 0.511
+        },
+        {
+          "text": "providers",
+          "start": 0.557,
+          "end": 0.987
+        },
+        {
+          "text": "do",
+          "start": 1.022,
+          "end": 1.091
+        },
+        {
+          "text": "most",
+          "start": 1.173,
+          "end": 1.393
+        },
+        {
+          "text": "of",
+          "start": 1.44,
+          "end": 1.486
+        },
+        {
+          "text": "this:",
+          "start": 1.533,
+          "end": 1.95
+        },
+        {
+          "text": "Cloudflare,",
+          "start": 2.194,
+          "end": 2.949
+        },
+        {
+          "text": "Akamai",
+          "start": 3.274,
+          "end": 3.704
+        },
+        {
+          "text": "and",
+          "start": 3.738,
+          "end": 3.82
+        },
+        {
+          "text": "Fastly,",
+          "start": 3.878,
+          "end": 4.516
+        },
+        {
+          "text": "and",
+          "start": 4.957,
+          "end": 5.085
+        },
+        {
+          "text": "they",
+          "start": 5.12,
+          "end": 5.224
+        },
+        {
+          "text": "all",
+          "start": 5.259,
+          "end": 5.387
+        },
+        {
+          "text": "do",
+          "start": 5.445,
+          "end": 5.538
+        },
+        {
+          "text": "the",
+          "start": 5.596,
+          "end": 5.677
+        },
+        {
+          "text": "same",
+          "start": 5.724,
+          "end": 5.956
+        },
+        {
+          "text": "basic",
+          "start": 6.014,
+          "end": 6.351
+        },
+        {
+          "text": "job.",
+          "start": 6.397,
+          "end": 7.616
+        }
+      ],
+      "plan": "paid"
+    },
+    "gist": {
+      "file": "gist.mp3",
+      "hash": "e0d3d2b942",
+      "text": "That's the gist: keep copies close to the people who need them. Follow for more.",
+      "duration": 5.016,
+      "words": [
+        {
+          "text": "That's",
+          "start": 0,
+          "end": 0.29
+        },
+        {
+          "text": "the",
+          "start": 0.337,
+          "end": 0.418
+        },
+        {
+          "text": "gist:",
+          "start": 0.476,
+          "end": 0.917
+        },
+        {
+          "text": "keep",
+          "start": 1.358,
+          "end": 1.544
+        },
+        {
+          "text": "copies",
+          "start": 1.614,
+          "end": 1.939
+        },
+        {
+          "text": "close",
+          "start": 1.997,
+          "end": 2.241
+        },
+        {
+          "text": "to",
+          "start": 2.264,
+          "end": 2.322
+        },
+        {
+          "text": "the",
+          "start": 2.368,
+          "end": 2.438
+        },
+        {
+          "text": "people",
+          "start": 2.473,
+          "end": 2.717
+        },
+        {
+          "text": "who",
+          "start": 2.74,
+          "end": 2.821
+        },
+        {
+          "text": "need",
+          "start": 2.868,
+          "end": 3.019
+        },
+        {
+          "text": "them.",
+          "start": 3.053,
+          "end": 3.32
+        },
+        {
+          "text": "Follow",
+          "start": 3.831,
+          "end": 4.168
+        },
+        {
+          "text": "for",
+          "start": 4.238,
+          "end": 4.354
+        },
+        {
+          "text": "more.",
+          "start": 4.412,
+          "end": 5.016
+        }
+      ],
+      "plan": "paid"
+    }
+  }
+}

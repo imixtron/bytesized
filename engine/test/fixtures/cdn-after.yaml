@@ -1,0 +1,199 @@
+# Test fixture (regression "after"): same script with the narration rewritten as one connected speech.
+# Episode 008. Draft (awaiting approval ✋)
+# Notion row #7 · Performance · Junior / Entry · target ~85s (script format v1.6)
+id: 8
+slug: what-is-a-cdn
+title: "What is a CDN?"
+topic: CDNs, edge servers and points of presence, caching static content, cache
+  invalidation, edge compute and the big providers
+target_sec: 85
+format: "1.6"
+visual_plan: "Spine: one Sequence (cache miss, then cache hit) over 2 scenes,
+  after a Map that shows why distance hurts. Analogy for the corner shops,
+  Decision for when a copy goes stale, Split for static vs edge compute,
+  ThreeCards for the big providers."
+
+brands: []
+
+voice: { voice_id: iP95p4xoKVk53GoZ742B, speed: 1.0, name: Chris }
+
+music:
+  track: bytesized-theme-3
+
+look:
+  recipes:
+    - slam
+    - draw
+
+scenes:
+  # ---------- HOOK ----------
+  - id: hook
+    part: hook
+    template: Hook
+    vo: "When you open Instagram, you're probably not talking to California. Your photos come from a server nearby, thanks to something called a CDN."
+    headline: { text: "Not California", accent: "California" }
+    stage:
+      nodes:
+        - { id: edge, type: cdn, family: hero, label: "CDN" }
+      crowd: { id: fans, count: 30, target: edge }
+    beats:
+      - { on: "Instagram", do: flood, target: fans }
+      - { on: "server", do: appear, target: edge }
+      - { on: "CDN", do: highlight, target: edge }
+
+  # ---------- BRANDING (automatic, ~1.5s) ----------
+
+  # ---------- IDEA: corner shops ----------
+  - id: idea
+    part: idea
+    template: Analogy
+    vo: "Think of it as a chain of corner shops: instead of shipping everything from one faraway warehouse, it keeps copies of popular stuff close to you."
+    headline: { text: "Corner shops everywhere", accent: "Corner" }
+    stage:
+      rows:
+        - { id: r1, icon: storage, key: Warehouse, value: one, far away }
+        - { id: r2, icon: cdn, key: Corner shops, value: copies near you }
+        - { id: r3, icon: user, key: You, value: walk, don't wait }
+    beats:
+      - { on: "warehouse", do: reveal, target: r1 }
+      - { on: "corner", do: reveal, target: r2 }
+      - { on: "close", do: reveal, target: r3 }
+      - { on: "close", do: highlight, target: r2, offset: 0.4 }
+
+  # ---------- BREAKDOWN 1: distance (Map, no headline) ----------
+  - id: distance
+    part: breakdown
+    template: Map
+    vo: "If you're in Sydney and the origin sits in Virginia, every image makes a long trip, so the CDN puts copies on edge servers near you."
+    stage:
+      pins:
+        - { id: you, label: Sydney, at: [ 151.2, -33.9 ], kind: user }
+        - { id: va, label: Virginia, at: [ -77.4, 39.0 ], kind: origin }
+        - { id: sg, label: Singapore, at: [ 103.8, 1.3 ], kind: edge }
+      routes:
+        - { id: far, from: you, to: va, ms: 220 }
+        - { id: near, from: you, to: sg, ms: 40 }
+    beats:
+      - { on: "Sydney", do: reveal, target: you }
+      - { on: "Virginia", do: reveal, target: va }
+      - { on: "trip", do: step, target: far }
+      - { on: "edge", do: reveal, target: sg }
+      - { on: "near", do: step, target: near }
+
+  # ---------- BREAKDOWN 2: cache miss (Sequence, 1 of 2) ----------
+  - id: miss
+    part: breakdown
+    template: Sequence
+    vo: "The first visitor gets the slow version: the edge asks the origin, waits for the file, then passes it along and keeps a copy."
+    headline: { text: "First visit is slow", accent: "slow" }
+    stage:
+      actors:
+        - { id: me, type: phone, family: solid, label: you }
+        - { id: edge2, type: cdn, label: edge }
+        - { id: org, type: server, label: origin }
+      steps:
+        - { id: m1, from: me, to: edge2, label: "get logo" }
+        - { id: m2, from: edge2, to: org, label: "miss" }
+        - { id: m3, from: org, to: edge2, label: "file", kind: response }
+        - { id: m4, from: edge2, to: me, label: "logo", kind: response }
+    beats:
+      - { on: "visitor", do: step, target: m1 }
+      - { on: "asks", do: step, target: m2 }
+      - { on: "file", do: step, target: m3 }
+      - { on: "passes", do: step, target: m4 }
+
+  # ---------- BREAKDOWN 3: cache hit (Sequence, 2 of 2, no headline) ----------
+  - id: hit
+    part: breakdown
+    template: Sequence
+    vo: "From then on, everyone gets it straight from the edge. That's a hit, and the origin barely notices."
+    stage:
+      reuse: miss
+      steps:
+        - { id: h1, from: me, to: edge2, label: "get logo" }
+        - { id: h2, from: edge2, to: me, label: "cached", kind: response }
+    beats:
+      - { on: "Everyone", do: step, target: h1 }
+      - { on: "hit", do: step, target: h2 }
+      - { on: "origin", do: dim, target: org }
+
+  # ---------- BREAKDOWN 4: staleness (Decision) ----------
+  - id: stale
+    part: breakdown
+    template: Decision
+    vo: "Copies do go stale, so each one carries a timer, and when it runs out or gets purged, the edge fetches a fresh one."
+    headline: { text: "Stale or fresh?", accent: "fresh?" }
+    stage:
+      start: { id: ask, type: phone, family: solid, label: request }
+      checks:
+        - {
+            id: fresh,
+            q: "Timer left?",
+            no: { id: refetch, label: "fetch fresh", icon: retry, tone: down }
+          }
+      yes: { id: serve, label: "serve copy", icon: check, tone: ok }
+    beats:
+      - { on: "stale", do: appear, target: ask }
+      - { on: "timer", do: branch, target: fresh, args: { to: yes } }
+      - { on: "runs", do: branch, target: fresh, args: { to: no } }
+      - { on: "fresh", do: highlight, target: refetch }
+
+  # ---------- BREAKDOWN 5: edge compute (Split) ----------
+  - id: edgecode
+    part: breakdown
+    template: Split
+    vo: "Caching is only half the job now: modern CDNs also run your code at the edge, so dynamic pages get built close to you."
+    headline: { text: "Code at the edge", accent: "edge" }
+    stage:
+      variant: compare
+      before:
+        id: static
+        title: Static
+        note: "images, video"
+        result: "just copies"
+        nodes:
+          - { id: s_cdn, type: cdn, label: edge }
+          - { id: s_file, type: storage, label: files }
+      after:
+        id: dynamic
+        title: Dynamic
+        note: "built at the edge"
+        result: "runs near you"
+        nodes:
+          - { id: d_cdn, type: cdn, label: edge }
+          - { id: d_code, type: service, label: your code }
+    beats:
+      - { on: "Caching", do: appear, target: static }
+      - { on: "code", do: appear, target: dynamic }
+      - { on: "dynamic", do: highlight, target: dynamic }
+      - { on: "close", do: send, target: d_code, args: { kind: response, count: 2 } }
+
+  # ---------- BREAKDOWN 6: big providers ----------
+  - id: players
+    part: breakdown
+    template: ThreeCards
+    vo: "A few big providers do all this, Cloudflare, Akamai and Fastly."
+    headline: { text: "The big three", accent: "big" }
+    stage:
+      cards:
+        - { id: c1, icon: cdn, title: Cloudflare, sub: "huge free tier" }
+        - { id: c2, icon: cdn, title: Akamai, sub: "the original" }
+        - { id: c3, icon: cdn, title: Fastly, sub: "instant purges" }
+    beats:
+      - { on: "Cloudflare", do: reveal, target: c1 }
+      - { on: "Akamai", do: reveal, target: c2 }
+      - { on: "Fastly", do: reveal, target: c3 }
+
+  # ---------- GIST (no headline) ----------
+  - id: gist
+    part: gist
+    template: GistCard
+    vo: "That's the gist: keep copies close to the people who need them. Follow for more."
+    stage:
+      text: "Keep copies close."
+      accent: "close."
+    beats:
+      - { on: "gist", do: appear, target: card }
+      - { on: "close", do: highlight, target: card }
+
+# No outro: the video ends on the gist card and loops back into the hook.

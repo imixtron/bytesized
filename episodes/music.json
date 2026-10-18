@@ -53,6 +53,11 @@
       "episode": "007-load-balancing-basics",
       "track": "bytesized-theme-4",
       "date": "2026-10-17"
+    },
+    {
+      "episode": "008-what-is-a-cdn",
+      "track": "bytesized-theme-3",
+      "date": "2026-10-18"
     }
   ]
 }

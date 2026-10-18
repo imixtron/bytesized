@@ -6,5 +6,6 @@ export const EPISODE_SLUGS = [
   "004-http-methods-status-codes",
   "005-tcp-vs-udp",
   "006-rest-vs-graphql",
-  "007-load-balancing-basics"
+  "007-load-balancing-basics",
+  "008-what-is-a-cdn"
 ] as const;

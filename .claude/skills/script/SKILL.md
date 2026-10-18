@@ -10,7 +10,7 @@ You write **one Bytesized episode** as `episodes/<nnn-slug>/episode.yaml`. Every
 ## Read first (sources of truth, don't restate them from memory)
 1. `episodes/SCRIPT-FORMAT.md`: rules, file format, menus, validation. **This wins over anything below.**
 2. `brand/design-language/DESIGN-LANGUAGE.md`: node families, tone, what a headline looks like.
-3. `episodes/001-what-is-system-design/episode.yaml`: the approved pilot, the reference for style and beat density.
+3. `episodes/001-what-is-system-design/episode.yaml`: the approved pilot, the reference for structure and beat density. **Not for narration style**: its short sentences and stacked questions predate the one-speech rule (3b).
 4. `episodes/INDEX.md`: existing episodes (numbering, topics already covered, series). Also open the **previous episode's** `episode.yaml` and note its breakdown template order: yours must not match it.
 5. `engine/src/templates/index.tsx`: the templates that are **built**. Others in the menu exist in the format but `/video` has to build them first.
 6. `episodes/pronunciations.md`: known tricky terms.
@@ -22,19 +22,29 @@ You write **one Bytesized episode** as `episodes/<nnn-slug>/episode.yaml`. Every
 - If the angle is unclear, ask **one** question at most. Otherwise pick the angle a curious beginner would care about most.
 
 ### 2. Size it
-- Pick `target_sec` in **80–90** (85 suits most; never over 90). Word budget ≈ `2.5 × (target_sec − 1.5)`: about 195 words for 80s, 210 for 85s, 220 for 90s. This is guidance, not a hard limit.
-- **Split into Part 1 / Part 2** when explaining it well needs more than ~220 words or more than 12 breakdown ideas. Max 2 parts. If it would need more, narrow the scope and propose the rest as future episodes.
+- Pick `target_sec` in **80–90** (85 suits most; never over 90). Word budget ≈ `2.2 × (target_sec − 1.5)`: about 175 words for 80s, 185 for 85s, 195 for 90s (measured voiceovers run 2.1–2.5 words a second). This is guidance, not a hard limit.
+- **Split into Part 1 / Part 2** when explaining it well needs more than ~195 words or more than 12 breakdown ideas. Max 2 parts. If it would need more, narrow the scope and propose the rest as future episodes.
   - Part 1: gist VO ends with *"Part 2 is next, follow so you don't miss it."* It needs `series.teaser`.
   - Part 2: the hook contains a one-sentence recap and it needs `series.recap`. Both parts share `series.key`.
 
 ### 3. Write the story (Hook → Idea → Breakdown ×6–12 → Gist)
 - **Hook (0–3s):** a question or surprising claim in the first sentence. No greetings. Make it concrete (a real product, a number, a failure).
 - **Idea:** name the concept in plain words, ideally with an everyday analogy.
-- **Breakdown:** show *how it works*, one idea per scene, 3–8s each, ideally with a failure/recovery moment. Show the kinds of idea the topic really has (a flow, a sequence, a comparison, a rule, a trade-off), following your visual plan (step 4); don't force variety.
+- **Breakdown:** show *how it works*, one idea per scene, 3–8s each (up to 10s when the line is one connected thought), ideally with a failure/recovery moment. Show the kinds of idea the topic really has (a flow, a sequence, a comparison, a rule, a trade-off), following your visual plan (step 4); don't force variety.
 - **BigPicture (optional):** if the breakdown described parts of one system that connect, end the breakdown with a 3–5s `BigPicture` scene: one short line tying it together, 2–4 panels from your own diagram scenes, a `highlight` on each panel as the VO names it (SCRIPT-FORMAT §3b). Skip it for single-mechanism topics. Budget its words inside the 80–90s.
 - **Gist:** the VO starts with *"That's the gist:"*, gives a one-line takeaway (≤ 8 words on the card), then *"Follow for more."* (or the Part 2 line).
-- **Voice:** playful, a bit cheeky, short sentences. Write numbers as spoken ("two million"). No emojis. Spell brand names the way they're said.
+- **Voice:** a knowledgeable engineer explaining something interesting to a curious friend: conversational, a little playful, never theatrical. Write numbers as spoken ("two million"). No emojis. Spell brand names the way they're said. The rules for making it sound like one person talking are in **3b**.
 - **Headlines:** ≤ 5 words, exactly one `accent` word that's in the text. Most scenes, but at least one without, never more than 3 in a row, and never on the GistCard. The headline names the idea and must not repeat the VO.
+
+### 3b. Write the narration as one speech, then read it aloud
+Scenes are how the video is cut, not how the person speaks. Draft the **whole voiceover first as one continuous piece of speech** (hook to gist, about 185 words at the 85s target), *then* cut it at the seams your visual plan (step 4) needs. Never write scene by scene. A queue row's `Outline` lists what to cover, not one scene per bullet or the order to say them in: put them in the order that lets each one explain the next.
+- **One train of thought.** Each sentence follows from the one before: a consequence ("so"), a cause ("because"), a contrast, a pronoun that points back ("that trip", "it"), or the answer to something just raised. Don't restate context the listener already has, and don't summarise an idea right after explaining it.
+- **Scene seams are where it breaks.** Open a breakdown scene by following on from the previous one, not by restarting with a fresh noun phrase and definition. A scene's `vo` can end mid-thought if the next one finishes it.
+- **Rhythm.** Mix lengths. Let a sentence carry a cause and its effect together, and keep a short one for the moments it lands a point, not as the default. Don't make every sentence longer either: the aim is variation and continuity, not a target length.
+- **Say it like a person.** Contractions, plain words, concrete examples. No textbook definitions ("X refers to…"), no "Now," / "So," / "But," / "Here's the thing" openers, no invented suspense, no influencer energy, and at most one question (the hook).
+- **Don't force a formula.** Pick the order the topic wants (situation → implication, problem → cause, mechanism → consequence, analogy → what it explains), and don't make every scene open or close alike.
+- **Budget.** If the connected version runs long, cut a fact or fold two sentences into one. Don't add transition words to join facts that don't belong together.
+- **Read-aloud pass (same session, no extra call).** Read only the `vo` lines top to bottom, ignoring headlines and ids. Fix only what fails: (1) does each line lead into the next? (2) one explanation, or a list of facts? (3) would a person say it aloud? (4) varied rhythm? (5) any filler or repeats? (6) does the gist resolve the hook's question? (7) still in budget and accurate? Rewrite just the sentences and seams that fail, then re-check that every beat's `on` word is still in its scene's `vo`. `npm run validate` also warns on the mechanical symptoms (staccato runs, repeated openers, filler, cold scene openings), so treat those warnings as real.
 
 ### 4. Make the visual plan, then pick the visuals (menus only)
 - **Visual plan first (SCRIPT-FORMAT §3b), before writing scenes:** decide the topic's **1–2 core diagrams** (the spine; it can be built up over up to 5 scenes with `stage.reuse`), then add another template only where the idea genuinely changes kind (a comparison, a rule/fork, an analogy, levels). Use only the diagram kinds the topic has; a single-mechanism topic can be one evolving diagram plus an analogy. Never add a template to tick it off. Write the plan in `visual_plan` (≤300 characters), e.g. `"Spine: one FlowDiagram (app box splits into services, then one fails alone) over 4 scenes. Split for the comparison, Decision for when to pick which, Analogy for the restaurant."`
@@ -66,7 +76,7 @@ npm run music:assign -- <nnn>        # random theme track, never the previous ep
 npm run look:assign -- <nnn>         # two motion recipes (episodes/looks.json), not the last 3 episodes'; Part 2 reuses Part 1's
 npm run validate -- <nnn>
 ```
-Fix every `✖` error and re-run until it says `✔ PASS`. Warnings are fine if you can justify them.
+Fix every `✖` error and re-run until it says `✔ PASS`. Warnings are fine if you can justify them, except the narration ones (see 3b): rewrite those lines.
 
 ### 7. Log it
 - New terms that might be mispronounced (product names, acronyms) → add rows to `episodes/pronunciations.md` with status `to check`.

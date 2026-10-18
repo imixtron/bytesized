@@ -15,7 +15,7 @@ Current state and open items: **[STATUS.md](STATUS.md)**. Human to-dos: **[TASKS
 | "Make an episode about X", "script X", a topic or notes | **`/script`** (`.claude/skills/script/SKILL.md`), then stop for approval, then **`/video`** |
 | "Render / voice / storyboard / finish episode N" | **`/video`** (`.claude/skills/video/SKILL.md`) |
 | Change the look, layout, colours, motion or sounds | Propose a **versioned change** to `brand/design-language/DESIGN-LANGUAGE.md` + `tokens.json` (v1.11 → v1.12). Show a render. Apply only after approval |
-| Change script rules or structure | Propose a versioned change to `episodes/SCRIPT-FORMAT.md` (v1.6 → v1.7). Apply only after approval |
+| Change script rules or structure | Propose a versioned change to `episodes/SCRIPT-FORMAT.md` (v1.7 → v1.8). Apply only after approval |
 | New logo, music or sound | Put it in `assets/<asset_type>/…` and register it (logos: `SOURCE.md` + `derived/node.png`; audio: `library.json`) |
 | "I subscribed to ElevenLabs" | Walk through TASKS.md → "After subscribing", in order |
 | "Publish episode N" | `npm run render:final -- N`, then write `upload.md` (see `/video` step 5) |
@@ -108,7 +108,7 @@ Log approvals ("approved by Imad in session"), changes requested, credits spent,
 |---|---|
 | Look, layout, motion, audio rules (v1.11) | `brand/design-language/DESIGN-LANGUAGE.md` |
 | Every value the engine uses | `brand/design-language/tokens.json` |
-| Episode rules, `episode.yaml` format, menus, validation (v1.6) | `episodes/SCRIPT-FORMAT.md` |
+| Episode rules, `episode.yaml` format, menus, validation (v1.7) | `episodes/SCRIPT-FORMAT.md` |
 | Reference episode (approved pilot) | `episodes/001-what-is-system-design/episode.yaml` |
 | Engine commands and architecture | `engine/README.md` |
 | Episode statuses | `episodes/INDEX.md` |

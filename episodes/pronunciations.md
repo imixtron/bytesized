@@ -12,3 +12,6 @@ Tech terms the voiceover says wrong (or might). Add them **as they come up**: wh
 | NGINX | "engine-X" | 007 (read as "N-G-I-N-X") | **fixed** via `episodes/pronunciations.json` (`"NGINX": "engine-x"`) |
 | HAProxy | "H-A-proxy" | 007 | to check |
 | AWS ALB | spelled out: "A-W-S A-L-B" | 007 | to check |
+| CDN | spelled out: "C-D-N" | 008 | to check |
+| Akamai | "AH-kuh-my" | 008 | to check |
+| Cloudflare, Fastly | read as words | 008 | to check |

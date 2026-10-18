@@ -66,6 +66,14 @@
         "snap"
       ],
       "date": "2026-10-17"
+    },
+    {
+      "episode": "008-what-is-a-cdn",
+      "recipes": [
+        "slam",
+        "draw"
+      ],
+      "date": "2026-10-18"
     }
   ]
 }

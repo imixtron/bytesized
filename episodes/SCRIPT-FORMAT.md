@@ -1,6 +1,7 @@
-# Bytesized Script Format — v1.6
+# Bytesized Script Format — v1.7
 
-> **v1.6, locked (approved by Imad 2026-10-12): variety plan v2.** Every episode gets a **look** (two motion recipes, `npm run look:assign`), scenes can set `transition` / `enter` / `camera`, 25 templates are on the menu, and variety is measured by **fingerprints** (template · entrance · transition · camera), not template names alone. Hard fails apply to `format: "1.6"` scripts (§4); older formats keep their warnings. Changes need a versioned update with explicit approval.
+> **v1.7, locked (approved by Imad 2026-10-18): narration reads as one speech.** The tone line no longer asks for "short sentences"; §1 gains the *Narration reads as one speech* rule, checked by warning-only validator rules (`engine/src/episode/narration.ts`). The word budget follows measured voiceovers (~2.2 words/s), and breakdown scenes may run to 10s so a connected sentence isn't chopped. No schema change: scripts keep `format: "1.6"`. Changes need a versioned update with explicit approval.
+> v1.6 (approved by Imad 2026-10-12): variety plan v2. Every episode gets a **look** (two motion recipes, `npm run look:assign`), scenes can set `transition` / `enter` / `camera`, 25 templates are on the menu, and variety is measured by **fingerprints** (template · entrance · transition · camera), not template names alone. Hard fails apply to `format: "1.6"` scripts (§4); older formats keep their warnings. Changes need a versioned update with explicit approval.
 > v1.5.1 (2026-10-12, folded into v1.6): templates `Timeline`, `MetricChart`, `Snippet`, `Stat` are built (design language v1.8). `Zoom`, `StateMachine`, `Tree`, `Transform` are built (v1.9), and `Ring`, `Cells`, `Stream`, `Cluster` (v1.10). The motion fields `transition` (cut, push, whip, flip, stack, dive, iris), `enter` (pop, drop, snap, stamp, wipe) and `camera` (still, drift, rack) are optional per scene (v1.7); the full variety rules arrive with v1.6.
 > v1.5: **topic-first visual plan**. Each script decides its 1–2 core diagrams (the "spine") before writing scenes and records them in `visual_plan`; extra templates only where the idea changes kind. Reuse chains up to 5 scenes; variety rules (§4) now guard both extremes. v1.4 approved 2026-10-06.
 > v1.4: an optional **BigPicture** scene (a pull-back over the episode's own diagrams) just before the gist, for whole-system topics. v1.3 approved 2026-10-06.
@@ -17,10 +18,10 @@ Every episode is one `episode.yaml`. The **Script Creator** (`/script`) writes i
 | Rule | Value |
 |---|---|
 | Total length | **80–90s**, including the ~1–2s branding sting. **Never over 90s.** Aim for **85s** so text-to-speech variance stays inside the window |
-| Voiceover words | **Guidance only, never a rejection rule.** Roughly `2.5 × (target − 1.5)` words, so ~195 words for 80s, ~210 for 85s and ~220 for 90s. `/script` sizes the script to its chosen target |
+| Voiceover words | **Guidance only, never a rejection rule.** Roughly `2.2 × (target − 1.5)` words, so ~175 words for 80s, ~185 for 85s and ~195 for 90s (measured voiceovers run 2.1–2.5 words/s, depending on the voice and the number of scenes). `/script` sizes the script to its chosen target |
 | Hard check | The **real voiceover length** measured after text-to-speech must be 80–90s. If it's outside that, trim or extend only the affected scenes' lines and re-voice just those scenes |
 | Scenes | 9–15 content scenes (the branding sting is added automatically) |
-| Scene length | 3–8s each |
+| Scene length | 3–8s each; a breakdown scene may run to 10s when its line is one connected thought |
 | Beats | A visual change every **1.5–2s**, each tied to a word in the voiceover |
 
 ### Structure (always in this order)
@@ -40,7 +41,8 @@ Every episode is one `episode.yaml`. The **Script Creator** (`/script`) writes i
 - **The script accent** (`accent:`) can be used at most once per episode.
 - **At most one hero node** on screen at a time, and it should be the episode's topic.
 - **No emojis in `vo`**, since the voiceover would read them out. Write numbers the way they should be spoken ("two million").
-- **Tone:** playful and a bit cheeky, with short sentences.
+- **Tone:** a knowledgeable engineer explaining something to a curious friend: conversational, a little playful, never theatrical.
+- **Narration reads as one speech.** The `vo` lines, read in order with headlines ignored, must sound like one person developing a thought: each sentence follows from the last (cause, consequence, contrast, a pronoun that points back, the answer to something just raised), breakdown scenes open by continuing rather than restarting, and rhythm is mixed, with short sentences kept for the points they land. No filler openers (Now, So, But, Here's the thing), textbook definitions, invented suspense or influencer energy; at most one question. Outline points are what to cover, not one scene each or the order to say them in. The validator warns on the mechanical symptoms (`engine/src/episode/narration.ts`, §4); `/script` step 3b is the full method.
 
 ### Third-party logos (e.g. Netflix, Uber, AWS)
 Allowed **as a reference**, to show clearly *who we're talking about*, never to suggest that brand made or sponsored the video.
@@ -279,4 +281,4 @@ The spine can be built up over **up to 5 scenes** with `stage.reuse` (up to 3 fo
 
 **Variety for `format: "1.3"`–`"1.4"` (unchanged; hard fails for 1.3+, warnings for older):** fewer than 4 different templates in the breakdown (5+ reads better: warning), one template in more than 3 scenes (continuations count), or the same template order as the previous episode.
 
-**Other warnings:** word count far from the target length · a scene over 8s · fewer beats than one per 2s. The repeat-style warnings above apply to every format. Warnings, not failures: a transition that cannot play (`whip` / `flip` / `stack` / `dive` / `iris` on the first scene or straight after the hook).
+**Other warnings:** word count far from the target length · a scene over 8s (10s for breakdown scenes) · the narration checks of §1 (`narration.ts`: staccato runs, too few developed sentences, repeated or filler openers, textbook phrasing, more than one question, breakdown scenes that open cold) · fewer beats than one per 2s. The repeat-style warnings above apply to every format. Warnings, not failures: a transition that cannot play (`whip` / `flip` / `stack` / `dive` / `iris` on the first scene or straight after the hook).

@@ -30,7 +30,7 @@
       "note": "replaced by Matilda 2026-10-07; used by 002"
     }
   ],
-  "next": 3,
+  "next": 0,
   "history": [
     {
       "episode": "001-what-is-system-design",
@@ -66,6 +66,11 @@
       "episode": "007-load-balancing-basics",
       "voice": "Jessica",
       "date": "2026-10-17"
+    },
+    {
+      "episode": "008-what-is-a-cdn",
+      "voice": "Chris",
+      "date": "2026-10-18"
     }
   ]
 }

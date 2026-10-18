@@ -2,6 +2,7 @@
 // Pure functions: the CLI (scripts/validate.ts) and the engine both call validate().
 import { BRAND_NODE_TEMPLATES, PARTS, type Episode, type NodeSpec, type Scene } from "./schema";
 import { findWord, tokenize } from "./words";
+import { narrationIssues } from "./narration";
 import { buildTimeline, type MeasuredWords } from "../timing/timeline";
 import { tokens } from "../theme/tokens";
 import { ICONS } from "../parts/icons";
@@ -124,13 +125,17 @@ export function validate(ep: Episode, opts: ValidateOptions = {}): Issue[] {
     if (ep.series.part === 2 && !ep.series.recap) err("series", "part 2 needs a recap");
   }
 
+  // Narration read as one piece (SCRIPT-FORMAT §1): warnings only
+  for (const n of narrationIssues(ep.scenes)) warn(n.where, n.msg);
+
   // Length (hard check only once the voiceover is measured; estimate → warning)
   const tl = buildTimeline(ep, opts.measured);
   const total = tl.totalFrames / tokens.canvas.fps;
   if (total < 80 || total > 90) (opts.measured ? err : warn)("episode", `length ${total.toFixed(1)}s is outside 80–90s${opts.measured ? " (measured voiceover)" : " (estimate)"}`);
   for (const ts of tl.scenes) {
     const d = ts.duration / tokens.canvas.fps;
-    if (d > 8) warn(ts.scene.id, `scene is ${d.toFixed(1)}s (guide: 3–8s)`);
+    const maxSec = ts.scene.part === "breakdown" ? 10 : 8; // v1.7: a breakdown line that is one connected thought may run to 10s
+    if (d > maxSec) warn(ts.scene.id, `scene is ${d.toFixed(1)}s (guide: 3–${maxSec}s)`);
     if (ts.beats.length < Math.floor(d / 2)) warn(ts.scene.id, `${ts.beats.length} beats in ${d.toFixed(1)}s (guide: one every 1.5–2s)`);
   }
   // Motion variety (SCRIPT-FORMAT v1.6): hard fails for `format` 1.6 and later, warnings for older scripts

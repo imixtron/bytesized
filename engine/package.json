@@ -11,6 +11,7 @@
     "render": "npm run sync && remotion render",
     "still": "npm run sync && remotion still",
     "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts",
     "voices": "tsx scripts/voices.ts",
     "voice:assign": "tsx scripts/voice-assign.ts",
     "music:assign": "tsx scripts/music-assign.ts",
