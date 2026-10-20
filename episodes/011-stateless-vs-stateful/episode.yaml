@@ -1,0 +1,231 @@
+# Episode 011. Script approved 2026-10-20 (Discord 011:script:r1)
+# Notion row #11 · Architecture · Junior / Entry · target ~85s (script format v1.8, format field 1.6)
+id: 11
+slug: stateless-vs-stateful
+title: "Stateless vs Stateful Services"
+topic: stateless vs stateful services, what state is, why a server that
+  remembers breaks behind a load balancer, sticky sessions, moving state into
+  Redis, a database or a signed token, scaling stateless copies, and what has to
+  stay stateful
+target_sec: 85
+format: "1.6"
+visual_plan: "Hook: Slider wipe stateless → stateful. Spine: one FlowDiagram (cart on
+  server 1, the balancer sends you elsewhere, sticky sessions, a shared store) over 4 scenes.
+  Analogy for the barista vs vending machine, Fleet for scaling identical
+  copies, Tiers spectrum for which things must stay stateful."
+
+brands: []
+
+voice: { voice_id: cgSgspJ2msm6clMCkdW9, speed: 0.93, name: Jessica }
+
+music:
+  track: bytesized-theme-3
+
+look:
+  recipes:
+    - snap
+    - drop
+
+scenes:
+  # ---------- HOOK ----------
+  - id: hook
+    part: hook
+    # storyboard r1 (Imad): not the Hook template + crowd again (006–010 all open that way).
+    # A Slider wipe instead: the divider sweeps from stateless to stateful and holds there,
+    # handing over to the idea scene ("State is memory…").
+    template: Slider
+    vo: "Stateless servers scale almost effortlessly, but only stateful ones
+      remember who you are, and nearly every app you use needs both."
+    headline: { text: "Remember, or scale?", accent: "scale?" }
+    stage:
+      before:
+        id: sl
+        title: stateless
+        note: "forgets you, copies freely"
+        result: "scales"
+        nodes:
+          - { id: sl-u, type: phone, family: solid, label: you }
+          - { id: sl-s, type: server, label: "any copy" }
+      after:
+        id: sf
+        title: stateful
+        note: "knows you, hard to copy"
+        result: "recalls"
+        nodes:
+          - { id: sf-u, type: phone, family: solid, label: you }
+          - { id: sf-d, type: db, family: hero, label: "your session" }
+    beats:
+      - { on: "Stateless", do: appear, target: sl }
+      - { on: "scale", do: highlight, target: sl }
+      - { on: "stateful", do: reveal, target: sf }
+      - { on: "remember", do: highlight, target: sf }
+      - { on: "both", do: highlight, target: sf }
+
+  # ---------- BRANDING (automatic, ~1.5s) ----------
+
+  # ---------- IDEA: barista vs vending machine (Analogy) ----------
+  - id: idea
+    part: idea
+    template: Analogy
+    vo: "State is memory of what came before: a barista who knows your usual is
+      stateful, a vending machine that asks every time is stateless."
+    headline: { text: "Your usual, please", accent: "usual," }
+    stage:
+      rows:
+        - { id: r1, icon: disk, key: State, value: memory of before }
+        - { id: r2, icon: user, key: Barista, value: knows your usual }
+        - { id: r3, icon: cpu, key: Vending machine, value: asks every time }
+    beats:
+      - { on: "memory", do: reveal, target: r1 }
+      - { on: "barista", do: reveal, target: r2 }
+      - { on: "stateful", do: highlight, target: r2 }
+      - { on: "vending", do: reveal, target: r3 }
+      - { on: "stateless", do: highlight, target: r3 }
+
+  # ---------- BREAKDOWN 1-4: the cart (FlowDiagram over 4 scenes) ----------
+  - id: cart
+    part: breakdown
+    template: FlowDiagram
+    vo: "Keep that memory inside a web server, like your shopping cart, and it's
+      fine until a load balancer spreads you across three servers."
+    stage:
+      layers: [ [ u ], [ lb ], [ s1, s2, s3 ], [ st ] ]
+      nodes:
+        - { id: u, type: phone, family: solid, label: you }
+        - { id: lb, type: lb, label: balancer }
+        - { id: s1, type: server, label: "server 1" }
+        - { id: s2, type: server, label: "server 2" }
+        - { id: s3, type: server, label: "server 3" }
+        - { id: st, type: db, label: "shared store" }
+      links:
+        [
+          [ u, lb ],
+          [ lb, s1 ],
+          [ lb, s2 ],
+          [ lb, s3 ],
+          [ s1, st ],
+          [ s2, st ],
+          [ s3, st ]
+        ]
+    beats:
+      - { on: "Keep", do: appear, target: u }
+      - { on: "Keep", do: dim, target: st }
+      - { on: "server", do: appear, target: s1 }
+      - { on: "cart", do: state, target: s1, args: { to: active } }
+      - { on: "balancer", do: appear, target: lb }
+      - { on: "three", do: appear, target: [ s2, s3 ] }
+      - {
+          on: "servers",
+          do: send,
+          target: [ s1, s2, s3 ],
+          args: { kind: request, count: 1 }
+        }
+
+  - id: lost
+    part: breakdown
+    template: FlowDiagram
+    vo: "Then your next click lands on a server that's never seen your cart, and if
+      the first one crashes, the cart disappears with it."
+    headline: { text: "Wrong server, empty cart", accent: "empty" }
+    stage:
+      reuse: cart
+    beats:
+      - { on: "click", do: send, target: s2, args: { kind: request, count: 1 } }
+      - { on: "never", do: shake, target: s2 }
+      - { on: "first", do: highlight, target: s1 }
+      - { on: "crashes", do: state, target: s1, args: { to: down } }
+      - { on: "disappears", do: shake, target: s1 }
+
+  - id: sticky
+    part: breakdown
+    template: FlowDiagram
+    vo: "One common patch is sticky sessions, pinning you to the same server every
+      time, but then its crashes and its traffic jams become yours too."
+    headline: { text: "Stuck to one", accent: "Stuck" }
+    stage:
+      reuse: cart
+    beats:
+      - { on: "patch", do: state, target: s1, args: { to: recovered } }
+      - { on: "sticky", do: highlight, target: s1 }
+      - { on: "pinning", do: send, target: s1, args: { kind: request, count: 2 } }
+      - { on: "crashes", do: shake, target: s1 }
+      - { on: "jams", do: state, target: s1, args: { to: overloaded } }
+
+  - id: shared
+    part: breakdown
+    template: FlowDiagram
+    vo: "The real fix moves state out of the servers, into Redis, a database or a
+      signed token, so every server sees exactly the same cart."
+    headline: { text: "Move the memory out", accent: "out" }
+    stage:
+      reuse: cart
+    beats:
+      - { on: "fix", do: state, target: s1, args: { to: recovered } }
+      - { on: "Redis", do: undim, target: st }
+      - { on: "database", do: highlight, target: st }
+      - { on: "every", do: send, target: st, args: { kind: request, count: 3 } }
+      - { on: "same", do: undim, target: [ s1, s2, s3 ] }
+
+  # ---------- BREAKDOWN 5: identical copies (Fleet, no headline) ----------
+  - id: copies
+    part: breakdown
+    template: Fleet
+    vo: "With nothing left to remember, the servers become interchangeable: a
+      traffic spike just means adding copies, and any copy can take any request."
+    stage:
+      pods:
+        - { id: p1, label: "copy 1" }
+        - { id: p2, label: "copy 2" }
+        - { id: p3, label: "copy 3" }
+        - { id: p4, label: "copy 4" }
+        - { id: p5, label: "copy 5" }
+        - { id: p6, label: "copy 6" }
+      load: { id: load, label: traffic, perPod: 10, max: 100 }
+    beats:
+      - { on: "nothing", do: reveal, target: p1 }
+      - { on: "servers", do: count, target: load, args: { to: 12 } }
+      - { on: "interchangeable", do: reveal, target: p2 }
+      - { on: "spike", do: count, target: load, args: { to: 55 } }
+      - { on: "adding", do: reveal, target: p3 }
+      - { on: "copies", do: reveal, target: p4 }
+      - { on: "copy", do: reveal, target: p5 }
+      - { on: "request", do: reveal, target: p6 }
+
+  # ---------- BREAKDOWN 6: what stays stateful (Tiers spectrum) ----------
+  - id: spectrum
+    part: breakdown
+    template: Tiers
+    vo: "Web APIs fit that easily, but databases, game servers and live chat can't
+      hand their state away, so they stay stateful."
+    headline: { text: "Some must remember", accent: "remember" }
+    stage:
+      variant: spectrum
+      ends: [ stateless, stateful ]
+      tiers:
+        - { id: api, icon: gateway, title: "web API", sub: "any server" }
+        - { id: chat, icon: internet, title: "live chat", sub: "open connection" }
+        - { id: game, icon: user, title: "game server", sub: "holds the match" }
+        - { id: dbt, icon: db, title: "database", sub: "is the state" }
+    beats:
+      - { on: "APIs", do: reveal, target: api }
+      - { on: "databases", do: reveal, target: dbt }
+      - { on: "game", do: reveal, target: game }
+      - { on: "chat", do: reveal, target: chat }
+      - { on: "stateful", do: highlight, target: dbt }
+
+  # ---------- GIST (no headline) ----------
+  - id: gist
+    part: gist
+    template: GistCard
+    vo: "That's the gist: stateless servers up front, stateful storage behind them.
+      Follow for more."
+    stage:
+      text: "Stateless in front. State behind."
+      accent: "behind."
+    beats:
+      - { on: "gist", do: appear, target: card }
+      - { on: "front", do: highlight, target: card }
+      - { on: "storage", do: highlight, target: card }
+      - { on: "Follow", do: highlight, target: card }
+
+# No outro: the video ends on the gist card and loops back into the hook.

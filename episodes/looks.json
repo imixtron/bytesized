@@ -90,6 +90,14 @@
         "slam"
       ],
       "date": "2026-10-19"
+    },
+    {
+      "episode": "011-stateless-vs-stateful",
+      "recipes": [
+        "snap",
+        "drop"
+      ],
+      "date": "2026-10-20"
     }
   ]
 }

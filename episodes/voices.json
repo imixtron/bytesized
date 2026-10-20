@@ -30,7 +30,7 @@
       "note": "replaced by Matilda 2026-10-07; used by 002"
     }
   ],
-  "next": 2,
+  "next": 3,
   "history": [
     {
       "episode": "001-what-is-system-design",
@@ -81,6 +81,11 @@
       "episode": "010-session-management",
       "voice": "Matilda",
       "date": "2026-10-19"
+    },
+    {
+      "episode": "011-stateless-vs-stateful",
+      "voice": "Jessica",
+      "date": "2026-10-20"
     }
   ]
 }

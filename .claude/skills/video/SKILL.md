@@ -68,7 +68,7 @@ npm run render:final -- <nnn>   # → episodes/<nnn-slug>/out/<slug>.mp4
   - 3–5 hashtags (#systemdesign #shorts and topic tags)
   - for a Part 1/2, a link line to the other part
   - if `brands:` is set, the line: *"Not affiliated with or endorsed by <Brand>. Logos are used for identification only."*
-- Render the cover: `npm run cover -- <nnn>` → `episodes/<nnn-slug>/out/cover.png` (the title + the episode's diagrams; its BigPicture panels if it has one). Look at it, and add a line to `upload.md`: `Cover: out/cover.png`. It's generated, so it isn't committed.
+- The cover is rendered by `render:final` (or alone with `npm run cover -- <nnn>`) → `episodes/<nnn-slug>/out/cover.png` (the title + the episode's diagrams; its BigPicture panels if it has one). Look at it, and add a line to `upload.md`: `Cover: out/cover.png`. `render:final` also makes `out/gist.png` (the settled gist card; alone: `npm run gist -- <nnn>`): look at it and add `Gist image: out/gist.png`. Both are generated, so they aren't committed.
 - Set INDEX status to `final rendered`. After Imad posts it, set it to `published`.
 
 ### 6. Wrap up

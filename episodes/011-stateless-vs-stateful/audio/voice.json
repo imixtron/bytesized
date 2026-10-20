@@ -1,0 +1,1090 @@
+{
+  "voice": "Jessica",
+  "voice_id": "cgSgspJ2msm6clMCkdW9",
+  "model": "eleven_multilingual_v2",
+  "plan": "paid",
+  "generated": "2026-10-20T14:53:13.879Z",
+  "scenes": {
+    "hook": {
+      "file": "hook.mp3",
+      "hash": "be28dd2ed6",
+      "text": "Stateless servers scale almost effortlessly, but only stateful ones remember who you are, and nearly every app you use needs both.",
+      "duration": 8.777,
+      "words": [
+        {
+          "text": "Stateless",
+          "start": 0,
+          "end": 0.557
+        },
+        {
+          "text": "servers",
+          "start": 0.592,
+          "end": 1.091
+        },
+        {
+          "text": "scale",
+          "start": 1.138,
+          "end": 1.533
+        },
+        {
+          "text": "almost",
+          "start": 1.579,
+          "end": 2.009
+        },
+        {
+          "text": "effortlessly,",
+          "start": 2.078,
+          "end": 3.077
+        },
+        {
+          "text": "but",
+          "start": 3.379,
+          "end": 3.529
+        },
+        {
+          "text": "only",
+          "start": 3.576,
+          "end": 3.82
+        },
+        {
+          "text": "stateful",
+          "start": 3.889,
+          "end": 4.296
+        },
+        {
+          "text": "ones",
+          "start": 4.365,
+          "end": 4.598
+        },
+        {
+          "text": "remember",
+          "start": 4.656,
+          "end": 4.969
+        },
+        {
+          "text": "who",
+          "start": 5.004,
+          "end": 5.108
+        },
+        {
+          "text": "you",
+          "start": 5.166,
+          "end": 5.259
+        },
+        {
+          "text": "are,",
+          "start": 5.364,
+          "end": 5.735
+        },
+        {
+          "text": "and",
+          "start": 5.898,
+          "end": 6.037
+        },
+        {
+          "text": "nearly",
+          "start": 6.084,
+          "end": 6.351
+        },
+        {
+          "text": "every",
+          "start": 6.42,
+          "end": 6.653
+        },
+        {
+          "text": "app",
+          "start": 6.722,
+          "end": 6.908
+        },
+        {
+          "text": "you",
+          "start": 6.966,
+          "end": 7.036
+        },
+        {
+          "text": "use",
+          "start": 7.129,
+          "end": 7.361
+        },
+        {
+          "text": "needs",
+          "start": 7.396,
+          "end": 7.605
+        },
+        {
+          "text": "both.",
+          "start": 7.651,
+          "end": 8.777
+        }
+      ],
+      "plan": "paid"
+    },
+    "idea": {
+      "file": "idea.mp3",
+      "hash": "70eef8e28d",
+      "text": "State is memory of what came before: a barista who knows your usual is stateful, a vending machine that asks every time is stateless.",
+      "duration": 10.263,
+      "words": [
+        {
+          "text": "State",
+          "start": 0,
+          "end": 0.43
+        },
+        {
+          "text": "is",
+          "start": 0.476,
+          "end": 0.58
+        },
+        {
+          "text": "memory",
+          "start": 0.673,
+          "end": 0.987
+        },
+        {
+          "text": "of",
+          "start": 1.033,
+          "end": 1.08
+        },
+        {
+          "text": "what",
+          "start": 1.126,
+          "end": 1.254
+        },
+        {
+          "text": "came",
+          "start": 1.289,
+          "end": 1.463
+        },
+        {
+          "text": "before:",
+          "start": 1.486,
+          "end": 2.136
+        },
+        {
+          "text": "a",
+          "start": 3.007,
+          "end": 3.053
+        },
+        {
+          "text": "barista",
+          "start": 3.111,
+          "end": 3.576
+        },
+        {
+          "text": "who",
+          "start": 3.622,
+          "end": 3.727
+        },
+        {
+          "text": "knows",
+          "start": 3.773,
+          "end": 3.994
+        },
+        {
+          "text": "your",
+          "start": 4.04,
+          "end": 4.156
+        },
+        {
+          "text": "usual",
+          "start": 4.249,
+          "end": 4.702
+        },
+        {
+          "text": "is",
+          "start": 4.83,
+          "end": 4.934
+        },
+        {
+          "text": "stateful,",
+          "start": 4.981,
+          "end": 5.77
+        },
+        {
+          "text": "a",
+          "start": 6.177,
+          "end": 6.246
+        },
+        {
+          "text": "vending",
+          "start": 6.339,
+          "end": 6.629
+        },
+        {
+          "text": "machine",
+          "start": 6.676,
+          "end": 7.024
+        },
+        {
+          "text": "that",
+          "start": 7.059,
+          "end": 7.175
+        },
+        {
+          "text": "asks",
+          "start": 7.233,
+          "end": 7.663
+        },
+        {
+          "text": "every",
+          "start": 7.755,
+          "end": 7.999
+        },
+        {
+          "text": "time",
+          "start": 8.057,
+          "end": 8.371
+        },
+        {
+          "text": "is",
+          "start": 8.417,
+          "end": 8.51
+        },
+        {
+          "text": "stateless.",
+          "start": 8.545,
+          "end": 10.263
+        }
+      ],
+      "plan": "paid"
+    },
+    "cart": {
+      "file": "cart.mp3",
+      "hash": "3f033881d6",
+      "text": "Keep that memory inside a web server, like your shopping cart, and it's fine until a load balancer spreads you across three servers.",
+      "duration": 8.034,
+      "words": [
+        {
+          "text": "Keep",
+          "start": 0,
+          "end": 0.244
+        },
+        {
+          "text": "that",
+          "start": 0.29,
+          "end": 0.418
+        },
+        {
+          "text": "memory",
+          "start": 0.488,
+          "end": 0.859
+        },
+        {
+          "text": "inside",
+          "start": 0.917,
+          "end": 1.219
+        },
+        {
+          "text": "a",
+          "start": 1.242,
+          "end": 1.265
+        },
+        {
+          "text": "web",
+          "start": 1.312,
+          "end": 1.463
+        },
+        {
+          "text": "server,",
+          "start": 1.533,
+          "end": 2.009
+        },
+        {
+          "text": "like",
+          "start": 2.067,
+          "end": 2.229
+        },
+        {
+          "text": "your",
+          "start": 2.252,
+          "end": 2.357
+        },
+        {
+          "text": "shopping",
+          "start": 2.38,
+          "end": 2.694
+        },
+        {
+          "text": "cart,",
+          "start": 2.74,
+          "end": 3.193
+        },
+        {
+          "text": "and",
+          "start": 3.669,
+          "end": 3.855
+        },
+        {
+          "text": "it's",
+          "start": 3.913,
+          "end": 4.04
+        },
+        {
+          "text": "fine",
+          "start": 4.11,
+          "end": 4.412
+        },
+        {
+          "text": "until",
+          "start": 4.447,
+          "end": 4.644
+        },
+        {
+          "text": "a",
+          "start": 4.702,
+          "end": 4.725
+        },
+        {
+          "text": "load",
+          "start": 4.783,
+          "end": 4.981
+        },
+        {
+          "text": "balancer",
+          "start": 5.027,
+          "end": 5.503
+        },
+        {
+          "text": "spreads",
+          "start": 5.596,
+          "end": 5.909
+        },
+        {
+          "text": "you",
+          "start": 5.944,
+          "end": 6.026
+        },
+        {
+          "text": "across",
+          "start": 6.084,
+          "end": 6.42
+        },
+        {
+          "text": "three",
+          "start": 6.455,
+          "end": 6.653
+        },
+        {
+          "text": "servers.",
+          "start": 6.699,
+          "end": 8.034
+        }
+      ],
+      "plan": "paid"
+    },
+    "lost": {
+      "file": "lost.mp3",
+      "hash": "2ad7b77181",
+      "text": "Then your next click lands on a server that's never seen your cart, and if the first one crashes, the cart disappears with it.",
+      "duration": 7.848,
+      "words": [
+        {
+          "text": "Then",
+          "start": 0,
+          "end": 0.209
+        },
+        {
+          "text": "your",
+          "start": 0.267,
+          "end": 0.395
+        },
+        {
+          "text": "next",
+          "start": 0.453,
+          "end": 0.72
+        },
+        {
+          "text": "click",
+          "start": 0.813,
+          "end": 1.08
+        },
+        {
+          "text": "lands",
+          "start": 1.173,
+          "end": 1.474
+        },
+        {
+          "text": "on",
+          "start": 1.521,
+          "end": 1.591
+        },
+        {
+          "text": "a",
+          "start": 1.637,
+          "end": 1.66
+        },
+        {
+          "text": "server",
+          "start": 1.718,
+          "end": 2.055
+        },
+        {
+          "text": "that's",
+          "start": 2.113,
+          "end": 2.334
+        },
+        {
+          "text": "never",
+          "start": 2.426,
+          "end": 2.647
+        },
+        {
+          "text": "seen",
+          "start": 2.705,
+          "end": 2.868
+        },
+        {
+          "text": "your",
+          "start": 2.902,
+          "end": 3.007
+        },
+        {
+          "text": "cart,",
+          "start": 3.065,
+          "end": 3.541
+        },
+        {
+          "text": "and",
+          "start": 3.843,
+          "end": 3.982
+        },
+        {
+          "text": "if",
+          "start": 4.029,
+          "end": 4.098
+        },
+        {
+          "text": "the",
+          "start": 4.145,
+          "end": 4.214
+        },
+        {
+          "text": "first",
+          "start": 4.261,
+          "end": 4.47
+        },
+        {
+          "text": "one",
+          "start": 4.516,
+          "end": 4.644
+        },
+        {
+          "text": "crashes,",
+          "start": 4.679,
+          "end": 5.399
+        },
+        {
+          "text": "the",
+          "start": 5.526,
+          "end": 5.631
+        },
+        {
+          "text": "cart",
+          "start": 5.677,
+          "end": 5.851
+        },
+        {
+          "text": "disappears",
+          "start": 5.886,
+          "end": 6.293
+        },
+        {
+          "text": "with",
+          "start": 6.327,
+          "end": 6.444
+        },
+        {
+          "text": "it.",
+          "start": 6.502,
+          "end": 7.848
+        }
+      ],
+      "plan": "paid"
+    },
+    "sticky": {
+      "file": "sticky.mp3",
+      "hash": "b6859ce0bc",
+      "text": "One common patch is sticky sessions, pinning you to the same server every time, but then its crashes and its traffic jams become yours too.",
+      "duration": 9.474,
+      "words": [
+        {
+          "text": "One",
+          "start": 0,
+          "end": 0.313
+        },
+        {
+          "text": "common",
+          "start": 0.372,
+          "end": 0.662
+        },
+        {
+          "text": "patch",
+          "start": 0.72,
+          "end": 1.045
+        },
+        {
+          "text": "is",
+          "start": 1.103,
+          "end": 1.184
+        },
+        {
+          "text": "sticky",
+          "start": 1.242,
+          "end": 1.556
+        },
+        {
+          "text": "sessions,",
+          "start": 1.614,
+          "end": 2.392
+        },
+        {
+          "text": "pinning",
+          "start": 2.519,
+          "end": 2.821
+        },
+        {
+          "text": "you",
+          "start": 2.879,
+          "end": 2.972
+        },
+        {
+          "text": "to",
+          "start": 3.042,
+          "end": 3.111
+        },
+        {
+          "text": "the",
+          "start": 3.17,
+          "end": 3.239
+        },
+        {
+          "text": "same",
+          "start": 3.297,
+          "end": 3.599
+        },
+        {
+          "text": "server",
+          "start": 3.657,
+          "end": 3.982
+        },
+        {
+          "text": "every",
+          "start": 4.052,
+          "end": 4.249
+        },
+        {
+          "text": "time,",
+          "start": 4.296,
+          "end": 4.888
+        },
+        {
+          "text": "but",
+          "start": 5.294,
+          "end": 5.445
+        },
+        {
+          "text": "then",
+          "start": 5.468,
+          "end": 5.596
+        },
+        {
+          "text": "its",
+          "start": 5.642,
+          "end": 5.759
+        },
+        {
+          "text": "crashes",
+          "start": 5.817,
+          "end": 6.304
+        },
+        {
+          "text": "and",
+          "start": 6.362,
+          "end": 6.444
+        },
+        {
+          "text": "its",
+          "start": 6.478,
+          "end": 6.606
+        },
+        {
+          "text": "traffic",
+          "start": 6.653,
+          "end": 6.989
+        },
+        {
+          "text": "jams",
+          "start": 7.036,
+          "end": 7.361
+        },
+        {
+          "text": "become",
+          "start": 7.419,
+          "end": 7.674
+        },
+        {
+          "text": "yours",
+          "start": 7.709,
+          "end": 7.988
+        },
+        {
+          "text": "too.",
+          "start": 8.057,
+          "end": 9.474
+        }
+      ],
+      "plan": "paid"
+    },
+    "shared": {
+      "file": "shared.mp3",
+      "hash": "bd28f628fd",
+      "text": "The real fix moves state out of the servers, into Redis, a database or a signed token, so every server sees exactly the same cart.",
+      "duration": 9.056,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.139
+        },
+        {
+          "text": "real",
+          "start": 0.209,
+          "end": 0.406
+        },
+        {
+          "text": "fix",
+          "start": 0.476,
+          "end": 0.755
+        },
+        {
+          "text": "moves",
+          "start": 0.824,
+          "end": 1.045
+        },
+        {
+          "text": "state",
+          "start": 1.068,
+          "end": 1.37
+        },
+        {
+          "text": "out",
+          "start": 1.393,
+          "end": 1.498
+        },
+        {
+          "text": "of",
+          "start": 1.521,
+          "end": 1.567
+        },
+        {
+          "text": "the",
+          "start": 1.614,
+          "end": 1.683
+        },
+        {
+          "text": "servers,",
+          "start": 1.73,
+          "end": 2.287
+        },
+        {
+          "text": "into",
+          "start": 2.322,
+          "end": 2.554
+        },
+        {
+          "text": "Redis,",
+          "start": 2.647,
+          "end": 3.309
+        },
+        {
+          "text": "a",
+          "start": 3.611,
+          "end": 3.704
+        },
+        {
+          "text": "database",
+          "start": 3.762,
+          "end": 4.284
+        },
+        {
+          "text": "or",
+          "start": 4.319,
+          "end": 4.412
+        },
+        {
+          "text": "a",
+          "start": 4.458,
+          "end": 4.481
+        },
+        {
+          "text": "signed",
+          "start": 4.528,
+          "end": 4.83
+        },
+        {
+          "text": "token,",
+          "start": 4.888,
+          "end": 5.573
+        },
+        {
+          "text": "so",
+          "start": 5.84,
+          "end": 5.979
+        },
+        {
+          "text": "every",
+          "start": 6.072,
+          "end": 6.293
+        },
+        {
+          "text": "server",
+          "start": 6.351,
+          "end": 6.676
+        },
+        {
+          "text": "sees",
+          "start": 6.745,
+          "end": 7.036
+        },
+        {
+          "text": "exactly",
+          "start": 7.105,
+          "end": 7.581
+        },
+        {
+          "text": "the",
+          "start": 7.628,
+          "end": 7.697
+        },
+        {
+          "text": "same",
+          "start": 7.732,
+          "end": 7.93
+        },
+        {
+          "text": "cart.",
+          "start": 7.988,
+          "end": 9.056
+        }
+      ],
+      "plan": "paid"
+    },
+    "copies": {
+      "file": "copies.mp3",
+      "hash": "83f137c6a6",
+      "text": "With nothing left to remember, the servers become interchangeable: a traffic spike just means adding copies, and any copy can take any request.",
+      "duration": 9.195,
+      "words": [
+        {
+          "text": "With",
+          "start": 0,
+          "end": 0.197
+        },
+        {
+          "text": "nothing",
+          "start": 0.255,
+          "end": 0.499
+        },
+        {
+          "text": "left",
+          "start": 0.546,
+          "end": 0.708
+        },
+        {
+          "text": "to",
+          "start": 0.731,
+          "end": 0.778
+        },
+        {
+          "text": "remember,",
+          "start": 0.836,
+          "end": 1.3
+        },
+        {
+          "text": "the",
+          "start": 1.335,
+          "end": 1.416
+        },
+        {
+          "text": "servers",
+          "start": 1.474,
+          "end": 1.834
+        },
+        {
+          "text": "become",
+          "start": 1.881,
+          "end": 2.148
+        },
+        {
+          "text": "interchangeable:",
+          "start": 2.183,
+          "end": 3.158
+        },
+        {
+          "text": "a",
+          "start": 4.029,
+          "end": 4.098
+        },
+        {
+          "text": "traffic",
+          "start": 4.168,
+          "end": 4.516
+        },
+        {
+          "text": "spike",
+          "start": 4.563,
+          "end": 4.899
+        },
+        {
+          "text": "just",
+          "start": 4.946,
+          "end": 5.132
+        },
+        {
+          "text": "means",
+          "start": 5.178,
+          "end": 5.399
+        },
+        {
+          "text": "adding",
+          "start": 5.433,
+          "end": 5.642
+        },
+        {
+          "text": "copies,",
+          "start": 5.689,
+          "end": 6.339
+        },
+        {
+          "text": "and",
+          "start": 6.362,
+          "end": 6.536
+        },
+        {
+          "text": "any",
+          "start": 6.629,
+          "end": 6.792
+        },
+        {
+          "text": "copy",
+          "start": 6.85,
+          "end": 7.175
+        },
+        {
+          "text": "can",
+          "start": 7.233,
+          "end": 7.349
+        },
+        {
+          "text": "take",
+          "start": 7.384,
+          "end": 7.558
+        },
+        {
+          "text": "any",
+          "start": 7.605,
+          "end": 7.779
+        },
+        {
+          "text": "request.",
+          "start": 7.848,
+          "end": 9.195
+        }
+      ],
+      "plan": "paid"
+    },
+    "spectrum": {
+      "file": "spectrum.mp3",
+      "hash": "127cacc750",
+      "text": "Web APIs fit that easily, but databases, game servers and live chat can't hand their state away, so they stay stateful.",
+      "duration": 9.102,
+      "words": [
+        {
+          "text": "Web",
+          "start": 0,
+          "end": 0.267
+        },
+        {
+          "text": "APIs",
+          "start": 0.36,
+          "end": 1.103
+        },
+        {
+          "text": "fit",
+          "start": 1.173,
+          "end": 1.324
+        },
+        {
+          "text": "that",
+          "start": 1.358,
+          "end": 1.509
+        },
+        {
+          "text": "easily,",
+          "start": 1.579,
+          "end": 2.287
+        },
+        {
+          "text": "but",
+          "start": 2.45,
+          "end": 2.612
+        },
+        {
+          "text": "databases,",
+          "start": 2.659,
+          "end": 3.541
+        },
+        {
+          "text": "game",
+          "start": 3.634,
+          "end": 3.959
+        },
+        {
+          "text": "servers",
+          "start": 4.005,
+          "end": 4.551
+        },
+        {
+          "text": "and",
+          "start": 4.598,
+          "end": 4.702
+        },
+        {
+          "text": "live",
+          "start": 4.76,
+          "end": 5.027
+        },
+        {
+          "text": "chat",
+          "start": 5.062,
+          "end": 5.375
+        },
+        {
+          "text": "can't",
+          "start": 5.445,
+          "end": 5.666
+        },
+        {
+          "text": "hand",
+          "start": 5.712,
+          "end": 5.875
+        },
+        {
+          "text": "their",
+          "start": 5.909,
+          "end": 6.037
+        },
+        {
+          "text": "state",
+          "start": 6.072,
+          "end": 6.293
+        },
+        {
+          "text": "away,",
+          "start": 6.316,
+          "end": 6.873
+        },
+        {
+          "text": "so",
+          "start": 7.221,
+          "end": 7.338
+        },
+        {
+          "text": "they",
+          "start": 7.396,
+          "end": 7.512
+        },
+        {
+          "text": "stay",
+          "start": 7.558,
+          "end": 7.755
+        },
+        {
+          "text": "stateful.",
+          "start": 7.802,
+          "end": 9.102
+        }
+      ],
+      "plan": "paid"
+    },
+    "gist": {
+      "file": "gist.mp3",
+      "hash": "88832fd5f5",
+      "text": "That's the gist: stateless servers up front, stateful storage behind them. Follow for more.",
+      "duration": 6.223,
+      "words": [
+        {
+          "text": "That's",
+          "start": 0,
+          "end": 0.302
+        },
+        {
+          "text": "the",
+          "start": 0.36,
+          "end": 0.43
+        },
+        {
+          "text": "gist:",
+          "start": 0.476,
+          "end": 1.103
+        },
+        {
+          "text": "stateless",
+          "start": 1.579,
+          "end": 2.02
+        },
+        {
+          "text": "servers",
+          "start": 2.043,
+          "end": 2.403
+        },
+        {
+          "text": "up",
+          "start": 2.45,
+          "end": 2.531
+        },
+        {
+          "text": "front,",
+          "start": 2.577,
+          "end": 2.926
+        },
+        {
+          "text": "stateful",
+          "start": 2.995,
+          "end": 3.39
+        },
+        {
+          "text": "storage",
+          "start": 3.448,
+          "end": 3.808
+        },
+        {
+          "text": "behind",
+          "start": 3.843,
+          "end": 4.098
+        },
+        {
+          "text": "them.",
+          "start": 4.145,
+          "end": 4.539
+        },
+        {
+          "text": "Follow",
+          "start": 5.085,
+          "end": 5.364
+        },
+        {
+          "text": "for",
+          "start": 5.41,
+          "end": 5.503
+        },
+        {
+          "text": "more.",
+          "start": 5.561,
+          "end": 6.223
+        }
+      ],
+      "plan": "paid"
+    }
+  }
+}

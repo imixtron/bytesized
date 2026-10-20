@@ -24,6 +24,7 @@
     "doctor": "tsx scripts/doctor.ts",
     "discord": "tsx scripts/discord.ts",
     "cover": "tsx scripts/cover.ts",
+    "gist": "tsx scripts/gist.ts",
     "refs": "tsx scripts/refs.ts",
     "contact": "npm run sync && tsx scripts/contact.ts",
     "cost": "tsx scripts/cost.ts",

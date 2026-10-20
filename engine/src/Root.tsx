@@ -7,6 +7,7 @@ import { CONTACT_HEIGHT, CONTACT_WIDTH, ContactSheet, type ContactSheetProps } f
 import { GALLERY_BITS_FRAMES, GALLERY_ENTER_FRAMES, GALLERY_FLOW_FRAMES, GALLERY_NODES_FRAMES, GalleryBits, GalleryEnter, GalleryFlow, GalleryNodes } from "./compositions/gallery/Galleries";
 import { BigPicturePreview, DEMOS, DiagramDemo, DiagramSheet, bigPicturePreviewFrames } from "./compositions/gallery/Diagrams";
 import { Cover } from "./compositions/Cover";
+import { GistThumb } from "./compositions/GistThumb";
 import { loadEpisode } from "./episode/load";
 import { EPISODE_SLUGS } from "./generated/episodes";
 import { FPS, HEIGHT, WIDTH } from "./theme/tokens";
@@ -43,6 +44,24 @@ export const Root = () => (
           durationInFrames={1}
           defaultProps={{ folder, loaded: null }}
           // long enough that every frozen panel frame exists (Freeze needs frames inside the composition)
+          calculateMetadata={async ({ props }) => {
+            const loaded = await loadEpisode(props.folder);
+            return { durationInFrames: loaded.timeline.totalFrames, props: { ...props, loaded } };
+          }}
+        />
+      ))}
+    </Folder>
+    <Folder name="Gists">
+      {EPISODE_SLUGS.map((folder) => (
+        <Composition
+          key={folder}
+          id={`gist-${folder.split("-")[0]}`}
+          component={GistThumb}
+          width={WIDTH}
+          height={HEIGHT}
+          fps={FPS}
+          durationInFrames={1}
+          defaultProps={{ folder, loaded: null }}
           calculateMetadata={async ({ props }) => {
             const loaded = await loadEpisode(props.folder);
             return { durationInFrames: loaded.timeline.totalFrames, props: { ...props, loaded } };

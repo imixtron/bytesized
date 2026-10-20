@@ -68,6 +68,11 @@
       "episode": "010-session-management",
       "track": "bytesized-theme-4",
       "date": "2026-10-19"
+    },
+    {
+      "episode": "011-stateless-vs-stateful",
+      "track": "bytesized-theme-3",
+      "date": "2026-10-20"
     }
   ]
 }

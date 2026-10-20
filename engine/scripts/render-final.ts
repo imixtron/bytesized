@@ -1,6 +1,6 @@
 // Final (publishable) render: refuses unless everything audible is licensed, i.e. the voiceover and
 // every ElevenLabs sound or track were generated on a paid plan (or are original work).
-//   npm run render:final -- 001     → episodes/<nnn-slug>/out/<slug>.mp4
+//   npm run render:final -- 001     → episodes/<nnn-slug>/out/<slug>.mp4 + out/cover.png + out/gist.png
 // Drafts can still be rendered any time with `npm run render -- ep-001 out/draft.mp4`.
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, readdirSync } from "node:fs";
@@ -56,5 +56,11 @@ if (problems.length) {
 const out = join(epDir, "out", `${ep.slug}.mp4`);
 mkdirSync(dirname(out), { recursive: true });
 execFileSync("npm", ["run", "sync", "--silent"], { cwd: ENGINE, stdio: "inherit" });
-execFileSync("npx", ["remotion", "render", `ep-${folder.split("-")[0]}`, out, "--crf=18"], { cwd: ENGINE, stdio: "inherit" });
+const nnn = folder.split("-")[0];
+execFileSync("npx", ["remotion", "render", `ep-${nnn}`, out, "--crf=18"], { cwd: ENGINE, stdio: "inherit" });
 console.log(`✔ publishable render → episodes/${folder}/out/${ep.slug}.mp4`);
+// the cover and the gist image go with every publishable render (same as `npm run cover` / `npm run gist`)
+execFileSync("npx", ["remotion", "still", `cover-${nnn}`, join(epDir, "out", "cover.png"), "--frame=0"], { cwd: ENGINE, stdio: "inherit" });
+console.log(`✔ cover → episodes/${folder}/out/cover.png`);
+execFileSync("npx", ["remotion", "still", `gist-${nnn}`, join(epDir, "out", "gist.png"), "--frame=0"], { cwd: ENGINE, stdio: "inherit" });
+console.log(`✔ gist → episodes/${folder}/out/gist.png`);
