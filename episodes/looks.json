@@ -82,6 +82,14 @@
         "drop"
       ],
       "date": "2026-10-18"
+    },
+    {
+      "episode": "010-session-management",
+      "recipes": [
+        "draw",
+        "slam"
+      ],
+      "date": "2026-10-19"
     }
   ]
 }

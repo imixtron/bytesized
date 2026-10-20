@@ -1,0 +1,242 @@
+# Episode 010. Script approved 2026-10-19 (Discord 010:script:r2)
+# Notion row #10 · Architecture · Junior / Entry · target ~85s (script format v1.8, format field 1.6)
+id: 10
+slug: session-management
+title: "Session Management: How Websites Remember You"
+topic: session management basics, the coat-check ticket, session cookies and
+  stores (Redis or a database), tokens vs server-side sessions, expiry, logout
+  and rotation, and the HttpOnly, Secure and SameSite cookie flags
+target_sec: 85
+format: "1.6"
+visual_plan: "Spine: one Sequence (login, then the cookie on every request) over
+  2 scenes. Diorama for the coat-check idea, Split for store vs carry (tokens),
+  StateMachine for how a session ends, Snippet for the cookie flags, BigPicture
+  to tie it up."
+
+brands: []
+
+voice: { voice_id: XrExE9yKIg1WjnnlVkGX, speed: 0.93, name: Matilda }
+
+music:
+  track: bytesized-theme-4
+
+look:
+  recipes:
+    - draw
+    - slam
+
+scenes:
+  # ---------- HOOK ----------
+  - id: hook
+    part: hook
+    template: Hook
+    vo: "With every single click, a website forgets who you are, and yet somehow it
+      still knows you're logged in. So how?"
+    headline: { text: "Total amnesia", accent: "amnesia" }
+    stage:
+      nodes:
+        - { id: ph, type: phone, family: solid, label: "you" }
+        - { id: srv, type: server, label: "website" }
+        - { id: ses, type: service, icon: key, family: hero, label: "session" }
+    beats:
+      - { on: "click", do: appear, target: ph }
+      - { on: "website", do: appear, target: srv }
+      - { on: "forgets", do: shake, target: srv }
+      - { on: "knows", do: appear, target: ses }
+      - { on: "logged", do: highlight, target: ses }
+
+  # ---------- BRANDING (automatic, ~1.5s) ----------
+
+  # ---------- IDEA: the coat check (Diorama) ----------
+  - id: idea
+    part: idea
+    template: Diorama
+    vo: "The trick is a coat check: you hand over your coat once, get a numbered
+      ticket back, and from then on you just show the ticket."
+    headline: { text: "Ticket, please", accent: "Ticket" }
+    stage:
+      zones:
+        - {
+            id: rack,
+            label: "coat rack",
+            x: 0.04,
+            y: 0.04,
+            w: 0.92,
+            h: 0.27,
+            icon: storage
+          }
+        - { id: counter, label: "counter", x: 0.04, y: 0.37, w: 0.92, h: 0.2 }
+        - {
+            id: party,
+            label: "party",
+            x: 0.04,
+            y: 0.63,
+            w: 0.92,
+            h: 0.33,
+            icon: user
+          }
+      actors:
+        - { id: you, icon: user, label: "you", at: party }
+        - { id: att, icon: service, label: "attendant", at: rack }
+    beats:
+      - { on: "trick", do: reveal, target: [ rack, counter, party ] }
+      - { on: "check", do: reveal, target: [ you, att ] }
+      - { on: "hand", do: step, target: you, args: { to: counter } }
+      - { on: "numbered", do: step, target: att, args: { to: counter } }
+      - { on: "then", do: step, target: you, args: { to: party } }
+      - { on: "show", do: step, target: you, args: { to: counter } }
+
+  # ---------- BREAKDOWN 1: logging in (Sequence, 1 of 2, no headline) ----------
+  - id: login
+    part: breakdown
+    template: Sequence
+    vo: "Logging in is handing over the coat: the server checks your password once,
+      saves your session, and gives your browser a cookie holding just the ticket
+      number."
+    stage:
+      actors:
+        - { id: br, type: phone, family: solid, label: browser }
+        - { id: srv2, type: server, label: server }
+        - { id: st, type: db, label: store }
+      steps:
+        - { id: s1, from: br, to: srv2, label: "log in" }
+        - { id: s2, from: srv2, to: st, label: "save #42" }
+        - { id: s3, from: srv2, to: br, label: "cookie", kind: response }
+    beats:
+      - { on: "Logging", do: step, target: s1 }
+      - { on: "saves", do: step, target: s2 }
+      - { on: "cookie", do: step, target: s3 }
+      - { on: "ticket", do: highlight, target: br }
+
+  # ---------- BREAKDOWN 2: every request (Sequence, 2 of 2) ----------
+  - id: rides
+    part: breakdown
+    template: Sequence
+    vo: "That cookie rides along on every request, and the server checks the ticket
+      against its store, usually Redis or a database, so no password is needed."
+    headline: { text: "Shown every visit", accent: "every" }
+    stage:
+      reuse: login
+      steps:
+        - { id: r1, from: br, to: srv2, label: "cookie" }
+        - { id: r2, from: srv2, to: st, label: "who's 42" }
+        - { id: r3, from: st, to: srv2, label: "it's you", kind: response }
+        - { id: r4, from: srv2, to: br, label: "page", kind: response }
+    beats:
+      - { on: "rides", do: step, target: r1 }
+      - { on: "checks", do: step, target: r2 }
+      - { on: "store", do: highlight, target: st }
+      - { on: "Redis", do: step, target: r3 }
+      - { on: "password", do: step, target: r4 }
+
+  # ---------- BREAKDOWN 3: tokens (Split) ----------
+  - id: tokens
+    part: breakdown
+    template: Split
+    vo: "Tokens skip the store: your browser carries your details itself, signed so
+      they can't be faked. No lookup, but no easy way to cancel one early."
+    headline: { text: "Store or carry?", accent: "carry?" }
+    stage:
+      variant: compare
+      before:
+        id: sess
+        title: session
+        note: "server looks it up"
+        result: "can cancel"
+        nodes:
+          - { id: t_id, type: service, icon: key, label: "ID only" }
+          - { id: t_st, type: db, label: store }
+      after:
+        id: tok
+        title: token
+        note: "signed, no lookup"
+        result: "can't cancel"
+        nodes:
+          - { id: t_data, type: service, icon: file, label: "your data" }
+          - { id: t_sig, type: service, icon: shield, label: signature }
+    beats:
+      - { on: "Tokens", do: appear, target: sess }
+      - { on: "carries", do: appear, target: tok }
+      - { on: "signed", do: highlight, target: t_sig }
+      - { on: "lookup", do: highlight, target: tok }
+      - { on: "cancel", do: highlight, target: sess }
+
+  # ---------- BREAKDOWN 4: how a session ends (StateMachine, no headline) ----------
+  - id: lifecycle
+    part: breakdown
+    template: StateMachine
+    vo: "Either way, every session needs an ending: it expires when you go idle,
+      dies when you log out, and swaps to a fresh ID at login."
+    stage:
+      start: active
+      states:
+        - { id: active, label: "active", icon: key, tone: ok }
+        - { id: expired, label: "expired", icon: clock, tone: warn }
+        - { id: revoked, label: "deleted", icon: cross, tone: down }
+        - { id: renewed, label: "new ID", icon: retry, tone: ok }
+      transitions:
+        - { id: idle, from: active, to: expired, label: "30 min idle" }
+        - { id: logout, from: active, to: revoked, label: "log out" }
+        - { id: rotate, from: active, to: renewed, label: "at login" }
+    beats:
+      - { on: "ending", do: reveal, target: active }
+      - { on: "expires", do: reveal, target: expired }
+      - { on: "idle", do: step, target: idle }
+      - { on: "dies", do: reveal, target: revoked }
+      - { on: "out", do: step, target: logout }
+      - { on: "fresh", do: reveal, target: renewed }
+      - { on: "login", do: step, target: rotate }
+
+  # ---------- BREAKDOWN 5: cookie flags (Snippet) ----------
+  - id: flags
+    part: breakdown
+    template: Snippet
+    vo: "The cookie carrying that ID needs locks too: HttpOnly hides it from
+      scripts, Secure sends it only over HTTPS, and SameSite keeps other sites
+      from using it."
+    headline: { text: "Three little flags", accent: "flags" }
+    stage:
+      title: "server response"
+      lines:
+        - { id: l1, text: "HTTP/1.1 200 OK", kind: out }
+        - { id: l2, text: "Set-Cookie: sid=42;", kind: out }
+        - { id: l3, text: "  HttpOnly;", kind: out }
+        - { id: l4, text: "  Secure;", kind: out }
+        - { id: l5, text: "  SameSite=Lax", kind: out }
+    beats:
+      - { on: "cookie", do: reveal, target: [ l1, l2 ] }
+      - { on: "HttpOnly", do: reveal, target: l3 }
+      - { on: "Secure", do: reveal, target: l4 }
+      - { on: "SameSite", do: reveal, target: l5 }
+      - { on: "using", do: highlight, target: l2 }
+
+  # ---------- BREAKDOWN 6: big picture (no headline) ----------
+  - id: bigpicture
+    part: breakdown
+    template: BigPicture
+    vo: "So all of it adds up to one simple ticket: checked on every visit, with an
+      expiry date, and a lock to keep it safe."
+    stage:
+      panels:
+        - { id: p1, scene: rides, label: "ticket" }
+        - { id: p2, scene: lifecycle, label: "expiry" }
+        - { id: p3, scene: flags, label: "lock" }
+    beats:
+      - { on: "ticket", do: highlight, target: p1 }
+      - { on: "expiry", do: highlight, target: p2 }
+      - { on: "lock", do: highlight, target: p3 }
+
+  # ---------- GIST (no headline) ----------
+  - id: gist
+    part: gist
+    template: GistCard
+    vo: "That's the gist: a session is a ticket, not your password. Follow for
+      more."
+    stage:
+      text: "A ticket, not a password."
+      accent: "ticket,"
+    beats:
+      - { on: "gist", do: appear, target: card }
+      - { on: "ticket", do: highlight, target: card }
+
+# No outro: the video ends on the gist card and loops back into the hook.

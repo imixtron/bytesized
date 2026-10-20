@@ -63,6 +63,11 @@
       "episode": "009-how-dns-works",
       "track": "bytesized-theme",
       "date": "2026-10-18"
+    },
+    {
+      "episode": "010-session-management",
+      "track": "bytesized-theme-4",
+      "date": "2026-10-19"
     }
   ]
 }

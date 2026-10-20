@@ -30,7 +30,7 @@
       "note": "replaced by Matilda 2026-10-07; used by 002"
     }
   ],
-  "next": 1,
+  "next": 2,
   "history": [
     {
       "episode": "001-what-is-system-design",
@@ -76,6 +76,11 @@
       "episode": "009-how-dns-works",
       "voice": "Liam",
       "date": "2026-10-18"
+    },
+    {
+      "episode": "010-session-management",
+      "voice": "Matilda",
+      "date": "2026-10-19"
     }
   ]
 }

@@ -1,0 +1,1180 @@
+{
+  "voice": "Matilda",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "model": "eleven_multilingual_v2",
+  "plan": "paid",
+  "generated": "2026-10-19T10:19:25.623Z",
+  "scenes": {
+    "hook": {
+      "file": "hook.mp3",
+      "hash": "155d80d09d",
+      "text": "With every single click, a website forgets who you are, and yet somehow it still knows you're logged in. So how?",
+      "duration": 8.313,
+      "words": [
+        {
+          "text": "With",
+          "start": 0,
+          "end": 0.221
+        },
+        {
+          "text": "every",
+          "start": 0.29,
+          "end": 0.546
+        },
+        {
+          "text": "single",
+          "start": 0.604,
+          "end": 0.894
+        },
+        {
+          "text": "click,",
+          "start": 0.917,
+          "end": 1.405
+        },
+        {
+          "text": "a",
+          "start": 1.509,
+          "end": 1.602
+        },
+        {
+          "text": "website",
+          "start": 1.695,
+          "end": 2.194
+        },
+        {
+          "text": "forgets",
+          "start": 2.218,
+          "end": 2.519
+        },
+        {
+          "text": "who",
+          "start": 2.543,
+          "end": 2.635
+        },
+        {
+          "text": "you",
+          "start": 2.694,
+          "end": 2.786
+        },
+        {
+          "text": "are,",
+          "start": 2.856,
+          "end": 3.297
+        },
+        {
+          "text": "and",
+          "start": 3.646,
+          "end": 3.796
+        },
+        {
+          "text": "yet",
+          "start": 3.843,
+          "end": 3.994
+        },
+        {
+          "text": "somehow",
+          "start": 4.063,
+          "end": 4.423
+        },
+        {
+          "text": "it",
+          "start": 4.493,
+          "end": 4.563
+        },
+        {
+          "text": "still",
+          "start": 4.609,
+          "end": 4.841
+        },
+        {
+          "text": "knows",
+          "start": 4.888,
+          "end": 5.097
+        },
+        {
+          "text": "you're",
+          "start": 5.132,
+          "end": 5.283
+        },
+        {
+          "text": "logged",
+          "start": 5.317,
+          "end": 5.573
+        },
+        {
+          "text": "in.",
+          "start": 5.642,
+          "end": 6.037
+        },
+        {
+          "text": "So",
+          "start": 6.513,
+          "end": 6.699
+        },
+        {
+          "text": "how?",
+          "start": 6.792,
+          "end": 8.313
+        }
+      ],
+      "plan": "paid"
+    },
+    "idea": {
+      "file": "idea.mp3",
+      "hash": "69637761bd",
+      "text": "The trick is a coat check: you hand over your coat once, get a numbered ticket back, and from then on you just show the ticket.",
+      "duration": 7.802,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.174
+        },
+        {
+          "text": "trick",
+          "start": 0.221,
+          "end": 0.43
+        },
+        {
+          "text": "is",
+          "start": 0.488,
+          "end": 0.58
+        },
+        {
+          "text": "a",
+          "start": 0.627,
+          "end": 0.65
+        },
+        {
+          "text": "coat",
+          "start": 0.72,
+          "end": 0.917
+        },
+        {
+          "text": "check:",
+          "start": 0.975,
+          "end": 1.405
+        },
+        {
+          "text": "you",
+          "start": 1.753,
+          "end": 1.846
+        },
+        {
+          "text": "hand",
+          "start": 1.939,
+          "end": 2.125
+        },
+        {
+          "text": "over",
+          "start": 2.183,
+          "end": 2.345
+        },
+        {
+          "text": "your",
+          "start": 2.403,
+          "end": 2.508
+        },
+        {
+          "text": "coat",
+          "start": 2.566,
+          "end": 2.786
+        },
+        {
+          "text": "once,",
+          "start": 2.879,
+          "end": 3.367
+        },
+        {
+          "text": "get",
+          "start": 3.634,
+          "end": 3.82
+        },
+        {
+          "text": "a",
+          "start": 3.866,
+          "end": 3.889
+        },
+        {
+          "text": "numbered",
+          "start": 3.947,
+          "end": 4.226
+        },
+        {
+          "text": "ticket",
+          "start": 4.249,
+          "end": 4.505
+        },
+        {
+          "text": "back,",
+          "start": 4.54,
+          "end": 4.981
+        },
+        {
+          "text": "and",
+          "start": 5.201,
+          "end": 5.352
+        },
+        {
+          "text": "from",
+          "start": 5.387,
+          "end": 5.526
+        },
+        {
+          "text": "then",
+          "start": 5.561,
+          "end": 5.712
+        },
+        {
+          "text": "on",
+          "start": 5.805,
+          "end": 5.979
+        },
+        {
+          "text": "you",
+          "start": 6.142,
+          "end": 6.269
+        },
+        {
+          "text": "just",
+          "start": 6.362,
+          "end": 6.548
+        },
+        {
+          "text": "show",
+          "start": 6.618,
+          "end": 6.803
+        },
+        {
+          "text": "the",
+          "start": 6.861,
+          "end": 6.931
+        },
+        {
+          "text": "ticket.",
+          "start": 6.978,
+          "end": 7.802
+        }
+      ],
+      "plan": "paid"
+    },
+    "login": {
+      "file": "login.mp3",
+      "hash": "306031192a",
+      "text": "Logging in is handing over the coat: the server checks your password once, saves your session, and gives your browser a cookie holding just the ticket number.",
+      "duration": 9.985,
+      "words": [
+        {
+          "text": "Logging",
+          "start": 0,
+          "end": 0.441
+        },
+        {
+          "text": "in",
+          "start": 0.534,
+          "end": 0.639
+        },
+        {
+          "text": "is",
+          "start": 0.708,
+          "end": 0.789
+        },
+        {
+          "text": "handing",
+          "start": 0.848,
+          "end": 1.138
+        },
+        {
+          "text": "over",
+          "start": 1.184,
+          "end": 1.335
+        },
+        {
+          "text": "the",
+          "start": 1.382,
+          "end": 1.451
+        },
+        {
+          "text": "coat:",
+          "start": 1.498,
+          "end": 2.02
+        },
+        {
+          "text": "the",
+          "start": 2.496,
+          "end": 2.589
+        },
+        {
+          "text": "server",
+          "start": 2.647,
+          "end": 2.949
+        },
+        {
+          "text": "checks",
+          "start": 3.019,
+          "end": 3.297
+        },
+        {
+          "text": "your",
+          "start": 3.332,
+          "end": 3.437
+        },
+        {
+          "text": "password",
+          "start": 3.471,
+          "end": 3.913
+        },
+        {
+          "text": "once,",
+          "start": 3.982,
+          "end": 4.505
+        },
+        {
+          "text": "saves",
+          "start": 4.807,
+          "end": 5.166
+        },
+        {
+          "text": "your",
+          "start": 5.201,
+          "end": 5.306
+        },
+        {
+          "text": "session,",
+          "start": 5.352,
+          "end": 5.968
+        },
+        {
+          "text": "and",
+          "start": 6.235,
+          "end": 6.385
+        },
+        {
+          "text": "gives",
+          "start": 6.444,
+          "end": 6.664
+        },
+        {
+          "text": "your",
+          "start": 6.699,
+          "end": 6.803
+        },
+        {
+          "text": "browser",
+          "start": 6.838,
+          "end": 7.221
+        },
+        {
+          "text": "a",
+          "start": 7.314,
+          "end": 7.361
+        },
+        {
+          "text": "cookie",
+          "start": 7.43,
+          "end": 7.709
+        },
+        {
+          "text": "holding",
+          "start": 7.732,
+          "end": 8.022
+        },
+        {
+          "text": "just",
+          "start": 8.127,
+          "end": 8.394
+        },
+        {
+          "text": "the",
+          "start": 8.429,
+          "end": 8.499
+        },
+        {
+          "text": "ticket",
+          "start": 8.545,
+          "end": 8.789
+        },
+        {
+          "text": "number.",
+          "start": 8.835,
+          "end": 9.985
+        }
+      ],
+      "plan": "paid"
+    },
+    "rides": {
+      "file": "rides.mp3",
+      "hash": "8e3c8a2a3b",
+      "text": "That cookie rides along on every request, and the server checks the ticket against its store, usually Redis or a database, so no password is needed.",
+      "duration": 9.892,
+      "words": [
+        {
+          "text": "That",
+          "start": 0,
+          "end": 0.255
+        },
+        {
+          "text": "cookie",
+          "start": 0.325,
+          "end": 0.615
+        },
+        {
+          "text": "rides",
+          "start": 0.673,
+          "end": 0.952
+        },
+        {
+          "text": "along",
+          "start": 0.987,
+          "end": 1.3
+        },
+        {
+          "text": "on",
+          "start": 1.347,
+          "end": 1.416
+        },
+        {
+          "text": "every",
+          "start": 1.509,
+          "end": 1.718
+        },
+        {
+          "text": "request,",
+          "start": 1.776,
+          "end": 2.415
+        },
+        {
+          "text": "and",
+          "start": 2.635,
+          "end": 2.775
+        },
+        {
+          "text": "the",
+          "start": 2.821,
+          "end": 2.891
+        },
+        {
+          "text": "server",
+          "start": 2.926,
+          "end": 3.239
+        },
+        {
+          "text": "checks",
+          "start": 3.297,
+          "end": 3.576
+        },
+        {
+          "text": "the",
+          "start": 3.622,
+          "end": 3.692
+        },
+        {
+          "text": "ticket",
+          "start": 3.738,
+          "end": 4.017
+        },
+        {
+          "text": "against",
+          "start": 4.052,
+          "end": 4.331
+        },
+        {
+          "text": "its",
+          "start": 4.377,
+          "end": 4.493
+        },
+        {
+          "text": "store,",
+          "start": 4.516,
+          "end": 5.074
+        },
+        {
+          "text": "usually",
+          "start": 5.375,
+          "end": 5.759
+        },
+        {
+          "text": "Redis",
+          "start": 5.863,
+          "end": 6.235
+        },
+        {
+          "text": "or",
+          "start": 6.362,
+          "end": 6.455
+        },
+        {
+          "text": "a",
+          "start": 6.513,
+          "end": 6.536
+        },
+        {
+          "text": "database,",
+          "start": 6.594,
+          "end": 7.372
+        },
+        {
+          "text": "so",
+          "start": 7.639,
+          "end": 7.767
+        },
+        {
+          "text": "no",
+          "start": 7.86,
+          "end": 7.953
+        },
+        {
+          "text": "password",
+          "start": 8.046,
+          "end": 8.475
+        },
+        {
+          "text": "is",
+          "start": 8.51,
+          "end": 8.58
+        },
+        {
+          "text": "needed.",
+          "start": 8.638,
+          "end": 9.892
+        }
+      ],
+      "plan": "paid"
+    },
+    "tokens": {
+      "file": "tokens.mp3",
+      "hash": "e04d01e1bd",
+      "text": "Tokens skip the store: your browser carries your details itself, signed so they can't be faked. No lookup, but no easy way to cancel one early.",
+      "duration": 10.542,
+      "words": [
+        {
+          "text": "Tokens",
+          "start": 0,
+          "end": 0.534
+        },
+        {
+          "text": "skip",
+          "start": 0.58,
+          "end": 0.824
+        },
+        {
+          "text": "the",
+          "start": 0.894,
+          "end": 0.964
+        },
+        {
+          "text": "store:",
+          "start": 0.998,
+          "end": 1.602
+        },
+        {
+          "text": "your",
+          "start": 2.009,
+          "end": 2.136
+        },
+        {
+          "text": "browser",
+          "start": 2.171,
+          "end": 2.554
+        },
+        {
+          "text": "carries",
+          "start": 2.624,
+          "end": 2.926
+        },
+        {
+          "text": "your",
+          "start": 2.961,
+          "end": 3.065
+        },
+        {
+          "text": "details",
+          "start": 3.111,
+          "end": 3.471
+        },
+        {
+          "text": "itself,",
+          "start": 3.506,
+          "end": 4.133
+        },
+        {
+          "text": "signed",
+          "start": 4.4,
+          "end": 4.807
+        },
+        {
+          "text": "so",
+          "start": 4.853,
+          "end": 4.946
+        },
+        {
+          "text": "they",
+          "start": 5.004,
+          "end": 5.108
+        },
+        {
+          "text": "can't",
+          "start": 5.143,
+          "end": 5.341
+        },
+        {
+          "text": "be",
+          "start": 5.387,
+          "end": 5.468
+        },
+        {
+          "text": "faked.",
+          "start": 5.526,
+          "end": 6.06
+        },
+        {
+          "text": "No",
+          "start": 6.606,
+          "end": 6.792
+        },
+        {
+          "text": "lookup,",
+          "start": 6.885,
+          "end": 7.43
+        },
+        {
+          "text": "but",
+          "start": 7.5,
+          "end": 7.674
+        },
+        {
+          "text": "no",
+          "start": 7.744,
+          "end": 7.93
+        },
+        {
+          "text": "easy",
+          "start": 8.057,
+          "end": 8.324
+        },
+        {
+          "text": "way",
+          "start": 8.382,
+          "end": 8.522
+        },
+        {
+          "text": "to",
+          "start": 8.568,
+          "end": 8.615
+        },
+        {
+          "text": "cancel",
+          "start": 8.673,
+          "end": 9.021
+        },
+        {
+          "text": "one",
+          "start": 9.114,
+          "end": 9.23
+        },
+        {
+          "text": "early.",
+          "start": 9.265,
+          "end": 10.542
+        }
+      ],
+      "plan": "paid"
+    },
+    "lifecycle": {
+      "file": "lifecycle.mp3",
+      "hash": "e2dcf9e0f9",
+      "text": "Either way, every session needs an ending: it expires when you go idle, dies when you log out, and swaps to a fresh ID at login.",
+      "duration": 9.056,
+      "words": [
+        {
+          "text": "Either",
+          "start": 0,
+          "end": 0.29
+        },
+        {
+          "text": "way,",
+          "start": 0.348,
+          "end": 0.685
+        },
+        {
+          "text": "every",
+          "start": 0.731,
+          "end": 0.987
+        },
+        {
+          "text": "session",
+          "start": 1.045,
+          "end": 1.393
+        },
+        {
+          "text": "needs",
+          "start": 1.451,
+          "end": 1.672
+        },
+        {
+          "text": "an",
+          "start": 1.707,
+          "end": 1.765
+        },
+        {
+          "text": "ending:",
+          "start": 1.834,
+          "end": 2.345
+        },
+        {
+          "text": "it",
+          "start": 2.694,
+          "end": 2.81
+        },
+        {
+          "text": "expires",
+          "start": 2.856,
+          "end": 3.448
+        },
+        {
+          "text": "when",
+          "start": 3.483,
+          "end": 3.599
+        },
+        {
+          "text": "you",
+          "start": 3.634,
+          "end": 3.704
+        },
+        {
+          "text": "go",
+          "start": 3.762,
+          "end": 3.866
+        },
+        {
+          "text": "idle,",
+          "start": 3.936,
+          "end": 4.447
+        },
+        {
+          "text": "dies",
+          "start": 4.748,
+          "end": 5.132
+        },
+        {
+          "text": "when",
+          "start": 5.178,
+          "end": 5.306
+        },
+        {
+          "text": "you",
+          "start": 5.341,
+          "end": 5.41
+        },
+        {
+          "text": "log",
+          "start": 5.468,
+          "end": 5.689
+        },
+        {
+          "text": "out,",
+          "start": 5.759,
+          "end": 6.13
+        },
+        {
+          "text": "and",
+          "start": 6.316,
+          "end": 6.467
+        },
+        {
+          "text": "swaps",
+          "start": 6.536,
+          "end": 6.943
+        },
+        {
+          "text": "to",
+          "start": 6.989,
+          "end": 7.047
+        },
+        {
+          "text": "a",
+          "start": 7.14,
+          "end": 7.163
+        },
+        {
+          "text": "fresh",
+          "start": 7.221,
+          "end": 7.477
+        },
+        {
+          "text": "ID",
+          "start": 7.535,
+          "end": 7.755
+        },
+        {
+          "text": "at",
+          "start": 7.883,
+          "end": 7.953
+        },
+        {
+          "text": "login.",
+          "start": 7.999,
+          "end": 9.056
+        }
+      ],
+      "plan": "paid"
+    },
+    "flags": {
+      "file": "flags.mp3",
+      "hash": "cd28648026",
+      "text": "The cookie carrying that ID needs locks too: HttpOnly hides it from scripts, Secure sends it only over HTTPS, and SameSite keeps other sites from using it.",
+      "duration": 11.656,
+      "words": [
+        {
+          "text": "The",
+          "start": 0,
+          "end": 0.163
+        },
+        {
+          "text": "cookie",
+          "start": 0.209,
+          "end": 0.499
+        },
+        {
+          "text": "carrying",
+          "start": 0.534,
+          "end": 0.824
+        },
+        {
+          "text": "that",
+          "start": 0.859,
+          "end": 0.998
+        },
+        {
+          "text": "ID",
+          "start": 1.057,
+          "end": 1.277
+        },
+        {
+          "text": "needs",
+          "start": 1.405,
+          "end": 1.625
+        },
+        {
+          "text": "locks",
+          "start": 1.695,
+          "end": 1.997
+        },
+        {
+          "text": "too:",
+          "start": 2.055,
+          "end": 2.577
+        },
+        {
+          "text": "HttpOnly",
+          "start": 3.053,
+          "end": 3.692
+        },
+        {
+          "text": "hides",
+          "start": 3.762,
+          "end": 4.029
+        },
+        {
+          "text": "it",
+          "start": 4.063,
+          "end": 4.133
+        },
+        {
+          "text": "from",
+          "start": 4.156,
+          "end": 4.284
+        },
+        {
+          "text": "scripts,",
+          "start": 4.342,
+          "end": 5.027
+        },
+        {
+          "text": "Secure",
+          "start": 5.294,
+          "end": 5.759
+        },
+        {
+          "text": "sends",
+          "start": 5.805,
+          "end": 6.037
+        },
+        {
+          "text": "it",
+          "start": 6.072,
+          "end": 6.142
+        },
+        {
+          "text": "only",
+          "start": 6.2,
+          "end": 6.444
+        },
+        {
+          "text": "over",
+          "start": 6.502,
+          "end": 6.676
+        },
+        {
+          "text": "HTTPS,",
+          "start": 6.745,
+          "end": 8.081
+        },
+        {
+          "text": "and",
+          "start": 8.301,
+          "end": 8.464
+        },
+        {
+          "text": "SameSite",
+          "start": 8.557,
+          "end": 9.125
+        },
+        {
+          "text": "keeps",
+          "start": 9.172,
+          "end": 9.427
+        },
+        {
+          "text": "other",
+          "start": 9.497,
+          "end": 9.706
+        },
+        {
+          "text": "sites",
+          "start": 9.764,
+          "end": 10.066
+        },
+        {
+          "text": "from",
+          "start": 10.101,
+          "end": 10.228
+        },
+        {
+          "text": "using",
+          "start": 10.298,
+          "end": 10.519
+        },
+        {
+          "text": "it.",
+          "start": 10.577,
+          "end": 11.656
+        }
+      ],
+      "plan": "paid"
+    },
+    "bigpicture": {
+      "file": "bigpicture.mp3",
+      "hash": "b1920f6a13",
+      "text": "So all of it adds up to one simple ticket: checked on every visit, with an expiry date, and a lock to keep it safe.",
+      "duration": 7.802,
+      "words": [
+        {
+          "text": "So",
+          "start": 0,
+          "end": 0.174
+        },
+        {
+          "text": "all",
+          "start": 0.244,
+          "end": 0.406
+        },
+        {
+          "text": "of",
+          "start": 0.453,
+          "end": 0.499
+        },
+        {
+          "text": "it",
+          "start": 0.546,
+          "end": 0.627
+        },
+        {
+          "text": "adds",
+          "start": 0.673,
+          "end": 0.894
+        },
+        {
+          "text": "up",
+          "start": 0.929,
+          "end": 1.045
+        },
+        {
+          "text": "to",
+          "start": 1.103,
+          "end": 1.184
+        },
+        {
+          "text": "one",
+          "start": 1.312,
+          "end": 1.591
+        },
+        {
+          "text": "simple",
+          "start": 1.649,
+          "end": 1.939
+        },
+        {
+          "text": "ticket:",
+          "start": 1.974,
+          "end": 2.531
+        },
+        {
+          "text": "checked",
+          "start": 2.879,
+          "end": 3.181
+        },
+        {
+          "text": "on",
+          "start": 3.228,
+          "end": 3.309
+        },
+        {
+          "text": "every",
+          "start": 3.402,
+          "end": 3.646
+        },
+        {
+          "text": "visit,",
+          "start": 3.704,
+          "end": 4.133
+        },
+        {
+          "text": "with",
+          "start": 4.261,
+          "end": 4.423
+        },
+        {
+          "text": "an",
+          "start": 4.458,
+          "end": 4.516
+        },
+        {
+          "text": "expiry",
+          "start": 4.586,
+          "end": 4.981
+        },
+        {
+          "text": "date,",
+          "start": 5.039,
+          "end": 5.41
+        },
+        {
+          "text": "and",
+          "start": 5.596,
+          "end": 5.747
+        },
+        {
+          "text": "a",
+          "start": 5.817,
+          "end": 5.84
+        },
+        {
+          "text": "lock",
+          "start": 5.898,
+          "end": 6.142
+        },
+        {
+          "text": "to",
+          "start": 6.211,
+          "end": 6.281
+        },
+        {
+          "text": "keep",
+          "start": 6.327,
+          "end": 6.502
+        },
+        {
+          "text": "it",
+          "start": 6.548,
+          "end": 6.606
+        },
+        {
+          "text": "safe.",
+          "start": 6.664,
+          "end": 7.802
+        }
+      ],
+      "plan": "paid"
+    },
+    "gist": {
+      "file": "gist.mp3",
+      "hash": "11173d9c52",
+      "text": "That's the gist: a session is a ticket, not your password. Follow for more.",
+      "duration": 5.759,
+      "words": [
+        {
+          "text": "That's",
+          "start": 0,
+          "end": 0.313
+        },
+        {
+          "text": "the",
+          "start": 0.372,
+          "end": 0.441
+        },
+        {
+          "text": "gist:",
+          "start": 0.499,
+          "end": 1.091
+        },
+        {
+          "text": "a",
+          "start": 1.44,
+          "end": 1.509
+        },
+        {
+          "text": "session",
+          "start": 1.637,
+          "end": 2.032
+        },
+        {
+          "text": "is",
+          "start": 2.125,
+          "end": 2.229
+        },
+        {
+          "text": "a",
+          "start": 2.287,
+          "end": 2.31
+        },
+        {
+          "text": "ticket,",
+          "start": 2.368,
+          "end": 2.961
+        },
+        {
+          "text": "not",
+          "start": 3.181,
+          "end": 3.332
+        },
+        {
+          "text": "your",
+          "start": 3.367,
+          "end": 3.483
+        },
+        {
+          "text": "password.",
+          "start": 3.518,
+          "end": 4.18
+        },
+        {
+          "text": "Follow",
+          "start": 4.656,
+          "end": 4.969
+        },
+        {
+          "text": "for",
+          "start": 5.027,
+          "end": 5.12
+        },
+        {
+          "text": "more.",
+          "start": 5.166,
+          "end": 5.759
+        }
+      ],
+      "plan": "paid"
+    }
+  }
+}
