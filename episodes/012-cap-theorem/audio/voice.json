@@ -1,0 +1,1075 @@
+{
+  "voice": "Chris",
+  "voice_id": "iP95p4xoKVk53GoZ742B",
+  "model": "eleven_multilingual_v2",
+  "plan": "paid",
+  "generated": "2026-10-21T21:22:27.859Z",
+  "scenes": {
+    "hook": {
+      "file": "hook.mp3",
+      "hash": "fc21f6fc96",
+      "text": "You can't have all three: consistency, availability and partition tolerance, so every big system picks two. Which would you pick?",
+      "duration": 7.802,
+      "words": [
+        {
+          "text": "You",
+          "start": 0,
+          "end": 0.163
+        },
+        {
+          "text": "can't",
+          "start": 0.197,
+          "end": 0.348
+        },
+        {
+          "text": "have",
+          "start": 0.372,
+          "end": 0.476
+        },
+        {
+          "text": "all",
+          "start": 0.499,
+          "end": 0.604
+        },
+        {
+          "text": "three:",
+          "start": 0.662,
+          "end": 0.882
+        },
+        {
+          "text": "consistency,",
+          "start": 0.929,
+          "end": 1.73
+        },
+        {
+          "text": "availability",
+          "start": 1.776,
+          "end": 2.438
+        },
+        {
+          "text": "and",
+          "start": 2.786,
+          "end": 2.984
+        },
+        {
+          "text": "partition",
+          "start": 3.042,
+          "end": 3.425
+        },
+        {
+          "text": "tolerance,",
+          "start": 3.471,
+          "end": 4.075
+        },
+        {
+          "text": "so",
+          "start": 4.261,
+          "end": 4.365
+        },
+        {
+          "text": "every",
+          "start": 4.412,
+          "end": 4.563
+        },
+        {
+          "text": "big",
+          "start": 4.598,
+          "end": 4.725
+        },
+        {
+          "text": "system",
+          "start": 4.772,
+          "end": 5.05
+        },
+        {
+          "text": "picks",
+          "start": 5.097,
+          "end": 5.294
+        },
+        {
+          "text": "two.",
+          "start": 5.341,
+          "end": 5.689
+        },
+        {
+          "text": "Which",
+          "start": 6.339,
+          "end": 6.548
+        },
+        {
+          "text": "would",
+          "start": 6.583,
+          "end": 6.722
+        },
+        {
+          "text": "you",
+          "start": 6.757,
+          "end": 6.85
+        },
+        {
+          "text": "pick?",
+          "start": 6.92,
+          "end": 7.802
+        }
+      ],
+      "plan": "paid"
+    },
+    "idea": {
+      "file": "idea.mp3",
+      "hash": "37fc574124",
+      "text": "Eric Brewer framed it in two thousand. Picture two bank branches syncing your balance over one phone line.",
+      "duration": 7.895,
+      "words": [
+        {
+          "text": "Eric",
+          "start": 0,
+          "end": 0.325
+        },
+        {
+          "text": "Brewer",
+          "start": 0.383,
+          "end": 0.685
+        },
+        {
+          "text": "framed",
+          "start": 0.755,
+          "end": 1.033
+        },
+        {
+          "text": "it",
+          "start": 1.068,
+          "end": 1.138
+        },
+        {
+          "text": "in",
+          "start": 1.184,
+          "end": 1.277
+        },
+        {
+          "text": "two",
+          "start": 1.347,
+          "end": 1.544
+        },
+        {
+          "text": "thousand.",
+          "start": 1.614,
+          "end": 2.299
+        },
+        {
+          "text": "Picture",
+          "start": 3.053,
+          "end": 3.425
+        },
+        {
+          "text": "two",
+          "start": 3.471,
+          "end": 3.715
+        },
+        {
+          "text": "bank",
+          "start": 3.82,
+          "end": 4.04
+        },
+        {
+          "text": "branches",
+          "start": 4.098,
+          "end": 4.493
+        },
+        {
+          "text": "syncing",
+          "start": 4.54,
+          "end": 4.865
+        },
+        {
+          "text": "your",
+          "start": 4.911,
+          "end": 5.016
+        },
+        {
+          "text": "balance",
+          "start": 5.062,
+          "end": 5.573
+        },
+        {
+          "text": "over",
+          "start": 5.793,
+          "end": 6.06
+        },
+        {
+          "text": "one",
+          "start": 6.165,
+          "end": 6.374
+        },
+        {
+          "text": "phone",
+          "start": 6.42,
+          "end": 6.711
+        },
+        {
+          "text": "line.",
+          "start": 6.745,
+          "end": 7.895
+        }
+      ],
+      "plan": "paid"
+    },
+    "letters": {
+      "file": "letters.mp3",
+      "hash": "bbb54b5dc9",
+      "text": "Consistency means both branches show the same balance, availability means each one always answers, and partition tolerance means carrying on when that line goes dead.",
+      "duration": 11.146,
+      "words": [
+        {
+          "text": "Consistency",
+          "start": 0,
+          "end": 0.685
+        },
+        {
+          "text": "means",
+          "start": 0.743,
+          "end": 0.952
+        },
+        {
+          "text": "both",
+          "start": 1.022,
+          "end": 1.277
+        },
+        {
+          "text": "branches",
+          "start": 1.335,
+          "end": 1.73
+        },
+        {
+          "text": "show",
+          "start": 1.765,
+          "end": 1.916
+        },
+        {
+          "text": "the",
+          "start": 1.974,
+          "end": 2.043
+        },
+        {
+          "text": "same",
+          "start": 2.09,
+          "end": 2.31
+        },
+        {
+          "text": "balance,",
+          "start": 2.345,
+          "end": 3.019
+        },
+        {
+          "text": "availability",
+          "start": 3.367,
+          "end": 3.959
+        },
+        {
+          "text": "means",
+          "start": 4.005,
+          "end": 4.203
+        },
+        {
+          "text": "each",
+          "start": 4.296,
+          "end": 4.47
+        },
+        {
+          "text": "one",
+          "start": 4.516,
+          "end": 4.667
+        },
+        {
+          "text": "always",
+          "start": 4.714,
+          "end": 5.097
+        },
+        {
+          "text": "answers,",
+          "start": 5.143,
+          "end": 5.817
+        },
+        {
+          "text": "and",
+          "start": 6.165,
+          "end": 6.304
+        },
+        {
+          "text": "partition",
+          "start": 6.374,
+          "end": 6.792
+        },
+        {
+          "text": "tolerance",
+          "start": 6.85,
+          "end": 7.314
+        },
+        {
+          "text": "means",
+          "start": 7.349,
+          "end": 7.639
+        },
+        {
+          "text": "carrying",
+          "start": 8.046,
+          "end": 8.487
+        },
+        {
+          "text": "on",
+          "start": 8.58,
+          "end": 8.812
+        },
+        {
+          "text": "when",
+          "start": 8.858,
+          "end": 8.998
+        },
+        {
+          "text": "that",
+          "start": 9.033,
+          "end": 9.16
+        },
+        {
+          "text": "line",
+          "start": 9.218,
+          "end": 9.474
+        },
+        {
+          "text": "goes",
+          "start": 9.509,
+          "end": 9.729
+        },
+        {
+          "text": "dead.",
+          "start": 9.834,
+          "end": 11.146
+        }
+      ],
+      "plan": "paid"
+    },
+    "cut": {
+      "file": "cut.mp3",
+      "hash": "c781d45153",
+      "text": "Networks do fail, so that last one isn't optional: you deposit fifty dollars at one branch, and the update never reaches the other.",
+      "duration": 8.638,
+      "words": [
+        {
+          "text": "Networks",
+          "start": 0,
+          "end": 0.453
+        },
+        {
+          "text": "do",
+          "start": 0.557,
+          "end": 0.743
+        },
+        {
+          "text": "fail,",
+          "start": 0.871,
+          "end": 1.242
+        },
+        {
+          "text": "so",
+          "start": 1.265,
+          "end": 1.358
+        },
+        {
+          "text": "that",
+          "start": 1.416,
+          "end": 1.533
+        },
+        {
+          "text": "last",
+          "start": 1.591,
+          "end": 1.823
+        },
+        {
+          "text": "one",
+          "start": 1.881,
+          "end": 1.997
+        },
+        {
+          "text": "isn't",
+          "start": 2.043,
+          "end": 2.252
+        },
+        {
+          "text": "optional:",
+          "start": 2.299,
+          "end": 2.961
+        },
+        {
+          "text": "you",
+          "start": 3.611,
+          "end": 3.704
+        },
+        {
+          "text": "deposit",
+          "start": 3.773,
+          "end": 4.203
+        },
+        {
+          "text": "fifty",
+          "start": 4.249,
+          "end": 4.481
+        },
+        {
+          "text": "dollars",
+          "start": 4.528,
+          "end": 4.83
+        },
+        {
+          "text": "at",
+          "start": 4.876,
+          "end": 4.946
+        },
+        {
+          "text": "one",
+          "start": 5.039,
+          "end": 5.19
+        },
+        {
+          "text": "branch,",
+          "start": 5.224,
+          "end": 5.677
+        },
+        {
+          "text": "and",
+          "start": 5.77,
+          "end": 5.921
+        },
+        {
+          "text": "the",
+          "start": 5.968,
+          "end": 6.037
+        },
+        {
+          "text": "update",
+          "start": 6.095,
+          "end": 6.583
+        },
+        {
+          "text": "never",
+          "start": 6.769,
+          "end": 7.059
+        },
+        {
+          "text": "reaches",
+          "start": 7.117,
+          "end": 7.407
+        },
+        {
+          "text": "the",
+          "start": 7.465,
+          "end": 7.535
+        },
+        {
+          "text": "other.",
+          "start": 7.581,
+          "end": 8.638
+        }
+      ],
+      "plan": "paid"
+    },
+    "ask": {
+      "file": "ask.mp3",
+      "hash": "55c48b3f13",
+      "text": "Then you check your balance at the second branch, and it has to decide what to tell you without being able to ask.",
+      "duration": 5.898,
+      "words": [
+        {
+          "text": "Then",
+          "start": 0,
+          "end": 0.197
+        },
+        {
+          "text": "you",
+          "start": 0.244,
+          "end": 0.325
+        },
+        {
+          "text": "check",
+          "start": 0.383,
+          "end": 0.546
+        },
+        {
+          "text": "your",
+          "start": 0.58,
+          "end": 0.697
+        },
+        {
+          "text": "balance",
+          "start": 0.755,
+          "end": 1.115
+        },
+        {
+          "text": "at",
+          "start": 1.161,
+          "end": 1.242
+        },
+        {
+          "text": "the",
+          "start": 1.277,
+          "end": 1.347
+        },
+        {
+          "text": "second",
+          "start": 1.405,
+          "end": 1.672
+        },
+        {
+          "text": "branch,",
+          "start": 1.707,
+          "end": 2.159
+        },
+        {
+          "text": "and",
+          "start": 2.218,
+          "end": 2.368
+        },
+        {
+          "text": "it",
+          "start": 2.426,
+          "end": 2.485
+        },
+        {
+          "text": "has",
+          "start": 2.543,
+          "end": 2.752
+        },
+        {
+          "text": "to",
+          "start": 2.821,
+          "end": 2.891
+        },
+        {
+          "text": "decide",
+          "start": 2.984,
+          "end": 3.367
+        },
+        {
+          "text": "what",
+          "start": 3.39,
+          "end": 3.506
+        },
+        {
+          "text": "to",
+          "start": 3.541,
+          "end": 3.599
+        },
+        {
+          "text": "tell",
+          "start": 3.657,
+          "end": 3.855
+        },
+        {
+          "text": "you",
+          "start": 3.924,
+          "end": 4.005
+        },
+        {
+          "text": "without",
+          "start": 4.052,
+          "end": 4.342
+        },
+        {
+          "text": "being",
+          "start": 4.389,
+          "end": 4.551
+        },
+        {
+          "text": "able",
+          "start": 4.598,
+          "end": 4.772
+        },
+        {
+          "text": "to",
+          "start": 4.795,
+          "end": 4.841
+        },
+        {
+          "text": "ask.",
+          "start": 4.911,
+          "end": 5.898
+        }
+      ],
+      "plan": "paid"
+    },
+    "choice": {
+      "file": "choice.mp3",
+      "hash": "b20a3639f0",
+      "text": "It can refuse until the line is back, correct but unavailable, like Google's Spanner, or answer with the old balance, available but briefly wrong, like Cassandra.",
+      "duration": 10.031,
+      "words": [
+        {
+          "text": "It",
+          "start": 0,
+          "end": 0.174
+        },
+        {
+          "text": "can",
+          "start": 0.209,
+          "end": 0.325
+        },
+        {
+          "text": "refuse",
+          "start": 0.383,
+          "end": 0.778
+        },
+        {
+          "text": "until",
+          "start": 0.813,
+          "end": 1.01
+        },
+        {
+          "text": "the",
+          "start": 1.045,
+          "end": 1.115
+        },
+        {
+          "text": "line",
+          "start": 1.173,
+          "end": 1.382
+        },
+        {
+          "text": "is",
+          "start": 1.405,
+          "end": 1.463
+        },
+        {
+          "text": "back,",
+          "start": 1.533,
+          "end": 2.032
+        },
+        {
+          "text": "correct",
+          "start": 2.136,
+          "end": 2.473
+        },
+        {
+          "text": "but",
+          "start": 2.531,
+          "end": 2.647
+        },
+        {
+          "text": "unavailable,",
+          "start": 2.694,
+          "end": 3.413
+        },
+        {
+          "text": "like",
+          "start": 3.82,
+          "end": 3.982
+        },
+        {
+          "text": "Google's",
+          "start": 4.017,
+          "end": 4.354
+        },
+        {
+          "text": "Spanner,",
+          "start": 4.4,
+          "end": 5.062
+        },
+        {
+          "text": "or",
+          "start": 5.283,
+          "end": 5.457
+        },
+        {
+          "text": "answer",
+          "start": 5.526,
+          "end": 5.759
+        },
+        {
+          "text": "with",
+          "start": 5.793,
+          "end": 5.909
+        },
+        {
+          "text": "the",
+          "start": 5.944,
+          "end": 6.014
+        },
+        {
+          "text": "old",
+          "start": 6.107,
+          "end": 6.316
+        },
+        {
+          "text": "balance,",
+          "start": 6.385,
+          "end": 7.059
+        },
+        {
+          "text": "available",
+          "start": 7.117,
+          "end": 7.581
+        },
+        {
+          "text": "but",
+          "start": 7.616,
+          "end": 7.755
+        },
+        {
+          "text": "briefly",
+          "start": 7.802,
+          "end": 8.139
+        },
+        {
+          "text": "wrong,",
+          "start": 8.173,
+          "end": 8.371
+        },
+        {
+          "text": "like",
+          "start": 8.394,
+          "end": 8.533
+        },
+        {
+          "text": "Cassandra.",
+          "start": 8.557,
+          "end": 10.031
+        }
+      ],
+      "plan": "paid"
+    },
+    "nuance": {
+      "file": "nuance.mp3",
+      "hash": "862dcbbc92",
+      "text": "That's also why pick two is misleading: while the network is healthy you get both, and the choice only bites during a split.",
+      "duration": 8.591,
+      "words": [
+        {
+          "text": "That's",
+          "start": 0,
+          "end": 0.267
+        },
+        {
+          "text": "also",
+          "start": 0.302,
+          "end": 0.522
+        },
+        {
+          "text": "why",
+          "start": 0.569,
+          "end": 0.697
+        },
+        {
+          "text": "pick",
+          "start": 0.755,
+          "end": 0.929
+        },
+        {
+          "text": "two",
+          "start": 0.987,
+          "end": 1.184
+        },
+        {
+          "text": "is",
+          "start": 1.254,
+          "end": 1.335
+        },
+        {
+          "text": "misleading:",
+          "start": 1.382,
+          "end": 2.043
+        },
+        {
+          "text": "while",
+          "start": 2.519,
+          "end": 2.728
+        },
+        {
+          "text": "the",
+          "start": 2.752,
+          "end": 2.821
+        },
+        {
+          "text": "network",
+          "start": 2.868,
+          "end": 3.17
+        },
+        {
+          "text": "is",
+          "start": 3.228,
+          "end": 3.297
+        },
+        {
+          "text": "healthy",
+          "start": 3.355,
+          "end": 3.762
+        },
+        {
+          "text": "you",
+          "start": 4.11,
+          "end": 4.238
+        },
+        {
+          "text": "get",
+          "start": 4.331,
+          "end": 4.47
+        },
+        {
+          "text": "both,",
+          "start": 4.528,
+          "end": 5.062
+        },
+        {
+          "text": "and",
+          "start": 5.41,
+          "end": 5.538
+        },
+        {
+          "text": "the",
+          "start": 5.584,
+          "end": 5.654
+        },
+        {
+          "text": "choice",
+          "start": 5.712,
+          "end": 6.084
+        },
+        {
+          "text": "only",
+          "start": 6.188,
+          "end": 6.467
+        },
+        {
+          "text": "bites",
+          "start": 6.536,
+          "end": 6.838
+        },
+        {
+          "text": "during",
+          "start": 6.896,
+          "end": 7.129
+        },
+        {
+          "text": "a",
+          "start": 7.175,
+          "end": 7.198
+        },
+        {
+          "text": "split.",
+          "start": 7.256,
+          "end": 8.591
+        }
+      ],
+      "plan": "paid"
+    },
+    "tune": {
+      "file": "tune.mp3",
+      "hash": "2c94ec51f8",
+      "text": "Modern databases let each request choose: read one copy for speed, or wait for a majority to agree, so carts and payments can pick differently.",
+      "duration": 9.659,
+      "words": [
+        {
+          "text": "Modern",
+          "start": 0,
+          "end": 0.348
+        },
+        {
+          "text": "databases",
+          "start": 0.383,
+          "end": 0.906
+        },
+        {
+          "text": "let",
+          "start": 0.964,
+          "end": 1.08
+        },
+        {
+          "text": "each",
+          "start": 1.138,
+          "end": 1.289
+        },
+        {
+          "text": "request",
+          "start": 1.335,
+          "end": 1.637
+        },
+        {
+          "text": "choose:",
+          "start": 1.683,
+          "end": 2.218
+        },
+        {
+          "text": "read",
+          "start": 2.868,
+          "end": 3.053
+        },
+        {
+          "text": "one",
+          "start": 3.123,
+          "end": 3.274
+        },
+        {
+          "text": "copy",
+          "start": 3.332,
+          "end": 3.646
+        },
+        {
+          "text": "for",
+          "start": 3.704,
+          "end": 3.808
+        },
+        {
+          "text": "speed,",
+          "start": 3.866,
+          "end": 4.47
+        },
+        {
+          "text": "or",
+          "start": 4.946,
+          "end": 5.085
+        },
+        {
+          "text": "wait",
+          "start": 5.143,
+          "end": 5.294
+        },
+        {
+          "text": "for",
+          "start": 5.329,
+          "end": 5.422
+        },
+        {
+          "text": "a",
+          "start": 5.445,
+          "end": 5.468
+        },
+        {
+          "text": "majority",
+          "start": 5.492,
+          "end": 5.944
+        },
+        {
+          "text": "to",
+          "start": 6.002,
+          "end": 6.072
+        },
+        {
+          "text": "agree,",
+          "start": 6.177,
+          "end": 6.687
+        },
+        {
+          "text": "so",
+          "start": 6.954,
+          "end": 7.117
+        },
+        {
+          "text": "carts",
+          "start": 7.21,
+          "end": 7.465
+        },
+        {
+          "text": "and",
+          "start": 7.5,
+          "end": 7.57
+        },
+        {
+          "text": "payments",
+          "start": 7.616,
+          "end": 7.976
+        },
+        {
+          "text": "can",
+          "start": 8.022,
+          "end": 8.127
+        },
+        {
+          "text": "pick",
+          "start": 8.185,
+          "end": 8.348
+        },
+        {
+          "text": "differently.",
+          "start": 8.406,
+          "end": 9.659
+        }
+      ],
+      "plan": "paid"
+    },
+    "gist": {
+      "file": "gist.mp3",
+      "hash": "8498c06a87",
+      "text": "That's the gist: when the network breaks, choose correct or available. Follow for more.",
+      "duration": 6.548,
+      "words": [
+        {
+          "text": "That's",
+          "start": 0,
+          "end": 0.302
+        },
+        {
+          "text": "the",
+          "start": 0.36,
+          "end": 0.43
+        },
+        {
+          "text": "gist:",
+          "start": 0.476,
+          "end": 0.998
+        },
+        {
+          "text": "when",
+          "start": 1.649,
+          "end": 1.8
+        },
+        {
+          "text": "the",
+          "start": 1.834,
+          "end": 1.904
+        },
+        {
+          "text": "network",
+          "start": 1.962,
+          "end": 2.287
+        },
+        {
+          "text": "breaks,",
+          "start": 2.334,
+          "end": 2.961
+        },
+        {
+          "text": "choose",
+          "start": 3.181,
+          "end": 3.495
+        },
+        {
+          "text": "correct",
+          "start": 3.553,
+          "end": 3.936
+        },
+        {
+          "text": "or",
+          "start": 3.971,
+          "end": 4.052
+        },
+        {
+          "text": "available.",
+          "start": 4.098,
+          "end": 4.644
+        },
+        {
+          "text": "Follow",
+          "start": 5.399,
+          "end": 5.747
+        },
+        {
+          "text": "for",
+          "start": 5.805,
+          "end": 5.921
+        },
+        {
+          "text": "more.",
+          "start": 5.968,
+          "end": 6.548
+        }
+      ],
+      "plan": "paid"
+    }
+  }
+}

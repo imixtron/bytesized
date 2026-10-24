@@ -126,12 +126,15 @@ export const SequenceBody = ({ ctx, box }: { ctx: Ctx; box: Pick<Box, "w" | "h">
           );
         }
         const g = geom(s)!;
-        const mid = (g.x1 + g.x2) / 2;
+        const bx = Math.min(g.x1, g.x2) + 34;
+        // centred on the arrow, but pushed right of the step badge on short arrows (mono ≈ 0.6em per character)
+        const labelW = (s.label?.length ?? 0) * tokens.type.label.size * 0.6 + 20;
+        const lx = Math.min(box.w - labelW / 2, Math.max((g.x1 + g.x2) / 2, bx + tokens.diagram.step.badge / 2 + 8 + labelW / 2));
         const lostAt = at + travelFrames(g.d);
         return (
           <div key={s.id}>
-            {s.label && <Label x={mid} y={y - 44} text={s.label} color={on ? c.cream : c.cream2} k={k} />}
-            <StepBadge n={n} x={Math.min(g.x1, g.x2) + 34} y={y - 44} on={on} k={k} dim={!on} />
+            {s.label && <Label x={lx} y={y - 44} text={s.label} color={on ? c.cream : c.cream2} k={k} />}
+            <StepBadge n={n} x={bx} y={y - 44} on={on} k={k} dim={!on} />
             {s.lost && f >= lostAt && <LostMark x={g.x2} y={y + 6} k={pop(f, lostAt)} />}
           </div>
         );

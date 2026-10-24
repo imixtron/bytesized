@@ -1,0 +1,247 @@
+# Episode 012. Script approved 2026-10-22 (Discord 012:script:r1)
+# Notion row #12 · Distributed Systems · Junior / Entry · target ~85s (script format v1.8, format field 1.6)
+id: 12
+slug: cap-theorem
+title: "The CAP Theorem, Simply"
+topic: the CAP theorem, Eric Brewer, consistency, availability and partition
+  tolerance, why partitions aren't optional, CP (Spanner) vs AP (Cassandra), why
+  "pick two" is misleading, and tunable consistency per request
+target_sec: 85
+format: "1.6"
+visual_plan: "Hook: Stat slam (2 of 3). Diorama for two bank branches on one
+  phone line. ThreeCards for the three letters. Spine: one Sequence (deposit,
+  lost sync, a read at the other branch) over 2 scenes. Split for CP vs AP,
+  Decision for 'only during a split', Cluster for majority reads."
+
+brands: []
+
+voice: { voice_id: iP95p4xoKVk53GoZ742B, speed: 0.93, name: Chris }
+
+music:
+  track: bytesized-theme-4
+
+look:
+  recipes:
+    - slam
+    - draw
+
+scenes:
+  # ---------- HOOK ----------
+  - id: hook
+    part: hook
+    template: Stat
+    vo: "You can't have all three: consistency, availability and partition
+      tolerance, so every big system picks two. Which would you pick?"
+    headline: { text: "Something has to give", accent: "give" }
+    stage:
+      stat: { id: s, value: "2 of 3", label: "you get to keep" }
+      sub: { id: cap, text: "C · A · P" }
+    beats:
+      - { on: "three", do: appear, target: s }
+      - { on: "consistency", do: reveal, target: cap }
+      - { on: "two", do: reveal, target: s }
+      - { on: "Which", do: highlight, target: s }
+
+  # ---------- BRANDING (automatic, ~1.5s) ----------
+
+  # ---------- IDEA: two bank branches, one phone line (Diorama) ----------
+  - id: idea
+    part: idea
+    template: Diorama
+    vo: "Eric Brewer framed it in two thousand. Picture two bank branches syncing your
+      balance over one phone line."
+    headline: { text: "Two branches, one line", accent: "line" }
+    stage:
+      zones:
+        - {
+            id: ba,
+            label: "branch A",
+            x: 0.04,
+            y: 0.04,
+            w: 0.92,
+            h: 0.3,
+            icon: city
+          }
+        - {
+            id: line,
+            label: "phone line",
+            x: 0.04,
+            y: 0.39,
+            w: 0.92,
+            h: 0.2,
+            icon: pulse
+          }
+        - {
+            id: bb,
+            label: "branch B",
+            x: 0.04,
+            y: 0.64,
+            w: 0.92,
+            h: 0.32,
+            icon: city
+          }
+      actors:
+        - { id: you, icon: user, label: "you", at: ba }
+        - { id: bal, icon: file, label: "balance", at: ba }
+    beats:
+      - { on: "Brewer", do: reveal, target: [ ba, line, bb ] }
+      - { on: "bank", do: reveal, target: [ you, bal ] }
+      - { on: "branches", do: step, target: bal, args: { to: line } }
+      - { on: "syncing", do: step, target: bal, args: { to: bb } }
+      - { on: "phone", do: step, target: you, args: { to: line } }
+
+  # ---------- BREAKDOWN 1: the three letters (ThreeCards, no headline) ----------
+  - id: letters
+    part: breakdown
+    template: ThreeCards
+    vo: "Consistency means both branches show the same balance, availability means
+      each one always answers, and partition tolerance means carrying on when
+      that line goes dead."
+    stage:
+      cards:
+        - { id: c, icon: check, title: Consistency, sub: "same answer everywhere" }
+        - { id: a, icon: pulse, title: Availability, sub: "always replies" }
+        - {
+            id: p,
+            icon: shield,
+            title: Partition tolerance,
+            sub: "survives a cut line"
+          }
+    beats:
+      - { on: "Consistency", do: reveal, target: c }
+      - { on: "same", do: highlight, target: c }
+      - { on: "availability", do: reveal, target: a }
+      - { on: "partition", do: reveal, target: p }
+      - { on: "dead", do: highlight, target: p }
+
+  # ---------- BREAKDOWN 2-3: the partition (Sequence over 2 scenes) ----------
+  - id: cut
+    part: breakdown
+    template: Sequence
+    vo: "Networks do fail, so that last one isn't optional: you deposit fifty
+      dollars at one branch, and the update never reaches the other."
+    headline: { text: "The line goes dead", accent: "dead" }
+    stage:
+      actors:
+        - { id: you2, type: phone, family: solid, label: you }
+        - { id: a1, type: server, label: "branch A" }
+        - { id: b1, type: server, label: "branch B" }
+      steps:
+        - { id: d1, from: you2, to: a1, label: "deposit $50" }
+        - { id: d2, from: a1, to: b1, label: "sync", lost: true }
+        - { id: n1, at: a1, note: "line down!" }
+    beats:
+      - { on: "fail", do: shake, target: b1 }
+      - { on: "deposit", do: step, target: d1 }
+      - { on: "update", do: step, target: d2 }
+      - { on: "never", do: step, target: n1 }
+
+  - id: ask
+    part: breakdown
+    template: Sequence
+    vo: "Then you check your balance at the second branch, and it has to decide what
+      to tell you without being able to ask."
+    stage:
+      reuse: cut
+      steps:
+        - { id: q1, from: you2, to: b1, label: "balance?" }
+        - { id: n2, at: b1, note: "$0 or $50?" }
+    beats:
+      - { on: "check", do: step, target: q1 }
+      - { on: "second", do: highlight, target: b1 }
+      - { on: "decide", do: step, target: n2 }
+      - { on: "ask", do: shake, target: b1 }
+
+  # ---------- BREAKDOWN 4: CP vs AP (Split) ----------
+  - id: choice
+    part: breakdown
+    template: Split
+    vo: "It can refuse until the line is back, correct but unavailable, like
+      Google's Spanner, or answer with the old balance, available but briefly
+      wrong, like Cassandra."
+    headline: { text: "Wait, or guess?", accent: "guess?" }
+    stage:
+      variant: compare
+      before:
+        id: cp
+        title: "CP: Spanner"
+        note: "waits for the line"
+        result: "correct"
+        nodes:
+          - { id: cp_b, type: server, label: "branch B" }
+          - { id: cp_w, type: service, icon: clock, label: "please wait" }
+      after:
+        id: ap
+        title: "AP: Cassandra"
+        note: "answers right away"
+        result: "maybe stale"
+        nodes:
+          - { id: ap_b, type: server, label: "branch B" }
+          - { id: ap_v, type: service, icon: file, label: "old $0" }
+    beats:
+      - { on: "refuse", do: appear, target: cp }
+      - { on: "correct", do: highlight, target: cp_w }
+      - { on: "Spanner", do: highlight, target: cp }
+      - { on: "answer", do: appear, target: ap }
+      - { on: "wrong", do: highlight, target: ap_v }
+      - { on: "Cassandra", do: highlight, target: ap }
+
+  # ---------- BREAKDOWN 5: only during a split (Decision) ----------
+  - id: nuance
+    part: breakdown
+    template: Decision
+    vo: "That's also why pick two is misleading: while the network is healthy you
+      get both, and the choice only bites during a split."
+    headline: { text: "Only when it breaks", accent: "breaks" }
+    stage:
+      start: { id: req, type: phone, family: solid, label: request }
+      checks:
+        - {
+            id: split,
+            q: "Network split?",
+            no: { id: both, label: "C and A", icon: check, tone: ok }
+          }
+      yes: { id: pick, label: "pick C or A", icon: cross, tone: down }
+    beats:
+      - { on: "misleading", do: appear, target: req }
+      - { on: "healthy", do: branch, target: split, args: { to: no } }
+      - { on: "both", do: highlight, target: both }
+      - { on: "bites", do: branch, target: split, args: { to: yes } }
+      - { on: "split", do: highlight, target: pick }
+
+  # ---------- BREAKDOWN 6: tunable consistency (Cluster) ----------
+  - id: tune
+    part: breakdown
+    template: Cluster
+    vo: "Modern databases let each request choose: read one copy for speed, or wait
+      for a majority to agree, so carts and payments can pick differently."
+    headline: { text: "Dial it per call", accent: "Dial" }
+    stage:
+      leader: r1
+      nodes:
+        - { id: r1, type: db, label: "copy 1" }
+        - { id: r2, type: db, label: "copy 2" }
+        - { id: r3, type: db, label: "copy 3" }
+        - { id: r4, type: db, label: "copy 4" }
+        - { id: r5, type: db, label: "copy 5" }
+    beats:
+      - { on: "Modern", do: appear, target: r1 }
+      - { on: "databases", do: appear, target: [ r2, r3, r4, r5 ] }
+      - { on: "speed", do: shake, target: r1 }
+      - { on: "wait", do: send, target: r1 }
+
+  # ---------- GIST (no headline) ----------
+  - id: gist
+    part: gist
+    template: GistCard
+    vo: "That's the gist: when the network breaks, choose correct or available.
+      Follow for more."
+    stage:
+      text: "When it splits, pick one."
+      accent: "one."
+    beats:
+      - { on: "gist", do: appear, target: card }
+      - { on: "correct", do: highlight, target: card }
+      - { on: "Follow", do: highlight, target: card }
+
+# No outro: the video ends on the gist card and loops back into the hook.

@@ -30,7 +30,7 @@
       "note": "replaced by Matilda 2026-10-07; used by 002"
     }
   ],
-  "next": 3,
+  "next": 0,
   "history": [
     {
       "episode": "001-what-is-system-design",
@@ -86,6 +86,11 @@
       "episode": "011-stateless-vs-stateful",
       "voice": "Jessica",
       "date": "2026-10-20"
+    },
+    {
+      "episode": "012-cap-theorem",
+      "voice": "Chris",
+      "date": "2026-10-21"
     }
   ]
 }

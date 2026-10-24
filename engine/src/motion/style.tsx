@@ -34,7 +34,8 @@ export function enterLook(style: EnterStyle, k: number, x: number, w: number): {
       return { style: { transform: `scale(${1 + (1 - k) * 0.9})`, opacity: Math.min(1, k * 5) }, ring: clamp01((k - 0.55) / 0.45) * (k > 0.55 ? 1 : 0) };
     case "wipe": {
       const kc = clamp01(k);
-      return { style: { transform: `translateX(${(1 - kc) * -24}px)`, clipPath: `inset(-200px ${(1 - kc) * (w + 80) - 80}px -200px -200px)` }, ring: 0 };
+      // no clip once in, so side labels (Decision, Sequence notes) aren't cut at w + 80
+      return { style: { transform: `translateX(${(1 - kc) * -24}px)`, clipPath: kc >= 1 ? undefined : `inset(-200px ${(1 - kc) * (w + 80) - 80}px -200px -200px)` }, ring: 0 };
     }
     default:
       return { style: { transform: `scale(${0.4 + 0.6 * k})`, opacity: Math.min(1, k * 1.6) }, ring: 0 };

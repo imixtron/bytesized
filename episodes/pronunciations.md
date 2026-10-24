@@ -20,3 +20,4 @@ Tech terms the voiceover says wrong (or might). Add them **as they come up**: wh
 | google.com | "google dot com" | 009 | to check |
 | HttpOnly, SameSite, HTTPS | "H-T-T-P only", "same site", "H-T-T-P-S" | 010 | to check |
 | Redis | "RED-iss" | 010 | to check |
+| Cassandra, Spanner | "kuh-SAN-druh", "SPAN-er" | 012 | to check |
